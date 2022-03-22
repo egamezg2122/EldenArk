@@ -46,6 +46,34 @@ public class Characters {
         this.specialDamage = specialDamage;
 
     }
+	
+	
+	//METHODS
+	
+	//ESTARIA BIEN QUE LVLUP FUESE ABSTRACT
+	public void levelUp() {
+		level++;
+		damage = damage * 2;
+		defense = defense * 2;
+		specialDamage = specialDamage * 2;
+		maxHP = maxHP * 2;
+		maxMP = maxMP * 2;
+		if (level % 5 == 0) {
+			//get new hability
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     
     
     // Getters
