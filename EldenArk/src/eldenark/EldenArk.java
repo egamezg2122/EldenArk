@@ -35,7 +35,7 @@ public class EldenArk {
 
     public static void main(String[] args) {
         
-        // Main Logic
+        // Main Logic and code
         
         Warrior personajeInicial = createWarrior();
         
