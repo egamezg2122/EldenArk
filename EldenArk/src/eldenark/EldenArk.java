@@ -38,6 +38,16 @@ public class EldenArk {
         // Main Logic
         
         Warrior personajeInicial = createWarrior();
+		
+		personajeInicial.showStats();
+		personajeInicial.setHp(25);
+		for (int i = 0; i < 5; i++) {
+			personajeInicial.levelUp();
+		}
+		System.out.println("\n\n\n");
+		personajeInicial.showStats();
+		
+		
         
     }
     

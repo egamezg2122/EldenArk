@@ -15,5 +15,6 @@ public class Mage extends Characters {
         super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
         
     }  
+	
     
 }

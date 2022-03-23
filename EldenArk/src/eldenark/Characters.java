@@ -56,14 +56,30 @@ public class Characters {
 		damage = damage * 2;
 		defense = defense * 2;
 		specialDamage = specialDamage * 2;
+		hp = (maxHP * 2) - (maxHP - hp);
 		maxHP = maxHP * 2;
+		mp = (maxMP * 2) - (maxMP - mp);
 		maxMP = maxMP * 2;
 		if (level % 5 == 0) {
 			//get new hability
-			
+			System.out.println("NEW ABILITY MARICONNNNN");
 		}
 	}
 	
+	
+	//Funtion for showing the stats of the character
+	public void showStats(){
+		/*
+		The first String has a maximum length of 15 and has 25 blank spaces. The text is left justified.
+		Then, right jutifed we have the value of each atribute
+		*/
+		System.out.println(String.format("%-25.15s %10d", "LEVEL", level));
+		System.out.println(String.format("%-25.15s %10d", "Damage", damage));
+		System.out.println(String.format("%-25.15s %10d", "Defense" ,defense));
+		System.out.println(String.format("%-25.15s %10d", "Special Damage", specialDamage));
+		System.out.println(String.format("%-25.15s %10s", "HP" , hp + "/" + maxHP));
+		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
+	}
 	
 	
 	
