@@ -38,17 +38,33 @@ public class EldenArk {
     public static void main(String[] args) {
 
         // Main Logic
+        
         Character mainCharacter;
+        
         int[][] map = new int[10][10];
+
 		mainCharacter = pickClass();
 		/*
+        mainCharacter = pickClass();
         createMap(map);
+        
         printMap(map, mainCharacter);
+        
 		mainCharacter.move();
 		*/
 		printMap(map, mainCharacter);
 
         mainCharacter.menu();
+
+
+                
+		printMap(map, mainCharacter);
+                
+        do {
+            
+            mainCharacter.menu();
+            
+        } while (mainCharacter.getHp() > 0);
 
 
         /*
@@ -65,23 +81,41 @@ public class EldenArk {
     }
 
     // User picking their character class
+    
     public static Character pickClass() {
+        
         Character main = new Character();
+        
         int option;
+        
         System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
+        
         option = Teclat.llegirInt();
+        
         switch (option) {
+            
             case 1:
+                
                 main = createWarrior();
+                
                 break;
+                
             case 2:
+                
                 main = createMage();
+                
                 break;
+                
             case 3:
+                
                 main = createPriest();
+                
                 break;
+                
             default:
+                
                 System.err.println("Not a valid number");
+                
         }
 
         return main;
