@@ -38,7 +38,7 @@ public class EldenArk {
     public static void main(String[] args) {
 
         // Main Logic
-        Characters mainCharacter;
+        Character mainCharacter;
         int[][] map = new int[10][10];
         mainCharacter = pickClass();
         createMap(map);
@@ -63,8 +63,8 @@ public class EldenArk {
     }
 
     // User picking their character class
-    public static Characters pickClass() {
-        Characters main = new Characters();
+    public static Character pickClass() {
+        Character main = new Character();
         int option;
         System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
         option = Teclat.llegirInt();
@@ -99,7 +99,7 @@ public class EldenArk {
     }
 
     // Print map
-    public static void printMap(int[][] map, Characters mainCharacter) {
+    public static void printMap(int[][] map, Character mainCharacter) {
         for (int i = 0; i < map.length; i++) {
             System.out.println("\n_____________________________________________________________\n");
             for (int j = 0; j < map[i].length; j++) {
@@ -119,7 +119,7 @@ public class EldenArk {
     // Test creating Warrior character
     public static Warrior createWarrior() {
 
-        Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10);
+        Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10, generateInventory());
 
         return w;
 
@@ -128,7 +128,7 @@ public class EldenArk {
     // Test create a Mage object
     public static Mage createMage() {
 
-        Mage m = new Mage(10, 10, 50, 50, 20, 20, 10);
+        Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory());
 
         return m;
 
@@ -137,10 +137,49 @@ public class EldenArk {
     // Test create a Priest object
     public static Priest createPriest() {
 
-        Priest p = new Priest(10, 10, 50, 50, 20, 20, 10);
+        Priest p = new Priest(10, 10, 50, 50, 20, 20, 10, generateInventory());
 
         return p;
 
     }
+	
+	// Generate a random enemy
+	public static Character generateEnemy() {
+		//HA DE RETORNAR L'OBJECTE ENEMIC
+		Character enemy = new Character();
+		int n = rn.nextInt(3);
+		switch (n) {
+			case 0:
+				enemy = new Warrior(5, 5, 20, 20, 5, 5, 5);
+				break;
+			case 1:
+				enemy = new Mage(5, 5, 20, 20, 5, 5, 5);
+				break;
+			case 2:
+				enemy = new Priest(5, 5, 20, 20, 5, 5, 5);
+		}
+		return enemy;
+		//RETURN ENEMY
+	}
+	
+	public static Object[] generateInventory() {
+		
+		Potion smallHealing = new Potion(30, 2, "Healing");
+		
+		Potion largeHealing = new Potion(50, 0, "Healing");
+		
+		Potion smallMana = new Potion(30, 0, "Mana Regeneration");
+		
+		Potion largeMana = new Potion(50, 0, "Mana Regeneration");
+
+		Object[] inventory = new Object[4];
+		
+		inventory[0] = smallHealing;
+		inventory[1] = largeHealing;
+		inventory[2] = smallMana;
+		inventory[3] = largeMana;
+		
+		return inventory;
+	}
 
 }
