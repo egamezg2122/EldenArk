@@ -3,17 +3,21 @@ package eldenark;
 /**
  *
  * @author egame
- * 
+ *
  */
+public class Mage extends Character {
 
-public class Mage extends Characters {
-    
-    // Constructor
+	// MAIN 
+	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, Object[] inventory) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, inventory);
+	}
 
-    public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
-        
-        super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
-        
-    }  
-    
+	// ENEMY
+	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
+	}
+
+	// Constructor
+	
+
 }
