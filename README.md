@@ -38,6 +38,16 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
 
 
+<!-- AUTHORS -->
+
+## Authors
+
+- [Marcel Homar](https://github.com/MarcelHomar)
+- [Leo Ferraz](https://github.com/leoFerraz19)
+- [Albert Salazar](https://github.com/AlbertPolitecnis)
+- [Elías Gámez](https://github.com/egamezg2122)
+
+
 <!-- ROADMAP -->
 
 ## Roadmap
