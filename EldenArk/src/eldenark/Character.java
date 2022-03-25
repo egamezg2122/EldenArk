@@ -1,6 +1,6 @@
 package eldenark;
 
-public class Characters {
+public class Character {
 
 	// Main atributes
 	private int level;
@@ -24,9 +24,13 @@ public class Characters {
 	private int x = 5; // Position in the map
 
 	private int y = 5; // Position in the map
+	
+	private Object[] inventory = new Object[4]; // Testing inventory
 
 	// Constructors
-	public Characters(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
+	
+	// Constructor for MAIN CHARACTER
+	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, Object[] inventory) {
 
 		this.level = 1; // Always start at level 1
 
@@ -45,10 +49,28 @@ public class Characters {
 		this.maxMP = maxMP;
 
 		this.specialDamage = specialDamage;
-
+		
+		this.inventory = inventory;
+						
 	}
 
-	public Characters() {
+	// Constructor for ENEMIES
+	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
+		this.damage = damage;
+		this.defense = defense;
+		this.hp = hp;
+		this.maxHP = maxHP;
+		this.mp = mp;
+		this.maxMP = maxMP;
+		this.specialDamage = specialDamage;
+	}
+	
+	
+	
+	
+
+	public Character() {
+		
 	}
 
 	//METHODS
@@ -83,74 +105,45 @@ public class Characters {
 	}
 
 	public void move() {
-		x++;
-	}
-	
-	public Characters createEnemy(){
-		Characters enemy = new Characters();
-		
-		return enemy;
-	}
-	
-	//ES NECESITADO EL CAMBIO A ESTA SECCION DEL CODIGO
-	public int fightMenu() {
-		System.out.println("\n1-Basic Attack" + "\n2-Defend" + "\n3-Special Abilities" + "\n4-Objects");
-		return Teclat.llegirInt();
+		int option;
+		do {
+			System.out.println("Which direction do you want to move?\n\t1 - Up\n\tDown\n\tRight\n\tLeft");
+			option = Teclat.llegirInt();
+			switch (option) {
+				case 1:
+					y++;
+					break;
+				case 2:
+					y--;
+					break;
+				case 3:
+					x++;
+					break;
+				case 4:
+					x--;
+					break;
+				default:
+					System.err.println("Not a valid option\nTry Again");
+			}
+		} while (option < 1 && option > 4);
+
 	}
 
-	public void basicAttack(Characters enemy){
-		enemy.setHp(hp-damage);
+	//ES NECESITADO EL CAMBIO A ESTA SECCION DEL CODIGO
+	public int fightMenu() {
+		System.out.println("1-Basic Attack" + "\n2-Defend" + "\n3-Special Abilities" + "\n4-Objects");
+		return 1;
+
 	}
-	
-	public void defend(){
-		
-	}
-	
-	public void specialAbilities(Characters enemy){
-		enemy.setHp(hp-specialDamage);
-	}
-	
-	public void objects(){
-		
-	}
-	
-	public void fight(Characters enemy) {
-		int option;
-		do{
-			System.out.println("How are you gonna fight?");
-			option = fightMenu();
-			switch(option){
-			case 1:
-				//BASIC ATTACK
-				basicAttack(enemy);
-				break;
-			case 2:
-				//DEFEND
-				defend();
-				break;
-			case 3:
-				//SPECIAL ABILITIES
-				specialAbilities(enemy);				
-				break;
-			case 4:
-				//OBJECTS
-				objects();
-				break;
-			default:
-				System.err.println("\nInvalid option");
-		}
-		}while(enemy.getHp()>0);
-		
-		
-		
-		
+
+	public void fight() {
+
 	}
 
 	public void menu() {
 		int op;
 		System.out.println("\nMENU\n");
 		System.out.println("What do you want to do?");
-		System.out.println("\n\t0- Exit the game \n\t1- Move the character \n\t2- Fight \n\t3- Loot \n\t4- Show inventory \n\t5- Check Stats");
 		//Print the menu
 		op = Teclat.llegirInt();
 		switch (op) {
@@ -163,7 +156,7 @@ public class Characters {
 				break;
 			case 2:
 				//FIGHT
-				fight(createEnemy());
+				fight();
 				break;
 			case 3:
 				//LOOT
