@@ -10,5 +10,11 @@ package eldenark;
  * @author cep
  */
 public abstract class Object {
+
+	@Override
+	public String toString() {
+		return "Object{" + '}';
+	}
 	
+
 }

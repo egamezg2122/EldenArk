@@ -46,6 +46,11 @@ public class Potion extends Object{
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	@Override
+	public String toString() {
+		return "Potion{" + "percentage=" + percentage + ", numOfUses=" + numOfUses + ", type=" + type + '}';
+	}
 	
 	
 	
@@ -54,6 +59,5 @@ public class Potion extends Object{
 	
 	
 	
-	
-	
+
 }

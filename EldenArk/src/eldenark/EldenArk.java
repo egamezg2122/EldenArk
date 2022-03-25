@@ -40,14 +40,16 @@ public class EldenArk {
         // Main Logic
         Character mainCharacter;
         int[][] map = new int[10][10];
-        mainCharacter = pickClass();
+		mainCharacter = pickClass();
+		/*
         createMap(map);
         printMap(map, mainCharacter);
 		mainCharacter.move();
+		*/
 		printMap(map, mainCharacter);
-        do {
-            mainCharacter.menu();
-        } while (mainCharacter.getHp() > 0);
+
+        mainCharacter.menu();
+
 
         /*
 		Warrior personajeInicial = createWarrior();
@@ -143,24 +145,7 @@ public class EldenArk {
 
     }
 	
-	// Generate a random enemy
-	public static Character generateEnemy() {
-		//HA DE RETORNAR L'OBJECTE ENEMIC
-		Character enemy = new Character();
-		int n = rn.nextInt(3);
-		switch (n) {
-			case 0:
-				enemy = new Warrior(5, 5, 20, 20, 5, 5, 5);
-				break;
-			case 1:
-				enemy = new Mage(5, 5, 20, 20, 5, 5, 5);
-				break;
-			case 2:
-				enemy = new Priest(5, 5, 20, 20, 5, 5, 5);
-		}
-		return enemy;
-		//RETURN ENEMY
-	}
+	
 	
 	public static Object[] generateInventory() {
 		

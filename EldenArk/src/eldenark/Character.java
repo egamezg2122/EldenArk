@@ -1,5 +1,7 @@
 package eldenark;
 
+import static eldenark.EldenArk.rn;
+
 public class Character {
 
 	// Main atributes
@@ -24,11 +26,10 @@ public class Character {
 	private int x = 5; // Position in the map
 
 	private int y = 5; // Position in the map
-	
+
 	private Object[] inventory = new Object[4]; // Testing inventory
 
 	// Constructors
-	
 	// Constructor for MAIN CHARACTER
 	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, Object[] inventory) {
 
@@ -49,9 +50,9 @@ public class Character {
 		this.maxMP = maxMP;
 
 		this.specialDamage = specialDamage;
-		
+
 		this.inventory = inventory;
-						
+
 	}
 
 	// Constructor for ENEMIES
@@ -64,13 +65,9 @@ public class Character {
 		this.maxMP = maxMP;
 		this.specialDamage = specialDamage;
 	}
-	
-	
-	
-	
 
 	public Character() {
-		
+
 	}
 
 	//METHODS
@@ -107,7 +104,7 @@ public class Character {
 	public void move() {
 		int option;
 		do {
-			System.out.println("Which direction do you want to move?\n\t1 - Up\n\tDown\n\tRight\n\tLeft");
+			System.out.println("Which direction do you want to move?\n\t1 - Up\n\t2 - Down\n\t3 - Right\n\t4 - Left");
 			option = Teclat.llegirInt();
 			switch (option) {
 				case 1:
@@ -131,46 +128,191 @@ public class Character {
 
 	//ES NECESITADO EL CAMBIO A ESTA SECCION DEL CODIGO
 	public int fightMenu() {
-		System.out.println("1-Basic Attack" + "\n2-Defend" + "\n3-Special Abilities" + "\n4-Objects");
-		return 1;
+		System.out.println("\n1-Basic Attack" + "\n2-Defend" + "\n3-Special Abilities" + "\n4-Objects");
+		return Teclat.llegirInt();
+	}
+
+	public void basicAttack(Character enemy) {
+		enemy.setHp(enemy.getHp() - damage);
+	}
+
+	public void enemyBasicAttack(Character enemy) {
+		this.hp = hp - enemy.getDamage();
+	}
+
+	public void defend(Character enemy) {
+		this.hp = hp - (enemy.getDamage() - defense);
+	}
+
+	public void enemyDefend(Character enemy) {
+		enemy.setHp(enemy.getHp() - (this.damage - enemy.getDefense()));
+	}
+
+	public void specialAbilities(Character enemy) {
+		enemy.setHp(enemy.getHp() - specialDamage);
+	}
+
+	public void enemySpecialAbilities(Character enemy) {
+		this.hp = hp - enemy.getSpecialDamage();
+	}
+
+	public void objects() {
+		System.out.println("What Potion do you want to use?");
+		System.out.println("\n\t1- Use healing potion \n\t2- Use mana regeneration potion");
+		showInventory();
+		int option;
+		option = Teclat.llegirInt();
+		switch (option) {
+			case 1:
+				//HEALING OPTION
+				this.hp = hp + (maxHP * 30 / 100);
+				checkMaxValues(hp, maxHP);
+				break;
+			case 2:
+				//MANA REGENERATION
+				this.mp = mp + (maxMP * 30 / 100);
+				checkMaxValues(mp, maxMP);
+				break;
+			default:
+				System.err.println("\nInvalid option");
+		}
 
 	}
 
-	public void fight() {
+	public void checkMaxValues(int value, int max) {
+		if (value > max) {
+			value = max;
+		}
+	}
 
+	public void interfaceFight(Character enemy) {
+		System.out.println("YOU");
+		System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
+		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
+		System.out.println("ENEMY");
+		System.out.println(String.format("%-25.15s %10s", "HP", enemy.getHp() + "/" + enemy.getMaxHP()));
+		System.out.println(String.format("%-25.15s %10s", "MP", enemy.getMp() + "/" + enemy.getMaxMP()));
+
+	}
+
+	public void enemyActions(Character enemy) {
+		int optionEnemy;
+		optionEnemy = rn.nextInt(3);
+		switch (optionEnemy) {
+			case 0:
+				//BASIC ATTACK
+				enemyBasicAttack(enemy);
+				System.out.println("The enemy did " + enemy.getDamage());
+				break;
+			case 1:
+				//DEFEND
+				enemyDefend(enemy);
+				break;
+			case 2:
+				//SPECIAL ABILITIES
+				enemySpecialAbilities(enemy);
+				System.out.println("The enemy did " + enemy.getSpecialDamage());
+				break;
+		}
+
+	}
+
+	
+	
+	public void fight(Character enemy) {
+		int option;
+		do {
+			interfaceFight(enemy);
+			System.out.println("How are you gonna fight?");
+			option = fightMenu();
+			switch (option) {
+				case 1:
+					//BASIC ATTACK
+					basicAttack(enemy);
+					//QUE DAÑO LE HACES...
+					break;
+				case 2:
+					//DEFEND
+					defend(enemy);
+					break;
+				case 3:
+					//SPECIAL ABILITIES
+					specialAbilities(enemy);
+					//QUE DAÑO LE HACES...
+					break;
+				case 4:
+					//OBJECTS
+					objects();
+					break;
+				default:
+					System.err.println("\nInvalid option");
+			}
+			enemyActions(enemy);
+			// TE HACE DAÑO
+		} while (enemy.getHp() > 0);
 	}
 
 	public void menu() {
 		int op;
-		System.out.println("\nMENU\n");
-		System.out.println("What do you want to do?");
-		//Print the menu
-		op = Teclat.llegirInt();
-		switch (op) {
+		do {
+			System.out.println("\nMENU\n");
+			System.out.println("What do you want to do?");
+			System.out.println("\n\t0- Exit the game \n\t1- Move the character \n\t2- Fight \n\t3- Loot \n\t4- Show inventory \n\t5- Check stats");
+			//SE TIENE QUE CHECKEAR LA CASILLA
+			Character enemy = generateEnemy();
+			//Print the menu
+			op = Teclat.llegirInt();
+			switch (op) {
+				case 0:
+					//EXIT THE GAME
+					break;
+				case 1:
+					//MOVE
+					move();
+					break;
+				case 2:
+					//FIGHT
+					fight(enemy);
+					break;
+				case 3:
+					//LOOT
+					break;
+				case 4:
+					//INVENTORY
+					showInventory();
+					break;
+				case 5:
+					//CHECK STATS
+					showStats();
+					break;
+				default:
+					System.err.println("\nError,invalid option." + " \nTry again");
+			}
+		} while (op != 0);
+
+	}
+
+	public void showInventory() {
+		for (int i = 0; i < inventory.length; i++) {
+			System.out.println(inventory[i].toString());
+		}
+	}
+
+	// Generate a random enemy
+	public static Character generateEnemy() {
+		Character enemy = new Character();
+		int n = rn.nextInt(3);
+		switch (n) {
 			case 0:
-				//EXIT THE GAME
+				enemy = new Warrior(5, 5, 20, 20, 5, 5, 5);
 				break;
 			case 1:
-				//MOVE
-				move();
+				enemy = new Mage(5, 5, 20, 20, 5, 5, 5);
 				break;
 			case 2:
-				//FIGHT
-				fight();
-				break;
-			case 3:
-				//LOOT
-				break;
-			case 4:
-				//INVENTORY
-				break;
-			case 5:
-				//CHECK STATS
-				showStats();
-				break;
-			default:
-				System.err.println("Error,invalid option." + " \nTry again");
+				enemy = new Priest(5, 5, 20, 20, 5, 5, 5);
 		}
+		return enemy;
 	}
 
 	// Getters
