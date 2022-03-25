@@ -42,7 +42,9 @@ public class EldenArk {
         int[][] map = new int[10][10];
         mainCharacter = pickClass();
         createMap(map);
-        printMap(map);
+        printMap(map, mainCharacter);
+		mainCharacter.move();
+		printMap(map, mainCharacter);
         do {
             mainCharacter.menu();
         } while (mainCharacter.getHp() > 0);
@@ -85,9 +87,9 @@ public class EldenArk {
 
     // Testins creating a basic map
     public static void createMap(int[][] array) {
-        /* 0 - Enemy
+        /* 0 - Nothing
         1 - Loot
-        2 - Nothing
+        2 - Enemy
          */
         for (int[] array1 : array) {
             for (int j = 0; j < array.length; j++) {
@@ -97,11 +99,17 @@ public class EldenArk {
     }
 
     // Print map
-    public static void printMap(int[][] map) {
-        for (int[] map1 : map) {
+    public static void printMap(int[][] map, Characters mainCharacter) {
+        for (int i = 0; i < map.length; i++) {
             System.out.println("\n_____________________________________________________________\n");
-            for (int j = 0; j < map1.length; j++) {
-                System.out.print(String.format("|%5d", map1[j]));
+            for (int j = 0; j < map[i].length; j++) {
+				if (j == mainCharacter.getX() && i == mainCharacter.getY()) {
+					System.out.print("|" + "\u001B[34m"+"    O" + "\u001B[30m");
+				} else if (map[i][j]==0) {
+					System.out.print(String.format("|%5s", ""));
+				} else{
+					System.out.print(String.format("|%5d", map[i][j]));
+				}
             }
             System.out.print("|");
         }

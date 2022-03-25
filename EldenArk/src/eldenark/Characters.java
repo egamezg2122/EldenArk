@@ -21,7 +21,9 @@ public class Characters {
 
     private int specialDamage;
 
-    private int x = 0; // Position in the map
+    private int x = 5; // Position in the map
+	
+	private int y = 5; // Position in the map
 
     // Constructors
     public Characters(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
@@ -104,19 +106,25 @@ public class Characters {
         switch (op) {
             case 0:
             //EXIT THE GAME
+				break;
             case 1:
                 //MOVE
                 move();
+				break;
             case 2:
             //FIGHT
                 fight();
+				break;
             case 3:
             //LOOT
+				break;
             case 4:
             //INVENTORY
+				break;
             case 5:
                 //CHECK STATS
                 showStats();
+				break;
             default:
                 System.err.println("Error,invalid option." + " \nTry again");
         }
@@ -176,6 +184,16 @@ public class Characters {
         return specialDamage;
 
     }
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+	
+	
 
     // Setters
     public void setLevel(int level) {
