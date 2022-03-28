@@ -13,22 +13,19 @@ public class Potion extends Object{
 	
 	private int percentage;
 	
-	private int numOfUses;
-	
 	private String type;
 
-	public Potion(int percentage, int numOfUses, String type) {
+	public Potion(String name, int percentage, String type, String description, int numOfUses) {
+		super(name, description, numOfUses);
 		this.percentage = percentage;
-		this.numOfUses = numOfUses;
 		this.type = type;
 	}
 
+	
+	
+	
 	public int getPercentage() {
 		return percentage;
-	}
-
-	public int getNumOfUses() {
-		return numOfUses;
 	}
 
 	public String getType() {
@@ -39,10 +36,6 @@ public class Potion extends Object{
 		this.percentage = percentage;
 	}
 
-	public void setNumOfUses(int numOfUses) {
-		this.numOfUses = numOfUses;
-	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -50,6 +43,12 @@ public class Potion extends Object{
 	@Override
 	public String toString() {
 		return "Potion{" + "percentage=" + percentage + ", numOfUses=" + numOfUses + ", type=" + type + '}';
+	}
+
+	@Override
+	public void use() {
+		
+		this.setNumOfUses(this.getNumOfUses() - 1);
 	}
 	
 	

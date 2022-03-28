@@ -157,6 +157,24 @@ public class Character {
 	}
 
 	public void objects() {
+		int option;
+		System.out.println("What object do you want to use?");
+		for (int i = 0; i < this.inventory.length; i++) {
+				System.out.println(String.format("%-25.15s %10d", this.inventory[i].getName(), this.inventory[i].getNumOfUses()));
+		}
+		option = Teclat.llegirInt();
+		if (this.inventory[option].getNumOfUses() > 0) {
+			System.out.println(this.inventory[option].getDescription());
+			System.out.println("Are you sure do you want to use this object?");
+			if (confirmation()) {
+				this.inventory[option].use();
+			} else{
+				
+			}
+			
+		}
+		
+		/*
 		System.out.println("What Potion do you want to use?");
 		System.out.println("\n\t1- Use healing potion \n\t2- Use mana regeneration potion");
 		showInventory();
@@ -176,9 +194,24 @@ public class Character {
 			default:
 				System.err.println("\nInvalid option");
 		}
+*/
 
 	}
 
+	public boolean confirmation(){
+		char afirmation;
+		boolean x;
+		System.out.println("Are you sure do you want to use this object? Y/N");
+		afirmation = Teclat.llegirChar();
+		if (afirmation == 'Y' || afirmation == 'y') {
+			x = true;
+		} else{
+			x = false;
+		}
+		return x;
+	}
+	
+	
 	public void checkMaxValues(int value, int max) {
 		if (value > max) {
 			value = max;

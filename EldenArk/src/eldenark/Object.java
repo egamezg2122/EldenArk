@@ -11,6 +11,46 @@ package eldenark;
  */
 public abstract class Object {
 
+	private String name;
+	
+	private String description;
+	
+	private int numOfUses;
+
+	public Object(String name, String description, int numOfUses) {
+		this.name = name;
+		this.description = description;
+		this.numOfUses = numOfUses;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public int getNumOfUses() {
+		return numOfUses;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setNumOfUses(int numOfUses) {
+		this.numOfUses = numOfUses;
+	}
+	
+	
+	public abstract void use();
+	
 	@Override
 	public String toString() {
 		return "Object{" + '}';
