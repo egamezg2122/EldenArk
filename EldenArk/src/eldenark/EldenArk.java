@@ -183,13 +183,13 @@ public class EldenArk {
 	
 	public static Object[] generateInventory() {
 		
-		Potion smallHealing = new Potion(30, 2, "Healing");
+		Potion smallHealing = new Potion("Small Healing Potion",30,"tipo","descripcion",2);
 		
-		Potion largeHealing = new Potion(50, 0, "Healing");
+		Potion largeHealing = new Potion("Large Healing Potion",50,"tipo","descripcion",2);
 		
-		Potion smallMana = new Potion(30, 0, "Mana Regeneration");
+		Potion smallMana = new Potion("Small Mana Potion",30,"tipo","descripcion",2);
 		
-		Potion largeMana = new Potion(50, 0, "Mana Regeneration");
+		Potion largeMana = new Potion("Large Mana Potion",50,"tipo","descripcion",2);
 
 		Object[] inventory = new Object[4];
 		
