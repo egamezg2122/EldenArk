@@ -6,8 +6,11 @@
 package eldenark;
 
 import static eldenark.EldenArk.generateInventory;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 import java.util.Timer;
 
@@ -15,16 +18,22 @@ import java.util.Timer;
  *
  * @author cep
  */
-public class Gameplay extends KeyAdapter {
+public class Gameplay implements ActionListener {
 
 	int[][] map = new int[5][30];
 	static Random rn = new Random();
 	Character mainCharacter = new Character();
+        boolean running = false;
+        Timer timer;
 
 	Gameplay() {
 		mainCharacter = createWarrior();
 		createMap(map, mainCharacter);
 		printMap(map, mainCharacter);
+                running = true;
+                timer = new Timer();
+                
+                
 	}
 
 	
@@ -157,6 +166,16 @@ public class Gameplay extends KeyAdapter {
 	}
 
 
+        
+        public static void reprint(int[][] map, Character mainCharacter){
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            printMap(map, mainCharacter);
+            printMoveOptions();
+        }
+        
+        public static void printMoveOptions(){
+            System.out.println("\tW - Upwards\nA - Left\tS - Downwards\tD - Downwards");
+        }
 	
 	//Method to print the map
 	public static void printMap(int[][] map, Character mainCharacter) {
@@ -234,37 +253,85 @@ public class Gameplay extends KeyAdapter {
 
 		return inventory;
 	}
+        
+    public void keyTyped(KeyEvent e) {
+        switch (e.getKeyChar()) {
+			case 'w':
+				//Thing that happens when the 'w' key is pressed
+                            mainCharacter.moveUP();
+                            reprint(map, mainCharacter);
+				break;
+			case 's':
+				//Thing that happens when the 's' key is pressed
+                            mainCharacter.moveDown();
+                            reprint(map, mainCharacter);
+				break;
+			case 'd':
+				//Thing that happens when the 'd' key is pressed
+                            mainCharacter.moveRight();
+                            reprint(map, mainCharacter);
+				break;
+			case 'a':
+				//Thing that happens when the 'a' key is pressed
+                            mainCharacter.moveLeft();
+                            reprint(map, mainCharacter);
+				break;
+		}
+    }
 
-	/*
-	Timer timer;
+    public void keyPressed(KeyEvent e) {
+        
+    }
+
+    public void keyReleased(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (running) {
+            reprint(map, mainCharacter);
+        }
+    }
 	
 	
 	
-	
-	
-	@Override
+        
+        public class MyKeyAdapter extends KeyAdapter {
+            
+        @Override
 	public void keyTyped(KeyEvent e) {
 		switch (e.getKeyChar()) {
 			case 'w':
 				//Thing that happens when the 'w' key is pressed
+                            mainCharacter.moveUP();
+                            Gameplay.reprint(map, mainCharacter);
 				break;
 			case 's':
 				//Thing that happens when the 's' key is pressed
+                            mainCharacter.moveDown();
+                            Gameplay.reprint(map, mainCharacter);
 				break;
 			case 'd':
 				//Thing that happens when the 'd' key is pressed
+                            mainCharacter.moveRight();
+                            Gameplay.reprint(map, mainCharacter);
 				break;
 			case 'a':
 				//Thing that happens when the 'a' key is pressed
+                            mainCharacter.moveLeft();
+                            Gameplay.reprint(map, mainCharacter);
 				break;
 		}
-	}
-
-	@Override
+	}    
+            
+        @Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 				//Thing that happens when the ArrowUp key is pressed
+                            mainCharacter.moveUP();
+                            
 				break;
 			case KeyEvent.VK_DOWN:
 				//Thing that happens when the ArrowDown key is pressed
@@ -281,5 +348,9 @@ public class Gameplay extends KeyAdapter {
 	@Override
 	public void keyReleased(KeyEvent e) {
 
-	}*/
+	}
+            
+        }
+
+	
 }

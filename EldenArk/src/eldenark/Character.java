@@ -128,6 +128,19 @@ public class Character {
 		} while (option < 1 && option > 4);
 
 	}
+        
+        public void moveUP(){
+            y++;
+        }
+        public void moveDown(){
+            y--;
+        }
+        public void moveRight(){
+            x++;
+        }
+        public void moveLeft(){
+            x--;
+        }
 
 	//ES NECESITADO EL CAMBIO A ESTA SECCION DEL CODIGO
 	public int fightMenu() {

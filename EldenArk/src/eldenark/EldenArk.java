@@ -33,21 +33,22 @@ import java.util.Random;
 
 public class EldenArk {
 
-	static Random rn = new Random();
+    static Random rn = new Random();
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-
-		// Main Logic
-		Character mainCharacter;
+        // Main Logic
+        Gameplay g = new Gameplay();
+        /*
+                Character mainCharacter;
 
 		int[][] map = new int[10][10];
 
         // Main Logic
         
-		Gameplay g = new Gameplay();
 		
-		/*
+		
+		
         Character mainCharacter;
         
         int[][] map = new int[10][10];
@@ -64,7 +65,7 @@ public class EldenArk {
         
 		mainCharacter.move();
 
-		 */
+		 
 
 		printMap(map, mainCharacter);
 
@@ -89,108 +90,101 @@ public class EldenArk {
 		}
 		System.out.println("\n\n\n");
 		personajeInicial.showStats();
-		 */
-	}
+         */
+    }
 
-	// User picking their character class
-	public static Character pickClass() {
+    // User picking their character class
+    public static Character pickClass() {
 
-		Character main = new Character();
+        Character main = new Character();
 
-		int option;
+        int option;
 
-		System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
+        System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
 
-		option = Teclat.llegirInt();
+        option = Teclat.llegirInt();
 
-		switch (option) {
+        switch (option) {
 
-			case 1:
+            case 1:
 
-				main = createWarrior();
+                //main = createWarrior();
 
-				break;
+                break;
 
-			case 2:
+            case 2:
 
-				main = createMage();
+                //main = createMage();
 
-				break;
+                break;
 
-			case 3:
+            case 3:
 
-				main = createPriest();
+                //main = createPriest();
 
-				break;
+                break;
 
-			default:
+            default:
 
-				System.err.println("Not a valid number");
+                System.err.println("Not a valid number");
 
-		}
+        }
 
-		return main;
-	}
+        return main;
+    }
 
-	// Testins creating a basic map
-	public static void createMap(int[][] array) {
-		/* 0 - Nothing
+    // Testins creating a basic map
+    public static void createMap(int[][] array) {
+        /* 0 - Nothing
         1 - Loot
         2 - Enemy
-		 */
-		for (int[] array1 : array) {
-			for (int j = 0; j < array.length; j++) {
-				array1[j] = rn.nextInt(3);
-			}
-		}
-	}
+         */
+        for (int[] array1 : array) {
+            for (int j = 0; j < array.length; j++) {
+                array1[j] = rn.nextInt(3);
+            }
+        }
+    }
 
-	// Print map
-	public static void printMap(int[][] map, Character mainCharacter) {
-		for (int i = 0; i < map.length; i++) {
-			System.out.println("\n_____________________________________________________________\n");
-			for (int j = 0; j < map[i].length; j++) {
-				if (j == mainCharacter.getX() && i == mainCharacter.getY()) {
-					System.out.print("|" + "\u001B[34m" + "    O" + "\u001B[30m");
-				} else if (map[i][j] == 0) {
-					System.out.print(String.format("|%5s", ""));
-				} else {
-					System.out.print(String.format("|%5d", map[i][j]));
-				}
-			}
-			System.out.print("|");
-		}
-		System.out.println("\n_____________________________________________________________");
-	}
+    // Print map
+    public static void printMap(int[][] map, Character mainCharacter) {
+        for (int i = 0; i < map.length; i++) {
+            System.out.println("\n_____________________________________________________________\n");
+            for (int j = 0; j < map[i].length; j++) {
+                if (j == mainCharacter.getX() && i == mainCharacter.getY()) {
+                    System.out.print("|" + "\u001B[34m" + "    O" + "\u001B[30m");
+                } else if (map[i][j] == 0) {
+                    System.out.print(String.format("|%5s", ""));
+                } else {
+                    System.out.print(String.format("|%5d", map[i][j]));
+                }
+            }
+            System.out.print("|");
+        }
+        System.out.println("\n_____________________________________________________________");
+    }
 
-	// Test creating Warrior character
+    // Test creating Warrior character
+    public static Object[] generateInventory() {
 
-	public static Object[] generateInventory() {
+        Potion smallHealing = new Potion("Small Healing Potion", 30, "tipo", "descripcion", 2);
 
-		Potion smallHealing = new Potion("Small Healing Potion", 30, "tipo", "descripcion", 2);
+        Potion largeHealing = new Potion("Large Healing Potion", 50, "tipo", "descripcion", 2);
 
-		Potion largeHealing = new Potion("Large Healing Potion", 50, "tipo", "descripcion", 2);
+        Potion smallMana = new Potion("Small Mana Potion", 30, "tipo", "descripcion", 2);
 
-		Potion smallMana = new Potion("Small Mana Potion", 30, "tipo", "descripcion", 2);
+        Potion largeMana = new Potion("Large Mana Potion", 50, "tipo", "descripcion", 2);
 
-		Potion largeMana = new Potion("Large Mana Potion", 50, "tipo", "descripcion", 2);
+        Object[] inventory = new Object[4];
 
-		Object[] inventory = new Object[4];
+        inventory[0] = smallHealing;
+        inventory[1] = largeHealing;
+        inventory[2] = smallMana;
+        inventory[3] = largeMana;
 
-		inventory[0] = smallHealing;
-		inventory[1] = largeHealing;
-		inventory[2] = smallMana;
-		inventory[3] = largeMana;
+        return inventory;
+    }
+}
 
-		return inventory;
-	}
-	}
-
-
-	// Test create a Priest object
-
-
-	
-
-	
+// Test create a Priest object
 

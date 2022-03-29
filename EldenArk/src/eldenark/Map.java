@@ -1,5 +1,8 @@
 package eldenark;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
@@ -14,11 +17,31 @@ public class Map extends JFrame {
 	
 	
 	Map(){
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+            
+            this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+            this.setBackground(Color.BLACK);
+            this.setFocusable(true);
+            this.addKeyListener(new MyKeyAdapter());
+            startGame();
+            
 	}
 	
-	
+	public void startGame(){
+            
+        }
+        
+        public void paintComponent(Graphics g){
+            super.paintComponents(g);
+            draw(g);
+        }
+        
+        public void draw(Graphics g){
+            for (int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
+                g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
+                g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
+            }
+        }
+        
 	public class MyKeyAdapter extends KeyAdapter {
 		
 		@Override
