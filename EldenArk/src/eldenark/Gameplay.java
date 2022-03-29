@@ -33,29 +33,29 @@ public class Gameplay extends KeyAdapter {
         }
     }
 	
-	public static void generateMountains(int[][] map){
-		int x, y, i;
-		i = 0;
-		do {
-			x = rn.nextInt(30);
-			y = rn.nextInt(10);
-		} while (x != 15 && y != 5);
-		
-		do {
-			try {
-			map[y][x] = 10;
-		} catch (indexOutOfBound e){
-			
-		}
-		} while (i < 5);
-		
-		
-		
-		
-		
-		
-		
+	/*	public static void generateMountains(int[][] map){
+	int x, y, i;
+	i = 0;
+	do {
+	x = rn.nextInt(30);
+	y = rn.nextInt(10);
+	} while (x != 15 && y != 5);
+	
+	do {
+	try {
+	map[y][x] = 10;
+	} catch (indexOutOfBound e){
+	
 	}
+	} while (i < 5);
+	
+	
+	
+	
+	
+	
+	
+	}*/
 	
 	public static void printMap(int[][] map, Character mainCharacter) {
         for (int i = 0; i < map.length; i++) {
