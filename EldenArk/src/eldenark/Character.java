@@ -141,11 +141,11 @@ public class Character {
 	}
 
 	public void defend(Character enemy) {
-		this.hp = hp - (enemy.getDamage() - defense);
+		
 	}
 
 	public void enemyDefend(Character enemy) {
-		enemy.setHp(enemy.getHp() - (this.damage - enemy.getDefense()));
+		
 	}
 
 	public void specialAbilities(Character enemy) {
@@ -256,7 +256,7 @@ public class Character {
 		int option;
 		do {
 			interfaceFight(enemy);
-			System.out.println("How are you gonna fight?");
+			System.out.println("\nHow are you gonna fight?");
 			option = fightMenu();
 			switch (option) {
 				case 1:
