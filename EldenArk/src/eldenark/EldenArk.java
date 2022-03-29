@@ -39,19 +39,24 @@ public class EldenArk {
 
         // Main Logic
         
+		Gameplay g = new Gameplay();
+		
+		/*
         Character mainCharacter;
         
         int[][] map = new int[10][10];
+		
+		map[11][10] = 1;
 
 		mainCharacter = pickClass();
-		/*
+		
         mainCharacter = pickClass();
         createMap(map);
         
         printMap(map, mainCharacter);
         
 		mainCharacter.move();
-		*/
+		
 		printMap(map, mainCharacter);
 
         mainCharacter.menu();
@@ -163,8 +168,8 @@ public class EldenArk {
 
     // Test create a Mage object
     public static Mage createMage() {
-
-        Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory());
+		
+		Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory());
 
         return m;
 

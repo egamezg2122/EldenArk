@@ -40,10 +40,13 @@ public class Potion extends Object{
 		this.type = type;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Potion{" + "percentage=" + percentage + ", numOfUses=" + numOfUses + ", type=" + type + '}';
+		return "Potion{" + "percentage=" + percentage + ", type=" + type + '}';
 	}
+
+	
 
 	@Override
 	public void use() {

@@ -23,9 +23,9 @@ public class Character {
 
 	private int specialDamage;
 
-	private int x = 5; // Position in the map
+	private int x = 10; // Position in the map
 
-	private int y = 5; // Position in the map
+	private int y = 2; // Position in the map
 
 	private Object[] inventory = new Object[4]; // Testing inventory
 
