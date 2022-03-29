@@ -5,8 +5,7 @@
  */
 package eldenark;
 
-
-import java.awt.Color;
+import static eldenark.EldenArk.generateInventory;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
@@ -18,21 +17,19 @@ import java.util.Timer;
  */
 public class Gameplay extends KeyAdapter {
 
-	int[][] map = new int[10][30];
+	int[][] map = new int[5][30];
 	static Random rn = new Random();
+	Character mainCharacter = new Character();
+
+	Gameplay() {
+		mainCharacter = createWarrior();
+		createMap(map, mainCharacter);
+		printMap(map, mainCharacter);
+	}
+
 	
-	public static void createMap(int[][] array) {
-        /* 0 - Nothing
-        10 - Loot
-        20 - Enemy
-         */
-        for (int[] array1 : array) {
-            for (int j = 0; j < array.length; j++) {
-                array1[j] = rn.nextInt(3);
-            }
-        }
-    }
 	
+
 	/*	public static void generateMountains(int[][] map){
 	int x, y, i;
 	i = 0;
@@ -56,28 +53,188 @@ public class Gameplay extends KeyAdapter {
 	
 	
 	}*/
+
+	public static void createMap(int[][] array, Character mainCharacter) {
+		/* 0 - Nothing
+        1 - Loot
+        2 - Enemy
+		4 - Minor Boss
+		5 - Final Boss
+		10 - Mountains
+		 */
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[i].length; j++) {
+				array[i][j] = rn.nextInt(3);
+			}
+		}
+		//generateMountains(array);
+		generateMountains(array, mainCharacter);
+		generateMinorBoss(array, mainCharacter);
+		generateBoss(array, mainCharacter);
+		
+
+	}
+
 	
+	//Function to generate Mountains
+	public static void generateMountains(int[][] map, Character mainCharacter) {
+		int x, y, i, random, tempX, tempY;
+		i = 0;
+		//Check the first mountain tile
+		do {
+			x = rn.nextInt(30);
+			y = rn.nextInt(5);
+		} while (!checkUsageTile(map, mainCharacter, x, y));
+		
+		
+		//Generation mountains close to each other
+		do {
+			tempX = x;
+			tempY = y;
+			random = rn.nextInt(4);
+			switch (random) {
+				case 0:
+					x++;
+					break;
+				case 1:
+					x--;
+					break;
+				case 2:
+					y++;
+					break;
+				case 3:
+					y--;
+					break;
+			}
+			try {
+				map[y][x] = 10;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				x = tempX;
+				y = tempY;
+			} finally {
+				i++;
+			}
+		} while (i < 5);
+	}
+	
+	
+	//Function to generate the location Minor Bosses
+	public static void generateMinorBoss(int[][] map, Character mainCharacter){
+		int x, y, i = 0;
+		do {
+			x = rn.nextInt(map[i].length);
+			y = rn.nextInt(map.length);
+			if (checkUsageTile(map, mainCharacter, x, y)) {
+				map[y][x] = 4;
+				i++;
+			}
+		} while (i < 3);
+	}
+	
+	//Function to generate the location of Final Boss
+	public static void generateBoss(int[][] map, Character mainCharacter){
+		int x, y;
+		boolean isUsable;
+		do {
+			x = rn.nextInt(map[0].length);
+			y = rn.nextInt(map.length);
+			isUsable = checkUsageTile(map, mainCharacter, x, y);
+			if (isUsable) {
+				map[y][x] = 5;
+			}
+		} while (!isUsable);
+	}
+	
+	//Function to check if the tile does not containt special events
+	public static boolean checkUsageTile(int[][] map, Character mainCharacter, int x, int y){
+		boolean isUsable = false;
+		if (!(map[y][x] == 10 || map[y][x] == 4 || map[y][x] == 5 || (mainCharacter.getX() == x && mainCharacter.getY() == y))) {
+			isUsable = true;
+		} 
+		
+		
+		return isUsable;
+	}
+
+
+	
+	//Method to print the map
 	public static void printMap(int[][] map, Character mainCharacter) {
-        for (int i = 0; i < map.length; i++) {
-            System.out.println(Color.red + "\n_____________________________________________________________\n");
-            for (int j = 0; j < map[i].length; j++) {
+		for (int i = 0; i < map.length; i++) {
+			System.out.println("_________________________________________________________________________________________");
+			for (int j = 0; j < map[i].length; j++) {
 				if (j == mainCharacter.getX() && i == mainCharacter.getY()) {
-					System.out.print("|" + "\u001B[34m"+"    O" + "\u001B[30m");
-				} else{
-					System.out.print("|");
+					System.out.print("\u001B[34m" + "O" + "\u001B[30m");
+				} else if (map[i][j] == 10) {
+					System.out.print("^");
+				} else if (map[i][j] == 4){
+					System.out.print("Y");
+				} else if (map[i][j] == 5){
+					System.out.print("X");
+				} else {
+					System.out.print(" ");
 				}
-            }
-            System.out.print("|");
-        }
-        System.out.println("\n_____________________________________________________________");
-    }
+				System.out.print("  ");
+			}
+			System.out.println("");
+		}
+		System.out.println("_________________________________________________________________________________________");
+	}
+
+	public static Warrior createWarrior() {
+
+		Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10, generateInventory(),generateEquipment());
+
+		return w;
+
+	}
+
+
+	// Test create a Mage object
+	public static Mage createMage() {
+
+		Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
+
+		return m;
+	}
+
+	public static Equip[] generateEquipment() {
+
+		Equip[] equipment = new Equip[4];
+
+		Equip weapon = new Equip("Weapon", "WeaponType",5);
+		Equip helmet = new Equip("Helmet", "HelmetType",2);
+		Equip chest = new Equip("Chest", "ChestType",2);
+		Equip leg = new Equip("Leg", "LegType",2);
+
+		equipment[0] = weapon;
+		equipment[1] = helmet;
+		equipment[2] = chest;
+		equipment[3] = leg;
+
+		return equipment;
+	}
 	
-	
-	
-	
-	
-	
-	
+	public static Object[] generateInventory() {
+
+		Potion smallHealing = new Potion("Small Healing Potion", 30, "tipo", "descripcion", 2);
+
+		Potion largeHealing = new Potion("Large Healing Potion", 50, "tipo", "descripcion", 2);
+
+		Potion smallMana = new Potion("Small Mana Potion", 30, "tipo", "descripcion", 2);
+
+		Potion largeMana = new Potion("Large Mana Potion", 50, "tipo", "descripcion", 2);
+
+		Object[] inventory = new Object[4];
+
+		inventory[0] = smallHealing;
+		inventory[1] = largeHealing;
+		inventory[2] = smallMana;
+		inventory[3] = largeMana;
+
+		return inventory;
+	}
+
 	/*
 	Timer timer;
 	
@@ -125,5 +282,4 @@ public class Gameplay extends KeyAdapter {
 	public void keyReleased(KeyEvent e) {
 
 	}*/
-
 }

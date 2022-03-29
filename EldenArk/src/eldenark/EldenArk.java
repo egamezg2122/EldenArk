@@ -37,20 +37,35 @@ public class EldenArk {
 
 	public static void main(String[] args) {
 
+
 		// Main Logic
 		Character mainCharacter;
 
 		int[][] map = new int[10][10];
 
-		mainCharacter = pickClass();
+        // Main Logic
+        
+		Gameplay g = new Gameplay();
+		
 		/*
+        Character mainCharacter;
+        
+        int[][] map = new int[10][10];
+		
+		map[11][10] = 1;
+
+
+		mainCharacter = pickClass();
+		
         mainCharacter = pickClass();
         createMap(map);
         
         printMap(map, mainCharacter);
         
 		mainCharacter.move();
+
 		 */
+
 		printMap(map, mainCharacter);
 
 		mainCharacter.menu();
@@ -149,48 +164,6 @@ public class EldenArk {
 	}
 
 	// Test creating Warrior character
-	public static Warrior createWarrior() {
-
-		Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
-
-		return w;
-
-	}
-
-	// Test create a Mage object
-	public static Mage createMage() {
-
-		Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
-
-		return m;
-
-	}
-
-	// Test create a Priest object
-	public static Priest createPriest() {
-
-		Priest p = new Priest(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
-
-		return p;
-
-	}
-
-	public static Equip[] generateEquipment() {
-
-		Equip[] equipment = new Equip[4];
-
-		Equip weapon = new Equip("Weapon", "WeaponType",5);
-		Equip helmet = new Equip("Helmet", "HelmetType",2);
-		Equip chest = new Equip("Chest", "ChestType",2);
-		Equip leg = new Equip("Leg", "LegType",2);
-
-		equipment[0] = weapon;
-		equipment[1] = helmet;
-		equipment[2] = chest;
-		equipment[3] = leg;
-
-		return equipment;
-	}
 
 	public static Object[] generateInventory() {
 
@@ -211,5 +184,13 @@ public class EldenArk {
 
 		return inventory;
 	}
+	}
 
-}
+
+	// Test create a Priest object
+
+
+	
+
+	
+
