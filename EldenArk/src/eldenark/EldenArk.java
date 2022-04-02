@@ -39,6 +39,7 @@ public class EldenArk {
 
         // Main Logic
         Gameplay g = new Gameplay();
+        
         /*
                 Character mainCharacter;
 

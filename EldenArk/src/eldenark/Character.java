@@ -130,10 +130,10 @@ public class Character {
 	}
         
         public void moveUP(){
-            y++;
+            y--;
         }
         public void moveDown(){
-            y--;
+            y++;
         }
         public void moveRight(){
             x++;

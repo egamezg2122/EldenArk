@@ -6,6 +6,9 @@
 package eldenark;
 
 import static eldenark.EldenArk.generateInventory;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -20,26 +23,38 @@ import java.util.Timer;
  */
 public class Gameplay implements ActionListener {
 
-	int[][] map = new int[5][30];
-	static Random rn = new Random();
-	Character mainCharacter = new Character();
-        boolean running = false;
-        Timer timer;
+    int[][] map = new int[5][30];
+    static Random rn = new Random();
+    Character mainCharacter = new Character();
+    boolean running = false;
+    Timer timer;
 
-	Gameplay() {
-		mainCharacter = createWarrior();
-		createMap(map, mainCharacter);
-		printMap(map, mainCharacter);
-                running = true;
-                timer = new Timer();
-                
-                
-	}
+    Gameplay() {
+        mainCharacter = createWarrior();
+        createMap(map, mainCharacter);
+        printMap(map, mainCharacter);
+        running = true;
+        timer = new Timer();
+        Frame f = new Frame("Demo");
 
-	
-	
+        f.setLayout(new FlowLayout());
+        f.setSize(200, 200);
+        Label l = new Label();
 
-	/*	public static void generateMountains(int[][] map){
+        l.setText("This is a Game");
+        f.add(l);
+
+        f.setVisible(true);
+
+        //Creating and adding the key listener
+        MyKeyAdapter k;
+        k = new MyKeyAdapter();
+
+        f.addKeyListener(k);
+
+    }
+
+    /*	public static void generateMountains(int[][] map){
 	int x, y, i;
 	i = 0;
 	do {
@@ -62,229 +77,220 @@ public class Gameplay implements ActionListener {
 	
 	
 	}*/
-
-	public static void createMap(int[][] array, Character mainCharacter) {
-		/* 0 - Nothing
+    public static void createMap(int[][] array, Character mainCharacter) {
+        /* 0 - Nothing
         1 - Loot
         2 - Enemy
 		4 - Minor Boss
 		5 - Final Boss
 		10 - Mountains
-		 */
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array[i].length; j++) {
-				array[i][j] = rn.nextInt(3);
-			}
-		}
-		//generateMountains(array);
-		generateMountains(array, mainCharacter);
-		generateMinorBoss(array, mainCharacter);
-		generateBoss(array, mainCharacter);
-		
-
-	}
-
-	
-	//Function to generate Mountains
-	public static void generateMountains(int[][] map, Character mainCharacter) {
-		int x, y, i, random, tempX, tempY;
-		i = 0;
-		//Check the first mountain tile
-		do {
-			x = rn.nextInt(30);
-			y = rn.nextInt(5);
-		} while (!checkUsageTile(map, mainCharacter, x, y));
-		
-		
-		//Generation mountains close to each other
-		do {
-			tempX = x;
-			tempY = y;
-			random = rn.nextInt(4);
-			switch (random) {
-				case 0:
-					x++;
-					break;
-				case 1:
-					x--;
-					break;
-				case 2:
-					y++;
-					break;
-				case 3:
-					y--;
-					break;
-			}
-			try {
-				map[y][x] = 10;
-			} catch (ArrayIndexOutOfBoundsException e) {
-				x = tempX;
-				y = tempY;
-			} finally {
-				i++;
-			}
-		} while (i < 5);
-	}
-	
-	
-	//Function to generate the location Minor Bosses
-	public static void generateMinorBoss(int[][] map, Character mainCharacter){
-		int x, y, i = 0;
-		do {
-			x = rn.nextInt(map[i].length);
-			y = rn.nextInt(map.length);
-			if (checkUsageTile(map, mainCharacter, x, y)) {
-				map[y][x] = 4;
-				i++;
-			}
-		} while (i < 3);
-	}
-	
-	//Function to generate the location of Final Boss
-	public static void generateBoss(int[][] map, Character mainCharacter){
-		int x, y;
-		boolean isUsable;
-		do {
-			x = rn.nextInt(map[0].length);
-			y = rn.nextInt(map.length);
-			isUsable = checkUsageTile(map, mainCharacter, x, y);
-			if (isUsable) {
-				map[y][x] = 5;
-			}
-		} while (!isUsable);
-	}
-	
-	//Function to check if the tile does not containt special events
-	public static boolean checkUsageTile(int[][] map, Character mainCharacter, int x, int y){
-		boolean isUsable = false;
-		if (!(map[y][x] == 10 || map[y][x] == 4 || map[y][x] == 5 || (mainCharacter.getX() == x && mainCharacter.getY() == y))) {
-			isUsable = true;
-		} 
-		
-		
-		return isUsable;
-	}
-
-
-        
-        public static void reprint(int[][] map, Character mainCharacter){
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            printMap(map, mainCharacter);
-            printMoveOptions();
+         */
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                array[i][j] = rn.nextInt(3);
+            }
         }
-        
-        public static void printMoveOptions(){
-            System.out.println("\tW - Upwards\nA - Left\tS - Downwards\tD - Downwards");
+        //generateMountains(array);
+        generateMountains(array, mainCharacter);
+        generateMinorBoss(array, mainCharacter);
+        generateBoss(array, mainCharacter);
+
+    }
+
+    //Function to generate Mountains
+    public static void generateMountains(int[][] map, Character mainCharacter) {
+        int x, y, i, random, tempX, tempY;
+        i = 0;
+        //Check the first mountain tile
+        do {
+            x = rn.nextInt(30);
+            y = rn.nextInt(5);
+        } while (!checkUsageTile(map, mainCharacter, x, y));
+
+        //Generation mountains close to each other
+        do {
+            tempX = x;
+            tempY = y;
+            random = rn.nextInt(4);
+            switch (random) {
+                case 0:
+                    x++;
+                    break;
+                case 1:
+                    x--;
+                    break;
+                case 2:
+                    y++;
+                    break;
+                case 3:
+                    y--;
+                    break;
+            }
+            try {
+                map[y][x] = 10;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                x = tempX;
+                y = tempY;
+            } finally {
+                i++;
+            }
+        } while (i < 5);
+    }
+
+    //Function to generate the location Minor Bosses
+    public static void generateMinorBoss(int[][] map, Character mainCharacter) {
+        int x, y, i = 0;
+        do {
+            x = rn.nextInt(map[i].length);
+            y = rn.nextInt(map.length);
+            if (checkUsageTile(map, mainCharacter, x, y)) {
+                map[y][x] = 4;
+                i++;
+            }
+        } while (i < 3);
+    }
+
+    //Function to generate the location of Final Boss
+    public static void generateBoss(int[][] map, Character mainCharacter) {
+        int x, y;
+        boolean isUsable;
+        do {
+            x = rn.nextInt(map[0].length);
+            y = rn.nextInt(map.length);
+            isUsable = checkUsageTile(map, mainCharacter, x, y);
+            if (isUsable) {
+                map[y][x] = 5;
+            }
+        } while (!isUsable);
+    }
+
+    //Function to check if the tile does not containt special events
+    public static boolean checkUsageTile(int[][] map, Character mainCharacter, int x, int y) {
+        boolean isUsable = false;
+        if (!(map[y][x] == 10 || map[y][x] == 4 || map[y][x] == 5 || (mainCharacter.getX() == x && mainCharacter.getY() == y))) {
+            isUsable = true;
         }
-	
-	//Method to print the map
-	public static void printMap(int[][] map, Character mainCharacter) {
-		for (int i = 0; i < map.length; i++) {
-			System.out.println("_________________________________________________________________________________________");
-			for (int j = 0; j < map[i].length; j++) {
-				if (j == mainCharacter.getX() && i == mainCharacter.getY()) {
-					System.out.print("\u001B[34m" + "O" + "\u001B[30m");
-				} else if (map[i][j] == 10) {
-					System.out.print("^");
-				} else if (map[i][j] == 4){
-					System.out.print("Y");
-				} else if (map[i][j] == 5){
-					System.out.print("X");
-				} else {
-					System.out.print(" ");
-				}
-				System.out.print("  ");
-			}
-			System.out.println("");
-		}
-		System.out.println("_________________________________________________________________________________________");
-	}
 
-	public static Warrior createWarrior() {
+        return isUsable;
+    }
 
-		Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10, generateInventory(),generateEquipment());
+    public static void reprint(int[][] map, Character mainCharacter) {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        printMap(map, mainCharacter);
+        printMoveOptions();
+    }
 
-		return w;
+    public static void printMoveOptions() {
+        System.out.println("\tW - Upwards\nA - Left\tS - Downwards\tD - Downwards");
+    }
 
-	}
+    //Method to print the map
+    public static void printMap(int[][] map, Character mainCharacter) {
+        for (int i = 0; i < map.length; i++) {
+            System.out.println("_________________________________________________________________________________________");
+            for (int j = 0; j < map[i].length; j++) {
+                if (j == mainCharacter.getX() && i == mainCharacter.getY()) {
+                    System.out.print("\u001B[34m" + "O" + "\u001B[30m");
+                } else if (map[i][j] == 10) {
+                    System.out.print("^");
+                } else if (map[i][j] == 4) {
+                    System.out.print("Y");
+                } else if (map[i][j] == 5) {
+                    System.out.print("X");
+                } else {
+                    System.out.print(" ");
+                }
+                System.out.print("  ");
+            }
+            System.out.println("");
+        }
+        System.out.println("_________________________________________________________________________________________");
+    }
 
+    public static Warrior createWarrior() {
 
-	// Test create a Mage object
-	public static Mage createMage() {
+        Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
 
-		Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
+        return w;
 
-		return m;
-	}
+    }
 
-	public static Equip[] generateEquipment() {
+    // Test create a Mage object
+    public static Mage createMage() {
 
-		Equip[] equipment = new Equip[4];
+        Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
 
-		Equip weapon = new Equip("Weapon", "WeaponType",5);
-		Equip helmet = new Equip("Helmet", "HelmetType",2);
-		Equip chest = new Equip("Chest", "ChestType",2);
-		Equip leg = new Equip("Leg", "LegType",2);
+        return m;
+    }
 
-		equipment[0] = weapon;
-		equipment[1] = helmet;
-		equipment[2] = chest;
-		equipment[3] = leg;
+    public static Equip[] generateEquipment() {
 
-		return equipment;
-	}
-	
-	public static Object[] generateInventory() {
+        Equip[] equipment = new Equip[4];
 
-		Potion smallHealing = new Potion("Small Healing Potion", 30, "tipo", "descripcion", 2);
+        Equip weapon = new Equip("Weapon", "WeaponType", 5);
+        Equip helmet = new Equip("Helmet", "HelmetType", 2);
+        Equip chest = new Equip("Chest", "ChestType", 2);
+        Equip leg = new Equip("Leg", "LegType", 2);
 
-		Potion largeHealing = new Potion("Large Healing Potion", 50, "tipo", "descripcion", 2);
+        equipment[0] = weapon;
+        equipment[1] = helmet;
+        equipment[2] = chest;
+        equipment[3] = leg;
 
-		Potion smallMana = new Potion("Small Mana Potion", 30, "tipo", "descripcion", 2);
+        return equipment;
+    }
 
-		Potion largeMana = new Potion("Large Mana Potion", 50, "tipo", "descripcion", 2);
+    public static Object[] generateInventory() {
 
-		Object[] inventory = new Object[4];
+        Potion smallHealing = new Potion("Small Healing Potion", 30, "tipo", "descripcion", 2);
 
-		inventory[0] = smallHealing;
-		inventory[1] = largeHealing;
-		inventory[2] = smallMana;
-		inventory[3] = largeMana;
+        Potion largeHealing = new Potion("Large Healing Potion", 50, "tipo", "descripcion", 2);
 
-		return inventory;
-	}
-        
+        Potion smallMana = new Potion("Small Mana Potion", 30, "tipo", "descripcion", 2);
+
+        Potion largeMana = new Potion("Large Mana Potion", 50, "tipo", "descripcion", 2);
+
+        Object[] inventory = new Object[4];
+
+        inventory[0] = smallHealing;
+        inventory[1] = largeHealing;
+        inventory[2] = smallMana;
+        inventory[3] = largeMana;
+
+        return inventory;
+    }
+
     public void keyTyped(KeyEvent e) {
         switch (e.getKeyChar()) {
-			case 'w':
-				//Thing that happens when the 'w' key is pressed
-                            mainCharacter.moveUP();
-                            reprint(map, mainCharacter);
-				break;
-			case 's':
-				//Thing that happens when the 's' key is pressed
-                            mainCharacter.moveDown();
-                            reprint(map, mainCharacter);
-				break;
-			case 'd':
-				//Thing that happens when the 'd' key is pressed
-                            mainCharacter.moveRight();
-                            reprint(map, mainCharacter);
-				break;
-			case 'a':
-				//Thing that happens when the 'a' key is pressed
-                            mainCharacter.moveLeft();
-                            reprint(map, mainCharacter);
-				break;
-		}
+            case 'w':
+                //Thing that happens when the 'w' key is pressed
+                mainCharacter.moveUP();
+                reprint(map, mainCharacter);
+                break;
+            case 's':
+                //Thing that happens when the 's' key is pressed
+                mainCharacter.moveDown();
+                reprint(map, mainCharacter);
+                break;
+            case 'd':
+                //Thing that happens when the 'd' key is pressed
+                mainCharacter.moveRight();
+                reprint(map, mainCharacter);
+                break;
+            case 'a':
+                //Thing that happens when the 'a' key is pressed
+                mainCharacter.moveLeft();
+                reprint(map, mainCharacter);
+                break;
+        }
     }
 
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     public void keyReleased(KeyEvent e) {
-        
+
     }
 
     @Override
@@ -293,64 +299,64 @@ public class Gameplay implements ActionListener {
             reprint(map, mainCharacter);
         }
     }
-	
-	
-	
-        
-        public class MyKeyAdapter extends KeyAdapter {
-            
-        @Override
-	public void keyTyped(KeyEvent e) {
-		switch (e.getKeyChar()) {
-			case 'w':
-				//Thing that happens when the 'w' key is pressed
-                            mainCharacter.moveUP();
-                            Gameplay.reprint(map, mainCharacter);
-				break;
-			case 's':
-				//Thing that happens when the 's' key is pressed
-                            mainCharacter.moveDown();
-                            Gameplay.reprint(map, mainCharacter);
-				break;
-			case 'd':
-				//Thing that happens when the 'd' key is pressed
-                            mainCharacter.moveRight();
-                            Gameplay.reprint(map, mainCharacter);
-				break;
-			case 'a':
-				//Thing that happens when the 'a' key is pressed
-                            mainCharacter.moveLeft();
-                            Gameplay.reprint(map, mainCharacter);
-				break;
-		}
-	}    
-            
-        @Override
-	public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()) {
-			case KeyEvent.VK_UP:
-				//Thing that happens when the ArrowUp key is pressed
-                            mainCharacter.moveUP();
-                            
-				break;
-			case KeyEvent.VK_DOWN:
-				//Thing that happens when the ArrowDown key is pressed
-				break;
-			case KeyEvent.VK_RIGHT:
-				//Thing that happens when the ArrowRight key is pressed
-				break;
-			case KeyEvent.VK_LEFT:
-				//Thing that happens when the ArrowLeft key is pressed
-				break;
-		}
-	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
+    public class MyKeyAdapter implements KeyListener {
 
-	}
-            
+        MyKeyAdapter() {
+
         }
 
-	
+        @Override
+        public void keyTyped(KeyEvent e) {
+            switch (e.getKeyChar()) {
+                case 'w':
+                    //Thing that happens when the 'w' key is pressed
+                    mainCharacter.moveUP();
+                    Gameplay.reprint(map, mainCharacter);
+                    break;
+                case 's':
+                    //Thing that happens when the 's' key is pressed
+                    mainCharacter.moveDown();
+                    Gameplay.reprint(map, mainCharacter);
+                    break;
+                case 'd':
+                    //Thing that happens when the 'd' key is pressed
+                    mainCharacter.moveRight();
+                    Gameplay.reprint(map, mainCharacter);
+                    break;
+                case 'a':
+                    //Thing that happens when the 'a' key is pressed
+                    mainCharacter.moveLeft();
+                    Gameplay.reprint(map, mainCharacter);
+                    break;
+            }
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_UP:
+                    //Thing that happens when the ArrowUp key is pressed
+                    mainCharacter.moveUP();
+
+                    break;
+                case KeyEvent.VK_DOWN:
+                    //Thing that happens when the ArrowDown key is pressed
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    //Thing that happens when the ArrowRight key is pressed
+                    break;
+                case KeyEvent.VK_LEFT:
+                    //Thing that happens when the ArrowLeft key is pressed
+                    break;
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+        }
+
+    }
+
 }
