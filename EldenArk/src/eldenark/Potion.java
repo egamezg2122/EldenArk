@@ -43,7 +43,7 @@ public class Potion extends Object{
 	
 	@Override
 	public String toString() {
-		return "Potion{" + "percentage=" + percentage + ", type=" + type + '}';
+		return "Potion{" + "name=" + this.getName() + "description=" + this.getDescription() + "percentage=" + percentage + ", type=" + type + '}';
 	}
 
 	

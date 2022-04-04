@@ -568,10 +568,5 @@ public class Character {
 		this.gold = gold;
 	}
 
-	public Object[] getInventory() {
-		return inventory;
-	}
-	
-	
 	
 }

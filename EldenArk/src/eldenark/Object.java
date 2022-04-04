@@ -50,11 +50,14 @@ public abstract class Object {
 	
 	
 	public abstract void use();
-	
+
 	@Override
 	public String toString() {
-		return "Object{" + '}';
+		return "Object{" + "name=" + name + ", description=" + description + '}';
 	}
+	
+	
+	
 	
 
 }

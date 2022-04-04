@@ -5,7 +5,6 @@
  */
 package eldenark;
 
-import static eldenark.EldenArk.generateInventory;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Label;
@@ -31,13 +30,14 @@ public class Gameplay implements ActionListener {
 	Timer timer;
 	Frame f;
 	int level = 1;
+	Merchant merchant = new Merchant(0,0);
 
 	Gameplay() {
 		mainCharacter = createWarrior();
 		createMap();
 		reprint();
 		running = true;
-		timer = new Timer();
+		//timer = new Timer();
 		f = new Frame("Demo");
 
 		f.setLayout(new FlowLayout());
@@ -56,34 +56,12 @@ public class Gameplay implements ActionListener {
 		f.addKeyListener(k);
 
 	}
-
-	/*	public static void generateMountains(int[][] map){
-	int x, y, i;
-	i = 0;
-	do {
-	x = rn.nextInt(30);
-	y = rn.nextInt(10);
-	} while (x != 15 && y != 5);
 	
-	do {
-	try {
-	map[y][x] = 10;
-	} catch (indexOutOfBound e){
-	
-	}
-	} while (i < 5);
-	
-	
-	
-	
-	
-	
-	
-	}*/
 	public void createMap() {
 		/* 0 - Nothing
         1 - Loot
         2 - Enemy
+		3 - Merchant
 		4 - Minor Boss
 		5 - Final Boss
 		10 - Mountains
@@ -97,6 +75,7 @@ public class Gameplay implements ActionListener {
 		generateMountains();
 		generateMinorBoss();
 		generateBoss();
+		generateMerchant();
 
 	}
 
@@ -176,6 +155,8 @@ public class Gameplay implements ActionListener {
 			isUsable = checkUsageTile(x, y);
 			if (isUsable) {
 				map[y][x] = 3;
+				merchant.setX(x);
+				merchant.setY(y);
 			}
 		} while (!isUsable);
 		
@@ -215,7 +196,7 @@ public class Gameplay implements ActionListener {
 					System.out.print("Y");
 				} else if (map[i][j] == 5) {
 					System.out.print("X");
-				} else if(map[i][j] == 4){
+				} else if(map[i][j] == 3){
 					System.out.print("M");
 				} else {
 					System.out.print(" ");
@@ -403,7 +384,8 @@ public class Gameplay implements ActionListener {
 				break;
 			case 3:
 				//Merchant
-				
+				merchant.trade(mainCharacter);
+				break;
 			case 4:
 				System.out.println("You found a miniBoss. Get ready to fight!");
 				startCombat();
