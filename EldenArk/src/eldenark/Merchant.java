@@ -111,13 +111,13 @@ public class Merchant {
                 
                 case 1:
 
-                    if (quantitySmallObject > 0 || money >= priceSmallObject) {
+                    if (quantitySmallObject > 0 || gold >= priceSmallObject) {
 
                         System.out.println("You have bought a " + sellingObject1);
 
                         quantitySmallObject--;
 
-                        mainCharacter.setMoney() = mainCharacter.getMoney() - priceSmallObject;
+                        mainCharacter.setGold() = mainCharacter.getGold() - priceSmallObject;
 
                         mainCharacter.getInventory()[typeObject1].setNumOfUses(mainCharacter.getInventory()[typeObject1].getNumOfUses() + 1);
 
@@ -127,13 +127,13 @@ public class Merchant {
 
                 case 2:
 
-                    if (quantityBigObject > 0 || money >= priceBigObject) {
+                    if (quantityBigObject > 0 || gold >= priceBigObject) {
 
                         System.out.println("You have bought a " + sellingObject2);
 
                         quantityBigObject--;
 
-                        mainCharacter.setMoney() = mainCharacter.getMoney() - priceBigObject;
+                        mainCharacter.setGold() = mainCharacter.getGold() - priceBigObject;
 
                         mainCharacter.getInventory()[typeObject2].setNumOfUses(mainCharacter.getInventory()[typeObject2].getNumOfUses() + 1);
 
