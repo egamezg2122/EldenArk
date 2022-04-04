@@ -500,6 +500,10 @@ public class Character {
 	public int getY() {
 		return y;
 	}
+        
+        public Object[] getInventory(){
+            return inventory;
+        }
 
 	// Setters
 	public void setLevel(int level) {

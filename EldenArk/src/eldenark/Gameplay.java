@@ -229,7 +229,7 @@ public class Gameplay implements ActionListener {
 
 	public Warrior createWarrior() {
 
-		Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
+		Warrior w = new Warrior(12, 15, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
 
 		return w;
 
@@ -238,7 +238,7 @@ public class Gameplay implements ActionListener {
 	// Test create a Mage object
 	public Mage createMage() {
 
-		Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
+		Mage m = new Mage(8, 7, 85, 85, 100, 100, 25, generateInventory(), generateEquipment());
 
 		return m;
 	}
@@ -416,6 +416,37 @@ public class Gameplay implements ActionListener {
 		}
 
 	}
+        //Enemy creation
+        public Character createEnemy (int difficulty) {
+        
+            Character enemy;
+            
+            switch  (rn.nextInt(3)) {
+                case 0:
+                    
+                    enemy = new Warrior (6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
+                   
+                    break;
+                    
+                case 1:
+                    
+                    enemy = new Mage (4 * difficulty, 5 * difficulty, 47 * difficulty, 47 * difficulty, 60 * difficulty, 60 * difficulty, 14 * difficulty);
+                    
+                    break;
+                    
+                case 2:
+                    
+                    enemy = new Priest (3 * difficulty, 12 * difficulty, 80 * difficulty, 80 * difficulty, 50 * difficulty, 50 * difficulty, 8 * difficulty);
+                    
+                    break;
+                    
+                default:
+                    
+                    enemy = new Warrior (6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
+            }
+            
+            return enemy;
+        }
 
 	public void startCombat() {
 		f.setVisible(false);
