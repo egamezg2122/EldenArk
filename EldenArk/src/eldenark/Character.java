@@ -24,6 +24,9 @@ public class Character {
 	private int maxMP;
 
 	private int specialDamage;
+	
+	private int gold;
+	
 	private int x = 10; // Position in the map
 
 	private int y = 2; // Position in the map
@@ -577,4 +580,13 @@ public class Character {
 
 	}
 
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	
 }
