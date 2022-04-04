@@ -5,7 +5,6 @@
  */
 package eldenark;
 
-import static eldenark.EldenArk.generateInventory;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Label;
@@ -30,13 +29,15 @@ public class Gameplay implements ActionListener {
 	boolean inMap = true;
 	Timer timer;
 	Frame f;
+	int level = 1;
+	Merchant merchant = new Merchant(0,0);
 
 	Gameplay() {
 		mainCharacter = createWarrior();
 		createMap();
-		printMap();
+		reprint();
 		running = true;
-		timer = new Timer();
+		//timer = new Timer();
 		f = new Frame("Demo");
 
 		f.setLayout(new FlowLayout());
@@ -55,34 +56,12 @@ public class Gameplay implements ActionListener {
 		f.addKeyListener(k);
 
 	}
-
-	/*	public static void generateMountains(int[][] map){
-	int x, y, i;
-	i = 0;
-	do {
-	x = rn.nextInt(30);
-	y = rn.nextInt(10);
-	} while (x != 15 && y != 5);
 	
-	do {
-	try {
-	map[y][x] = 10;
-	} catch (indexOutOfBound e){
-	
-	}
-	} while (i < 5);
-	
-	
-	
-	
-	
-	
-	
-	}*/
 	public void createMap() {
 		/* 0 - Nothing
         1 - Loot
         2 - Enemy
+		3 - Merchant
 		4 - Minor Boss
 		5 - Final Boss
 		10 - Mountains
@@ -96,6 +75,7 @@ public class Gameplay implements ActionListener {
 		generateMountains();
 		generateMinorBoss();
 		generateBoss();
+		generateMerchant();
 
 	}
 
@@ -165,6 +145,23 @@ public class Gameplay implements ActionListener {
 			}
 		} while (!isUsable);
 	}
+	
+	public void generateMerchant() {
+		int x, y;
+		boolean isUsable;
+		do {
+			x = rn.nextInt(map[0].length);
+			y = rn.nextInt(map.length);
+			isUsable = checkUsageTile(x, y);
+			if (isUsable) {
+				map[y][x] = 3;
+				merchant.setX(x);
+				merchant.setY(y);
+			}
+		} while (!isUsable);
+		
+	}
+	
 
 	//Function to check if the tile does not containt special events
 	public boolean checkUsageTile(int x, int y) {
@@ -183,7 +180,7 @@ public class Gameplay implements ActionListener {
 	}
 
 	public void printMoveOptions() {
-		System.out.println("\tW - Upwards\nA - Left\tS - Downwards\tD - Downwards");
+		System.out.println("\t\tW - Upwards\tR - Loot tile\nA - Left\tS - Downwards\tD - Downwards");
 	}
 
 	//Method to print the map
@@ -199,6 +196,8 @@ public class Gameplay implements ActionListener {
 					System.out.print("Y");
 				} else if (map[i][j] == 5) {
 					System.out.print("X");
+				} else if(map[i][j] == 3){
+					System.out.print("M");
 				} else {
 					System.out.print(" ");
 				}
@@ -211,7 +210,7 @@ public class Gameplay implements ActionListener {
 
 	public Warrior createWarrior() {
 
-		Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
+		Warrior w = new Warrior(12, 15, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
 
 		return w;
 
@@ -220,10 +219,29 @@ public class Gameplay implements ActionListener {
 	// Test create a Mage object
 	public Mage createMage() {
 
-		Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory(), generateEquipment());
+		Mage m = new Mage(8, 7, 85, 85, 100, 100, 25, generateInventory(), generateEquipment());
 
 		return m;
 	}
+	/*
+	public Character createEnemy(){
+		Character enemy;
+		int random = rn.nextInt();
+		switch(random){
+			case 0:
+				enemy = new Warrior(50 * level, 20 * level);
+				break;
+			case 1:
+				enemy = new Mage();
+				break;
+			case 2:
+				enemy = new Priest();
+				break;
+		}
+		return enemy;
+		
+	}
+	*/
 
 	public Equip[] generateEquipment() {
 
@@ -364,6 +382,10 @@ public class Gameplay implements ActionListener {
 				System.out.println("You found a normal enemy. Startint combat");
 				startCombat();
 				break;
+			case 3:
+				//Merchant
+				merchant.trade(mainCharacter);
+				break;
 			case 4:
 				System.out.println("You found a miniBoss. Get ready to fight!");
 				startCombat();
@@ -376,15 +398,67 @@ public class Gameplay implements ActionListener {
 		}
 
 	}
+        //Enemy creation
+        public Character createEnemy (int difficulty) {
+        
+            Character enemy;
+            
+            switch  (rn.nextInt(3)) {
+                case 0:
+                    
+                    enemy = new Warrior (6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
+                   
+                    break;
+                    
+                case 1:
+                    
+                    enemy = new Mage (4 * difficulty, 5 * difficulty, 47 * difficulty, 47 * difficulty, 60 * difficulty, 60 * difficulty, 14 * difficulty);
+                    
+                    break;
+                    
+                case 2:
+                    
+                    enemy = new Priest (3 * difficulty, 12 * difficulty, 80 * difficulty, 80 * difficulty, 50 * difficulty, 50 * difficulty, 8 * difficulty);
+                    
+                    break;
+                    
+                default:
+                    
+                    enemy = new Warrior (6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
+            }
+            
+            return enemy;
+        }
 
 	public void startCombat() {
 		f.setVisible(false);
 		Warrior enemy = createWarrior();
 		mainCharacter.fight(enemy);
-		System.out.println("Returning to the map");
-		map[mainCharacter.getY()][mainCharacter.getX()] = 0;
-		f.setVisible(true);
-		reprint();
+		if (mainCharacter.getHp() <= 0) {
+			System.out.println("GAME OVER");
+		} else {
+			generateLoot(level);
+			System.out.println("Returning to the map");
+			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
+			f.setVisible(true);
+			reprint();
+		}
+
+	}
+	
+	public void generateLoot(int level) {
+		int gold = rn.nextInt(10*level);
+		System.out.println("You found " + gold + " gold!\n" + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold));
+		mainCharacter.setGold(mainCharacter.getGold() + gold);
+		int objects = rn.nextInt();
+		try{
+			System.out.println("You found a " + mainCharacter.getInventory()[objects].getName());
+			mainCharacter.getInventory()[objects].setNumOfUses(mainCharacter.getInventory()[objects].getNumOfUses() + 1);
+		} catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("You found no additionals objects");
+		}
+		System.out.println("\t\t\t\t\tPress enter to continue...");
+		String s = Teclat.llegirString();
 		
 	}
 
@@ -430,6 +504,12 @@ public class Gameplay implements ActionListener {
 						checkNewTile();
 					}
 					break;
+				case 'r':
+					//Loot tile
+					if (inMap) {
+
+					}
+
 			}
 		}
 

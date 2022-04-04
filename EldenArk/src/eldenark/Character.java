@@ -24,7 +24,6 @@ public class Character {
 	private int maxMP;
 
 	private int specialDamage;
-
 	private int x = 10; // Position in the map
 
 	private int y = 2; // Position in the map
@@ -518,6 +517,10 @@ public class Character {
 	public int getY() {
 		return y;
 	}
+        
+        public Object[] getInventory(){
+            return inventory;
+        }
 
 	// Setters
 	public void setLevel(int level) {

@@ -53,8 +53,11 @@ public abstract class Object {
 	
 	@Override
 	public String toString() {
-		return "Object{" + '}';
+		return "Object{" + "name=" + name + ", description=" + description + '}';
 	}
+	
+	
+	
 	
 
 }
