@@ -7,10 +7,9 @@ package eldenark;
  */
 public class Priest extends Character {
 
-	
 	// MAIN
-	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, Object[] inventory) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, inventory);
+	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, Object[] inventory, Equip[] equipment) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, inventory, equipment);
 	}
 
 	// ENEMIES
@@ -19,6 +18,4 @@ public class Priest extends Character {
 	}
 
 	// Constructor
-	
-
 }

@@ -29,9 +29,11 @@ public class Character {
 
 	private Object[] inventory = new Object[4]; // Testing inventory
 
+	private Equip[] equipment = new Equip[4];
+
 	// Constructors
 	// Constructor for MAIN CHARACTER
-	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, Object[] inventory) {
+	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, Object[] inventory, Equip[] equipment) {
 
 		this.level = 1; // Always start at level 1
 
@@ -53,6 +55,7 @@ public class Character {
 
 		this.inventory = inventory;
 
+		this.equipment = equipment;
 	}
 
 	// Constructor for ENEMIES
@@ -125,6 +128,19 @@ public class Character {
 		} while (option < 1 && option > 4);
 
 	}
+        
+        public void moveUP(){
+            y--;
+        }
+        public void moveDown(){
+            y++;
+        }
+        public void moveRight(){
+            x++;
+        }
+        public void moveLeft(){
+            x--;
+        }
 
 	//ES NECESITADO EL CAMBIO A ESTA SECCION DEL CODIGO
 	public int fightMenu() {
@@ -133,47 +149,54 @@ public class Character {
 	}
 
 	public void basicAttack(Character enemy) {
+		System.out.println("You used a basic attack.");
 		enemy.setHp(enemy.getHp() - damage);
+		System.out.println("You did " + this.getDamage() + " damage.");
 	}
 
 	public void enemyBasicAttack(Character enemy) {
+		System.out.println("The enemy used his basic attack.");
 		this.hp = hp - enemy.getDamage();
+		System.out.println("The enemy did " + enemy.getDamage() + " damage.");
 	}
 
 	public void defend(Character enemy) {
-		
+
 	}
 
 	public void enemyDefend(Character enemy) {
-		
+
 	}
 
 	public void specialAbilities(Character enemy) {
+		System.out.println("You used your special ability.");
 		enemy.setHp(enemy.getHp() - specialDamage);
+		System.out.println("You did " + this.getSpecialDamage() + " damage.");
 	}
 
 	public void enemySpecialAbilities(Character enemy) {
+		System.out.println("The enemy used his special ability.");
 		this.hp = hp - enemy.getSpecialDamage();
+		System.out.println("The enemy did " + enemy.getSpecialDamage() + " damage.");
 	}
 
 	public void objects() {
 		int option;
 		System.out.println("What object do you want to use?");
 		for (int i = 0; i < this.inventory.length; i++) {
-				System.out.println(String.format("%-25.15s %10d", this.inventory[i].getName(), this.inventory[i].getNumOfUses()));
+			System.out.println(String.format("%-25.15s %10d", this.inventory[i].getName(), this.inventory[i].getNumOfUses()));
 		}
 		option = Teclat.llegirInt();
 		if (this.inventory[option].getNumOfUses() > 0) {
 			System.out.println(this.inventory[option].getDescription());
-			System.out.println("Are you sure do you want to use this object?");
 			if (confirmation()) {
 				this.inventory[option].use();
-			} else{
-				
+			} else {
+
 			}
-			
+
 		}
-		
+
 		/*
 		System.out.println("What Potion do you want to use?");
 		System.out.println("\n\t1- Use healing potion \n\t2- Use mana regeneration potion");
@@ -194,24 +217,22 @@ public class Character {
 			default:
 				System.err.println("\nInvalid option");
 		}
-*/
-
+		 */
 	}
 
-	public boolean confirmation(){
+	public boolean confirmation() {
 		char afirmation;
 		boolean x;
 		System.out.println("Are you sure do you want to use this object? Y/N");
 		afirmation = Teclat.llegirChar();
 		if (afirmation == 'Y' || afirmation == 'y') {
 			x = true;
-		} else{
+		} else {
 			x = false;
 		}
 		return x;
 	}
-	
-	
+
 	public void checkMaxValues(int value, int max) {
 		if (value > max) {
 			value = max;
@@ -219,10 +240,10 @@ public class Character {
 	}
 
 	public void interfaceFight(Character enemy) {
-		System.out.println("YOU");
+		System.out.println("\nYOU");
 		System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
-		System.out.println("ENEMY");
+		System.out.println("\nENEMY");
 		System.out.println(String.format("%-25.15s %10s", "HP", enemy.getHp() + "/" + enemy.getMaxHP()));
 		System.out.println(String.format("%-25.15s %10s", "MP", enemy.getMp() + "/" + enemy.getMaxMP()));
 
@@ -235,7 +256,7 @@ public class Character {
 			case 0:
 				//BASIC ATTACK
 				enemyBasicAttack(enemy);
-				System.out.println("The enemy did " + enemy.getDamage());
+
 				break;
 			case 1:
 				//DEFEND
@@ -244,14 +265,11 @@ public class Character {
 			case 2:
 				//SPECIAL ABILITIES
 				enemySpecialAbilities(enemy);
-				System.out.println("The enemy did " + enemy.getSpecialDamage());
 				break;
 		}
 
 	}
 
-	
-	
 	public void fight(Character enemy) {
 		int option;
 		do {
@@ -262,7 +280,6 @@ public class Character {
 				case 1:
 					//BASIC ATTACK
 					basicAttack(enemy);
-					//QUE DAÑO LE HACES...
 					break;
 				case 2:
 					//DEFEND
@@ -271,7 +288,6 @@ public class Character {
 				case 3:
 					//SPECIAL ABILITIES
 					specialAbilities(enemy);
-					//QUE DAÑO LE HACES...
 					break;
 				case 4:
 					//OBJECTS
@@ -281,7 +297,6 @@ public class Character {
 					System.err.println("\nInvalid option");
 			}
 			enemyActions(enemy);
-			// TE HACE DAÑO
 		} while (enemy.getHp() > 0);
 	}
 
@@ -290,7 +305,7 @@ public class Character {
 		do {
 			System.out.println("\nMENU\n");
 			System.out.println("What do you want to do?");
-			System.out.println("\n\t0- Exit the game \n\t1- Move the character \n\t2- Fight \n\t3- Loot \n\t4- Show inventory \n\t5- Check stats");
+			System.out.println("\n\t0- Exit the game \n\t1- Move the character \n\t2- Fight \n\t3- Loot \n\t4- Show inventory \n\t5- Check stats \n\t6- Show equipment" );
 			//SE TIENE QUE CHECKEAR LA CASILLA
 			Character enemy = generateEnemy();
 			//Print the menu
@@ -318,6 +333,10 @@ public class Character {
 					//CHECK STATS
 					showStats();
 					break;
+				case 6:
+					//EQUIPMENT
+					showEquipment();
+					break;
 				default:
 					System.err.println("\nError,invalid option." + " \nTry again");
 			}
@@ -329,6 +348,15 @@ public class Character {
 		for (int i = 0; i < inventory.length; i++) {
 			System.out.println(inventory[i].toString());
 		}
+	}
+	public void showEquipment(){
+		System.out.println(String.format("%-18.18s %14.14s", "Equipment name", "Stats"));
+		System.out.println("\n"+String.format("%-20.20s %2.2s %9.9s" , equipment[0].getName(), ("+" + equipment[0].getProfit()), " damage"));
+		for (int i = 1; i < equipment.length; i++) {
+			System.out.println(String.format("%-20.20s %2.2s %9.9s", equipment[i].getName(), ("+" + equipment[i].getProfit()) , " defense"));
+		}
+			
+
 	}
 
 	// Generate a random enemy
@@ -348,6 +376,40 @@ public class Character {
 		return enemy;
 	}
 
+	public void addEquip(Equip[] equipment) {
+		this.setDamage(this.getDamage() + equipment[0].getProfit());
+		for (int i = 1; i < equipment.length; i++) {
+			this.setDefense(this.getDefense() + equipment[i].getProfit());
+		}
+	}
+
+	public void changeEquip(Equip[] equipment, Equip newEquip) {
+		switch (newEquip.getType()) {
+			case "WeaponType":
+				changeWeapon(equipment, newEquip);
+			case "HelmetType":
+				changeDefenseEquipment(equipment, newEquip, 1);
+			case "ChestType":
+				changeDefenseEquipment(equipment, newEquip, 2);
+			case "LegType":
+				changeDefenseEquipment(equipment, newEquip, 3);
+
+		}
+
+	}
+
+	public void changeWeapon(Equip[] equipment, Equip newEquip) {
+		this.setDamage(this.getDamage() - equipment[0].getProfit());
+		equipment[0] = newEquip;
+		this.setDamage(this.getDamage() + equipment[0].getProfit());
+	}
+	
+	public void changeDefenseEquipment(Equip[] equipment, Equip newEquip, int i) {
+		this.setDefense(this.getDefense() - equipment[i].getProfit());
+		equipment[i] = newEquip;
+		this.setDefense(this.getDefense() + equipment[i].getProfit());
+	}
+	
 	// Getters
 	public int getLevel() {
 
