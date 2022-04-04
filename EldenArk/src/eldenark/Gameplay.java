@@ -244,13 +244,13 @@ public class Gameplay implements ActionListener {
 
 	public static Object[] generateInventory() {
 
-		Potion smallHealing = new Potion("Small Healing Potion", 30, "tipo", "descripcion", 2);
+		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "descripcion", 2);
 
-		Potion largeHealing = new Potion("Large Healing Potion", 50, "tipo", "descripcion", 2);
+		Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "descripcion", 2);
 
-		Potion smallMana = new Potion("Small Mana Potion", 30, "tipo", "descripcion", 2);
+		Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "descripcion", 2);
 
-		Potion largeMana = new Potion("Large Mana Potion", 50, "tipo", "descripcion", 2);
+		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "descripcion", 2);
 
 		Object[] inventory = new Object[4];
 

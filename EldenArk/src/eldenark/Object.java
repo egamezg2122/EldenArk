@@ -49,7 +49,7 @@ public abstract class Object {
 	}
 	
 	
-	public abstract void use();
+	public abstract void use(Character c);
 	
 	@Override
 	public String toString() {

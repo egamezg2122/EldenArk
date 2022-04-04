@@ -49,17 +49,16 @@ public class Potion extends Object{
 	
 
 	@Override
-	public void use() {
-		
+	public void use(Character c) {
+		switch(this.type){
+			case "healing":
+				c.setHp(c.getHp() + (c.getMaxHP() * this.percentage  / 100));
+				c.checkMaxValues(c.getHp(),c.getMaxHP());
+				break;
+			case "mana":
+				c.setMp(c.getMp()+ (c.getMaxMP() * this.percentage  / 100));
+				c.checkMaxValues(c.getMp(),c.getMaxMP());
+		}
 		this.setNumOfUses(this.getNumOfUses() - 1);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
