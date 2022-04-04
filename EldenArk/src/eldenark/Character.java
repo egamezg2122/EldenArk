@@ -25,6 +25,8 @@ public class Character {
 	
 	private int specialDamage;
 	
+	private int gold;
+	
 	private int x = 10; // Position in the map
 
 	private int y = 2; // Position in the map
@@ -553,5 +555,19 @@ public class Character {
 		this.specialDamage = specialDamage;
 		
 	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	public Object[] getInventory() {
+		return inventory;
+	}
+	
+	
 	
 }
