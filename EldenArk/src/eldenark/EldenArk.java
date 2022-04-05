@@ -39,6 +39,8 @@ public class EldenArk {
 
         // Main Logic
         Gameplay g = new Gameplay();
+		
+		
     }
 
     // User picking their character class
