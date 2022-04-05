@@ -210,7 +210,7 @@ public class Gameplay implements ActionListener {
 
 	public Warrior createWarrior() {
 
-		Warrior w = new Warrior(20, 10, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
+		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
 
 		return w;
 
@@ -271,13 +271,13 @@ public class Gameplay implements ActionListener {
 
 	public static Object[] generateInventory() {
 
-		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "descripcion", 2);
+		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", 2);
 
-		Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "descripcion", 2);
+		Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "It restores 50% health of your max HP", 2);
 
-		Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "descripcion", 2);
+		Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "It restores 30% mana of your max MP", 2);
 
-		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "descripcion", 2);
+		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "It restores 50% mana of your max MP", 2);
 
 		Object[] inventory = new Object[4];
 
