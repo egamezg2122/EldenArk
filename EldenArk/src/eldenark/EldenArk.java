@@ -27,6 +27,7 @@ Version:
     * Version 1.0
 
  */
+
 package eldenark;
 
 import java.util.Random;

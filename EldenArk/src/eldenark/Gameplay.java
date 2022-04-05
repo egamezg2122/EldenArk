@@ -211,7 +211,7 @@ public class Gameplay implements ActionListener {
 
 	public Warrior createWarrior() {
 
-		Warrior w = new Warrior(12, 15, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
+		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
 
 		return w;
 
@@ -220,17 +220,25 @@ public class Gameplay implements ActionListener {
 	// Test create a Mage object
 	public Mage createMage() {
 
-		Mage m = new Mage(8, 7, 85, 85, 100, 100, 25, generateInventory(), generateEquipment());
+		Mage m = new Mage(10, 4, 85, 85, 100, 100, 25, generateInventory(), generateEquipment());
 
 		return m;
 	}
+        
+        // Test create a Priest object
+	public Priest createPriest() {
 
+		Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, generateInventory(), generateEquipment());
+
+		return p;
+	}
+        
 	/*
 	public Character createEnemy(){
 		Character enemy;
 		int random = rn.nextInt();
 		switch(random){
-			case 0:
+		F	case 0:
 				enemy = new Warrior(50 * level, 20 * level);
 				break;
 			case 1:
@@ -264,13 +272,13 @@ public class Gameplay implements ActionListener {
 
 	public static Object[] generateInventory() {
 
-		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "descripcion", 2);
+		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", 2);
 
-		Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "descripcion", 2);
+		Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "It restores 50% health of your max HP", 2);
 
-		Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "descripcion", 2);
+		Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "It restores 30% mana of your max MP", 2);
 
-		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "descripcion", 2);
+		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "It restores 50% mana of your max MP", 2);
 
 		Object[] inventory = new Object[4];
 
@@ -392,55 +400,37 @@ public class Gameplay implements ActionListener {
 		}
 
 	}
-	//Enemy creation
-
-	public Character createEnemy(int difficulty) {
-
-		Character enemy;
-
-		switch (rn.nextInt(3)) {
-			case 0:
-
-				enemy = new Warrior(6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
-
-				break;
-
-			case 1:
-
-				enemy = new Mage(4 * difficulty, 5 * difficulty, 47 * difficulty, 47 * difficulty, 60 * difficulty, 60 * difficulty, 14 * difficulty);
-
-				break;
-
-			case 2:
-
-				enemy = new Priest(3 * difficulty, 12 * difficulty, 80 * difficulty, 80 * difficulty, 50 * difficulty, 50 * difficulty, 8 * difficulty);
-
-				break;
-
-			default:
-
-				enemy = new Warrior(6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
-		}
-
-		return enemy;
-	}
-
-	public void setCombatFrame() {
-		Combat = new JPanel();
-		JButton b = new JButton("Atack");
-		b.setBounds(10, 300, 100, 50);
-		JButton c = new JButton("Defence");
-		c.setBounds(120, 300, 100, 50);
-		JButton d = new JButton("Abilities");
-		d.setBounds(230, 300, 100, 50);
-		Combat.add(b);
-		Combat.add(c);
-		Combat.add(d);
-		Combat.setSize(400, 400);
-		Combat.setLayout(null);
-		Combat.setVisible(true);
-
-	}
+        //Enemy creation
+        public Character createEnemy (int difficulty) {
+        
+            Character enemy;
+            
+            switch  (rn.nextInt(3)) {
+                case 0:
+                    
+                    enemy = new Warrior (12 * difficulty, 6 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 12 * difficulty);
+                   
+                    break;
+                    
+                case 1:
+                    
+                    enemy = new Mage (6 * difficulty, 2 * difficulty, 65 * difficulty, 65 * difficulty, 75 * difficulty, 75* difficulty, 17 * difficulty);
+                    
+                    break;
+                    
+                case 2:
+                    
+                    enemy = new Priest (4 * difficulty, 1 * difficulty, 85 * difficulty, 85 * difficulty, 60 * difficulty, 60 * difficulty, 8 * difficulty);
+                    
+                    break;
+                    
+                default:
+                    
+                    enemy = new Warrior (6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
+            }
+            
+            return enemy;
+        }
 
 	public void startCombat() {
 		try {

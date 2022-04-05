@@ -9,56 +9,87 @@ package eldenark;
  *
  * @author cep
  */
-public class Potion extends Object{
-	
+public class Potion extends Object {
+
 	private int percentage;
-	
+
 	private String type;
 
-	public Potion(String name, int percentage, String type, String description, int numOfUses) {
-		super(name, description, numOfUses);
-		this.percentage = percentage;
-		this.type = type;
-	}
+    private String type;
 
-	
-	
-	
-	public int getPercentage() {
-		return percentage;
-	}
+    public Potion(String name, int percentage, String type, String description, int numOfUses) {
 
-	public String getType() {
-		return type;
-	}
+        super(name, description, numOfUses);
 
-	public void setPercentage(int percentage) {
-		this.percentage = percentage;
-	}
+        this.percentage = percentage;
 
-	public void setType(String type) {
-		this.type = type;
-	}
+        this.type = type;
 
-	
-	@Override
-	public String toString() {
-		return "Potion{" + "name=" + this.getName() + "description=" + this.getDescription() + "percentage=" + percentage + ", type=" + type + '}';
-	}
+    }
 
-	
 
-	@Override
-	public void use(Character c) {
-		switch(this.type){
-			case "healing":
-				c.setHp(c.getHp() + (c.getMaxHP() * this.percentage  / 100));
-				c.checkMaxValues(c.getHp(),c.getMaxHP());
-				break;
-			case "mana":
-				c.setMp(c.getMp()+ (c.getMaxMP() * this.percentage  / 100));
-				c.checkMaxValues(c.getMp(),c.getMaxMP());
-		}
-		this.setNumOfUses(this.getNumOfUses() - 1);
-	}
+
+
+    public int getPercentage() {
+
+        return percentage;
+
+    }
+
+    public String getType() {
+
+        return type;
+
+    }
+
+    public void setPercentage(int percentage) {
+
+        this.percentage = percentage;
+
+    }
+
+    public void setType(String type) {
+
+        this.type = type;
+
+    }
+
+
+    @Override
+    public String toString() {
+
+        return "Potion{" + "name=" + this.getName() 
+
+                + "description=" + this.getDescription() 
+
+                + "percentage=" + percentage 
+
+                + ", type=" + type + '}';
+
+    }
+
+
+
+    @Override
+    public void use(Character c) {
+
+            switch(this.type){
+
+                    case "healing":
+
+                            c.setHp(c.getHp() + (c.getMaxHP() * this.percentage  / 100));
+
+                            c.checkMaxValues(c.getHp(),c.getMaxHP());
+
+                            break;
+
+                    case "mana":
+
+                            c.setMp(c.getMp()+ (c.getMaxMP() * this.percentage  / 100));
+
+                            c.checkMaxValues(c.getMp(),c.getMaxMP());
+            }
+
+            this.setNumOfUses(this.getNumOfUses() - 1);
+    }
 }
