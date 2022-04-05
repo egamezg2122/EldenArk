@@ -9,10 +9,11 @@ package eldenark;
  *
  * @author cep
  */
+public class Potion extends Object {
 
-public class Potion extends Object{
-	
-    private int percentage;
+	private int percentage;
+
+	private String type;
 
     private String type;
 
