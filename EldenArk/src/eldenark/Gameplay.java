@@ -237,7 +237,7 @@ public class Gameplay implements ActionListener {
 		Character enemy;
 		int random = rn.nextInt();
 		switch(random){
-			case 0:
+		F	case 0:
 				enemy = new Warrior(50 * level, 20 * level);
 				break;
 			case 1:
