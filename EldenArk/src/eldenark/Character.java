@@ -110,48 +110,48 @@ public class Character {
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
 	}
 
-	public void move() {
-		int option;
-		do {
-			System.out.println("Which direction do you want to move?\n\t1 - Up\n\t2 - Down\n\t3 - Right\n\t4 - Left");
-			option = Teclat.llegirInt();
-			switch (option) {
-				case 1:
-					y++;
-					break;
-				case 2:
-					y--;
-					break;
-				case 3:
-					x++;
-					break;
-				case 4:
-					x--;
-					break;
-				default:
-					System.err.println("Not a valid option\nTry Again");
-			}
-		} while (option < 1 && option > 4);
-
+	/*	public void move() {
+	int option;
+	do {
+	System.out.println("Which direction do you want to move?\n\t1 - Up\n\t2 - Down\n\t3 - Right\n\t4 - Left");
+	option = Teclat.llegirInt();
+	switch (option) {
+	case 1:
+	y++;
+	break;
+	case 2:
+	y--;
+	break;
+	case 3:
+	x++;
+	break;
+	case 4:
+	x--;
+	break;
+	default:
+	System.err.println("Not a valid option\nTry Again");
 	}
-
+	} while (option < 1 && option > 4);
+	
+	}*/
+	
 	public void moveUP() {
-		y--;
+	y--;
 	}
-
+	
 	public void moveDown() {
-		y++;
+	y++;
 	}
-
+	
 	public void moveRight() {
-		x++;
+	x++;
 	}
-
+	
 	public void moveLeft() {
-		x--;
+	x--;
 	}
 
-	//ES NECESITADO EL CAMBIO A ESTA SECCION DEL CODIGO
+
 	public int fightMenu() {
 		System.out.println("\n1-Basic Attack" + "\n2-Defend" + "\n3-Special Abilities" + "\n4-Objects");
 		return Teclat.llegirInt();
@@ -360,7 +360,7 @@ public class Character {
 					break;
 				case 1:
 					//MOVE
-					move();
+					//move();
 					break;
 				case 2:
 					//FIGHT
@@ -388,9 +388,6 @@ public class Character {
 
 	}
 
-	public void loot() {
-
-	}
 
 	public void showInventory() {
 		for (int i = 0; i < inventory.length; i++) {
