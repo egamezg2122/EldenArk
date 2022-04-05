@@ -15,8 +15,6 @@ public class Potion extends Object {
 
 	private String type;
 
-    private String type;
-
     public Potion(String name, int percentage, String type, String description, int numOfUses) {
 
         super(name, description, numOfUses);
