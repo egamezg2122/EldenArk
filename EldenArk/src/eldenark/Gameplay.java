@@ -381,7 +381,7 @@ public class Gameplay implements ActionListener {
 				System.out.println("You found loot");
 				break;
 			case 2:
-				System.out.println("You found a normal enemy. Startint combat");
+				System.out.println("You found a normal enemy. Starting combat");
 				startCombat();
 				break;
 			case 3:
@@ -437,7 +437,7 @@ public class Gameplay implements ActionListener {
 			f.setVisible(false);
 			Warrior enemy = createWarrior();
 			Combat combat = new Combat(mainCharacter, enemy);
-			f.add(Combat);
+			//f.add(Combat);
 			mainCharacter.fight(enemy);
 			if (mainCharacter.getHp() <= 0) {
 				System.out.println("GAME OVER");
