@@ -20,7 +20,7 @@ public class Ability {
         
         String character;
         
-        character = mainCharacter.get        
+        //character = mainCharacter.get        
         
         for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
             

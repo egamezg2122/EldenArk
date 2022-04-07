@@ -211,7 +211,7 @@ public class Gameplay implements ActionListener {
 		System.out.println("_________________________________________________________________________________________");
 	}
 
-	public Warrior createWarrior() {
+	public static Warrior createWarrior() {
 
 		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
 
@@ -220,7 +220,7 @@ public class Gameplay implements ActionListener {
 	}
 
 	// Test create a Mage object
-	public Mage createMage() {
+	public static Mage createMage() {
 
 		Mage m = new Mage(10, 4, 85, 85, 100, 100, 25, generateInventory(), generateEquipment());
 
@@ -228,7 +228,7 @@ public class Gameplay implements ActionListener {
 	}
         
         // Test create a Priest object
-	public Priest createPriest() {
+	public static Priest createPriest() {
 
 		Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, generateInventory(), generateEquipment());
 

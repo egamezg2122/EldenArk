@@ -30,6 +30,7 @@ Version:
 
 package eldenark;
 
+import static eldenark.Gameplay.generateEquipment;
 import static eldenark.Gameplay.generateInventory;
 import java.util.Random;
 
@@ -62,19 +63,25 @@ public class EldenArk {
 
             case 1:
 
-                main = createWarrior();
+                main = Gameplay.createWarrior();
+                
+                System.out.println("You have chosen the warrior class");
 
                 break;
 
             case 2:
 
-                main = createMage();
+                main = Gameplay.createMage();
+                
+                System.out.println("You have chosen the mage class");
 
                 break;
 
             case 3:
 
-                main = createPriest();
+                main = Gameplay.createPriest();
+                
+                System.out.println("You have chosen the priest class");
 
                 break;
 
@@ -87,32 +94,6 @@ public class EldenArk {
 
         return main;
     }
-    
-    public Warrior createWarrior() {
-
-        Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
-
-        return w;
-
-    }
-
-    // Test create a Mage object
-    public Mage createMage() {
-
-        Mage m = new Mage(10, 4, 85, 85, 100, 100, 25, generateInventory(), generateEquipment());
-
-        return m;
-        
-    }
-
-    // Test create a Priest object
-    public Priest createPriest() {
-
-        Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, generateInventory(), generateEquipment());
-
-        return p;
-        
-    }  
     
 }
 
