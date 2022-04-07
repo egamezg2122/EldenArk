@@ -438,7 +438,7 @@ public class Gameplay implements ActionListener {
 		try {
 			f.setVisible(false);
 			Warrior enemy = createWarrior();
-			Combat combat = new Combat(mainCharacter, enemy);
+			//Combat combat = new Combat(mainCharacter, enemy);
 			//f.add(Combat);
 			mainCharacter.fight(enemy);
 			if (mainCharacter.getHp() <= 0) {

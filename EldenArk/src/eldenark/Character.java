@@ -327,7 +327,7 @@ public class Character {
 					break;
 				case 3:
 					//SPECIAL ABILITIES
-                                        Ability.specialAbilities(mainCharacter, enemy);
+                                        new Ability(this, enemy);
 					specialAbilities(enemy, enemyDef);
 					break;
 				case 4:

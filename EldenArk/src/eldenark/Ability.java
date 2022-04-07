@@ -8,48 +8,60 @@ package eldenark;
 
 public class Ability {
     
-    String abilitiesWarrior[] = {"Habilidad 1", "Habilidad 2", "Habilidad 3", "Habilidad 4", "Habilidad 5"};
+    Character mainCharacter;
     
-    String abilitiesMage[] = {"Habilidad 1", "Habilidad 2", "Habilidad 3", "Habilidad 4", "Habilidad 5"};
+    Character enemy;
     
-    String abilitiesPriest[] = {"Habilidad 1", "Habilidad 2", "Habilidad 3", "Habilidad 4", "Habilidad 5"};
+    String abilitiesWarrior[] = {"Habilidad 1 warrior", "Habilidad 2 warrior", "Habilidad 3 warrior", "Habilidad 4 warrior", "Habilidad 5 warrior"};
     
-    public static void showAbilities (Character mainCharacter, String[] abilities){      
+    String abilitiesMage[] = {"Habilidad 1 mage", "Habilidad 2 mage", "Habilidad 3 mage", "Habilidad 4 mage", "Habilidad 5 mage"};
+    
+    String abilitiesPriest[] = {"Habilidad 1 priest", "Habilidad 2 priest", "Habilidad 3 priest", "Habilidad 4 priest", "Habilidad 5 priest"};
+    
+      
+    public Ability(Character mainCharacter, Character enemy) {
         
-        for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
-            
-            System.out.println(abilities[i]);
-            
-        }
-
-    }
-    
-    public static void specialAbilities (Character mainCharacter, Character enemy){
+        this.mainCharacter = mainCharacter;
+        
+        this.enemy = enemy;
+        
+        //llama a la funcion X
         
         if (mainCharacter.getClass().equals("class eldenark.Warrior")) {
             
-            
-            warriorAbility (mainCharacter, enemy);
+            warriorAbility(enemy, mainCharacter);
             
         }
         
         else if (mainCharacter.getClass().equals("class eldenark.Mague")) {
-            
-            showAbilities(mainCharacter, abilitiesMage);
+                      
+            mageAbility(enemy, mainCharacter);
             
         } 
         
         else {
-        
-            showAbilities(mainCharacter, abilitiesPriest);
+            
+            priestAbility(mainCharacter);;
             
         }
-    }
+        
+    } 
     
+    public void showAbilities (){      
+        
+        for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
+            
+            System.out.println();
+            
+        }
+
+    }
+   
+   
     // Warrior
     
     public static void warriorAbility (Character enemy, Character mainCharacter){
-        
+    
         int option;
         
         boolean control = false;
@@ -58,7 +70,7 @@ public class Ability {
             
             System.out.println("Que habilidad quieres usar?");  
 
-            showAbilities(mainCharacter, abilitiesWarrior);
+            //showAbilities
 
             option = Teclat.llegirInt();
             
@@ -80,6 +92,7 @@ public class Ability {
                     
                     System.out.println("has usado la habilidad 1");
 
+                    
                     break;
                     
             case 2: enemy.setHp(enemy.getHp() - 50);
@@ -103,7 +116,7 @@ public class Ability {
         }
         
     }
-    
+
     // Priest
     
     public static void priestAbility (Character mainCharacter){
@@ -161,9 +174,7 @@ public class Ability {
         }
         
     }
-    
-    // Mage
-    
+        
     public static void  mageAbility (Character enemy, Character mainCharacter){
     
         int option;
@@ -220,5 +231,5 @@ public class Ability {
         }
         
     }
-    
+
 }
