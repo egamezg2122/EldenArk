@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package eldenark;
 
 import java.awt.FlowLayout;
@@ -21,6 +22,7 @@ import javax.swing.*;
  *
  * @author cep
  */
+
 public class Gameplay implements ActionListener {
 
 	int[][] map = new int[5][30];
@@ -34,8 +36,8 @@ public class Gameplay implements ActionListener {
 	int level = 1;
 	Merchant merchant = new Merchant(0, 0);
 
-	public Gameplay() {
-		mainCharacter = createWarrior();
+	public Gameplay(Character mainCharacter) {
+		this.mainCharacter = mainCharacter;
 		createMap();
 		reprint();
 		running = true;
@@ -253,7 +255,7 @@ public class Gameplay implements ActionListener {
 	}
 	 */
 
-	public Equip[] generateEquipment() {
+	public static Equip[] generateEquipment() {
 
 		Equip[] equipment = new Equip[4];
 

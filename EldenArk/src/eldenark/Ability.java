@@ -8,15 +8,23 @@ package eldenark;
 
 public class Ability {
     
-    String abilities[] = {"Habilidad 1", "Habilidad 2", "Habilidad 3", "Habilidad 4", "Habilidad 5"};
+    String abilitiesWarrior[] = {"Habilidad 1", "Habilidad 2", "Habilidad 3", "Habilidad 4", "Habilidad 5"};
+    
+    String abilitiesMage[] = {"Habilidad 1", "Habilidad 2", "Habilidad 3", "Habilidad 4", "Habilidad 5"};
+    
+    String abilitiesPriest[] = {"Habilidad 1", "Habilidad 2", "Habilidad 3", "Habilidad 4", "Habilidad 5"};
     
     public int showAbilities (Character mainCharacter){
         
         int option;
         
+        String character;
+        
+        character = mainCharacter.get        
+        
         for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
             
-            System.out.println(abilities[i]);
+            System.out.println(abilitiesWarrior[i]);
             
         }
         
