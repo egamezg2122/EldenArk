@@ -30,6 +30,8 @@ Version:
 
 package eldenark;
 
+import static eldenark.Gameplay.generateEquipment;
+import static eldenark.Gameplay.generateInventory;
 import java.util.Random;
 
 public class EldenArk {
@@ -39,9 +41,11 @@ public class EldenArk {
     public static void main(String[] args) {
 
         // Main Logic
-        Gameplay g = new Gameplay();
-		
-		
+        
+        Character mainCharacter = pickClass();
+        
+        Gameplay g = new Gameplay(mainCharacter);
+	
     }
 
     // User picking their character class
@@ -59,19 +63,25 @@ public class EldenArk {
 
             case 1:
 
-                //main = createWarrior();
+                main = Gameplay.createWarrior();
+                
+                System.out.println("You have chosen the warrior class");
 
                 break;
 
             case 2:
 
-                //main = createMage();
+                main = Gameplay.createMage();
+                
+                System.out.println("You have chosen the mage class");
 
                 break;
 
             case 3:
 
-                //main = createPriest();
+                main = Gameplay.createPriest();
+                
+                System.out.println("You have chosen the priest class");
 
                 break;
 
@@ -79,9 +89,10 @@ public class EldenArk {
 
                 System.err.println("Not a valid number");
 
-        }
-
+        }     
+        
         return main;
     }
+    
 }
 

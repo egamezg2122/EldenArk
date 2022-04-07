@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package eldenark;
 
 import java.awt.FlowLayout;
@@ -21,6 +22,7 @@ import javax.swing.*;
  *
  * @author cep
  */
+
 public class Gameplay implements ActionListener {
 
 	int[][] map = new int[5][30];
@@ -34,8 +36,8 @@ public class Gameplay implements ActionListener {
 	int level = 1;
 	Merchant merchant = new Merchant(0, 0);
 
-	public Gameplay() {
-		mainCharacter = createWarrior();
+	public Gameplay(Character mainCharacter) {
+		this.mainCharacter = mainCharacter;
 		createMap();
 		reprint();
 		running = true;
@@ -209,7 +211,7 @@ public class Gameplay implements ActionListener {
 		System.out.println("_________________________________________________________________________________________");
 	}
 
-	public Warrior createWarrior() {
+	public static Warrior createWarrior() {
 
 		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
 
@@ -218,7 +220,7 @@ public class Gameplay implements ActionListener {
 	}
 
 	// Test create a Mage object
-	public Mage createMage() {
+	public static Mage createMage() {
 
 		Mage m = new Mage(10, 4, 85, 85, 100, 100, 25, generateInventory(), generateEquipment());
 
@@ -226,7 +228,7 @@ public class Gameplay implements ActionListener {
 	}
         
         // Test create a Priest object
-	public Priest createPriest() {
+	public static Priest createPriest() {
 
 		Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, generateInventory(), generateEquipment());
 
@@ -253,7 +255,7 @@ public class Gameplay implements ActionListener {
 	}
 	 */
 
-	public Equip[] generateEquipment() {
+	public static Equip[] generateEquipment() {
 
 		Equip[] equipment = new Equip[4];
 
@@ -436,7 +438,7 @@ public class Gameplay implements ActionListener {
 		try {
 			f.setVisible(false);
 			Warrior enemy = createWarrior();
-			Combat combat = new Combat(mainCharacter, enemy);
+			//Combat combat = new Combat(mainCharacter, enemy);
 			//f.add(Combat);
 			mainCharacter.fight(enemy);
 			if (mainCharacter.getHp() <= 0) {

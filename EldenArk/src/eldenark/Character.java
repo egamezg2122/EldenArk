@@ -355,6 +355,7 @@ public class Character {
 					break;
 				case 3:
 					//SPECIAL ABILITIES
+                                        new Ability(this, enemy);
 					specialAbilities(enemy, enemyDef);
 					break;
 				case 4:
