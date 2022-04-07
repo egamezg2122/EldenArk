@@ -150,10 +150,16 @@ public class Character {
 		x--;
 	}
 
-	public int fightMenu() {
+	public int fightMenu(boolean objectsUses) {
 		System.out.println("\n1-Basic Attack" + "\n2-Defend" + "\n3-Special Abilities" + "\n4-Objects");
-		return Teclat.llegirInt();
+		int option = Teclat.llegirInt();
+		boolean object = objectsUses;
+		if (option == 4 && !object) {
+			option = checkOption4(option, object);
+		}
+		return option;
 	}
+
 
 	public void basicAttack(Character enemy, int defenceEnemy) {
 		System.out.println("\nYou used a basic attack.");
@@ -196,16 +202,18 @@ public class Character {
 		return defenceEnemy;
 	}
 
-	public void checkObjects() {
+	public boolean checkObjects() {
 		int noUses = 0;
+		boolean use = true;
 		for (int i = 0; i < this.inventory.length; i++) {
 			if (this.inventory[i].getNumOfUses() == 0) {
 				noUses++;
 			}
 		}
 		if (noUses == 4) {
-			System.out.println("You don't have anymore objects to use.");
+			use = false;
 		}
+		return use;
 	}
 
 	public void objects() {
@@ -273,7 +281,7 @@ public class Character {
 	}
 
 	public void interfaceFight(Character enemy) {
-		System.out.println("\nYOU");
+		System.out.println("\n\nYOU");
 		System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
 		System.out.println("\nENEMY");
@@ -304,16 +312,36 @@ public class Character {
 		}
 	}
 
+	public int checkOption4(int option, boolean objectUses) {
+		boolean object = objectUses;
+		if (option == 4 && !object) {
+			System.out.println("\nYou dont have any objects to use.");
+			boolean back = true;
+			do {
+				System.out.println("Choose other option");
+				option = Teclat.llegirInt();
+				if (option <= 0 || option > 3) {
+					back = false;
+				} else {
+					back = true;
+				}
+			} while (!back);
+		}
+		return option;
+	}
+
 	public void fight(Character enemy) {
 		int option, enemyOption;
 		int mainDef = this.getDefense();
 		int enemyDef = enemy.getDefense();
+		boolean objectsUses;
 		do {
+			objectsUses = checkObjects();
 			interfaceFight(enemy);
 			System.out.println("\nHow are you gonna fight?");
-			option = fightMenu();
+			option = fightMenu(objectsUses);
 			enemyOption = enemyActions();
-			if (enemyOption == 0) {
+			if (enemyOption == 0 &&(option >= 1 && option <=4)) {
 				enemyDef = enemyDefend(enemy, enemyDef);
 			}
 			switch (option) {
@@ -334,19 +362,18 @@ public class Character {
 					objects();
 					this.hp = checkMaxValues(hp, maxHP);
 					this.mp = checkMaxValues(mp, maxMP);
-					checkObjects();
 					break;
 				default:
 					System.err.println("\nInvalid option");
 			}
-			if (enemy.getHp() > 0) {
+			if (enemy.getHp() > 0 && (option >= 1 && option <=4)) {
 				if (enemyOption == 1) {
 					enemyAttacks(enemy, mainDef, enemyDef);
 				}
 			}
 			enemyDef = defenceCheckedEnemy(enemy, enemyDef);
 			mainDef = this.getDefense();
-		} while (enemy.getHp() > 0 && this.hp > 0);
+		} while ((enemy.getHp() > 0 && this.hp > 0));
 		interfaceFight(enemy);
 		if (enemy.getHp() <= 0) {
 			System.out.println("\nCongrats, you defeated the enemy.");
