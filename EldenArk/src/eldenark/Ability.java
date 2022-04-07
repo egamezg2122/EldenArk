@@ -14,41 +14,72 @@ public class Ability {
     
     String abilitiesPriest[] = {"Habilidad 1", "Habilidad 2", "Habilidad 3", "Habilidad 4", "Habilidad 5"};
     
-    public int showAbilities (Character mainCharacter){
-        
-        int option;
-        
-        String character;
-        
-        //character = mainCharacter.get        
+    public static void showAbilities (Character mainCharacter, String[] abilities){      
         
         for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
             
-            System.out.println(abilitiesWarrior[i]);
+            System.out.println(abilities[i]);
+            
+        }
+
+    }
+    
+    public static void specialAbilities (Character mainCharacter, Character enemy){
+        
+        if (mainCharacter.getClass().equals("class eldenark.Warrior")) {
+            
+            
+            warriorAbility (mainCharacter, enemy);
             
         }
         
-        System.out.println("Que habilidad quieres usar?");
+        else if (mainCharacter.getClass().equals("class eldenark.Mague")) {
+            
+            showAbilities(mainCharacter, abilitiesMage);
+            
+        } 
         
-        option = Teclat.llegirInt();
+        else {
         
-        return option;
-        
+            showAbilities(mainCharacter, abilitiesPriest);
+            
+        }
     }
     
     // Warrior
     
-    public void warriorAbility (Character enemy, Character mainCharacter){
+    public static void warriorAbility (Character enemy, Character mainCharacter){
         
         int option;
+        
+        boolean control = false;
+        
+        do {
+            
+            System.out.println("Que habilidad quieres usar?");  
 
-        switch (option = showAbilities(mainCharacter)){
+            showAbilities(mainCharacter, abilitiesWarrior);
+
+            option = Teclat.llegirInt();
+            
+            if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
+                
+                control = true;
+                
+            } else{
+            
+                System.out.println("The ability is not avilable, caldo de pollo");
+              
+            }
+        
+        } while (!control);
+        
+        switch (option){
         
             case 1: enemy.setHp(enemy.getHp() - 40);
                     
                     System.out.println("has usado la habilidad 1");
 
-                    
                     break;
                     
             case 2: enemy.setHp(enemy.getHp() - 50);
@@ -70,16 +101,38 @@ public class Ability {
                     break;
         
         }
-
+        
     }
     
     // Priest
     
-    public void priestAbility (Character mainCharacter){
+    public static void priestAbility (Character mainCharacter){
     
         int option;
+        
+        boolean control = false;
+        
+        do {
+            
+            System.out.println("Que habilidad quieres usar?");  
 
-        switch (option = showAbilities(mainCharacter)){
+            //showAbiities
+
+            option = Teclat.llegirInt();
+            
+            if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
+                
+                control = true;
+                
+            } else{
+            
+                System.out.println("The ability is not avilable, caldo de pollo");
+              
+            }
+        
+        } while (!control);
+
+        switch (option){
         
             case 1:  mainCharacter.setHp(mainCharacter.getHp() + 40);
                     
@@ -111,11 +164,33 @@ public class Ability {
     
     // Mage
     
-    public void  mageAbility (Character enemy, Character mainCharacter){
+    public static void  mageAbility (Character enemy, Character mainCharacter){
     
         int option;
+        
+        boolean control = false;
+        
+        do {
+            
+            System.out.println("Que habilidad quieres usar?");  
 
-        switch (option = showAbilities(mainCharacter)){
+            //showAbilities
+
+            option = Teclat.llegirInt();
+            
+            if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
+                
+                control = true;
+                
+            } else{
+            
+                System.out.println("The ability is not avilable, caldo de pollo");
+              
+            }
+        
+        } while (!control);
+        
+        switch (option){
         
             case 1: enemy.setHp(enemy.getHp() - 40);
                     
