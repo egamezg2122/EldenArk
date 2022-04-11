@@ -33,7 +33,8 @@ public class Gameplay implements ActionListener {
 	//Timer timer;
 	JFrame f;
 	JPanel Combat;
-	int level = 1;
+	int floor = 1;
+        
 	Merchant merchant = new Merchant(0, 0);
 
 	public Gameplay(Character mainCharacter) {
@@ -61,6 +62,10 @@ public class Gameplay implements ActionListener {
 
 	}
 
+        
+        // GENERATING THE MAP
+        
+        
 	public void createMap() {
 		/* 0 - Nothing
         1 - Loot
@@ -176,6 +181,19 @@ public class Gameplay implements ActionListener {
 		return isUsable;
 	}
 
+        
+        
+        
+        
+        
+        
+        
+        // PRINT THE MAP 
+        
+        
+        
+        
+        
 	public void reprint() {
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		printMap();
@@ -211,113 +229,16 @@ public class Gameplay implements ActionListener {
 		System.out.println("_________________________________________________________________________________________");
 	}
 
-	public static Warrior createWarrior() {
-
-		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, "Warrior", generateInventory(), generateEquipment());
-
-		return w;
-
-	}
-
-	// Test create a Mage object
-	public static Mage createMage() {
-
-		Mage m = new Mage(10, 4, 85, 85, 100, 100, 25, "Mage", generateInventory(), generateEquipment());
-
-		return m;
-	}
         
-        // Test create a Priest object
-	public static Priest createPriest() {
-
-		Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, "Priest", generateInventory(), generateEquipment());
-
-		return p;
-	}
         
-	/*
-	public Character createEnemy(){
-		Character enemy;
-		int random = rn.nextInt();
-		switch(random){
-		F	case 0:
-				enemy = new Warrior(50 * level, 20 * level);
-				break;
-			case 1:
-				enemy = new Mage();
-				break;
-			case 2:
-				enemy = new Priest();
-				break;
-		}
-		return enemy;
-		
-	}
-	 */
-
-	public static Equip[] generateEquipment() {
-
-		Equip[] equipment = new Equip[4];
-
-		Equip weapon = new Equip("Weapon", "WeaponType", 5);
-		Equip helmet = new Equip("Helmet", "HelmetType", 2);
-		Equip chest = new Equip("Chest", "ChestType", 2);
-		Equip leg = new Equip("Leg", "LegType", 2);
-
-		equipment[0] = weapon;
-		equipment[1] = helmet;
-		equipment[2] = chest;
-		equipment[3] = leg;
-
-		return equipment;
-	}
-
-	public static Object[] generateInventory() {
-
-		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", 2);
-
-		Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "It restores 50% health of your max HP", 2);
-
-		Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "It restores 30% mana of your max MP", 2);
-
-		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "It restores 50% mana of your max MP", 2);
-
-		Object[] inventory = new Object[4];
-
-		inventory[0] = smallHealing;
-		inventory[1] = largeHealing;
-		inventory[2] = smallMana;
-		inventory[3] = largeMana;
-
-		return inventory;
-	}
-
-	/*
-    public void keyTyped(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'w':
-                //Thing that happens when the 'w' key is pressed
-                mainCharacter.moveUP();
-                reprint();
-                break;
-            case 's':
-                //Thing that happens when the 's' key is pressed
-                mainCharacter.moveDown();
-                reprint();
-                break;
-            case 'd':
-                //Thing that happens when the 'd' key is pressed
-                mainCharacter.moveRight();
-                reprint();
-                break;
-            case 'a':
-                //Thing that happens when the 'a' key is pressed
-                mainCharacter.moveLeft();
-                reprint();
-                break;
-        }
-    }
-	 */
+        
+        
+        
+        
+        // MOVING METHODS 
+        
+        
+        
 	public void tryToMoveUP() {
 		try {
 			if (map[mainCharacter.getY() - 1][mainCharacter.getX()] != 10) {
@@ -400,8 +321,15 @@ public class Gameplay implements ActionListener {
 				break;
 
 		}
+                
 
 	}
+        
+        public int checkEnemyLevel(){
+            
+            return map[mainCharacter.getY()][mainCharacter.getX()] * floor;
+        }
+        
         //Enemy creation
         public Character createEnemy (int difficulty) {
         
@@ -437,14 +365,15 @@ public class Gameplay implements ActionListener {
 	public void startCombat() {
 		try {
 			f.setVisible(false);
-			Warrior enemy = createWarrior();
+                        int combatLevel = checkEnemyLevel();
+			Character enemy = createEnemy(combatLevel);
 			//Combat combat = new Combat(mainCharacter, enemy);
 			//f.add(Combat);
 			mainCharacter.fight(enemy);
 			if (mainCharacter.getHp() <= 0) {
 				System.out.println("GAME OVER");
 			} else {
-				generateLoot(level);
+				generateLoot(combatLevel);
 				System.out.println("Returning to the map");
 				map[mainCharacter.getY()][mainCharacter.getX()] = 0;
 				f.setVisible(true);
@@ -517,7 +446,12 @@ public class Gameplay implements ActionListener {
 				case 'r':
 					//Loot tile
 					if (inMap) {
-
+                                            if (map[mainCharacter.getY()][mainCharacter.getX()] == 1) {
+                                                generateLoot(floor);
+                                                map[mainCharacter.getY()][mainCharacter.getX()] = 0;
+                                                reprint();
+                                            }
+                                            
 					}
 
 			}
