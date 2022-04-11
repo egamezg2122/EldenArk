@@ -27,13 +27,13 @@ public class Ability {
         
         //llama a la funcion X
         
-        if (mainCharacter.getClass().equals("class eldenark.Warrior")) {
+        if (mainCharacter.getRole().equals("Warrior")) {
             
             warriorAbility(enemy, mainCharacter);
             
         }
         
-        else if (mainCharacter.getClass().equals("class eldenark.Mague")) {
+        else if (mainCharacter.getRole().equals("Mage")) {
                       
             mageAbility(enemy, mainCharacter);
             
@@ -90,6 +90,8 @@ public class Ability {
         
             case 1: enemy.setHp(enemy.getHp() - 40);
                     
+                    mainCharacter.setMp(mainCharacter.getMp()-5);
+                    
                     System.out.println("has usado la habilidad 1");
 
                     
@@ -97,17 +99,23 @@ public class Ability {
                     
             case 2: enemy.setHp(enemy.getHp() - 50);
             
+                    mainCharacter.setMp(mainCharacter.getMp()-10);
+            
                     System.out.println("has usado la habilidad 2");
                     
                     break;
                     
             case 3: enemy.setHp(enemy.getHp() - 60);
+                    
+                    mainCharacter.setMp(mainCharacter.getMp()-15);
             
                     System.out.println("has usado la habilidad 3");
                     
                     break;
                     
             case 4: enemy.setHp(enemy.getHp() - 70);
+            
+                    mainCharacter.setMp(mainCharacter.getMp()-20);
             
                     System.out.println("has usado la habilidad 4");
                     
@@ -148,12 +156,16 @@ public class Ability {
         switch (option){
         
             case 1:  mainCharacter.setHp(mainCharacter.getHp() + 40);
+            
+                    mainCharacter.setMp(mainCharacter.getMp()-5);
                     
-                    System.out.println("has usado la habilidad 1");
+                    System.out.println("has usado la habilidad 1 te has curado");
 
                     break;
                     
             case 2:  mainCharacter.setHp(mainCharacter.getHp() + 50);
+            
+                    mainCharacter.setMp(mainCharacter.getMp()-10);
             
                     System.out.println("has usado la habilidad 2");
                     
@@ -161,11 +173,15 @@ public class Ability {
                     
             case 3:  mainCharacter.setHp(mainCharacter.getHp() + 60);
             
+                    mainCharacter.setMp(mainCharacter.getMp()-15);
+            
                     System.out.println("has usado la habilidad 3");
                     
                     break;
                     
             case 4:  mainCharacter.setHp(mainCharacter.getHp() + 70);
+            
+                    mainCharacter.setMp(mainCharacter.getMp()-20);
             
                     System.out.println("has usado la habilidad 4");
                     
@@ -204,6 +220,8 @@ public class Ability {
         switch (option){
         
             case 1: enemy.setHp(enemy.getHp() - 40);
+            
+                    mainCharacter.setMp(mainCharacter.getMp()-5);
                     
                     System.out.println("has usado la habilidad 1");
 
@@ -212,17 +230,23 @@ public class Ability {
                     
             case 2: enemy.setHp(enemy.getHp() - 50);
             
+                    mainCharacter.setMp(mainCharacter.getMp()-10);
+            
                     System.out.println("has usado la habilidad 2");
                     
                     break;
                     
             case 3: enemy.setHp(enemy.getHp() - 60);
             
+                    mainCharacter.setMp(mainCharacter.getMp()-15);
+            
                     System.out.println("has usado la habilidad 3");
                     
                     break;
                     
             case 4: enemy.setHp(enemy.getHp() - 70);
+            
+                    mainCharacter.setMp(mainCharacter.getMp()-20);
             
                     System.out.println("has usado la habilidad 4");
                     

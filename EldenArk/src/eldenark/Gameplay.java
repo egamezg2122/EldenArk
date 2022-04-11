@@ -213,7 +213,7 @@ public class Gameplay implements ActionListener {
 
 	public static Warrior createWarrior() {
 
-		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, generateInventory(), generateEquipment());
+		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, "Warrior", generateInventory(), generateEquipment());
 
 		return w;
 
@@ -222,7 +222,7 @@ public class Gameplay implements ActionListener {
 	// Test create a Mage object
 	public static Mage createMage() {
 
-		Mage m = new Mage(10, 4, 85, 85, 100, 100, 25, generateInventory(), generateEquipment());
+		Mage m = new Mage(10, 4, 85, 85, 100, 100, 25, "Mage", generateInventory(), generateEquipment());
 
 		return m;
 	}
@@ -230,7 +230,7 @@ public class Gameplay implements ActionListener {
         // Test create a Priest object
 	public static Priest createPriest() {
 
-		Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, generateInventory(), generateEquipment());
+		Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, "Priest", generateInventory(), generateEquipment());
 
 		return p;
 	}
