@@ -56,13 +56,13 @@ public class Potion extends Object {
     @Override
     public String toString() {
 
-        return "Potion{" + "name=" + this.getName() 
+        return this.getName() 
 
-                + "description=" + this.getDescription() 
+                + " does " + this.getDescription() 
 
-                + "percentage=" + percentage 
+                + " restores " + percentage 
 
-                + ", type=" + type + '}';
+                + " " + type + '}';
 
     }
 

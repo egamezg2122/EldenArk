@@ -3,257 +3,274 @@ package eldenark;
 /**
  *
  * @author egame
- * 
+ *
  */
-
 public class Ability {
-    
+
     Character mainCharacter;
-    
+
     Character enemy;
-    
+
     String abilitiesWarrior[] = {"Habilidad 1 warrior", "Habilidad 2 warrior", "Habilidad 3 warrior", "Habilidad 4 warrior", "Habilidad 5 warrior"};
-    
+
     String abilitiesMage[] = {"Habilidad 1 mage", "Habilidad 2 mage", "Habilidad 3 mage", "Habilidad 4 mage", "Habilidad 5 mage"};
-    
+
     String abilitiesPriest[] = {"Habilidad 1 priest", "Habilidad 2 priest", "Habilidad 3 priest", "Habilidad 4 priest", "Habilidad 5 priest"};
-    
-      
+
     public Ability(Character mainCharacter, Character enemy) {
-        
+
         this.mainCharacter = mainCharacter;
-        
+
         this.enemy = enemy;
-        
+
         //llama a la funcion X
-        
         if (mainCharacter.getRole().equals("Warrior")) {
-            
+
             warriorAbility(enemy, mainCharacter);
-            
-        }
-        
-        else if (mainCharacter.getRole().equals("Mage")) {
-                      
+
+        } else if (mainCharacter.getRole().equals("Mage")) {
+
             mageAbility(enemy, mainCharacter);
-            
-        } 
-        
-        else {
-            
+
+        } else {
+
             priestAbility(mainCharacter);;
-            
-        }
-        
-    } 
-    
-    public void showAbilities (){      
-        
-        for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
-            
-            System.out.println();
-            
+
         }
 
     }
-   
-   
-    // Warrior
-    
-    public static void warriorAbility (Character enemy, Character mainCharacter){
-    
-        int option;
-        
-        boolean control = false;
-        
-        do {
-            
-            System.out.println("Que habilidad quieres usar?");  
 
-            //showAbilities
+    public void showAbilities() {
+        
+        if (mainCharacter.getRole().equals("Warrior")) {
 
-            option = Teclat.llegirInt();
-            
-            if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
-                
-                control = true;
-                
-            } else{
-            
-                System.out.println("The ability is not avilable, caldo de pollo");
-              
+            for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
+
+            System.out.println(abilitiesWarrior[i]);
+
             }
-        
-        } while (!control);
-        
-        switch (option){
-        
-            case 1: enemy.setHp(enemy.getHp() - 40);
-                    
-                    mainCharacter.setMp(mainCharacter.getMp()-5);
-                    
-                    System.out.println("has usado la habilidad 1");
 
-                    
-                    break;
-                    
-            case 2: enemy.setHp(enemy.getHp() - 50);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-10);
-            
-                    System.out.println("has usado la habilidad 2");
-                    
-                    break;
-                    
-            case 3: enemy.setHp(enemy.getHp() - 60);
-                    
-                    mainCharacter.setMp(mainCharacter.getMp()-15);
-            
-                    System.out.println("has usado la habilidad 3");
-                    
-                    break;
-                    
-            case 4: enemy.setHp(enemy.getHp() - 70);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-20);
-            
-                    System.out.println("has usado la habilidad 4");
-                    
-                    break;
-        
+        } else if (mainCharacter.getRole().equals("Mage")) {
+
+            for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
+
+            System.out.println(abilitiesMage[i]);
+
+            }
+
+        } else {
+
+            for (int i = 0; i < ((mainCharacter.getLevel() / 5) + 2); i++) {
+
+            System.out.println(abilitiesPriest[i]);
+
+            }
+
         }
         
+    }
+
+    // Warrior
+    public void warriorAbility(Character enemy, Character mainCharacter) {
+
+        int option;
+
+        boolean control = false;
+
+        do {
+
+            System.out.println("Que habilidad quieres usar?");
+
+            showAbilities();
+            option = Teclat.llegirInt();
+
+            if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
+
+                control = true;
+
+            } else {
+
+                System.out.println("The ability is not avilable, caldo de pollo");
+
+            }
+
+        } while (!control);
+
+        switch (option) {
+
+            case 1:
+                enemy.setHp(enemy.getHp() - 40);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 5);
+
+                System.out.println("has usado la habilidad 1");
+
+                break;
+
+            case 2:
+                enemy.setHp(enemy.getHp() - 50);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 10);
+
+                System.out.println("has usado la habilidad 2");
+
+                break;
+
+            case 3:
+                enemy.setHp(enemy.getHp() - 60);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 15);
+
+                System.out.println("has usado la habilidad 3");
+
+                break;
+
+            case 4:
+                enemy.setHp(enemy.getHp() - 70);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 20);
+
+                System.out.println("has usado la habilidad 4");
+
+                break;
+
+        }
+
     }
 
     // Priest
-    
-    public static void priestAbility (Character mainCharacter){
-    
+    public void priestAbility(Character mainCharacter) {
+
         int option;
-        
+
         boolean control = false;
-        
+
         do {
-            
-            System.out.println("Que habilidad quieres usar?");  
 
-            //showAbiities
+            System.out.println("Que habilidad quieres usar?");
 
+            showAbilities();
             option = Teclat.llegirInt();
-            
+
             if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
-                
+
                 control = true;
-                
-            } else{
-            
+
+            } else {
+
                 System.out.println("The ability is not avilable, caldo de pollo");
-              
+
             }
-        
+
         } while (!control);
 
-        switch (option){
-        
-            case 1:  mainCharacter.setHp(mainCharacter.getHp() + 40);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-5);
-                    
-                    System.out.println("has usado la habilidad 1 te has curado");
+        switch (option) {
 
-                    break;
-                    
-            case 2:  mainCharacter.setHp(mainCharacter.getHp() + 50);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-10);
-            
-                    System.out.println("has usado la habilidad 2");
-                    
-                    break;
-                    
-            case 3:  mainCharacter.setHp(mainCharacter.getHp() + 60);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-15);
-            
-                    System.out.println("has usado la habilidad 3");
-                    
-                    break;
-                    
-            case 4:  mainCharacter.setHp(mainCharacter.getHp() + 70);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-20);
-            
-                    System.out.println("has usado la habilidad 4");
-                    
-                    break;
-        
+            case 1:
+                mainCharacter.setHp(mainCharacter.getHp() + 40);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 5);
+
+                System.out.println("has usado la habilidad 1 te has curado");
+
+                break;
+
+            case 2:
+                mainCharacter.setHp(mainCharacter.getHp() + 50);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 10);
+
+                System.out.println("has usado la habilidad 2");
+
+                break;
+
+            case 3:
+                mainCharacter.setHp(mainCharacter.getHp() + 60);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 15);
+
+                System.out.println("has usado la habilidad 3");
+
+                break;
+
+            case 4:
+                mainCharacter.setHp(mainCharacter.getHp() + 70);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 20);
+
+                System.out.println("has usado la habilidad 4");
+
+                break;
+
         }
-        
+
     }
-        
-    public static void  mageAbility (Character enemy, Character mainCharacter){
-    
+
+    public void mageAbility(Character enemy, Character mainCharacter) {
+
         int option;
-        
+
         boolean control = false;
-        
+
         do {
-            
-            System.out.println("Que habilidad quieres usar?");  
 
-            //showAbilities
+            System.out.println("Que habilidad quieres usar?");
 
+            showAbilities();
             option = Teclat.llegirInt();
-            
-            if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
-                
-                control = true;
-                
-            } else{
-            
-                System.out.println("The ability is not avilable, caldo de pollo");
-              
-            }
-        
-        } while (!control);
-        
-        switch (option){
-        
-            case 1: enemy.setHp(enemy.getHp() - 40);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-5);
-                    
-                    System.out.println("has usado la habilidad 1");
 
-                    
-                    break;
-                    
-            case 2: enemy.setHp(enemy.getHp() - 50);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-10);
-            
-                    System.out.println("has usado la habilidad 2");
-                    
-                    break;
-                    
-            case 3: enemy.setHp(enemy.getHp() - 60);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-15);
-            
-                    System.out.println("has usado la habilidad 3");
-                    
-                    break;
-                    
-            case 4: enemy.setHp(enemy.getHp() - 70);
-            
-                    mainCharacter.setMp(mainCharacter.getMp()-20);
-            
-                    System.out.println("has usado la habilidad 4");
-                    
-                    break;
-        
+            if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
+
+                control = true;
+
+            } else {
+
+                System.out.println("The ability is not avilable, caldo de pollo");
+
+            }
+
+        } while (!control);
+
+        switch (option) {
+
+            case 1:
+                enemy.setHp(enemy.getHp() - 40);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 5);
+
+                System.out.println("has usado la habilidad 1");
+
+                break;
+
+            case 2:
+                enemy.setHp(enemy.getHp() - 50);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 10);
+
+                System.out.println("has usado la habilidad 2");
+
+                break;
+
+            case 3:
+                enemy.setHp(enemy.getHp() - 60);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 15);
+
+                System.out.println("has usado la habilidad 3");
+
+                break;
+
+            case 4:
+                enemy.setHp(enemy.getHp() - 70);
+
+                mainCharacter.setMp(mainCharacter.getMp() - 20);
+
+                System.out.println("has usado la habilidad 4");
+
+                break;
+
         }
-        
+
     }
 
 }
