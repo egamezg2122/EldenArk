@@ -478,9 +478,9 @@ public class Character {
 
 	public void showEquipment() {
 		System.out.println(String.format("%-18.18s %14.14s", "Equipment name", "Stats"));
-		System.out.println("\n" + String.format("%-20.20s %2.2s %9.9s", equipment[0].getName(), ("+" + equipment[0].getProfit()), " damage"));
+		System.out.println("\n" + String.format("%-20.20s %5.5s %9.9s", equipment[0].getName(), ("+" + equipment[0].getProfit()), " damage"));
 		for (int i = 1; i < equipment.length; i++) {
-			System.out.println(String.format("%-20.20s %2.2s %9.9s", equipment[i].getName(), ("+" + equipment[i].getProfit()), " defense"));
+			System.out.println(String.format("%-20.20s %5.5s %9.9s", equipment[i].getName(), ("+" + equipment[i].getProfit()), " defense"));
 		}
 
 	}
