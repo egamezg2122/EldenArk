@@ -369,7 +369,9 @@ public class Gameplay {
 		}
 		objects = rn.nextInt(100/level);
 		try {
-			System.out.println("You found a " + mainCharacter.getEquipment());
+			System.out.println("You found a " + mainCharacter.getEquipment()[objects].getType());
+		} catch (ArrayIndexOutOfBoundsException e){
+			
 		}
 		
 
