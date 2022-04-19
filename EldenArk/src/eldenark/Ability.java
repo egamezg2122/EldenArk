@@ -5,17 +5,18 @@ package eldenark;
  * @author egame
  *
  */
+
 public class Ability {
 
     Character mainCharacter;
 
     Character enemy;
 
-    String abilitiesWarrior[] = {"Habilidad 1 warrior", "Habilidad 2 warrior", "Habilidad 3 warrior", "Habilidad 4 warrior", "Habilidad 5 warrior"};
+    String abilitiesWarrior[] = {"Martillo de Thor", "Carga de ariete", "Grito de combate", "Doble filo", "Salto heroico"};
 
-    String abilitiesMage[] = {"Habilidad 1 mage", "Habilidad 2 mage", "Habilidad 3 mage", "Habilidad 4 mage", "Habilidad 5 mage"};
+    String abilitiesMage[] = {"Bola de fuego", "Traslación", "Nova de Escarcha", "Clima de Trueno", "Lunargenta"};
 
-    String abilitiesPriest[] = {"Habilidad 1 priest", "Habilidad 2 priest", "Habilidad 3 priest", "Habilidad 4 priest", "Habilidad 5 priest"};
+    String abilitiesPriest[] = {"Infusión de poder", "Punición", "Salto de fe", "Levitación", "Rezo desesperado"};
 
     public Ability(Character mainCharacter, Character enemy) {
 
@@ -23,7 +24,6 @@ public class Ability {
 
         this.enemy = enemy;
 
-        //llama a la funcion X
         if (mainCharacter.getRole().equals("Warrior")) {
 
             warriorAbility(enemy, mainCharacter);
@@ -34,7 +34,7 @@ public class Ability {
 
         } else {
 
-            priestAbility(mainCharacter);;
+            priestAbility(mainCharacter);
 
         }
 
@@ -82,6 +82,7 @@ public class Ability {
             System.out.println("Que habilidad quieres usar?");
 
             showAbilities();
+            
             option = Teclat.llegirInt();
 
             if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
@@ -103,16 +104,12 @@ public class Ability {
 
                 mainCharacter.setMp(mainCharacter.getMp() - 5);
 
-                System.out.println("has usado la habilidad 1");
-
                 break;
 
             case 2:
                 enemy.setHp(enemy.getHp() - 50);
 
                 mainCharacter.setMp(mainCharacter.getMp() - 10);
-
-                System.out.println("has usado la habilidad 2");
 
                 break;
 
@@ -121,16 +118,12 @@ public class Ability {
 
                 mainCharacter.setMp(mainCharacter.getMp() - 15);
 
-                System.out.println("has usado la habilidad 3");
-
                 break;
 
             case 4:
                 enemy.setHp(enemy.getHp() - 70);
 
                 mainCharacter.setMp(mainCharacter.getMp() - 20);
-
-                System.out.println("has usado la habilidad 4");
 
                 break;
 
@@ -150,6 +143,7 @@ public class Ability {
             System.out.println("Que habilidad quieres usar?");
 
             showAbilities();
+            
             option = Teclat.llegirInt();
 
             if ((option < (mainCharacter.getLevel() / 5) + 2) && option >= 1) {
@@ -171,16 +165,12 @@ public class Ability {
 
                 mainCharacter.setMp(mainCharacter.getMp() - 5);
 
-                System.out.println("has usado la habilidad 1 te has curado");
-
                 break;
 
             case 2:
                 mainCharacter.setHp(mainCharacter.getHp() + 50);
 
                 mainCharacter.setMp(mainCharacter.getMp() - 10);
-
-                System.out.println("has usado la habilidad 2");
 
                 break;
 
@@ -189,16 +179,12 @@ public class Ability {
 
                 mainCharacter.setMp(mainCharacter.getMp() - 15);
 
-                System.out.println("has usado la habilidad 3");
-
                 break;
 
             case 4:
                 mainCharacter.setHp(mainCharacter.getHp() + 70);
 
                 mainCharacter.setMp(mainCharacter.getMp() - 20);
-
-                System.out.println("has usado la habilidad 4");
 
                 break;
 
@@ -238,16 +224,12 @@ public class Ability {
 
                 mainCharacter.setMp(mainCharacter.getMp() - 5);
 
-                System.out.println("has usado la habilidad 1");
-
                 break;
 
             case 2:
                 enemy.setHp(enemy.getHp() - 50);
 
                 mainCharacter.setMp(mainCharacter.getMp() - 10);
-
-                System.out.println("has usado la habilidad 2");
 
                 break;
 
@@ -256,16 +238,12 @@ public class Ability {
 
                 mainCharacter.setMp(mainCharacter.getMp() - 15);
 
-                System.out.println("has usado la habilidad 3");
-
                 break;
 
             case 4:
                 enemy.setHp(enemy.getHp() - 70);
 
                 mainCharacter.setMp(mainCharacter.getMp() - 20);
-
-                System.out.println("has usado la habilidad 4");
 
                 break;
 
