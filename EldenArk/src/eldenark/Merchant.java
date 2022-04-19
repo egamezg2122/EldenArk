@@ -111,7 +111,10 @@ public class Merchant {
 
 				case 1:
 
-					if (quantitySmallObject > 0 || mainCharacter.getGold() >= priceSmallObject) {
+                                    if (mainCharacter.getGold() < priceBigObject) {
+                                            System.out.println("You don't have enough money");
+                                        }
+                                    if (quantitySmallObject > 0 || mainCharacter.getGold() >= priceSmallObject) {
 
 						System.out.println("You have bought a " + sellingObject1.toString());
 
@@ -127,7 +130,10 @@ public class Merchant {
 
 				case 2:
 
-					if (quantityBigObject > 0 || mainCharacter.getGold() >= priceBigObject) {
+					if (mainCharacter.getGold() < priceBigObject) {
+                                            System.out.println("You don't have enough money");
+                                        }
+                                        if (quantityBigObject > 0 || mainCharacter.getGold() >= priceBigObject) {
 
 						System.out.println("You have bought a " + sellingObject2);
 
@@ -138,6 +144,7 @@ public class Merchant {
 						mainCharacter.getInventory()[typeObject2].setNumOfUses(mainCharacter.getInventory()[typeObject2].getNumOfUses() + 1);
 
 					}
+                                        
 
 					break;
 
