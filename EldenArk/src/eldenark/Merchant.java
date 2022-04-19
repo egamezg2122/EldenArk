@@ -47,19 +47,19 @@ public class Merchant {
 		switch (rn.nextInt(2)) {
 
 			case 0:
-				a = new Potion("Small Healing Potion", 30, "tipo", "descripcion", 2);
+				a = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
 				typeObject1 = 0;
 				break;
 
 			case 1:
 
-				a = new Potion("Small Mana Potion", 30, "tipo", "descripcion", 2);
+				a = new Potion("Small Mana Potion", 30, "mana", "restores 30% health of your max MP", 2);
 				typeObject1 = 2;
 
 				break;
 
 			default:
-				a = new Potion("Small Healing Potion", 30, "tipo", "descripcion", 2);
+				a = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
 				typeObject1 = 0;
 
 		}
@@ -75,20 +75,20 @@ public class Merchant {
 		switch (rn.nextInt(2)) {
 
 			case 0:
-				a = new Potion("Large Healing Potion", 50, "tipo", "descripcion", 2);
+				a = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
 				typeObject2 = 1;
 
 				break;
 
 			case 1:
 
-				a = new Potion("Large Mana Potion", 50, "tipo", "descripcion", 2);
+				a = new Potion("Large Mana Potion", 50, "mana", "restores 50% health of your max MP", 2);
 				typeObject2 = 3;
 
 				break;
 
 			default:
-				a = new Potion("Large Healing Potion", 50, "tipo", "descripcion", 2);
+				a = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
 				typeObject2 = 1;
 
 		}

@@ -58,11 +58,7 @@ public class Potion extends Object {
 
         return this.getName() 
 
-                + " does " + this.getDescription() 
-
-                + " restores " + percentage 
-
-                + " " + type + '}';
+                + " which " + this.getDescription();
 
     }
 
