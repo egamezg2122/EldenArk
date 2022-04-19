@@ -186,15 +186,27 @@ public class Character {
 
 
 	public void basicAttack(Character enemy, int defenceEnemy) {
+		int damageDone= this.damage - defenceEnemy;
 		System.out.println("\nYou used a basic attack.");
-		enemy.setHp(enemy.getHp() - (this.damage - defenceEnemy));
-		System.out.println("You did " + (this.damage - defenceEnemy) + " damage.");
+		if (damageDone>0) {
+			enemy.setHp(enemy.getHp() - damageDone);
+			System.out.println("You did " + (damageDone) + " damage.");
+		}else{
+			System.out.println("You did 0 damage. The enemy's defense is to powerfull");
+		}
+		
 	}
 
 	public void enemyBasicAttack(Character enemy, int defenceChar) {
+		int damageDone = enemy.getDamage() - defenceChar;
 		System.out.println("\nThe enemy used his basic attack.");
-		this.hp = hp - (enemy.getDamage() - defenceChar);
-		System.out.println("The enemy did " + (enemy.getDamage() - defenceChar) + " damage.");
+		if (damageDone>0) {
+			this.hp = hp - damageDone;
+			System.out.println("The enemy did " + (damageDone) + " damage.");
+		}else{
+			System.out.println("The enemy did 0 damage to you. Your defense is inredible");
+		}
+		
 	}
 
 	public int defend(Character enemy, int defenceChar) {
@@ -246,7 +258,7 @@ public class Character {
 		do {
 			System.out.println("\nWhat object do you want to use?");
 			for (int i = 0; i < this.inventory.length; i++) {
-				System.out.println(i + "- " + String.format("%-25.15s %10d", this.inventory[i].getName(), this.inventory[i].getNumOfUses()));
+				System.out.println(i + "- " + String.format("%-25.25s %10d", this.inventory[i].getName(), this.inventory[i].getNumOfUses()));
 			}
 			option = Teclat.llegirInt();
 			if (this.inventory[option].getNumOfUses() > 0) {
@@ -286,15 +298,15 @@ public class Character {
 
 	public boolean confirmation() {
 		char afirmation;
-		boolean x;
+		boolean object;
 		System.out.println("Are you sure do you want to use this object? Y/N");
 		afirmation = Teclat.llegirChar();
 		if (afirmation == 'Y' || afirmation == 'y') {
-			x = true;
+			object = true;
 		} else {
-			x = false;
+			object = false;
 		}
-		return x;
+		return object;
 	}
 
 	public int checkMaxValues(int value, int max) {
@@ -379,7 +391,7 @@ public class Character {
 					break;
 				case 3:
 					//SPECIAL ABILITIES
-                                        new Ability(this, enemy);
+                    new Ability(this, enemy);
 					specialAbilities(enemy, enemyDef);
 					break;
 				case 4:
@@ -402,11 +414,6 @@ public class Character {
 		interfaceFight(enemy);
 		if (enemy.getHp() <= 0) {
 			System.out.println("\nCongrats, you defeated the enemy.");
-			//XP
-			System.out.println("You got");
-			//CHECKEAR LEVEL POR SI SUBE DE NIVEL.
-			//CHECKLEVEL
-			//GENERARLOOT
 		} else {
 			System.out.println("\nYOU DIED.");
 		}
