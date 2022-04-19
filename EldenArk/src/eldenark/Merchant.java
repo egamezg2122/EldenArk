@@ -32,7 +32,7 @@ public class Merchant {
 
 	public Merchant(int x, int y) {
 
-		this.name = "Matias";
+		this.name = "Heisenberg";
 		this.x = x;
 		this.y = y;
 		this.sellingObject1 = generateSmallObject();
