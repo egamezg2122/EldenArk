@@ -30,7 +30,7 @@ public class Gameplay {
 	JFrame f;
 	int floor = 1;
 
-	Merchant merchant = new Merchant(0, 0);
+	Merchant merchant = new Merchant(0, 0, floor, mainCharacter);
 
 	public Gameplay(Character mainCharacter) {
 		this.mainCharacter = mainCharacter;
@@ -277,7 +277,9 @@ public class Gameplay {
 				break;
 			case 3:
 				//Merchant
-				merchant.trade(mainCharacter);
+				merchant.trade();
+				f.setVisible(true);
+				reprint();
 				break;
 			case 4:
 				System.out.println("You found a miniBoss. Get ready to fight!");
@@ -286,10 +288,26 @@ public class Gameplay {
 			case 5:
 				System.out.println("FINAL BOSS");
 				startCombat();
+				newFloor();
 				break;
 
 		}
 
+	}
+	
+	public void newFloor(){
+		f.setVisible(false);
+		System.out.println("Congratilation defeating the final boss of " + floor + " floor.");
+		System.out.println("You're now in the " + (floor + 1) + " floor. New adventures are comming.");
+		floor++;
+		createMap();
+		mainCharacter.setX(10);
+		mainCharacter.setY(2);
+		System.out.println("Are you ready?");
+		String s = Teclat.llegirString();
+		reprint();
+		f.setVisible(true);
+		
 	}
 
 	public int checkEnemyLevel() {
@@ -336,7 +354,9 @@ public class Gameplay {
 			Character enemy = createEnemy(combatLevel);
 			mainCharacter.fight(enemy);
 			if (mainCharacter.getHp() <= 0) {
-				System.out.println("GAME OVER");
+				f.dispose();
+				running = false;
+				EldenArk.gameOver();
 			} else {
 				generateLoot(combatLevel);
 				mainCharacter.checkLevelUp(getExperience(combatLevel));
@@ -354,6 +374,52 @@ public class Gameplay {
 		return base * level;
 	}
 
+	public void newEquipmentProbability(){
+		switch(map[mainCharacter.getY()][mainCharacter.getX()]){
+			case 2:
+				generateEquipmentLoot(98);
+				break;
+			case 4:
+				generateEquipmentLoot(14);
+				break;
+			case 5:
+				generateEquipmentLoot(4);
+				break;
+		}
+	}
+	
+	public void generateEquipmentLoot(int probability) {
+		int random = rn.nextInt(probability);
+		switch(random){
+			case 0:
+				System.out.println("You found a Weapon!\n" + mainCharacter.newWeapons[floor].getName());
+				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[0].getName(), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage"));
+				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.newWeapons[floor].getName(), ("+" + mainCharacter.newWeapons[floor].getProfit()), " damage"));
+				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newWeapons[floor]);
+				System.out.println("\n");
+				break;
+			case 1:
+				System.out.println("You found a Helmet!\n" + mainCharacter.newHelmets[floor].getName());
+				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[1].getName(), ("+" + mainCharacter.getEquipment()[1].getProfit()), " defence"));
+				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.newHelmets[floor].getName(), ("+" + mainCharacter.newHelmets[floor].getProfit()), " defence"));
+				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[floor]);
+				break;
+			case 2:
+				System.out.println("You found a Chestplate!\n" + mainCharacter.newChestPlates[floor].getName());
+				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[2].getName(), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence"));
+				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.newChestPlates[floor].getName(), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence"));
+				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[floor]);
+				break;
+			case 3:
+				System.out.println("You found a Leg Armor!\n" + mainCharacter.newLegArmors[floor].getName());
+				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[3].getName(), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence"));
+				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.newLegArmors[floor].getName(), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence"));
+				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[floor]);
+				break;
+		}
+		
+	}
+	
 	public void generateLoot(int level) {
 		int gold = rn.nextInt(10 * level);
 		System.out.println("You found " + gold + " gold!\n" + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold));
@@ -367,12 +433,8 @@ public class Gameplay {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("You found no additionals objects");
 		}
-		objects = rn.nextInt(100/level);
-		try {
-			System.out.println("You found a " + mainCharacter.getEquipment()[objects].getType());
-		} catch (ArrayIndexOutOfBoundsException e){
-			
-		}
+		newEquipmentProbability();
+		
 		
 
 	}

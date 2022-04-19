@@ -36,6 +36,16 @@ public class Character {
 	private Object[] inventory = new Object[4]; // Testing inventory
 
 	private Equip[] equipment = new Equip[4];
+	
+	//For new Equipment
+	
+	protected Equip[] newWeapons = new Equip[4];
+	
+	protected Equip[] newHelmets = new Equip[4];
+	
+	protected Equip[] newChestPlates = new Equip[4];
+	
+	protected Equip[] newLegArmors = new Equip[4];
 
 	// Constructors
 	// Constructor for MAIN CHARACTER
@@ -68,6 +78,12 @@ public class Character {
 		this.inventory = inventory;
 
 		this.equipment = equipment;
+		
+		weapons();
+		helmet();
+		chestplate();
+		legArmor();
+		
 	}
 
 	// Constructor for ENEMIES
@@ -84,7 +100,8 @@ public class Character {
 	public Character() {
 
 	}
-
+	
+	
 	//METHODS
 	//ESTARIA BIEN QUE LVLUP FUESE ABSTRACT
 	public void levelUp() {
@@ -676,5 +693,34 @@ public class Character {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	
+		
+	public void Abilities(){
+		
+	}
+	
+	public void weapons(){
+		
+	}
+	
+	public void helmet() {
+		
+	}
+	
+	public void chestplate() {
+		
+	}
+	public void legArmor(){
+		
 	}
 }

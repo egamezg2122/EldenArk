@@ -27,78 +27,84 @@ Version:
     * Version 1.0
 
  */
-
 package eldenark;
 
 import java.util.Random;
 
 public class EldenArk {
 
-    static Random rn = new Random();
+	static Random rn = new Random();
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        // Main Logic
-        
-        Character mainCharacter = pickClass();
-        
-        Gameplay g = new Gameplay(mainCharacter);
-	
-    }
+		// Main Logic
+		Character mainCharacter = pickClass();
 
-    
-    
-    // User picking their character class
-    
-    public static Character pickClass() {
+		Gameplay g = new Gameplay(mainCharacter);
+		
 
-        Character main = new Character();
+	}
 
-        int option;
+	public static void gameOver() {
+		System.out.println("GAME OVER");
+		System.out.println("Do you want to play again?");
+		char option = Teclat.llegirChar();
+		if (option == 'y') {
+			Character newMainCharacter = pickClass();
 
-        System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
+			Gameplay newGameplay = new Gameplay(newMainCharacter);
+		} else{
+			System.out.println("GoodBye!");
+		}
+	}
 
-        option = Teclat.llegirInt();
+	// User picking their character class
+	public static Character pickClass() {
 
-        switch (option) {
+		Character main = new Character();
 
-            case 1:
+		int option;
 
-                main = createWarrior();
-                
-                System.out.println("You have chosen the warrior class");
+		System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
 
-                break;
+		option = Teclat.llegirInt();
 
-            case 2:
+		switch (option) {
 
-                main = createMage();
-                
-                System.out.println("You have chosen the mage class");
+			case 1:
 
-                break;
+				main = createWarrior();
 
-            case 3:
+				System.out.println("You have chosen the warrior class");
 
-                main = createPriest();
-                
-                System.out.println("You have chosen the priest class");
+				break;
 
-                break;
+			case 2:
 
-            default:
+				main = createMage();
 
-                System.err.println("Not a valid number");
+				System.out.println("You have chosen the mage class");
 
-        }     
-        
-        return main;
-    }
-    
-    // CLASS GENERATORS 
-        
-        
-        
+				break;
+
+			case 3:
+
+				main = createPriest();
+
+				System.out.println("You have chosen the priest class");
+
+				break;
+
+			default:
+
+				System.err.println("Not a valid number");
+
+		}
+
+		return main;
+	}
+
+	// CLASS GENERATORS 
 	public static Warrior createWarrior() {
 
 		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, "Warrior", generateInventory(), generateEquipment());
@@ -114,16 +120,15 @@ public class EldenArk {
 
 		return m;
 	}
-        
-        // Test create a Priest object
+
+	// Test create a Priest object
 	public static Priest createPriest() {
 
 		Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, "Priest", generateInventory(), generateEquipment());
 
 		return p;
 	}
-        
-	
+
 	public static Equip[] generateEquipment() {
 
 		Equip[] equipment = new Equip[4];
@@ -161,7 +166,4 @@ public class EldenArk {
 		return inventory;
 	}
 
-	
-        
 }
-
