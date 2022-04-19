@@ -26,8 +26,8 @@ public class Character {
 	private int specialDamage;
 
 	private int gold;
-        
-        private String role;
+
+	private String role;
 
 	private int x = 10; // Position in the map
 
@@ -44,7 +44,7 @@ public class Character {
 		this.level = 1; // Always start at level 1
 
 		this.xp = 0; // Experience always start at 0
-		
+
 		this.maxXP = 1000;
 
 		this.maxXP = 100;
@@ -62,8 +62,8 @@ public class Character {
 		this.maxMP = maxMP;
 
 		this.specialDamage = specialDamage;
-                
-                this.role = role;
+
+		this.role = role;
 
 		this.inventory = inventory;
 
@@ -103,7 +103,7 @@ public class Character {
 			System.out.println("NEW ABILITY UNLOCKED");
 		}
 	}
-	
+
 	public void checkLevelUp(int experience) {
 		if (this.xp + experience > this.maxXP) {
 			System.out.println("LEVEL UP!");
@@ -116,7 +116,7 @@ public class Character {
 			this.xp += experience;
 			System.out.println(this.xp + "/" + this.maxXP);
 		}
-		
+
 	}
 
 	//Funtion for showing the stats of the character
@@ -184,29 +184,28 @@ public class Character {
 		return option;
 	}
 
-
 	public void basicAttack(Character enemy, int defenceEnemy) {
-		int damageDone= this.damage - defenceEnemy;
+		int damageDone = this.damage - defenceEnemy;
 		System.out.println("\nYou used a basic attack.");
-		if (damageDone>0) {
+		if (damageDone > 0) {
 			enemy.setHp(enemy.getHp() - damageDone);
 			System.out.println("You did " + (damageDone) + " damage.");
-		}else{
+		} else {
 			System.out.println("You did 0 damage. The enemy's defense is to powerfull");
 		}
-		
+
 	}
 
 	public void enemyBasicAttack(Character enemy, int defenceChar) {
 		int damageDone = enemy.getDamage() - defenceChar;
 		System.out.println("\nThe enemy used his basic attack.");
-		if (damageDone>0) {
+		if (damageDone > 0) {
 			this.hp = hp - damageDone;
 			System.out.println("The enemy did " + (damageDone) + " damage.");
-		}else{
+		} else {
 			System.out.println("The enemy did 0 damage to you. Your defense is inredible");
 		}
-		
+
 	}
 
 	public int defend(Character enemy, int defenceChar) {
@@ -222,15 +221,23 @@ public class Character {
 	}
 
 	public void specialAbilities(Character enemy, int defenceEnemy) {
-		System.out.println("\nYou used your special ability.");
-		enemy.setHp(enemy.getHp() - (this.specialDamage - defenceEnemy));
-		System.out.println("You did " + (this.specialDamage - defenceEnemy) + " damage.");
+		int damageDone = this.specialDamage - defenceEnemy;
+		if (damageDone > 0) {
+			enemy.setHp(enemy.getHp() - damageDone);
+			System.out.println("You did " + (damageDone) + " damage.");
+		} else {
+			System.out.println("You did 0 damage. The enemy's defense is to powerfull");
+		}
 	}
 
 	public void enemySpecialAbilities(Character enemy, int defenceChar) {
-		System.out.println("\nThe enemy used his special ability.");
-		this.hp = hp - (enemy.getSpecialDamage() - defenceChar);
-		System.out.println("The enemy did " + (enemy.getSpecialDamage() - defenceChar) + " damage.");
+		int damageDone = enemy.getSpecialDamage() - defenceChar;
+		if (damageDone > 0) {
+			this.hp = hp - damageDone;
+			System.out.println("The enemy did " + (damageDone) + " damage.");
+		} else {
+			System.out.println("The enemy did 0 damage to you. Your defense is inredible");
+		}
 	}
 
 	public int defenceCheckedEnemy(Character enemy, int defenceEnemy) {
@@ -377,7 +384,7 @@ public class Character {
 			System.out.println("\nHow are you gonna fight?");
 			option = fightMenu(objectsUses);
 			enemyOption = enemyActions();
-			if (enemyOption == 0 &&(option >= 1 && option <=4)) {
+			if (enemyOption == 0 && (option >= 1 && option <= 4)) {
 				enemyDef = enemyDefend(enemy, enemyDef);
 			}
 			switch (option) {
@@ -391,7 +398,7 @@ public class Character {
 					break;
 				case 3:
 					//SPECIAL ABILITIES
-                    new Ability(this, enemy);
+					new Ability(this, enemy);
 					specialAbilities(enemy, enemyDef);
 					break;
 				case 4:
@@ -403,7 +410,7 @@ public class Character {
 				default:
 					System.err.println("\nInvalid option");
 			}
-			if (enemy.getHp() > 0 && (option >= 1 && option <=4)) {
+			if (enemy.getHp() > 0 && (option >= 1 && option <= 4)) {
 				if (enemyOption == 1) {
 					enemyAttacks(enemy, mainDef, enemyDef);
 				}
@@ -583,15 +590,15 @@ public class Character {
 		return specialDamage;
 
 	}
-        
-        public int getGold() {
+
+	public int getGold() {
 		return gold;
 	}
-        
-        public String getRole() {
+
+	public String getRole() {
 		return role;
 	}
-        
+
 	public int getX() {
 		return x;
 	}
@@ -607,8 +614,6 @@ public class Character {
 	public Equip[] getEquipment() {
 		return equipment;
 	}
-	
-	
 
 	// Setters
 	public void setLevel(int level) {
@@ -664,12 +669,12 @@ public class Character {
 		this.specialDamage = specialDamage;
 
 	}
-	
+
 	public void setGold(int gold) {
 		this.gold = gold;
 	}
-        
-        public void setRole(String role) {
+
+	public void setRole(String role) {
 		this.role = role;
 	}
 }
