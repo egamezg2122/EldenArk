@@ -19,5 +19,10 @@ public class Mage extends Character {
 	}
 
 	// Constructor
-	
+	@Override
+	public void changeWeapon(Equip[] equipment, Equip newEquip) {
+		this.setDamage(this.getDamage() - equipment[0].getProfit());
+		equipment[0] = newEquip;
+		this.setDamage(this.getDamage() + equipment[0].getProfit());
+	}
 }
