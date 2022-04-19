@@ -44,6 +44,8 @@ public class Character {
 		this.level = 1; // Always start at level 1
 
 		this.xp = 0; // Experience always start at 0
+		
+		this.maxXP = 1000;
 
 		this.maxXP = 100;
 
@@ -94,10 +96,27 @@ public class Character {
 		maxHP = maxHP * 2;
 		mp = (maxMP * 2) - (maxMP - mp);
 		maxMP = maxMP * 2;
+		xp = 0;
+		maxXP *= 2;
 		if (level % 5 == 0) {
 			//get new hability
-			System.out.println("NEW ABILITY MARICONNNNN");
+			System.out.println("NEW ABILITY UNLOCKED");
 		}
+	}
+	
+	public void checkLevelUp(int experience) {
+		if (this.xp + experience > this.maxXP) {
+			System.out.println("LEVEL UP!");
+			showStats();
+			levelUp();
+			System.out.println("\n");
+			showStats();
+		} else {
+			System.out.print("EXP: " + this.xp + " -> ");
+			this.xp += experience;
+			System.out.println(this.xp + "/" + this.maxXP);
+		}
+		
 	}
 
 	//Funtion for showing the stats of the character
@@ -112,6 +131,7 @@ public class Character {
 		System.out.println(String.format("%-25.15s %10d", "Special Damage", specialDamage));
 		System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
+		System.out.println(String.format("%-25.15s %10s", "EXP", xp + "/" + maxXP));
 	}
 
 	/*	public void move() {
@@ -576,6 +596,12 @@ public class Character {
 	public Object[] getInventory() {
 		return inventory;
 	}
+
+	public Equip[] getEquipment() {
+		return equipment;
+	}
+	
+	
 
 	// Setters
 	public void setLevel(int level) {

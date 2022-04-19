@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package eldenark;
 
 import java.awt.FlowLayout;
@@ -15,26 +14,22 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
-import java.util.Timer;
 import javax.swing.*;
 
 /**
  *
  * @author cep
  */
-
-public class Gameplay implements ActionListener {
+public class Gameplay {
 
 	int[][] map = new int[5][30];
 	static Random rn = new Random();
 	Character mainCharacter = new Character();
 	boolean running = false;
 	boolean inMap = true;
-	//Timer timer;
 	JFrame f;
-	JPanel Combat;
 	int floor = 1;
-        
+
 	Merchant merchant = new Merchant(0, 0);
 
 	public Gameplay(Character mainCharacter) {
@@ -42,7 +37,6 @@ public class Gameplay implements ActionListener {
 		createMap();
 		reprint();
 		running = true;
-		//timer = new Timer();
 		f = new JFrame("Demo");
 
 		f.setLayout(new FlowLayout());
@@ -62,10 +56,7 @@ public class Gameplay implements ActionListener {
 
 	}
 
-        
-        // GENERATING THE MAP
-        
-        
+	// GENERATING THE MAP
 	public void createMap() {
 		/* 0 - Nothing
         1 - Loot
@@ -80,7 +71,6 @@ public class Gameplay implements ActionListener {
 				map[i][j] = rn.nextInt(3);
 			}
 		}
-		//generateMountains(array);
 		generateMountains();
 		generateMinorBoss();
 		generateBoss();
@@ -119,12 +109,11 @@ public class Gameplay implements ActionListener {
 			}
 			try {
 				map[y][x] = 10;
+				i++;
 			} catch (ArrayIndexOutOfBoundsException e) {
 				x = tempX;
 				y = tempY;
-			} finally {
-				i++;
-			}
+			} 
 		} while (i < 5);
 	}
 
@@ -181,19 +170,7 @@ public class Gameplay implements ActionListener {
 		return isUsable;
 	}
 
-        
-        
-        
-        
-        
-        
-        
-        // PRINT THE MAP 
-        
-        
-        
-        
-        
+	// PRINT THE MAP 
 	public void reprint() {
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		printMap();
@@ -229,16 +206,7 @@ public class Gameplay implements ActionListener {
 		System.out.println("_________________________________________________________________________________________");
 	}
 
-        
-        
-        
-        
-        
-        
-        // MOVING METHODS 
-        
-        
-        
+	// MOVING METHODS 
 	public void tryToMoveUP() {
 		try {
 			if (map[mainCharacter.getY() - 1][mainCharacter.getX()] != 10) {
@@ -321,89 +289,90 @@ public class Gameplay implements ActionListener {
 				break;
 
 		}
-                
 
 	}
-        
-        public int checkEnemyLevel(){
-            
-            return map[mainCharacter.getY()][mainCharacter.getX()] * floor;
-        }
-        
-        //Enemy creation
-        public Character createEnemy (int difficulty) {
-        
-            Character enemy;
-            
-            switch  (rn.nextInt(3)) {
-                case 0:
-                    
-                    enemy = new Warrior (12 * difficulty, 6 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 12 * difficulty);
-                   
-                    break;
-                    
-                case 1:
-                    
-                    enemy = new Mage (6 * difficulty, 2 * difficulty, 65 * difficulty, 65 * difficulty, 75 * difficulty, 75* difficulty, 17 * difficulty);
-                    
-                    break;
-                    
-                case 2:
-                    
-                    enemy = new Priest (4 * difficulty, 1 * difficulty, 85 * difficulty, 85 * difficulty, 60 * difficulty, 60 * difficulty, 8 * difficulty);
-                    
-                    break;
-                    
-                default:
-                    
-                    enemy = new Warrior (6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
-            }
-            
-            return enemy;
-        }
+
+	public int checkEnemyLevel() {
+
+		return map[mainCharacter.getY()][mainCharacter.getX()] * floor;
+	}
+
+	//Enemy creation
+	public Character createEnemy(int difficulty) {
+
+		Character enemy;
+
+		switch (rn.nextInt(3)) {
+			
+			case 0:
+
+				enemy = new Warrior(6 * difficulty, 3 * difficulty, 35 * difficulty, 35 * difficulty, 25 * difficulty, 25 * difficulty, 6 * difficulty);
+
+				break;
+
+			case 1:
+
+				enemy = new Mage(3 * difficulty, 1 * difficulty, 33 * difficulty, 33 * difficulty, 35 * difficulty, 35 * difficulty, 8 * difficulty);
+
+				break;
+
+			case 2:
+
+				enemy = new Priest(2 * difficulty, 1 * difficulty, 42 * difficulty, 42 * difficulty, 30 * difficulty, 30 * difficulty, 4 * difficulty);
+
+				break;
+
+			default:
+
+				enemy = new Warrior(6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
+		}
+
+		return enemy;
+	}
 
 	public void startCombat() {
-		try {
 			f.setVisible(false);
-                        int combatLevel = checkEnemyLevel();
+			int combatLevel = checkEnemyLevel();
 			Character enemy = createEnemy(combatLevel);
-			//Combat combat = new Combat(mainCharacter, enemy);
-			//f.add(Combat);
 			mainCharacter.fight(enemy);
 			if (mainCharacter.getHp() <= 0) {
 				System.out.println("GAME OVER");
 			} else {
 				generateLoot(combatLevel);
+				mainCharacter.checkLevelUp(getExperience(combatLevel));
 				System.out.println("Returning to the map");
+				System.out.println("\t\t\t\tPress enter to continue...");
+				String s = Teclat.llegirString();
 				map[mainCharacter.getY()][mainCharacter.getX()] = 0;
 				f.setVisible(true);
 				reprint();
 			}
-		} catch (java.lang.NullPointerException e) {
-			
-		}
-
+	}
+	
+	public int getExperience(int level){
+		int base = 30;
+		return base * level;
 	}
 
 	public void generateLoot(int level) {
 		int gold = rn.nextInt(10 * level);
 		System.out.println("You found " + gold + " gold!\n" + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold));
 		mainCharacter.setGold(mainCharacter.getGold() + gold);
-		int objects = rn.nextInt();
+		int objects = rn.nextInt(10/level);
 		try {
-			System.out.println("You found a " + mainCharacter.getInventory()[objects].getName());
+			System.out.print("You found a " + mainCharacter.getInventory()[objects].getName());
+			System.out.println(": " + mainCharacter.getInventory()[objects].getNumOfUses() + " -> " + (mainCharacter.getInventory()[objects].getNumOfUses() + 1));
 			mainCharacter.getInventory()[objects].setNumOfUses(mainCharacter.getInventory()[objects].getNumOfUses() + 1);
+
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("You found no additionals objects");
 		}
-		System.out.println("\t\t\t\t\tPress enter to continue...");
-		String s = Teclat.llegirString();
+		objects = rn.nextInt(100/level);
+		try {
+			System.out.println("You found a " + mainCharacter.getEquipment());
+		}
+		
 
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	public class MyKeyAdapter implements KeyListener {
@@ -446,13 +415,19 @@ public class Gameplay implements ActionListener {
 				case 'r':
 					//Loot tile
 					if (inMap) {
-                                            if (map[mainCharacter.getY()][mainCharacter.getX()] == 1) {
-                                                generateLoot(floor);
-                                                map[mainCharacter.getY()][mainCharacter.getX()] = 0;
-                                                reprint();
-                                            }
-                                            
+						if (map[mainCharacter.getY()][mainCharacter.getX()] == 1) {
+							reprint();
+							generateLoot(floor);
+							map[mainCharacter.getY()][mainCharacter.getX()] = 0;
+							
+						}
+
 					}
+					break;
+				case 'q':
+					reprint();
+					mainCharacter.showStats();
+					break;
 
 			}
 		}
