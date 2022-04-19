@@ -18,26 +18,56 @@ public class Merchant {
 	private String name;
 	private int y;
 	private int x;
+	private int floor;
+	private Character mainCharacter;
 	private Object sellingObject1;
 	private Object sellingObject2;
+	private Equip sellingEquip;
 	//private Weapon sellingWeapon1;
-	private int priceSmallObject = 100;
-	private int priceBigObject = 200;
+	private int priceSmallObject = 20;
+	private int priceBigObject = 50;
+	private int priceEquip;
 	//private int priceWeapon = 500;
 	private int quantitySmallObject = 5;
 	private int quantityBigObject = 2;
+	private int quantityEquip = 1;
 	//private int quantityWeapon;
 	private int typeObject1;
 	private int typeObject2;
 
-	public Merchant(int x, int y) {
+	public Merchant(int x, int y, int floor, Character mainCharacter) {
 
 		this.name = "Matias";
 		this.x = x;
 		this.y = y;
+		this.floor = floor;
+		this.mainCharacter = mainCharacter;
 		this.sellingObject1 = generateSmallObject();
 		this.sellingObject2 = generateBigObject();
+		equipGenerator();
 
+	}
+	
+	private void equipGenerator(){
+		int random = rn.nextInt(4);
+		switch(random){
+			case 0:
+				sellingEquip = mainCharacter.newWeapons[floor];
+				priceEquip = 100 * floor;
+				break;
+			case 1:
+				sellingEquip = mainCharacter.newHelmets[floor];
+				priceEquip = 60 * floor;
+				break;
+			case 2:
+				sellingEquip = mainCharacter.newChestPlates[floor];
+				priceEquip = 80 * floor;
+				break;
+			case 3:
+				sellingEquip = mainCharacter.newLegArmors[floor];
+				priceEquip = 70 * floor;
+		}
+		
 	}
 
 	private Object generateSmallObject() {
@@ -97,7 +127,7 @@ public class Merchant {
 
 	}
 
-	public void trade(Character mainCharacter) {
+	public void trade() {
 
 		boolean exit = false;
 
@@ -105,7 +135,7 @@ public class Merchant {
 
 			System.out.println("\nSHOP\n");
 			System.out.println("What do you want to buy?");
-			System.out.println("\n\t1- Buy small object \n\t2- Buy large object \n\t3- Buy a weapon \n\t0- Exit the shop");
+			System.out.println("\n\t1- Buy small object \n\t2- Buy large object \n\t3- Buy a piece of Equipment \n\t0- Exit the shop");
 
 			switch (Teclat.llegirInt()) {
 
@@ -142,6 +172,18 @@ public class Merchant {
 					break;
 
 				case 3:
+					
+					if (quantityEquip > 0 && mainCharacter.getGold() >= priceEquip) {
+						
+						System.out.println("You have bought " + sellingEquip.getName());
+						
+						quantityEquip--;
+						
+						mainCharacter.setGold(mainCharacter.getGold() - priceEquip);
+						
+						mainCharacter.changeEquip(mainCharacter.getEquipment(), sellingEquip);
+						
+					}
 
 					break;
 

@@ -19,4 +19,5 @@ public class Mage extends Character {
 	}
 
 	// Constructor
+	
 }
