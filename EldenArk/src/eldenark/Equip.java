@@ -22,6 +22,10 @@ public class Equip {
 		this.type = type;
 		this.profit = profit;
 	}
+	
+	public Equip(){
+		
+	}
 
 	//GETTERS
 	public String getName() {

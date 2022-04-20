@@ -30,8 +30,9 @@ public class Gameplay {
 	JFrame f;
 	int floor = 1;
 
-	Merchant merchant = new Merchant(0, 0, floor, mainCharacter);
-
+	
+	Merchant merchant;
+	
 	public Gameplay(Character mainCharacter) {
 		this.mainCharacter = mainCharacter;
 		createMap();
@@ -145,6 +146,7 @@ public class Gameplay {
 	}
 
 	public void generateMerchant() {
+		merchant = new Merchant(0, 0, floor, mainCharacter);
 		int x, y;
 		boolean isUsable;
 		do {
@@ -491,6 +493,10 @@ public class Gameplay {
 				case 'q':
 					reprint();
 					mainCharacter.showStats();
+					break;
+				case 'p':
+					reprint();
+					mainCharacter.showEquipment();
 					break;
 
 			}

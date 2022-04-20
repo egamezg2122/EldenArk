@@ -47,13 +47,13 @@ public class Merchant {
 		this.sellingEquip = equipGenerator();
 
 	}
-	
-	private Equip equipGenerator(){
+
+	private Equip equipGenerator() {
 		int random = rn.nextInt(4);
-                
-                Equip selection;
-                
-		switch(random){
+
+		Equip selection = new Equip();
+
+		switch (random) {
 			case 0:
 				selection = mainCharacter.newWeapons[floor];
 				priceEquip = 100 * floor;
@@ -69,15 +69,11 @@ public class Merchant {
 			case 3:
 				selection = mainCharacter.newLegArmors[floor];
 				priceEquip = 70 * floor;
-                                break;
-                        default:
-                                selection = mainCharacter.newWeapons[floor];
-				priceEquip = 100 * floor;
 				break;
-                }
-                
+		}
+
 		return selection;
-                
+
 	}
 
 	private Object generateSmallObject() {
@@ -151,10 +147,9 @@ public class Merchant {
 
 				case 1:
 
-                                    if (mainCharacter.getGold() < priceBigObject) {
-                                            System.out.println("You don't have enough money");
-                                        }
-                                    if (quantitySmallObject > 0 || mainCharacter.getGold() >= priceSmallObject) {
+					if (mainCharacter.getGold() < priceBigObject) {
+						System.out.println("You don't have enough money");
+					} else if (quantitySmallObject > 0) {
 
 						System.out.println("You have bought a " + sellingObject1.toString());
 
@@ -171,9 +166,8 @@ public class Merchant {
 				case 2:
 
 					if (mainCharacter.getGold() < priceBigObject) {
-                                            System.out.println("You don't have enough money");
-                                        }
-                                        if (quantityBigObject > 0 || mainCharacter.getGold() >= priceBigObject) {
+						System.out.println("You don't have enough money");
+					} else if (quantityBigObject > 0) {
 
 						System.out.println("You have bought a " + sellingObject2);
 
@@ -184,22 +178,21 @@ public class Merchant {
 						mainCharacter.getInventory()[typeObject2].setNumOfUses(mainCharacter.getInventory()[typeObject2].getNumOfUses() + 1);
 
 					}
-                                        
 
 					break;
 
 				case 3:
-					
+
 					if (quantityEquip > 0 && mainCharacter.getGold() >= priceEquip) {
-						
+
 						System.out.println("You have bought " + sellingEquip.getName());
-						
+
 						quantityEquip--;
-						
+
 						mainCharacter.setGold(mainCharacter.getGold() - priceEquip);
-						
+
 						mainCharacter.changeEquip(mainCharacter.getEquipment(), sellingEquip);
-						
+
 					}
 
 					break;

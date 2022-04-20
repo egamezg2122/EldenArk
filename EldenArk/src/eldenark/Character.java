@@ -25,7 +25,7 @@ public class Character {
 
 	private int specialDamage;
 
-	private int gold;
+	private int gold = 5;
 
 	private String role;
 
@@ -49,7 +49,7 @@ public class Character {
 
 	// Constructors
 	// Constructor for MAIN CHARACTER
-	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, Equip[] equipment) {
+	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
 
 		this.level = 1; // Always start at level 1
 
@@ -77,12 +77,17 @@ public class Character {
 
 		this.inventory = inventory;
 
-		this.equipment = equipment;
+		
 		
 		weapons();
 		helmet();
 		chestplate();
 		legArmor();
+		
+		equipment[0] = newWeapons[0];
+		equipment[1] = newHelmets[0];
+		equipment[2] = newChestPlates[0];
+		equipment[3] = newLegArmors[0];
 		
 	}
 
@@ -530,12 +535,16 @@ public class Character {
 		switch (newEquip.getType()) {
 			case "WeaponType":
 				changeWeapon(equipment, newEquip);
+				break;
 			case "HelmetType":
 				changeDefenseEquipment(equipment, newEquip, 1);
+				break;
 			case "ChestType":
 				changeDefenseEquipment(equipment, newEquip, 2);
+				break;
 			case "LegType":
 				changeDefenseEquipment(equipment, newEquip, 3);
+				break;
 
 		}
 

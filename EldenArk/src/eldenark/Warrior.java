@@ -10,12 +10,12 @@ public class Warrior extends Character {
 	
 	//Constructors
 	// MAIN
-	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, Equip[] equipment) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, equipment);
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
 	}
 
 	// ENEMIES
-        //Ns si poner la clase
+	//Ns si poner la clase
 	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
 	}
@@ -24,7 +24,7 @@ public class Warrior extends Character {
 	
 	@Override
 	public void weapons(){
-		Equip basicWeapon = new Equip("Weapon", "WeaponType", 5);
+		Equip basicWeapon = new Equip("Basic Weapon", "WeaponType", 5);
 		Equip firstWeapon = new Equip("Fidelity Greatsword", "WeaponType", 10);
 		Equip secondWeapon = new Equip("Dimensional Greatsword", "WeaponType", 20);
 		Equip thirdWeapon = new Equip("SeraphicOathGreatsword", "WeaponType", 50);
@@ -36,7 +36,7 @@ public class Warrior extends Character {
 	
 	@Override
 	public void helmet(){
-		Equip basicHelmet = new Equip("Helmet", "HelmetType", 2);
+		Equip basicHelmet = new Equip("Basic Helmet", "HelmetType", 2);
 		Equip firstHelmet = new Equip("Mask of Fallen Might", "HelmetType", 4);
 		Equip secondHelmet = new Equip("Terror of Fury", "HelmetType", 8);
 		Equip thirdHelmet = new Equip("Soul of the Banished", "HelmetType", 15);
@@ -49,7 +49,7 @@ public class Warrior extends Character {
 	
 	@Override
 	public void chestplate(){
-		Equip basicChestplate = new Equip("Chest", "ChestType", 5);
+		Equip basicChestplate = new Equip("Basic ChestPlate", "ChestType", 5);
 		Equip firstChestplate = new Equip("Burden of Fire", "ChestType", 10);
 		Equip secondChestplate = new Equip("Keeper of the Sky", "ChestType", 20);
 		Equip thirdChestplate = new Equip("Terror Cuirass of Wraiths", "ChestType", 50);
@@ -61,7 +61,7 @@ public class Warrior extends Character {
 	
 	@Override
 	public void legArmor(){
-		Equip basicLegArmor = new Equip("Leg", "LegType", 2);
+		Equip basicLegArmor = new Equip("Basic Leg Armor", "LegType", 2);
 		Equip firstLegArmor = new Equip("Leather Legwraps", "LegType", 5);
 		Equip secondLegArmor = new Equip("Liar's Silk Breeches", "LegType", 10);
 		Equip thirdLegArmor = new Equip("Bane of Diligence", "LegType", 20);

@@ -8,8 +8,8 @@ package eldenark;
 public class Mage extends Character {
 
 	// MAIN 
-	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, Equip[] equipment) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, equipment);
+	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
 	}
 
 	// ENEMY
