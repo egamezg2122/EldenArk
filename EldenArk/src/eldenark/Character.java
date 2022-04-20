@@ -36,15 +36,14 @@ public class Character {
 	private Object[] inventory = new Object[4]; // Testing inventory
 
 	private Equip[] equipment = new Equip[4];
-	
+
 	//For new Equipment
-	
 	protected Equip[] newWeapons = new Equip[4];
-	
+
 	protected Equip[] newHelmets = new Equip[4];
-	
+
 	protected Equip[] newChestPlates = new Equip[4];
-	
+
 	protected Equip[] newLegArmors = new Equip[4];
 
 	// Constructors
@@ -77,20 +76,18 @@ public class Character {
 
 		this.inventory = inventory;
 
-		
-		
 		weapons();
 		helmet();
 		chestplate();
 		legArmor();
-		
+
 		equipment[0] = newWeapons[0];
 		equipment[1] = newHelmets[0];
 		equipment[2] = newChestPlates[0];
 		equipment[3] = newLegArmors[0];
-		
+
 		addEquip(equipment);
-		
+
 	}
 
 	// Constructor for ENEMIES
@@ -107,8 +104,7 @@ public class Character {
 	public Character() {
 
 	}
-	
-	
+
 	//METHODS
 	//ESTARIA BIEN QUE LVLUP FUESE ABSTRACT
 	public void levelUp() {
@@ -357,9 +353,28 @@ public class Character {
 		System.out.println(String.format("%-25.15s %10s", "MP", enemy.getMp() + "/" + enemy.getMaxMP()));
 
 	}
-	
+
 	public String prefix() {
+		
 		return "";
+	}
+
+	public int getEnemyType(int map[][],Character mainCharacter) {
+		int levelEnemy;
+		switch(map[mainCharacter.getY()][mainCharacter.getX()]){
+				case 2:
+					levelEnemy = 2;
+					break;
+				case 4:
+					levelEnemy = 4;
+					break;
+				case 5:
+					levelEnemy = 5;
+					break;
+				default:
+					levelEnemy = 2;
+		}
+		return levelEnemy;
 	}
 
 	public int enemyActions() {
@@ -718,25 +733,24 @@ public class Character {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	
-		
-	public void Abilities(){
-		
+
+	public void Abilities() {
+
 	}
-	
-	public void weapons(){
-		
+
+	public void weapons() {
+
 	}
-	
+
 	public void helmet() {
-		
+
 	}
-	
+
 	public void chestplate() {
-		
+
 	}
-	public void legArmor(){
-		
+
+	public void legArmor() {
+
 	}
 }
