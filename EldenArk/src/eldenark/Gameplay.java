@@ -30,9 +30,8 @@ public class Gameplay {
 	JFrame f;
 	int floor = 1;
 
-	
 	Merchant merchant;
-	
+
 	public Gameplay(Character mainCharacter) {
 		this.mainCharacter = mainCharacter;
 		createMap();
@@ -114,7 +113,7 @@ public class Gameplay {
 			} catch (ArrayIndexOutOfBoundsException e) {
 				x = tempX;
 				y = tempY;
-			} 
+			}
 		} while (i < 5);
 	}
 
@@ -296,20 +295,24 @@ public class Gameplay {
 		}
 
 	}
-	
-	public void newFloor(){
+
+	public void newFloor() {
 		f.setVisible(false);
 		System.out.println("Congratilation defeating the final boss of " + floor + " floor.");
-		System.out.println("You're now in the " + (floor + 1) + " floor. New adventures are comming.");
-		floor++;
-		createMap();
-		mainCharacter.setX(10);
-		mainCharacter.setY(2);
-		System.out.println("Are you ready?");
-		String s = Teclat.llegirString();
-		reprint();
-		f.setVisible(true);
-		
+		if (floor < 4) {
+			System.out.println("You're now in the " + (floor + 1) + " floor. New adventures are comming.");
+			floor++;
+			createMap();
+			mainCharacter.setX(10);
+			mainCharacter.setY(2);
+			System.out.println("Are you ready?");
+			String s = Teclat.llegirString();
+			reprint();
+			f.setVisible(true);
+		} else{
+			EldenArk.win();
+		}
+
 	}
 
 	public int checkEnemyLevel() {
@@ -323,7 +326,7 @@ public class Gameplay {
 		Character enemy;
 
 		switch (rn.nextInt(3)) {
-			
+
 			case 0:
 
 				enemy = new Warrior(6 * difficulty, 3 * difficulty, 35 * difficulty, 35 * difficulty, 25 * difficulty, 25 * difficulty, 6 * difficulty);
@@ -351,33 +354,33 @@ public class Gameplay {
 	}
 
 	public void startCombat() {
-			f.setVisible(false);
-			int combatLevel = checkEnemyLevel();
-			Character enemy = createEnemy(combatLevel);
-			mainCharacter.fight(enemy);
-			if (mainCharacter.getHp() <= 0) {
-				f.dispose();
-				running = false;
-				EldenArk.gameOver();
-			} else {
-				generateLoot(combatLevel);
-				mainCharacter.checkLevelUp(getExperience(combatLevel));
-				System.out.println("Returning to the map");
-				System.out.println("\t\t\t\tPress enter to continue...");
-				String s = Teclat.llegirString();
-				map[mainCharacter.getY()][mainCharacter.getX()] = 0;
-				f.setVisible(true);
-				reprint();
-			}
+		f.setVisible(false);
+		int combatLevel = checkEnemyLevel();
+		Character enemy = createEnemy(combatLevel);
+		mainCharacter.fight(enemy);
+		if (mainCharacter.getHp() <= 0) {
+			f.dispose();
+			running = false;
+			EldenArk.gameOver();
+		} else {
+			generateLoot(combatLevel);
+			mainCharacter.checkLevelUp(getExperience(combatLevel));
+			System.out.println("Returning to the map");
+			System.out.println("\t\t\t\tPress enter to continue...");
+			String s = Teclat.llegirString();
+			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
+			f.setVisible(true);
+			reprint();
+		}
 	}
-	
-	public int getExperience(int level){
+
+	public int getExperience(int level) {
 		int base = 30;
 		return base * level;
 	}
 
-	public void newEquipmentProbability(){
-		switch(map[mainCharacter.getY()][mainCharacter.getX()]){
+	public void newEquipmentProbability() {
+		switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
 			case 2:
 				generateEquipmentLoot(98);
 				break;
@@ -389,10 +392,10 @@ public class Gameplay {
 				break;
 		}
 	}
-	
+
 	public void generateEquipmentLoot(int probability) {
 		int random = rn.nextInt(probability);
-		switch(random){
+		switch (random) {
 			case 0:
 				System.out.println("You found a Weapon!\n" + mainCharacter.newWeapons[floor].getName());
 				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[0].getName(), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage"));
@@ -419,14 +422,14 @@ public class Gameplay {
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[floor]);
 				break;
 		}
-		
+
 	}
-	
+
 	public void generateLoot(int level) {
 		int gold = rn.nextInt(10 * level);
 		System.out.println("You found " + gold + " gold!\n" + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold));
 		mainCharacter.setGold(mainCharacter.getGold() + gold);
-		int objects = rn.nextInt(10/level);
+		int objects = rn.nextInt(10 / level);
 		try {
 			System.out.print("You found a " + mainCharacter.getInventory()[objects].getName());
 			System.out.println(": " + mainCharacter.getInventory()[objects].getNumOfUses() + " -> " + (mainCharacter.getInventory()[objects].getNumOfUses() + 1));
@@ -436,8 +439,6 @@ public class Gameplay {
 			System.out.println("You found no additionals objects");
 		}
 		newEquipmentProbability();
-		
-		
 
 	}
 
@@ -485,7 +486,7 @@ public class Gameplay {
 							reprint();
 							generateLoot(floor);
 							map[mainCharacter.getY()][mainCharacter.getX()] = 0;
-							
+
 						}
 
 					}

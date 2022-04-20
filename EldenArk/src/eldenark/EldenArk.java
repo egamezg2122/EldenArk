@@ -57,6 +57,21 @@ public class EldenArk {
 			System.out.println("GoodBye!");
 		}
 	}
+	
+	public static void win() {
+		System.out.println("Congratulations on compleating sucessfully Elden Ark. We hope you enjoyed the game and stay tuned for futures updates\n\n\n");
+		credits();
+		
+	}
+	
+	public static void credits() {
+		System.out.println(String.format("%50.50s %20.20s", "", "GAME DEVELOPED BY"));
+		System.out.println("\n\n");
+		System.out.println(String.format("%50.50s %20.20s", "", "Elias Gamez"));
+		System.out.println(String.format("%50.50s %20.20s", "", "Albert Salazar"));
+		System.out.println(String.format("%50.50s %20.20s", "", "Leo Ferraz"));
+		System.out.println(String.format("%50.50s %20.20s", "", "Marcel Homar"));
+	}
 
 	// User picking their character class
 	public static Character pickClass() {

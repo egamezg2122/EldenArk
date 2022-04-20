@@ -348,13 +348,18 @@ public class Character {
 	}
 
 	public void interfaceFight(Character enemy) {
+		String enemyType = enemy.getClass().getTypeName().substring(9).toUpperCase();
 		System.out.println("\n\nYOU");
 		System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
-		System.out.println("\nENEMY");
+		System.out.println("\n\n" + enemyType);
 		System.out.println(String.format("%-25.15s %10s", "HP", enemy.getHp() + "/" + enemy.getMaxHP()));
 		System.out.println(String.format("%-25.15s %10s", "MP", enemy.getMp() + "/" + enemy.getMaxMP()));
 
+	}
+	
+	public String prefix() {
+		return "";
 	}
 
 	public int enemyActions() {
