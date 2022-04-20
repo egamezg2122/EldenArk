@@ -329,25 +329,25 @@ public class Gameplay {
 
 			case 0:
 
-				enemy = new Warrior(6 * difficulty, 3 * difficulty, 35 * difficulty, 35 * difficulty, 25 * difficulty, 25 * difficulty, 6 * difficulty);
+				enemy = new Warrior(12 * difficulty, 6 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 12 * difficulty);
 
 				break;
 
 			case 1:
 
-				enemy = new Mage(3 * difficulty, 1 * difficulty, 33 * difficulty, 33 * difficulty, 35 * difficulty, 35 * difficulty, 8 * difficulty);
+				enemy = new Mage(6 * difficulty, 2 * difficulty, 66 * difficulty, 66 * difficulty, 70 * difficulty, 70 * difficulty, 16 * difficulty);
 
 				break;
 
 			case 2:
 
-				enemy = new Priest(2 * difficulty, 1 * difficulty, 42 * difficulty, 42 * difficulty, 30 * difficulty, 30 * difficulty, 4 * difficulty);
+				enemy = new Priest(4 * difficulty, 2 * difficulty, 84 * difficulty, 84 * difficulty, 60 * difficulty, 60 * difficulty, 8 * difficulty);
 
 				break;
 
 			default:
 
-				enemy = new Warrior(6 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 40 * difficulty, 40 * difficulty, 10 * difficulty);
+				enemy = new Warrior(12 * difficulty, 6 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 12 * difficulty);
 		}
 
 		return enemy;
