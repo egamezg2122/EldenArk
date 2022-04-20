@@ -89,6 +89,8 @@ public class Character {
 		equipment[2] = newChestPlates[0];
 		equipment[3] = newLegArmors[0];
 		
+		addEquip(equipment);
+		
 	}
 
 	// Constructor for ENEMIES
