@@ -22,12 +22,19 @@ public class Warrior extends Character {
 	
 	// Constructor
 	
+		@Override
+	public void changeWeapon(Equip[] equipment, Equip newEquip) {
+		this.setDamage(this.getDamage() - equipment[0].getProfit());
+		equipment[0] = newEquip;
+		this.setDamage(this.getDamage() + equipment[0].getProfit());
+	}
+	
 	@Override
 	public void weapons(){
 		Equip basicWeapon = new Equip("Basic Weapon", "WeaponType", 5);
 		Equip firstWeapon = new Equip("Fidelity Greatsword", "WeaponType", 10);
 		Equip secondWeapon = new Equip("Dimensional Greatsword", "WeaponType", 20);
-		Equip thirdWeapon = new Equip("SeraphicOathGreatsword", "WeaponType", 50);
+		Equip thirdWeapon = new Equip("Seraphic Oath Greatsword", "WeaponType", 50);
 		newWeapons[0] = basicWeapon;
 		newWeapons[1] = firstWeapon;
 		newWeapons[2] = secondWeapon;

@@ -13,7 +13,7 @@ public class Character {
 
 	private int damage;
 
-	private int defense;
+	private int defence;
 
 	private int hp; // Health Points
 
@@ -49,7 +49,7 @@ public class Character {
 
 	// Constructors
 	// Constructor for MAIN CHARACTER
-	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+	public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
 
 		this.level = 1; // Always start at level 1
 
@@ -61,7 +61,7 @@ public class Character {
 
 		this.damage = damage;
 
-		this.defense = defense;
+		this.defence = defence;
 
 		this.hp = hp;
 
@@ -94,7 +94,7 @@ public class Character {
 	// Constructor for ENEMIES
 	public Character(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
 		this.damage = damage;
-		this.defense = defense;
+		this.defence = defense;
 		this.hp = hp;
 		this.maxHP = maxHP;
 		this.mp = mp;
@@ -112,7 +112,7 @@ public class Character {
 	public void levelUp() {
 		level++;
 		damage = damage * 2;
-		defense = defense * 2;
+		defence = defence * 2;
 		specialDamage = specialDamage * 2;
 		hp = (maxHP * 2) - (maxHP - hp);
 		maxHP = maxHP * 2;
@@ -149,7 +149,7 @@ public class Character {
 		 */
 		System.out.println(String.format("%-25.15s %10d", "LEVEL", level));
 		System.out.println(String.format("%-25.15s %10d", "Damage", damage));
-		System.out.println(String.format("%-25.15s %10d", "Defense", defense));
+		System.out.println(String.format("%-25.15s %10d", "Defense", defence));
 		System.out.println(String.format("%-25.15s %10d", "Special Damage", specialDamage));
 		System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
@@ -263,7 +263,7 @@ public class Character {
 	}
 
 	public int defenceCheckedEnemy(Character enemy, int defenceEnemy) {
-		defenceEnemy = enemy.getDefense();
+		defenceEnemy = enemy.getDefence();
 		return defenceEnemy;
 	}
 
@@ -397,8 +397,8 @@ public class Character {
 
 	public void fight(Character enemy) {
 		int option, enemyOption;
-		int mainDef = this.getDefense();
-		int enemyDef = enemy.getDefense();
+		int mainDef = this.getDefence();
+		int enemyDef = enemy.getDefence();
 		boolean objectsUses;
 		do {
 			objectsUses = checkObjects();
@@ -438,7 +438,7 @@ public class Character {
 				}
 			}
 			enemyDef = defenceCheckedEnemy(enemy, enemyDef);
-			mainDef = this.getDefense();
+			mainDef = this.getDefence();
 		} while ((enemy.getHp() > 0 && this.hp > 0));
 		interfaceFight(enemy);
 		if (enemy.getHp() <= 0) {
@@ -527,7 +527,7 @@ public class Character {
 	public void addEquip(Equip[] equipment) {
 		this.setDamage(this.getDamage() + equipment[0].getProfit());
 		for (int i = 1; i < equipment.length; i++) {
-			this.setDefense(this.getDefense() + equipment[i].getProfit());
+			this.setDefence(this.getDefence() + equipment[i].getProfit());
 		}
 	}
 
@@ -557,9 +557,9 @@ public class Character {
 	}
 
 	public void changeDefenseEquipment(Equip[] equipment, Equip newEquip, int i) {
-		this.setDefense(this.getDefense() - equipment[i].getProfit());
+		this.setDefence(this.getDefence() - equipment[i].getProfit());
 		equipment[i] = newEquip;
-		this.setDefense(this.getDefense() + equipment[i].getProfit());
+		this.setDefence(this.getDefence() + equipment[i].getProfit());
 	}
 
 	// Getters
@@ -581,9 +581,9 @@ public class Character {
 
 	}
 
-	public int getDefense() {
+	public int getDefence() {
 
-		return defense;
+		return defence;
 
 	}
 
@@ -660,9 +660,9 @@ public class Character {
 
 	}
 
-	public void setDefense(int defense) {
+	public void setDefence(int defence) {
 
-		this.defense = defense;
+		this.defence = defence;
 
 	}
 
