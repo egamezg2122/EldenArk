@@ -37,37 +37,47 @@ public class Merchant {
 
 	public Merchant(int x, int y, int floor, Character mainCharacter) {
 
-		this.name = "Heisenberg";
+		this.name = "Rogelio";
 		this.x = x;
 		this.y = y;
 		this.floor = floor;
 		this.mainCharacter = mainCharacter;
 		this.sellingObject1 = generateSmallObject();
 		this.sellingObject2 = generateBigObject();
-		equipGenerator();
+		this.sellingEquip = equipGenerator();
 
 	}
 	
-	private void equipGenerator(){
+	private Equip equipGenerator(){
 		int random = rn.nextInt(4);
+                
+                Equip selection;
+                
 		switch(random){
 			case 0:
-				sellingEquip = mainCharacter.newWeapons[floor];
+				selection = mainCharacter.newWeapons[floor];
 				priceEquip = 100 * floor;
 				break;
 			case 1:
-				sellingEquip = mainCharacter.newHelmets[floor];
+				selection = mainCharacter.newHelmets[floor];
 				priceEquip = 60 * floor;
 				break;
 			case 2:
-				sellingEquip = mainCharacter.newChestPlates[floor];
+				selection = mainCharacter.newChestPlates[floor];
 				priceEquip = 80 * floor;
 				break;
 			case 3:
-				sellingEquip = mainCharacter.newLegArmors[floor];
+				selection = mainCharacter.newLegArmors[floor];
 				priceEquip = 70 * floor;
-		}
-		
+                                break;
+                        default:
+                                selection = mainCharacter.newWeapons[floor];
+				priceEquip = 100 * floor;
+				break;
+                }
+                
+		return selection;
+                
 	}
 
 	private Object generateSmallObject() {
@@ -135,7 +145,7 @@ public class Merchant {
 
 			System.out.println("\nSHOP\n");
 			System.out.println("What do you want to buy?");
-			System.out.println("\n\t1- Buy small object \n\t2- Buy large object \n\t3- Buy a piece of Equipment \n\t0- Exit the shop");
+			System.out.println("\n\t1-" + sellingObject1.getName() + "\n\t2-" + sellingObject2.getName() + "\n\t3-" + sellingEquip.getName() + "\n\t0- Exit the shop");
 
 			switch (Teclat.llegirInt()) {
 
