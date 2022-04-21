@@ -145,6 +145,7 @@ public class Character {
 		The first String has a maximum length of 15 and has 25 blank spaces. The text is left justified.
 		Then, right jutifed we have the value of each atribute
 		 */
+		System.out.println("");
 		System.out.println(String.format("%-25.15s %10d", "LEVEL", level));
 		System.out.println(String.format("%-25.15s %10d", "Damage", damage));
 		System.out.println(String.format("%-25.15s %10d", "Defense", defence));
@@ -152,6 +153,9 @@ public class Character {
 		System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
 		System.out.println(String.format("%-25.15s %10s", "EXP", xp + "/" + maxXP));
+		System.out.println("");
+		System.out.println(String.format("%-25.15s %10d", "GOLD", gold));
+		
 	}
 
 	/*	public void move() {
@@ -837,8 +841,9 @@ public class Character {
 	}
 
 	public void showEquipment() {
-		System.out.println(String.format("%-18.18s %14.14s", "Equipment name", "Stats"));
-		System.out.println("\n" + String.format("%-20.20s %5.5s %9.9s", equipment[0].getName(), ("+" + equipment[0].getProfit()), " damage"));
+		System.out.println("");
+		System.out.println(String.format("%-18.18s %17.17s", "Equipment name", "Stats"));
+		System.out.println(String.format("%-20.20s %5.5s %9.9s", equipment[0].getName(), ("+" + equipment[0].getProfit()), " damage"));
 		for (int i = 1; i < equipment.length; i++) {
 			System.out.println(String.format("%-20.20s %5.5s %9.9s", equipment[i].getName(), ("+" + equipment[i].getProfit()), " defense"));
 		}

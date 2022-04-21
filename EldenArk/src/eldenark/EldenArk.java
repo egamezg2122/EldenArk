@@ -38,6 +38,7 @@ public class EldenArk {
 	public static void main(String[] args) {
 
 		// Main Logic
+		introduction();
 		Character mainCharacter = pickClass();
 
 		Gameplay g = new Gameplay(mainCharacter);
@@ -181,5 +182,15 @@ public class EldenArk {
 
 		return inventory;
 	}
+
+	private static void introduction() {
+		System.out.println("\t\t\t\t\tWelcome to Elden Ark!");
+		System.out.println("\n\nThis Roguelike Game is and RPG-playing video games characterized by a dungeon crawl through procedurally generated levels,\nturn-based gameplay, grid-based movement, and permanent death of the player character.");
+		System.out.println("\nIf you die, you will need to start again losing all your progress.\n\n");
+		System.out.println("The Tower of Elden Ark have 4 floors and when you kill the Final Boss you will advance to the next floor");
+		System.out.println("In addition, there will be 3 minibosses that give extra loot and experience. Try killing them whenever you need power");
+		System.out.println("Choose carefully your class and start leveling up to complete the TOWER OF THE ELDEN ARK\n");
+	}
+	
 
 }

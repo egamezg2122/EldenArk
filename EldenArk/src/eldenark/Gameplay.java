@@ -174,8 +174,13 @@ public class Gameplay {
 	// PRINT THE MAP 
 	public void reprint() {
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		mapTiles();
 		printMap();
 		printMoveOptions();
+	}
+	
+	public void mapTiles(){
+		System.out.println("M - Merchant\tY - MiniBoss\tX - Final Boss\t^ - Mountains");
 	}
 
 	public void printMoveOptions() {
@@ -431,7 +436,7 @@ public class Gameplay {
 		int gold = rn.nextInt(10 * level);
 		System.out.println("You found " + gold + " gold!\n" + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold));
 		mainCharacter.setGold(mainCharacter.getGold() + gold);
-		int objects = rn.nextInt(10 / level);
+		int objects = rn.nextInt(20 / level);
 		try {
 			System.out.print("You found a " + mainCharacter.getInventory()[objects].getName());
 			System.out.println(": " + mainCharacter.getInventory()[objects].getNumOfUses() + " -> " + (mainCharacter.getInventory()[objects].getNumOfUses() + 1));
