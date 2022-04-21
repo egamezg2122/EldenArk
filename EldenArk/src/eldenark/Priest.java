@@ -117,43 +117,79 @@ public class Priest extends Character {
 
                 } else {
 
-                    System.out.println("The ability is not avilable, caldo de pollo");
+                    System.out.println("The ability is not avilable");
 
                 }
 
             } while (!control);
 
             switch (option) {
+                
+                // Hability 1 heals the Character   
 
                 case 1:
                     
-                    enemy.setHp(enemy.getHp() - 40);
+                    if (this.getHp() < this.getMaxHP()) {
 
-                    this.setMp(this.getMp() - 5);
+                        this.setHp(this.getHp() + (this.getSpecialDamage() * 4));
 
+                        this.setMp(this.getMp() - 20);
+
+                        if (this.getHp() > this.getMaxHP()) {
+
+                            this.setHp(this.getMaxHP());
+
+                        }
+
+                    } else {
+
+                        System.out.println("You have max HP");
+
+                    }
+                    
                     break;
-
+                    
+                // Hability 2 does damage    
+                    
                 case 2:
                     
-                    enemy.setHp(enemy.getHp() - 50);
-
-                    this.setMp(this.getMp() - 10);
+                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 4) - enemy.getDefence()));
+                    
+                    this.setMp(this.getMp() - 40);
 
                     break;
+                    
+                // Hability 3 heals the Character    
 
                 case 3:
                     
-                    enemy.setHp(enemy.getHp() - 60);
+                    if (this.getHp() < this.getMaxHP()) {
 
-                    this.setMp(this.getMp() - 15);
+                        this.setHp(this.getHp() + (this.getSpecialDamage() * 6));
 
+                        this.setMp(this.getMp() - 60);
+
+                        if (this.getHp() > this.getMaxHP()) {
+
+                            this.setHp(this.getMaxHP());
+
+                        }
+
+                    } else {
+
+                        System.out.println("You have max HP");
+
+                    }
+                    
                     break;
-
+                
+                // Hability 4 does damage    
+                    
                 case 4:
                     
-                    enemy.setHp(enemy.getHp() - 70);
+                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 4) - enemy.getDefence()));
 
-                    this.setMp(this.getMp() - 20);
+                    this.setMp(this.getMp() - 80);
 
                     break;
 
