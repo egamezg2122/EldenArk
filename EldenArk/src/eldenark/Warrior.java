@@ -30,57 +30,97 @@ public class Warrior extends Character {
 	@Override
 	public void weapons() {
 		Equip basicWeapon = new Equip("Basic Weapon", "Weapon", 5);
+                
 		Equip firstWeapon = new Equip("Fidelity Greatsword", "Weapon", 10);
+                
 		Equip secondWeapon = new Equip("Dimensional Greatsword", "Weapon", 20);
+                
 		Equip thirdWeapon = new Equip("Seraphic Oath Greatsword", "Weapon", 50);
+                
 		Equip forthWeapon = new Equip("Hope's End", "Weapon", 70);
+                
 		newWeapons[0] = basicWeapon;
+                
 		newWeapons[1] = firstWeapon;
+                
 		newWeapons[2] = secondWeapon;
+                
 		newWeapons[3] = thirdWeapon;
+                
 		newWeapons[4] = forthWeapon;
 	}
 
 	@Override
 	public void helmet() {
+            
 		Equip basicHelmet = new Equip("Basic Helmet", "Helmet", 2);
+                
 		Equip firstHelmet = new Equip("Mask of Fallen Might", "Helmet", 4);
+                
 		Equip secondHelmet = new Equip("Terror of Fury", "Helmet", 8);
+                
 		Equip thirdHelmet = new Equip("Soul of the Banished", "Helmet", 15);
+                
 		Equip forthHelmet = new Equip("Wit of Dark Souls", "Helmet", 25);
+                
 		newHelmets[0] = basicHelmet;
+                
 		newHelmets[1] = firstHelmet;
+                
 		newHelmets[2] = secondHelmet;
+                
 		newHelmets[3] = thirdHelmet;
+                
 		newHelmets[4] = forthHelmet;
 
 	}
 
 	@Override
 	public void chestplate() {
+            
 		Equip basicChestplate = new Equip("Basic ChestPlate", "Chestplate", 5);
+                
 		Equip firstChestplate = new Equip("Burden of Fire", "Chestplate", 10);
+                
 		Equip secondChestplate = new Equip("Keeper of the Sky", "Chestplate", 20);
+                
 		Equip thirdChestplate = new Equip("Terror Cuirass of Wraiths", "Chestplate", 50);
+                
 		Equip forthChestplate = new Equip("Lonely Golden Vest", "Chestplate", 65);
+                
 		newChestPlates[0] = basicChestplate;
+                
 		newChestPlates[1] = firstChestplate;
+                
 		newChestPlates[2] = secondChestplate;
+                
 		newChestPlates[3] = thirdChestplate;
+                
 		newChestPlates[4] = forthChestplate;
+                
 	}
 
 	@Override
 	public void legArmor() {
+            
 		Equip basicLegArmor = new Equip("Basic Leg Armor", "Leg Armor", 2);
+                
 		Equip firstLegArmor = new Equip("Leather Legwraps", "Leg Armor", 5);
+                
 		Equip secondLegArmor = new Equip("Liar's Silk Breeches", "Leg Armor", 10);
+                
 		Equip thirdLegArmor = new Equip("Bane of Diligence", "Leg Armor", 20);
+                
 		Equip forthLegArmor = new Equip("Blight of Assassins", "Leg Armor", 30);
+                
 		newLegArmors[0] = basicLegArmor;
+                
 		newLegArmors[1] = firstLegArmor;
+                
 		newLegArmors[2] = secondLegArmor;
+                
 		newLegArmors[3] = thirdLegArmor;
+                
 		newLegArmors[4] = forthLegArmor;
 	}
 
