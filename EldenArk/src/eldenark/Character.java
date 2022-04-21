@@ -555,16 +555,16 @@ public class Character {
 
 	public void changeEquip(Equip[] equipment, Equip newEquip) {
 		switch (newEquip.getType()) {
-			case "WeaponType":
+			case "Weapon":
 				changeWeapon(equipment, newEquip);
 				break;
-			case "HelmetType":
+			case "Helmet":
 				changeDefenseEquipment(equipment, newEquip, 1);
 				break;
-			case "ChestType":
+			case "Chestplate":
 				changeDefenseEquipment(equipment, newEquip, 2);
 				break;
-			case "LegType":
+			case "Leg Armor":
 				changeDefenseEquipment(equipment, newEquip, 3);
 				break;
 
