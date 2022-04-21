@@ -31,10 +31,10 @@ public class Warrior extends Character {
 	
 	@Override
 	public void weapons(){
-		Equip basicWeapon = new Equip("Basic Weapon", "WeaponType", 5);
-		Equip firstWeapon = new Equip("Fidelity Greatsword", "WeaponType", 10);
-		Equip secondWeapon = new Equip("Dimensional Greatsword", "WeaponType", 20);
-		Equip thirdWeapon = new Equip("Seraphic Oath Greatsword", "WeaponType", 50);
+		Equip basicWeapon = new Equip("Basic Weapon", "Weapon", 5);
+		Equip firstWeapon = new Equip("Fidelity Greatsword", "Weapon", 10);
+		Equip secondWeapon = new Equip("Dimensional Greatsword", "Weapon", 20);
+		Equip thirdWeapon = new Equip("Seraphic Oath Greatsword", "Weapon", 50);
 		newWeapons[0] = basicWeapon;
 		newWeapons[1] = firstWeapon;
 		newWeapons[2] = secondWeapon;
@@ -43,10 +43,10 @@ public class Warrior extends Character {
 	
 	@Override
 	public void helmet(){
-		Equip basicHelmet = new Equip("Basic Helmet", "HelmetType", 2);
-		Equip firstHelmet = new Equip("Mask of Fallen Might", "HelmetType", 4);
-		Equip secondHelmet = new Equip("Terror of Fury", "HelmetType", 8);
-		Equip thirdHelmet = new Equip("Soul of the Banished", "HelmetType", 15);
+		Equip basicHelmet = new Equip("Basic Helmet", "Helmet", 2);
+		Equip firstHelmet = new Equip("Mask of Fallen Might", "Helmet", 4);
+		Equip secondHelmet = new Equip("Terror of Fury", "Helmet", 8);
+		Equip thirdHelmet = new Equip("Soul of the Banished", "Helmet", 15);
 		newHelmets[0] = basicHelmet;
 		newHelmets[1] = firstHelmet;
 		newHelmets[2] = secondHelmet;
@@ -56,10 +56,10 @@ public class Warrior extends Character {
 	
 	@Override
 	public void chestplate(){
-		Equip basicChestplate = new Equip("Basic ChestPlate", "ChestType", 5);
-		Equip firstChestplate = new Equip("Burden of Fire", "ChestType", 10);
-		Equip secondChestplate = new Equip("Keeper of the Sky", "ChestType", 20);
-		Equip thirdChestplate = new Equip("Terror Cuirass of Wraiths", "ChestType", 50);
+		Equip basicChestplate = new Equip("Basic ChestPlate", "Chestplate", 5);
+		Equip firstChestplate = new Equip("Burden of Fire", "Chestplate", 10);
+		Equip secondChestplate = new Equip("Keeper of the Sky", "Chestplate", 20);
+		Equip thirdChestplate = new Equip("Terror Cuirass of Wraiths", "Chestplate", 50);
 		newChestPlates[0] = basicChestplate;
 		newChestPlates[1] = firstChestplate;
 		newChestPlates[2] = secondChestplate;
@@ -68,10 +68,10 @@ public class Warrior extends Character {
 	
 	@Override
 	public void legArmor(){
-		Equip basicLegArmor = new Equip("Basic Leg Armor", "LegType", 2);
-		Equip firstLegArmor = new Equip("Leather Legwraps", "LegType", 5);
-		Equip secondLegArmor = new Equip("Liar's Silk Breeches", "LegType", 10);
-		Equip thirdLegArmor = new Equip("Bane of Diligence", "LegType", 20);
+		Equip basicLegArmor = new Equip("Basic Leg Armor", "Leg Armor", 2);
+		Equip firstLegArmor = new Equip("Leather Legwraps", "Leg Armor", 5);
+		Equip secondLegArmor = new Equip("Liar's Silk Breeches", "Leg Armor", 10);
+		Equip thirdLegArmor = new Equip("Bane of Diligence", "Leg Armor", 20);
 		newLegArmors[0] = basicLegArmor;
 		newLegArmors[1] = firstLegArmor;
 		newLegArmors[2] = secondLegArmor;
