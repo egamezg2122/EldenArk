@@ -83,10 +83,9 @@ public class Warrior extends Character {
 		newLegArmors[3] = thirdLegArmor;
 		newLegArmors[4] = forthLegArmor;
 	}
-<<<<<<< Updated upstream
+
 	
         @Override
-        
         public void abilities (Character enemy) {
         
             String abilitiesWarrior[] = {"Martillo de Thor", "Carga de ariete", "Grito de combate", "Doble filo", "Salto heroico"};
@@ -97,7 +96,7 @@ public class Warrior extends Character {
 
             do {
 
-                System.out.println("Que habilidad quieres usar?");
+                System.out.println("What ability do you want to use?");
 
                 if (this.getRole().equals("Warrior")) {
 
@@ -161,7 +160,5 @@ public class Warrior extends Character {
             
         }
 	
-=======
 
->>>>>>> Stashed changes
 }

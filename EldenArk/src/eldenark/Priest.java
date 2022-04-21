@@ -98,7 +98,7 @@ public class Priest extends Character {
 
             do {
 
-                System.out.println("Que habilidad quieres usar?");
+                System.out.println("What ability do you want to use??");
 
                 if (this.getRole().equals("Priest")) {
 

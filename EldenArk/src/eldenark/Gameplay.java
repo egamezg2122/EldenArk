@@ -21,7 +21,8 @@ import javax.swing.*;
  * @author cep
  */
 public class Gameplay {
-
+        
+        String nickname = EldenArk.nicknameUser();
 	int[][] map = new int[5][30];
 	static Random rn = new Random();
 	Character mainCharacter = new Character();
@@ -305,7 +306,7 @@ public class Gameplay {
 
 	public void newFloor() {
 		f.setVisible(false);
-		System.out.println("Congratilation defeating the final boss of " + floor + " floor.");
+		System.out.println("Good job defeating the final boss of " + floor + " floor.");
 		if (floor < 4) {
 			System.out.println("You're now in the " + (floor + 1) + " floor. New adventures are comming.");
 			floor++;
@@ -317,7 +318,7 @@ public class Gameplay {
 			reprint();
 			f.setVisible(true);
 		} else {
-			EldenArk.win();
+			EldenArk.win(nickname);
 		}
 
 	}
@@ -364,7 +365,7 @@ public class Gameplay {
 		f.setVisible(false);
 		int combatLevel = checkEnemyLevel();
 		Character enemy = createEnemy(combatLevel);
-		mainCharacter.fight(map, enemy, floor);
+		mainCharacter.fight(map, enemy, floor, nickname);
 		if (mainCharacter.getHp() <= 0) {
 			f.dispose();
 			running = false;

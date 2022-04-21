@@ -45,6 +45,21 @@ public class EldenArk {
 		
 
 	}
+        
+        public static String nicknameUser(){
+            boolean on = true;
+            String nickname;
+            do{
+                System.out.println("Introduce your name.");
+                nickname = Teclat.llegirString();
+                if ("".equals(nickname)) {
+                    System.err.println("Try again.");
+                    on = false;
+                }
+            }while(!on && "".equals(nickname));
+            
+            return nickname;
+        }
 
 	public static void gameOver() {
 		System.out.println("GAME OVER");
@@ -59,8 +74,8 @@ public class EldenArk {
 		}
 	}
 	
-	public static void win() {
-		System.out.println("Congratulations on compleating sucessfully Elden Ark. We hope you enjoyed the game and stay tuned for futures updates\n\n\n");
+	public static void win(String nickname) {
+		System.out.println("Congratulations " + nickname +  " on compleating sucessfully Elden Ark. We hope you enjoyed the game and stay tuned for futures updates\n\n\n");
 		credits();
 		
 	}
@@ -123,7 +138,7 @@ public class EldenArk {
 	// CLASS GENERATORS 
 	public static Warrior createWarrior() {
 
-		Warrior w = new Warrior(12, 7, 120, 120, 80, 80, 20, "Warrior", generateInventory());
+		Warrior w = new Warrior(1000, 1000, 1000, 1000, 1000, 1000, 1000, "Warrior", generateInventory());
 
 		return w;
 
