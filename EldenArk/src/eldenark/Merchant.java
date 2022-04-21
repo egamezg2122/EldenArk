@@ -37,7 +37,7 @@ public class Merchant {
 
     public Merchant(int x, int y, int floor, Character mainCharacter) {
 
-        this.name = "Heisenberg";
+        this.name = "Rogelio";
         this.x = x;
         this.y = y;
         this.floor = floor;
