@@ -141,7 +141,7 @@ public class Merchant {
 
             System.out.println("\nSHOP\n");
             System.out.println("Hello I'm Rogelio, what do you want to buy?");
-            System.out.println("\n\t1-" + sellingObject1.getName() + " (" + quantitySmallObject + ")" + " | " + priceSmallObject + " Gold" + "\n\t2-" + sellingObject2.getName() + " (" + quantityBigObject + ")" + " | " + priceBigObject + " Gold" + "\n\t3-" + sellingEquip.getName() + " (" + sellingEquip.getType() + ")"+" (" + quantityEquip + ")" + " | " + priceEquip + " Gold" + "\n\t0- Exit the shop");
+            System.out.println("\n\t1-" + sellingObject1.getName() + " (" + quantitySmallObject + ")" + " | " + priceSmallObject + " Gold" + "\n\t2-" + sellingObject2.getName() + " (" + quantityBigObject + ")" + " | " + priceBigObject + " Gold" + "\n\t3-" + sellingEquip.getName() + " (" + sellingEquip.getType() + ")" + " (" + quantityEquip + ")" + " | " + priceEquip + " Gold" + "\n\t0- Exit the shop");
             System.out.println("\nCurrent money " + mainCharacter.getGold() + " Gold");
 
             switch (Teclat.llegirInt()) {
@@ -169,11 +169,13 @@ public class Merchant {
                                 mainCharacter.getInventory()[typeObject1].setNumOfUses(mainCharacter.getInventory()[typeObject1].getNumOfUses() + 1);
 
                             } else {
-                                System.out.println("I don't have that anymore");
+                                
+                                System.out.println("\nYou haven't bought anything");
+                                
                             }
                         } else {
 
-                            System.out.println("\nYou haven't bought anything");
+                            System.out.println("I don't have that anymore");
 
                         }
 
@@ -189,10 +191,8 @@ public class Merchant {
 
                     } else {
 
-                        
-
                         if (quantityBigObject > 0) {
-                            
+
                             confirmation = buyingConfirmation();
 
                             if (confirmation) {
@@ -206,11 +206,13 @@ public class Merchant {
                                 mainCharacter.getInventory()[typeObject2].setNumOfUses(mainCharacter.getInventory()[typeObject2].getNumOfUses() + 1);
 
                             } else {
-                                System.out.println("I don't have that anymore");
+
+                                System.out.println("\nYou haven't bought anything");
+
                             }
                         } else {
 
-                            System.out.println("\nYou haven't bought anything");
+                            System.out.println("I don't have that anymore");
 
                         }
 
@@ -226,10 +228,8 @@ public class Merchant {
 
                     } else {
 
-                        
-
                         if (quantityEquip > 0) {
-                            
+
                             confirmation = buyingConfirmation();
 
                             if (confirmation) {
@@ -243,12 +243,14 @@ public class Merchant {
                                 mainCharacter.changeEquip(mainCharacter.getEquipment(), sellingEquip);
 
                             } else {
-                                System.out.println("I don't have that anymore");
+
+                                System.out.println("\nYou haven't bought anything");
+
                             }
 
                         } else {
 
-                            System.out.println("\nYou haven't bought anything");
+                            System.out.println("I don't have that anymore");
 
                         }
 
