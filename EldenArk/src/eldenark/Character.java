@@ -762,8 +762,7 @@ public class Character {
 					break;
 				case 3:
 					//SPECIAL ABILITIES
-					new Ability(this, enemy);
-					specialAbilities(enemy, enemyDef);
+					abilities(enemy);
 					break;
 				case 4:
 					//OBJECTS
@@ -1055,7 +1054,7 @@ public class Character {
 		this.y = y;
 	}
 
-	public void Abilities() {
+	public void abilities(Character enemy) {
 
 	}
 

@@ -78,5 +78,80 @@ public class Warrior extends Character {
 		newLegArmors[3] = thirdLegArmor;
 	}
 	
+        @Override
+        
+        public void abilities (Character enemy) {
+        
+            String abilitiesWarrior[] = {"Martillo de Thor", "Carga de ariete", "Grito de combate", "Doble filo", "Salto heroico"};
+            
+            int option;
+
+            boolean control = false;
+
+            do {
+
+                System.out.println("Que habilidad quieres usar?");
+
+                if (this.getRole().equals("Warrior")) {
+
+                    for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
+
+                    System.out.println(abilitiesWarrior[i]);
+
+                    }
+                } 
+                
+                option = Teclat.llegirInt();
+
+                if (option < ((this.getLevel() / 5) + 1) && option >= 1) {
+
+                    control = true;
+
+                } else {
+
+                    System.out.println("The ability is not avilable, caldo de pollo");
+
+                }
+
+            } while (!control);
+
+            switch (option) {
+
+                case 1:
+                    
+                    enemy.setHp(enemy.getHp() - 40);
+
+                    this.setMp(this.getMp() - 5);
+
+                    break;
+
+                case 2:
+                    
+                    enemy.setHp(enemy.getHp() - 50);
+
+                    this.setMp(this.getMp() - 10);
+
+                    break;
+
+                case 3:
+                    
+                    enemy.setHp(enemy.getHp() - 60);
+
+                    this.setMp(this.getMp() - 15);
+
+                    break;
+
+                case 4:
+                    
+                    enemy.setHp(enemy.getHp() - 70);
+
+                    this.setMp(this.getMp() - 20);
+
+                    break;
+
+            }
+
+            
+        }
 	
 }

@@ -74,4 +74,80 @@ public class Mage extends Character {
 		newLegArmors[2] = secondLegArmor;
 		newLegArmors[3] = thirdLegArmor;
 	}
+        
+      
+        @Override
+        public void abilities(Character enemy){
+                
+            String abilitiesMage[] = {"Bola de fuego", "Traslación", "Nova de Escarcha", "Clima de Trueno", "Lunargenta"};
+
+            int option;
+
+            boolean control = false;
+
+            do {
+
+                System.out.println("Que habilidad quieres usar?");
+
+                if (this.getRole().equals("Mage")) {
+
+                    for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
+
+                    System.out.println(abilitiesMage[i]);
+
+                    }
+                } 
+                
+                option = Teclat.llegirInt();
+
+                if (option < ((this.getLevel() / 5) + 1) && option >= 1) {
+
+                    control = true;
+
+                } else {
+
+                    System.out.println("The ability is not avilable, caldo de pollo");
+
+                }
+
+            } while (!control);
+
+            switch (option) {
+
+                case 1:
+                    
+                    enemy.setHp(enemy.getHp() - (this.getLevel() * 8) );
+
+                    this.setMp(this.getMp() - 5);
+
+                    break;
+
+                case 2:
+                    
+                    enemy.setHp(enemy.getHp() - 50);
+
+                    this.setMp(this.getMp() - 10);
+
+                    break;
+
+                case 3:
+                    
+                    enemy.setHp(enemy.getHp() - 60);
+
+                    this.setMp(this.getMp() - 15);
+
+                    break;
+
+                case 4:
+                    
+                    enemy.setHp(enemy.getHp() - 70);
+
+                    this.setMp(this.getMp() - 20);
+
+                    break;
+
+            }
+            
+        }
+       
 }
