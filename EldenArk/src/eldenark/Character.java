@@ -250,15 +250,15 @@ public class Character {
         return defenceEnemy;
     }
 
-    public void specialAbilities(Character enemy, int defenceEnemy) {
-        int damageDone = this.specialDamage - defenceEnemy;
-        if (damageDone > 0) {
-            enemy.setHp(enemy.getHp() - damageDone);
-            System.out.println("You did " + (damageDone) + " damage.");
-        } else {
-            System.out.println("You did 0 damage. The enemy's defense is to powerfull");
-        }
+    /*public void specialAbilities(Character enemy, int defenceEnemy) {
+    int damageDone = this.specialDamage - defenceEnemy;
+    if (damageDone > 0) {
+    enemy.setHp(enemy.getHp() - damageDone);
+    System.out.println("You did " + (damageDone) + " damage.");
+    } else {
+    System.out.println("You did 0 damage. The enemy's defense is to powerfull");
     }
+    }*/
 
     public void enemySpecialAbilities(Character enemy, int defenceChar) {
         int damageDone = enemy.getSpecialDamage() - defenceChar;
@@ -304,6 +304,9 @@ public class Character {
             if (option == 4) {
                 on = false;
                 actualEnemyOption = 2;
+            } else if (option > 4) {
+                on = true;
+                System.err.println("Invalid option");
             } else if (this.inventory[option].getNumOfUses() > 0) {
                 System.out.println(this.inventory[option].getDescription());
                 if (confirmation()) {
@@ -338,7 +341,6 @@ public class Character {
 				System.err.println("\nInvalid option");
 		}
      */
-    
     public boolean confirmation() {
         char afirmation;
         boolean object;

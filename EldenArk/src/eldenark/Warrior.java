@@ -128,7 +128,7 @@ public class Warrior extends Character {
         @Override
         public void abilities (Character enemy) {
         
-            String abilitiesWarrior[] = {"Martillo de Thor", "Carga de ariete", "Grito de combate", "Doble filo", "Salto heroico"};
+            String abilitiesWarrior[] = {"1- Martillo de Thor", "2- Carga de ariete", "3- Grito de combate", "4- Doble filo", "5- Salto heroico"};
             
             int option;
 
@@ -155,44 +155,69 @@ public class Warrior extends Character {
 
                 } else {
 
-                    System.out.println("The ability is not avilable");
+                    System.out.println("The ability is not available");
 
                 }
 
             } while (!control);
 
             switch (option) {
-
+                   
                 case 1:
                     
-                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 4) - enemy.getDefence()));
+                    int damageDone = ((this.getSpecialDamage() * 4) - enemy.getDefence());
+                    
+                    enemy.setHp(enemy.getHp() - damageDone );
 
                     this.setMp(this.getMp() - 20);
+                    
+                    System.out.println("You used (nombre hablidad) on the enemy.");
+                    System.out.println("You did " + damageDone + " damage to the enemy." );
+                    System.out.println("-20 Mana");
 
                     break;
 
                 case 2:
                     
-                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 5) - enemy.getDefence()));
+                    damageDone = ((this.getSpecialDamage() * 5) - enemy.getDefence());
+                    
+                    enemy.setHp(enemy.getHp() - damageDone);
 
                     this.setMp(this.getMp() - 40);
+                    
+                    System.out.println("You used (nombre hablidad) on the enemy.");
+                    System.out.println("You did " + damageDone + " damage to the enemy." );
+                    System.out.println("-40 Mana");
 
                     break;
 
                 case 3:
                     
-                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 6) - enemy.getDefence()));
+                    damageDone = ((this.getSpecialDamage() * 6) - enemy.getDefence());
+                    
+                    enemy.setHp(enemy.getHp() - damageDone);
 
                     this.setMp(this.getMp() - 60);
+                    
+                    System.out.println("You used (nombre hablidad) on the enemy.");
+                    System.out.println("You did " + damageDone + " damage to the enemy." );
+                    System.out.println("-60 Mana");
 
                     break;
 
                 case 4:
                     
-                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 7) - enemy.getDefence()));
+                    damageDone = ((this.getSpecialDamage() * 7) - enemy.getDefence());
+                    
+                    enemy.setHp(enemy.getHp() - damageDone);
 
                     this.setMp(this.getMp() - 80);
+                    
+                    System.out.println("You used (nombre hablidad) on the enemy.");
+                    System.out.println("You did " + damageDone + " damage to the enemy." );
+                    System.out.println("-80 Mana");
 
+                    
                     break;
 
             }
