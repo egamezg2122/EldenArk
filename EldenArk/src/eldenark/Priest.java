@@ -35,10 +35,12 @@ public class Priest extends Character {
 		Equip firstWeapon = new Equip("Lorekeeper", "Weapon", 10);
 		Equip secondWeapon = new Equip("Eternal Lexicon", "Weapon", 20);
 		Equip thirdWeapon = new Equip("Souleater", "Weapon", 50);
+		Equip forthWeapon = new Equip("Diabolical Codex", "Weapon", 70);
 		newWeapons[0] = basicWeapon;
 		newWeapons[1] = firstWeapon;
 		newWeapons[2] = secondWeapon;
 		newWeapons[3] = thirdWeapon;
+		newWeapons[4] = forthWeapon;
 	}
 
 	@Override
@@ -47,10 +49,12 @@ public class Priest extends Character {
 		Equip firstHelmet = new Equip("Monk Hood", "Helmet", 4);
 		Equip secondHelmet = new Equip("Albinauric Mask", "Helmet", 8);
 		Equip thirdHelmet = new Equip("Astrologer Hood", "Helmet", 15);
+		Equip forthHelmet = new Equip("Grand Monk Hood", "Helmet", 25);
 		newHelmets[0] = basicHelmet;
 		newHelmets[1] = firstHelmet;
 		newHelmets[2] = secondHelmet;
 		newHelmets[3] = thirdHelmet;
+		newHelmets[4] = forthHelmet;
 
 	}
 
@@ -60,10 +64,12 @@ public class Priest extends Character {
 		Equip firstChestplate = new Equip("Alberich's Robe", "Chestplate", 10);
 		Equip secondChestplate = new Equip("Azur's Glintstone Robe", "Chestplate", 20);
 		Equip thirdChestplate = new Equip("God Monk Robe", "Chestplate", 50);
+		Equip forthChestplate = new Equip("Sun God Tunic", "Chestplate", 65);
 		newChestPlates[0] = basicChestplate;
 		newChestPlates[1] = firstChestplate;
 		newChestPlates[2] = secondChestplate;
 		newChestPlates[3] = thirdChestplate;
+		newChestPlates[4] = forthChestplate;
 	}
 
 	@Override
@@ -72,10 +78,12 @@ public class Priest extends Character {
 		Equip firstLegArmor = new Equip("Kaiden Iron Legs", "Leg Armor", 5);
 		Equip secondLegArmor = new Equip("Lionel's Greaves", "Leg Armor", 10);
 		Equip thirdLegArmor = new Equip("God of Sun Greaves", "Leg Armor", 20);
+		Equip forthLegArmor = new Equip("Gift of the Prince","Leg Armor",30);
 		newLegArmors[0] = basicLegArmor;
 		newLegArmors[1] = firstLegArmor;
 		newLegArmors[2] = secondLegArmor;
 		newLegArmors[3] = thirdLegArmor;
+		newLegArmors[4] = forthLegArmor;
 	}
        
         @Override

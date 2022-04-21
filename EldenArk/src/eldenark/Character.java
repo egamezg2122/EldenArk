@@ -38,13 +38,13 @@ public class Character {
 	private Equip[] equipment = new Equip[4];
 
 	//For new Equipment
-	protected Equip[] newWeapons = new Equip[4];
+	protected Equip[] newWeapons = new Equip[5];
 
-	protected Equip[] newHelmets = new Equip[4];
+	protected Equip[] newHelmets = new Equip[5];
 
-	protected Equip[] newChestPlates = new Equip[4];
+	protected Equip[] newChestPlates = new Equip[5];
 
-	protected Equip[] newLegArmors = new Equip[4];
+	protected Equip[] newLegArmors = new Equip[5];
 
 	// Constructors
 	// Constructor for MAIN CHARACTER
