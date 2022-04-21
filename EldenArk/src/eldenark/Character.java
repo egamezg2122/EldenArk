@@ -1,6 +1,7 @@
 package eldenark;
 
 import static eldenark.EldenArk.rn;
+import java.util.InputMismatchException;
 
 public class Character {
 
@@ -199,11 +200,16 @@ public class Character {
     }
 
     public int fightMenu(boolean objectsUses) {
+        int option = -1;
         System.out.println("\n1-Basic Attack" + "\n2-Defend" + "\n3-Special Abilities" + "\n4-Objects");
-        int option = Teclat.llegirInt();
-        boolean object = objectsUses;
-        if (option == 4 && !object) {
-            option = checkOption4(option, object);
+        try {
+            option = Teclat.llegirInt();
+            boolean object = objectsUses;
+            if (option == 4 && !object) {
+                option = checkOption4(option, object);
+            }
+        } catch (InputMismatchException e) {
+            option = -1;
         }
         return option;
     }
@@ -227,7 +233,7 @@ public class Character {
             this.hp = hp - damageDone;
             System.out.println("The enemy did " + (damageDone) + " damage.");
         } else {
-            System.out.println("The enemy did 0 damage to you. Your defense is inredible");
+            System.out.println("The enemy did 0 damage to you. Your defense is incredible");
         }
 
     }
@@ -261,7 +267,7 @@ public class Character {
             System.out.println("The enemy uses his special ability.");
             System.out.println("The enemy did " + (damageDone) + " damage.");
         } else {
-            System.out.println("The enemy did 0 damage to you. Your defense is inredible");
+            System.out.println("The enemy did 0 damage to you. Wow, how did you not get hurt!?");
         }
     }
 
@@ -284,7 +290,8 @@ public class Character {
         return use;
     }
 
-    public void objects() {
+    public int objects(int enemyaction) {
+        int actualEnemyOption = enemyaction;
         int option;
         boolean on = true;
         do {
@@ -292,8 +299,12 @@ public class Character {
             for (int i = 0; i < this.inventory.length; i++) {
                 System.out.println(i + "- " + String.format("%-25.25s %10d", this.inventory[i].getName(), this.inventory[i].getNumOfUses()));
             }
+            System.out.println("4- " + String.format("%-25.25s", "Go back"));
             option = Teclat.llegirInt();
-            if (this.inventory[option].getNumOfUses() > 0) {
+            if (option == 4) {
+                on = false;
+                actualEnemyOption = 2;
+            } else if (this.inventory[option].getNumOfUses() > 0) {
                 System.out.println(this.inventory[option].getDescription());
                 if (confirmation()) {
                     this.inventory[option].use(this);
@@ -303,9 +314,10 @@ public class Character {
                 System.out.println("\nYou don't have this potion anymore.");
             }
         } while (on);
+        return actualEnemyOption;
+    }
 
-
-        /*
+    /*
 		System.out.println("What Potion do you want to use?");
 		System.out.println("\n\t1- Use healing potion \n\t2- Use mana regeneration potion");
 		showInventory();
@@ -325,9 +337,8 @@ public class Character {
 			default:
 				System.err.println("\nInvalid option");
 		}
-         */
-    }
-
+     */
+    
     public boolean confirmation() {
         char afirmation;
         boolean object;
@@ -766,12 +777,12 @@ public class Character {
                     break;
                 case 4:
                     //OBJECTS
-                    objects();
+                    enemyOption = objects(enemyOption);
                     this.hp = checkMaxValues(hp, maxHP);
                     this.mp = checkMaxValues(mp, maxMP);
                     break;
                 default:
-                    System.err.println("\nInvalid option");
+                    System.err.println("Invalid option");
             }
             if (enemy.getHp() > 0 && (option >= 1 && option <= 4)) {
                 if (enemyOption == 1) {
