@@ -179,7 +179,7 @@ public class Gameplay {
 	}
 
 	public void printMoveOptions() {
-		System.out.println("\t\tW - Upwards\tR - Loot tile\nA - Left\tS - Downwards\tD - Downwards");
+		System.out.println("\nQ - Stats\tW - Upwards\tE - Equip\tR - Loot\nA - Left\tS - Downwards\tD - Right");
 	}
 
 	//Method to print the map
@@ -289,7 +289,9 @@ public class Gameplay {
 			case 5:
 				System.out.println("FINAL BOSS");
 				startCombat();
-				newFloor();
+				if (mainCharacter.getHp() > 0) {
+					newFloor();
+				}
 				break;
 
 		}
@@ -357,7 +359,7 @@ public class Gameplay {
 		f.setVisible(false);
 		int combatLevel = checkEnemyLevel();
 		Character enemy = createEnemy(combatLevel);
-		mainCharacter.fight(enemy);
+		mainCharacter.fight(map, enemy, floor);
 		if (mainCharacter.getHp() <= 0) {
 			f.dispose();
 			running = false;
@@ -398,27 +400,27 @@ public class Gameplay {
 		switch (random) {
 			case 0:
 				System.out.println("\nYou found a Weapon!\n" + mainCharacter.newWeapons[floor].getName());
-				System.out.println(String.format("%-20.20s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[0].getName()), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage"));
-				System.out.println(String.format("%-20.20s %5.5s %9.9s", ("Found: " + mainCharacter.newWeapons[floor].getName()), ("+" + mainCharacter.newWeapons[floor].getProfit()), " damage"));
+				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[0].getName()), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage"));
+				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newWeapons[floor].getName()), ("+" + mainCharacter.newWeapons[floor].getProfit()), " damage"));
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newWeapons[floor]);
 				System.out.println("\n");
 				break;
 			case 1:
 				System.out.println("You found a Helmet!\n" + mainCharacter.newHelmets[floor].getName());
-				System.out.println(String.format("%-20.20s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[1].getName()), ("+" + mainCharacter.getEquipment()[1].getProfit()), " defence"));
-				System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.newHelmets[floor].getName(), ("+" + mainCharacter.newHelmets[floor].getProfit()), " defence"));
+				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[1].getName()), ("+" + mainCharacter.getEquipment()[1].getProfit()), " defence"));
+				System.out.println(String.format("%-40.40s %5.5s %9.9s", mainCharacter.newHelmets[floor].getName(), ("+" + mainCharacter.newHelmets[floor].getProfit()), " defence"));
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[floor]);
 				break;
 			case 2:
 				System.out.println("You found a Chestplate!\n" + mainCharacter.newChestPlates[floor].getName());
-				System.out.println(String.format("%-20.20s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[2].getName()), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence"));
-				System.out.println(String.format("%-20.20s %5.5s %9.9s", ("Found: " + mainCharacter.newChestPlates[floor].getName()), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence"));
+				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[2].getName()), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence"));
+				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newChestPlates[floor].getName()), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence"));
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[floor]);
 				break;
 			case 3:
 				System.out.println("You found a Leg Armor!\n" + mainCharacter.newLegArmors[floor].getName());
-				System.out.println(String.format("%-20.20s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[3].getName()), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence"));
-				System.out.println(String.format("%-20.20s %5.5s %9.9s", ("Found: " + mainCharacter.newLegArmors[floor].getName()), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence"));
+				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[3].getName()), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence"));
+				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newLegArmors[floor].getName()), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence"));
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[floor]);
 				break;
 		}
@@ -495,7 +497,7 @@ public class Gameplay {
 					reprint();
 					mainCharacter.showStats();
 					break;
-				case 'p':
+				case 'e':
 					reprint();
 					mainCharacter.showEquipment();
 					break;

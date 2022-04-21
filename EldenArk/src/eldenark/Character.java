@@ -343,40 +343,354 @@ public class Character {
 		return value;
 	}
 
-	public void interfaceFight(Character enemy) {
-		String enemyType = enemy.getClass().getTypeName().substring(9).toUpperCase();
+	public void interfaceFight(int map[][], Character mainCharacter, Character enemy,int floor) {
+		String enemyName = enemyName(map, enemy, floor);
 		System.out.println("\n\nYOU");
 		System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
-		System.out.println("\n\n" + enemyType);
+		System.out.println("\n\n" + enemyName);
 		System.out.println(String.format("%-25.15s %10s", "HP", enemy.getHp() + "/" + enemy.getMaxHP()));
 		System.out.println(String.format("%-25.15s %10s", "MP", enemy.getMp() + "/" + enemy.getMaxMP()));
 
 	}
-
-	public String prefix() {
 		
-		return "";
-	}
-
-	public int getEnemyType(int map[][],Character mainCharacter) {
-		int levelEnemy;
-		switch(map[mainCharacter.getY()][mainCharacter.getX()]){
-				case 2:
-					levelEnemy = 2;
-					break;
-				case 4:
-					levelEnemy = 4;
-					break;
-				case 5:
-					levelEnemy = 5;
-					break;
-				default:
-					levelEnemy = 2;
+	//ENEMIES NAMES
+	public String enemyName(int map[][], Character enemy, int floor) {
+		String enemyName = null;
+		int enemyType = getEnemyType(map);
+		int enemyClass = getEnemyClass(enemy);
+		switch(floor){
+			case 1:
+				enemyName = nameDefinitionF1(enemyType, enemyClass, enemy);
+				break;
+			case 2:
+				enemyName = nameDefinitionF2(enemyType, enemyClass, enemy);
+				break;
+			case 3:
+				enemyName = nameDefinitionF3(enemyType, enemyClass, enemy);
+				break;
+			case 4:
+				enemyName = nameDefinitionF4(enemyType, enemyClass, enemy);
+				break;
+			default:
+				enemyName = enemy.getClass().getTypeName().substring(9).toUpperCase();
 		}
-		return levelEnemy;
+		
+		return enemyName;
 	}
 
+	public String nameDefinitionF1(int enemyType, int enemyClass, Character enemy) {
+		String name;
+		switch (enemyType) {
+			case 2:
+				name = normalEnemyNameF1(enemyClass);
+				break;
+			case 4:
+				name = miniBossNameF1(enemyClass);
+				break;
+			case 5:
+				name = finalBossNameF1(enemyClass);
+				break;
+			default:
+				name = enemy.getClass().getTypeName().substring(9).toUpperCase();
+		}
+		return name;
+	}
+	
+	public String nameDefinitionF2(int enemyType, int enemyClass, Character enemy){
+		String name;
+		switch (enemyType) {
+			case 2:
+				name = normalEnemyNameF2(enemyClass);
+				break;
+			case 4:
+				name = miniBossNameF2(enemyClass);
+				break;
+			case 5:
+				name = finalBossNameF2(enemyClass);
+				break;
+			default:
+				name = enemy.getClass().getTypeName().substring(9).toUpperCase();
+		}
+		return name;
+	}
+	
+	public String nameDefinitionF3(int enemyType, int enemyClass, Character enemy){
+		String name;
+		switch (enemyType) {
+			case 2:
+				name = normalEnemyNameF3(enemyClass);
+				break;
+			case 4:
+				name = miniBossNameF3(enemyClass);
+				break;
+			case 5:
+				name = finalBossNameF3(enemyClass);
+				break;
+			default:
+				name = enemy.getClass().getTypeName().substring(9).toUpperCase();
+		}
+		return name;
+	}
+	
+		public String nameDefinitionF4(int enemyType, int enemyClass, Character enemy){
+		String name;
+		switch (enemyType) {
+			case 2:
+				name = normalEnemyNameF4(enemyClass);
+				break;
+			case 4:
+				name = miniBossNameF4(enemyClass);
+				break;
+			case 5:
+				name = finalBossNameF4(enemyClass);
+				break;
+			default:
+				name = enemy.getClass().getTypeName().substring(9).toUpperCase();
+		}
+		return name;
+	}
+
+	
+	public String normalEnemyNameF1(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Soldier of Elderfell (Warrior)";
+				break;
+			case 2:
+				name = "Monk of the Lord Ark (Priest)";
+				break;
+			case 3:
+				name = "Amateur Wizard (Mage)";
+				break;
+			default:
+				name = "Soldier of Elderfell (Warrior)";
+		}
+		return name;
+	}
+	
+	public String normalEnemyNameF2(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Demon Soldier of Kushan (Warrior)";
+				break;
+			case 2:
+				name = "Friar of Ubik (Priest)";
+				break;
+			case 3:
+				name = "Low-Class Elf (Mage)";
+				break;
+			default:
+				name = "Demon Soldier of Kushan(Warrior)";
+		}
+		return name;
+	}
+	
+	public String normalEnemyNameF3(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Mesh's Cavalry (Warrior)";
+				break;
+			case 2:
+				name = "White Abbot (Priest)";
+				break;
+			case 3:
+				name = "Old Rot Wizard (Mage)";
+				break;
+			default:
+				name = "Mesh's Cavalry (Warrior)";
+		}
+		return name;
+	}
+	
+		public String normalEnemyNameF4(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Giant with a Maze(Warrior)";
+				break;
+			case 2:
+				name = "Follower of Frederic (Priest)";
+				break;
+			case 3:
+				name = "Black Magician (Mage)";
+				break;
+			default:
+				name = "Giant with a Maze (Warrior)";
+		}
+		return name;
+	}
+
+	public String miniBossNameF1(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Demi-Human Elder (Warrior)";
+				break;
+			case 2:
+				name = "Grand Bishop (Priest)";
+				break;
+			case 3:
+				name = "Ancestor Wizard (Mage)";
+				break;
+			default:
+				name = "Demi-Human Elder (Warrior)";
+		}
+		return name;
+	}
+	
+	public String miniBossNameF2(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Moon Knight (Warrior)";
+				break;
+			case 2:
+				name = "God Hand (Priest)";
+				break;
+			case 3:
+				name = "Great Witch (Mage)";
+				break;
+			default:
+				name = "Moon Knight (Warrior)";
+		}
+		return name;
+	}
+	
+	public String miniBossNameF3(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Bloody Beast (Warrior)";
+				break;
+			case 2:
+				name = "Cardenal of Lord Void (Priest)";
+				break;
+			case 3:
+				name = "Servant of Caster (Mage)";
+				break;
+			default:
+				name = "Bloody Beast (Warrior)";
+		}
+		return name;
+	}
+	
+	public String miniBossNameF4(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Beast Titan (Warrior)";
+				break;
+			case 2:
+				name = "Great Archbishop (Priest)";
+				break;
+			case 3:
+				name = "Aklesh's Greatest Follower (Mage)";
+				break;
+			default:
+				name = "Beast Titan (Warrior)";
+		}
+		return name;
+	}
+
+	public String finalBossNameF1(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Wind Giant, Wind God (Warrior)";
+				break;
+			case 2:
+				name = "Fanni the Greatest, Four Hands Queen (Priest)";
+				break;
+			case 3:
+				name = "Midland Ancestor Spirit, Midland Hope (Mage)";
+				break;
+			default:
+				name = "Wind Giant, Wind God (Warrior)";
+		}
+		return name;
+	}
+	
+	public String finalBossNameF2(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Skull Knight, The Vengeance (Warrior)";
+				break;
+			case 2:
+				name = "Femto, The Black Falcon (Priest)";
+				break;
+			case 3:
+				name = "Beherit, God's Right Hand (Mage)";
+				break;
+			default:
+				name = "Skull Knight, The Vengeance (Warrior)";
+		}
+		return name;
+	}
+	
+	public String finalBossNameF3(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Mesh, The King of Heroes (Warrior)";
+				break;
+			case 2:
+				name = "Lord Void, The Nothing (Priest)";
+				break;
+			case 3:
+				name = "Caster, The Queen of Everything (Mage)";
+				break;
+			default:
+				name = "Mesh, The King of Heroes (Warrior)";
+		}
+		return name;
+	}
+	
+	public String finalBossNameF4(int enemyClass) {
+		String name;
+		switch (enemyClass) {
+			case 1:
+				name = "Troll, Troll (Warrior)";
+				break;
+			case 2:
+				name = "Frederic, Pope of All Living Beings (Priest)";
+				break;
+			case 3:
+				name = "Aklesh, the Demon Summoner (insert epic battle music) (Mage)";
+				break;
+			default:
+				name = "Troll, Troll (Warrior)";
+		}
+		return name;
+	}
+
+	public int getEnemyType(int map[][]) {
+		return map[this.getY()][this.getX()];
+	}
+
+	public int getEnemyClass(Character enemy) {
+		int classEnemy;
+		switch (enemy.getClass().getTypeName().substring(9).toUpperCase()) {
+			case "WARRIOR":
+				classEnemy = 1;
+				break;
+			case "PRIEST":
+				classEnemy = 2;
+				break;
+			case "MAGE":
+				classEnemy = 3;
+				break;
+			default:
+				classEnemy = 1;
+		}
+		return classEnemy;
+	}
+
+	//ENEMIES ACTIONS
 	public int enemyActions() {
 		int optionEnemy;
 		optionEnemy = rn.nextInt(2);
@@ -398,7 +712,8 @@ public class Character {
 
 		}
 	}
-
+	
+	//CHECK IF THERE IS OJECTS TO USE
 	public int checkOption4(int option, boolean objectUses) {
 		boolean object = objectUses;
 		if (option == 4 && !object) {
@@ -417,14 +732,15 @@ public class Character {
 		return option;
 	}
 
-	public void fight(Character enemy) {
+	//FIGHTS
+	public void fight(int map[][], Character enemy, int floor) {
 		int option, enemyOption;
 		int mainDef = this.getDefence();
 		int enemyDef = enemy.getDefence();
 		boolean objectsUses;
 		do {
 			objectsUses = checkObjects();
-			interfaceFight(enemy);
+			interfaceFight(map, this, enemy, floor);
 			System.out.println("\nHow are you gonna fight?");
 			option = fightMenu(objectsUses);
 			enemyOption = enemyActions();
@@ -462,7 +778,7 @@ public class Character {
 			enemyDef = defenceCheckedEnemy(enemy, enemyDef);
 			mainDef = this.getDefence();
 		} while ((enemy.getHp() > 0 && this.hp > 0));
-		interfaceFight(enemy);
+		interfaceFight(map, this, enemy, floor);
 		if (enemy.getHp() <= 0) {
 			System.out.println("\nCongrats, you defeated the enemy.");
 		} else {
@@ -470,7 +786,7 @@ public class Character {
 		}
 	}
 
-	public void menu() {
+/*	public void menu() {
 		int op;
 		do {
 			System.out.println("\nMENU\n");
@@ -512,7 +828,7 @@ public class Character {
 			}
 		} while (op != 0);
 
-	}
+	}*/
 
 	public void showInventory() {
 		for (int i = 0; i < inventory.length; i++) {
