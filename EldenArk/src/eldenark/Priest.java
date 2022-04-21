@@ -187,7 +187,7 @@ public class Priest extends Character {
                     
                 case 4:
                     
-                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 4) - enemy.getDefence()));
+                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 6) - enemy.getDefence()));
 
                     this.setMp(this.getMp() - 80);
 

@@ -133,7 +133,7 @@ public class Warrior extends Character {
 
                 case 2:
                     
-                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 4) - enemy.getDefence()));
+                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 5) - enemy.getDefence()));
 
                     this.setMp(this.getMp() - 40);
 
@@ -141,7 +141,7 @@ public class Warrior extends Character {
 
                 case 3:
                     
-                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 4) - enemy.getDefence()));
+                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 6) - enemy.getDefence()));
 
                     this.setMp(this.getMp() - 60);
 
@@ -149,7 +149,7 @@ public class Warrior extends Character {
 
                 case 4:
                     
-                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 4) - enemy.getDefence()));
+                    enemy.setHp(enemy.getHp() - ((this.getSpecialDamage() * 7) - enemy.getDefence()));
 
                     this.setMp(this.getMp() - 80);
 
