@@ -22,14 +22,14 @@ import javax.swing.*;
  */
 public class Gameplay {
         
-        String nickname = EldenArk.nicknameUser();
+    String nickname = EldenArk.nicknameUser();
 	int[][] map = new int[5][30];
 	static Random rn = new Random();
 	Character mainCharacter = new Character();
 	boolean running = false;
 	boolean inMap = true;
 	JFrame f;
-	int floor = 1;
+	int floor = 4;
 
 	Merchant merchant;
 
@@ -318,6 +318,8 @@ public class Gameplay {
 			reprint();
 			f.setVisible(true);
 		} else {
+			f.dispose();
+			running = false;
 			EldenArk.win(nickname);
 		}
 
@@ -507,6 +509,11 @@ public class Gameplay {
 					reprint();
 					mainCharacter.showEquipment();
 					break;
+				case '0':
+					f.dispose();
+					System.out.println("Byebye");
+					break;
+				
 
 			}
 		}
@@ -516,8 +523,6 @@ public class Gameplay {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_UP:
 					//Thing that happens when the ArrowUp key is pressed
-					mainCharacter.moveUP();
-
 					break;
 				case KeyEvent.VK_DOWN:
 					//Thing that happens when the ArrowDown key is pressed
