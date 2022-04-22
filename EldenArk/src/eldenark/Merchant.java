@@ -132,43 +132,47 @@ public class Merchant {
 		return a;
 
 	}
-        
-        public String merchantNameFloor(int floor){
-            String nameMerchant = null;
-            switch(floor){
-                case 1:
-                    nameMerchant = "Rogelio";
-                    break;
-                case 2: 
-                    nameMerchant = "Francisco";
-                    break;
-                case 3:
-                    nameMerchant = "Heisenberg";
-                    break;
-                case 4:
-                    nameMerchant = "Almendras";
-                    break;
-                    
-            }
-            return nameMerchant;
-        }
+
+	public String merchantNameFloor(int floor) {
+		String nameMerchant = null;
+		switch (floor) {
+			case 1:
+				nameMerchant = "Rogelio";
+				break;
+			case 2:
+				nameMerchant = "Francisco";
+				break;
+			case 3:
+				nameMerchant = "Heisenberg";
+				break;
+			case 4:
+				nameMerchant = "Almendras";
+				break;
+
+		}
+		return nameMerchant;
+	}
 
 	public void trade() {
-
+		int option;
 		boolean exit = false, confirmation;
-                name = merchantNameFloor(floor);
+		name = merchantNameFloor(floor);
 		do {
-
-			System.out.println("\nSHOP\n");
-			System.out.println("Hello I'm " + name + ", what do you want to buy?");
-			System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t1- " + sellingObject1.getName() , ("(" + quantitySmallObject + ")") , "|" , (priceSmallObject + " Gold")));
-			System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t2- " + sellingObject2.getName() , ("(" + quantityBigObject + ")") , "|" , (priceBigObject + " Gold")));
-			System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t3- " + sellingEquip.getName() , ("(" + quantityEquip + ")") , "|" , (priceEquip + " Gold")));
-                        System.out.println(String.format("%-30.25s ", "\n\t0- " + "Exit the shop"));
-			//System.out.println("\n\t1-" + sellingObject1.getName() + " (" + quantitySmallObject + ")" + " | " + priceSmallObject + " Gold" + "\n\t2-" + sellingObject2.getName() + " (" + quantityBigObject + ")" + " | " + priceBigObject + " Gold" + "\n\t3-" + sellingEquip.getName() + " (" + sellingEquip.getType() + ")" + " (" + quantityEquip + ")" + " | " + priceEquip + " Gold" + "\n\t0- Exit the shop");
-			System.out.println("\nCurrent money " + mainCharacter.getGold() + " Gold");
-
-			switch (Teclat.llegirInt()) {
+			do {
+				System.out.println("\nSHOP\n");
+				System.out.println("Hello I'm " + name + ", what do you want to buy?");
+				System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t1- " + sellingObject1.getName(), ("(" + quantitySmallObject + ")"), "|", (priceSmallObject + " Gold")));
+				System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t2- " + sellingObject2.getName(), ("(" + quantityBigObject + ")"), "|", (priceBigObject + " Gold")));
+				System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t3- " + sellingEquip.getName(), ("(" + quantityEquip + ")"), "|", (priceEquip + " Gold")));
+				System.out.println(String.format("%-30.25s ", "\n\t0- " + "Exit the shop"));
+				//System.out.println("\n\t1-" + sellingObject1.getName() + " (" + quantitySmallObject + ")" + " | " + priceSmallObject + " Gold" + "\n\t2-" + sellingObject2.getName() + " (" + quantityBigObject + ")" + " | " + priceBigObject + " Gold" + "\n\t3-" + sellingEquip.getName() + " (" + sellingEquip.getType() + ")" + " (" + quantityEquip + ")" + " | " + priceEquip + " Gold" + "\n\t0- Exit the shop");
+				System.out.println("\nCurrent money " + mainCharacter.getGold() + " Gold");
+				option = EldenArk.validation();
+				if (option <= 0 || option > 3) {
+					System.err.println("Invalid option.");
+				}
+			} while (option <= 0 || option > 3);
+			switch (option) {
 
 				case 1:
 
@@ -272,8 +276,6 @@ public class Merchant {
 
 				case 0:
 
-					exit = true;
-
 					System.out.println("See you <3");
 
 					break;
@@ -282,9 +284,7 @@ public class Merchant {
 					System.out.println("I can't sell you anything if I don't have it");
 
 			}
-
 		} while (!exit);
-
 	}
 
 	public void setY(int y) {

@@ -29,6 +29,7 @@ Version:
  */
 package eldenark;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 
 public class EldenArk {
@@ -42,24 +43,23 @@ public class EldenArk {
 		Character mainCharacter = pickClass();
 
 		Gameplay g = new Gameplay(mainCharacter);
-		
 
 	}
-        
-        public static String nicknameUser(){
-            boolean on = true;
-            String nickname;
-            do{
-                System.out.println("Introduce your name.");
-                nickname = Teclat.llegirString();
-                if ("".equals(nickname)) {
-                    System.err.println("Try again.");
-                    on = false;
-                }
-            }while(!on && "".equals(nickname));
-            
-            return nickname;
-        }
+
+	public static String nicknameUser() {
+		boolean on = true;
+		String nickname;
+		do {
+			System.out.println("Introduce your name.");
+			nickname = Teclat.llegirString();
+			if ("".equals(nickname)) {
+				System.err.println("Try again.");
+				on = false;
+			}
+		} while (!on && "".equals(nickname));
+
+		return nickname;
+	}
 
 	public static void gameOver() {
 		System.out.println("GAME OVER");
@@ -69,17 +69,17 @@ public class EldenArk {
 			Character newMainCharacter = pickClass();
 
 			Gameplay newGameplay = new Gameplay(newMainCharacter);
-		} else{
+		} else {
 			System.out.println("GoodBye!");
 		}
 	}
-	
+
 	public static void win(String nickname) {
-		System.out.println("Congratulations " + nickname +  " on compleating sucessfully Elden Ark. We hope you enjoyed the game and stay tuned for futures updates\n\n\n");
+		System.out.println("Congratulations " + nickname + " on compleating sucessfully Elden Ark. We hope you enjoyed the game and stay tuned for futures updates\n\n\n");
 		credits();
-		
+
 	}
-	
+
 	public static void credits() {
 		System.out.println(String.format("%50.50s %20.20s", "", "GAME DEVELOPED BY"));
 		System.out.println("\n\n");
@@ -96,10 +96,13 @@ public class EldenArk {
 
 		int option;
 
-		System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
-
-		option = Teclat.llegirInt();
-
+		do {
+			System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
+			option = validation();
+			if (option <= 0 || option > 3) {
+				System.err.println("Invalid option.");
+			}
+		} while (option <= 0 || option > 3);
 		switch (option) {
 
 			case 1:
@@ -125,14 +128,19 @@ public class EldenArk {
 				System.out.println("You have chosen the priest class");
 
 				break;
-
-			default:
-
-				System.err.println("Not a valid number");
-
 		}
 
 		return main;
+	}
+
+	public static int validation() {
+		int option;
+		try {
+			option = Teclat.llegirInt();
+		} catch (InputMismatchException e) {
+			option = -1;
+		}
+		return option;
 	}
 
 	// CLASS GENERATORS 
@@ -177,7 +185,6 @@ public class EldenArk {
 
 		return equipment;
 	}*/
-
 	public static Object[] generateInventory() {
 
 		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", 2);
@@ -206,6 +213,5 @@ public class EldenArk {
 		System.out.println("In addition, there will be 3 minibosses that give extra loot and experience. Try killing them whenever you need power");
 		System.out.println("Choose carefully your class and start leveling up to complete the TOWER OF THE ELDEN ARK\n");
 	}
-	
 
 }

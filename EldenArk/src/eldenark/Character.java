@@ -55,8 +55,6 @@ public class Character {
 
         this.xp = 0; // Experience always start at 0
 
-        this.maxXP = 1000;
-
         this.maxXP = 100;
 
         this.damage = damage;
@@ -126,7 +124,11 @@ public class Character {
     }
 
     public void checkLevelUp(int experience) {
-        if (this.xp + experience > this.maxXP) {
+        if (level == 24) {
+			System.out.println("You have reached the max level. You can't gain more experience");
+			this.setMaxXP(0);
+			this.setXp(0);
+		} else if (this.xp + experience > this.maxXP) {
             System.out.println("LEVEL UP!");
             showStats();
             levelUp();
@@ -363,7 +365,7 @@ public class Character {
 
     public void interfaceFight(int map[][], Character mainCharacter, Character enemy, int floor, String nickname) {
         String enemyName = enemyName(map, enemy, floor);
-        System.out.println("\n\n" + nickname + "(YOU)");
+        System.out.println("\n\n" + nickname + "(YOU)" + " (" + this.getClass().getName().substring(9) + ")");
         System.out.println(String.format("%-25.15s %10s", "HP", hp + "/" + maxHP));
         System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
         System.out.println("\n\n" + enemyName);
@@ -1057,6 +1059,12 @@ public class Character {
     public void setRole(String role) {
         this.role = role;
     }
+
+	public void setMaxXP(int maxXP) {
+		this.maxXP = maxXP;
+	}
+	
+	
 
     public void setX(int x) {
         this.x = x;
