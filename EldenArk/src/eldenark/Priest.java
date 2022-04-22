@@ -204,7 +204,7 @@ public class Priest extends Character {
 
                         if (this.getHp() > this.getMaxHP()) {
 
-                            this.checkMaxValues(this.getHp(), this.getMaxHP());
+                            this.setHp(this.checkMaxValues(this.getHp(), this.getMaxHP()));
                             
                             healed = this.getHp() - tempHp;;
 
