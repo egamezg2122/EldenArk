@@ -198,10 +198,6 @@ public class Priest extends Character {
 
 						this.setHp(this.getHp() + healed);
 
-						System.out.println("\nYou used " + abilitiesPriest[option - 1] + " on the enemy.");
-						System.out.println("You healed " + healed + " Hp.");
-						System.out.println("-60 Mana");
-
 						this.setMp(this.getMp() - 60);
 
 						if (this.getHp() > this.getMaxHP()) {
