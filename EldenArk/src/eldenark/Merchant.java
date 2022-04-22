@@ -168,10 +168,10 @@ public class Merchant {
 				//System.out.println("\n\t1-" + sellingObject1.getName() + " (" + quantitySmallObject + ")" + " | " + priceSmallObject + " Gold" + "\n\t2-" + sellingObject2.getName() + " (" + quantityBigObject + ")" + " | " + priceBigObject + " Gold" + "\n\t3-" + sellingEquip.getName() + " (" + sellingEquip.getType() + ")" + " (" + quantityEquip + ")" + " | " + priceEquip + " Gold" + "\n\t0- Exit the shop");
 				System.out.println("\nCurrent money " + mainCharacter.getGold() + " Gold");
 				option = EldenArk.validation();
-				if (option <= 0 || option > 3) {
+				if (option < 0 || option > 3) {
 					System.err.println("Invalid option.");
 				}
-			} while (option <= 0 || option > 3);
+			} while (option < 0 || option > 3);
 			switch (option) {
 
 				case 1:
@@ -277,7 +277,8 @@ public class Merchant {
 				case 0:
 
 					System.out.println("See you <3");
-
+					
+					exit = true;
 					break;
 
 				default:
