@@ -86,7 +86,7 @@ public class Mage extends Character {
     @Override
     public void abilities(Character enemy) {
 
-        String abilitiesMage[] = {"1- Bola de fuego", "2- Traslación", "3- Nova de Escarcha", "4- Clima de Trueno", "5- Lunargenta"};
+        String abilitiesMage[] = {"1- Fireball", "2- Translation", "3- Frost Nova", "4- Thunder Weather", "5- Silvermoon"};
 
         int option;
 

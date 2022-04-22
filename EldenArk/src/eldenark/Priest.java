@@ -90,7 +90,7 @@ public class Priest extends Character {
 
     public void abilities(Character enemy) {
 
-        String abilitiesPriest[] = {"1- Infusión de poder", "2- Punición", "3- Salto de fe", "4- Levitación", "5- Rezo desesperado"};
+        String abilitiesPriest[] = {"1- Power Infusion", "2- Punishment", "3- Jump of faith", "4- Levitation", "5- Desperate prayer"};
 
         int option;
 

@@ -127,7 +127,7 @@ public class Warrior extends Character {
     @Override
     public void abilities(Character enemy) {
 
-        String abilitiesWarrior[] = {"1- Martillo de Thor", "2- Carga de ariete", "3- Grito de combate", "4- Doble filo", "5- Salto heroico"};
+        String abilitiesWarrior[] = {"1- Thor's Hammer", "2- Ram load", "3- Battle cry", "4- Double edge", "5- Heroic jump"};
 
         int option;
 
