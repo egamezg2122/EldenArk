@@ -63,7 +63,7 @@ public class EldenArk {
 
 	public static void gameOver() {
 		System.out.println("GAME OVER");
-		System.out.println("Do you want to play again?");
+		System.out.println("Do you want to play again? (Y/N)");
 		char option = Teclat.llegirChar();
 		if (option == 'y') {
 			Character newMainCharacter = pickClass();
@@ -73,7 +73,7 @@ public class EldenArk {
 			System.out.println("GoodBye!");
 		}
 	}
-
+	
 	public static void win(String nickname) {
 		System.out.println("Congratulations " + nickname + " on compleating sucessfully Elden Ark. We hope you enjoyed the game and stay tuned for futures updates\n\n\n");
 		credits();
@@ -146,7 +146,7 @@ public class EldenArk {
 	// CLASS GENERATORS 
 	public static Warrior createWarrior() {
 
-		Warrior w = new Warrior(1000, 1000, 1000, 1000, 1000, 1000, 1000, "Warrior", generateInventory());
+		Warrior w = new Warrior(25, 17, 140, 140, 60, 60, 15, "Warrior", generateInventory());
 
 		return w;
 
@@ -155,7 +155,7 @@ public class EldenArk {
 	// Test create a Mage object
 	public static Mage createMage() {
 
-		Mage m = new Mage(10, 4, 85, 85, 100, 100, 25, "Mage", generateInventory());
+		Mage m = new Mage(12, 5, 100, 100, 160, 160, 25, "Mage", generateInventory());
 
 		return m;
 	}
@@ -163,7 +163,7 @@ public class EldenArk {
 	// Test create a Priest object
 	public static Priest createPriest() {
 
-		Priest p = new Priest(7, 3, 150, 150, 90, 90, 15, "Priest", generateInventory());
+		Priest p = new Priest(15, 10, 120, 120, 120, 120, 15, "Priest", generateInventory());
 
 		return p;
 	}

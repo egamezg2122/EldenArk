@@ -7,251 +7,255 @@ package eldenark;
  */
 public class Warrior extends Character {
 
-    //Constructors
-    // MAIN
-    public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
-        super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
-    }
+	//Constructors
+	// MAIN
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
+	}
 
-    // ENEMIES
-    //Ns si poner la clase
-    public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
-        super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
-    }
+	// ENEMIES
+	//Ns si poner la clase
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
+	}
 
-    // Constructor
-    @Override
-    public void changeWeapon(Equip[] equipment, Equip newEquip) {
-        this.setDamage(this.getDamage() - equipment[0].getProfit());
-        equipment[0] = newEquip;
-        this.setDamage(this.getDamage() + equipment[0].getProfit());
-    }
+	// Constructor
+	@Override
+	public void changeWeapon(Equip[] equipment, Equip newEquip) {
+		this.setDamage(this.getDamage() - equipment[0].getProfit());
+		equipment[0] = newEquip;
+		this.setDamage(this.getDamage() + equipment[0].getProfit());
+	}
 
-    @Override
-    public void weapons() {
-        Equip basicWeapon = new Equip("Basic Weapon", "Weapon", 5);
+	@Override
+	public void weapons() {
+		Equip basicWeapon = new Equip("Basic Weapon", "Weapon", 5);
 
-        Equip firstWeapon = new Equip("Fidelity Greatsword", "Weapon", 10);
+		Equip firstWeapon = new Equip("Fidelity Greatsword", "Weapon", 10);
 
-        Equip secondWeapon = new Equip("Dimensional Greatsword", "Weapon", 20);
+		Equip secondWeapon = new Equip("Dimensional Greatsword", "Weapon", 20);
 
-        Equip thirdWeapon = new Equip("Seraphic Oath Greatsword", "Weapon", 50);
+		Equip thirdWeapon = new Equip("Seraphic Oath Greatsword", "Weapon", 50);
 
-        Equip forthWeapon = new Equip("Hope's End", "Weapon", 70);
+		Equip forthWeapon = new Equip("Hope's End", "Weapon", 70);
 
-        newWeapons[0] = basicWeapon;
+		newWeapons[0] = basicWeapon;
 
-        newWeapons[1] = firstWeapon;
+		newWeapons[1] = firstWeapon;
 
-        newWeapons[2] = secondWeapon;
+		newWeapons[2] = secondWeapon;
 
-        newWeapons[3] = thirdWeapon;
+		newWeapons[3] = thirdWeapon;
 
-        newWeapons[4] = forthWeapon;
-    }
+		newWeapons[4] = forthWeapon;
+	}
 
-    @Override
-    public void helmet() {
+	@Override
+	public void helmet() {
 
-        Equip basicHelmet = new Equip("Basic Helmet", "Helmet", 2);
+		Equip basicHelmet = new Equip("Basic Helmet", "Helmet", 2);
 
-        Equip firstHelmet = new Equip("Mask of Fallen Might", "Helmet", 4);
+		Equip firstHelmet = new Equip("Mask of Fallen Might", "Helmet", 4);
 
-        Equip secondHelmet = new Equip("Terror of Fury", "Helmet", 8);
+		Equip secondHelmet = new Equip("Terror of Fury", "Helmet", 8);
 
-        Equip thirdHelmet = new Equip("Soul of the Banished", "Helmet", 15);
+		Equip thirdHelmet = new Equip("Soul of the Banished", "Helmet", 15);
 
-        Equip forthHelmet = new Equip("Wit of Dark Souls", "Helmet", 25);
+		Equip forthHelmet = new Equip("Wit of Dark Souls", "Helmet", 25);
 
-        newHelmets[0] = basicHelmet;
+		newHelmets[0] = basicHelmet;
 
-        newHelmets[1] = firstHelmet;
+		newHelmets[1] = firstHelmet;
 
-        newHelmets[2] = secondHelmet;
+		newHelmets[2] = secondHelmet;
 
-        newHelmets[3] = thirdHelmet;
+		newHelmets[3] = thirdHelmet;
 
-        newHelmets[4] = forthHelmet;
+		newHelmets[4] = forthHelmet;
 
-    }
+	}
 
-    @Override
-    public void chestplate() {
+	@Override
+	public void chestplate() {
 
-        Equip basicChestplate = new Equip("Basic ChestPlate", "Chestplate", 5);
+		Equip basicChestplate = new Equip("Basic ChestPlate", "Chestplate", 5);
 
-        Equip firstChestplate = new Equip("Burden of Fire", "Chestplate", 10);
+		Equip firstChestplate = new Equip("Burden of Fire", "Chestplate", 10);
 
-        Equip secondChestplate = new Equip("Keeper of the Sky", "Chestplate", 20);
+		Equip secondChestplate = new Equip("Keeper of the Sky", "Chestplate", 20);
 
-        Equip thirdChestplate = new Equip("Terror Cuirass of Wraiths", "Chestplate", 50);
+		Equip thirdChestplate = new Equip("Terror Cuirass of Wraiths", "Chestplate", 50);
 
-        Equip forthChestplate = new Equip("Lonely Golden Vest", "Chestplate", 65);
+		Equip forthChestplate = new Equip("Lonely Golden Vest", "Chestplate", 65);
 
-        newChestPlates[0] = basicChestplate;
+		newChestPlates[0] = basicChestplate;
 
-        newChestPlates[1] = firstChestplate;
+		newChestPlates[1] = firstChestplate;
 
-        newChestPlates[2] = secondChestplate;
+		newChestPlates[2] = secondChestplate;
 
-        newChestPlates[3] = thirdChestplate;
+		newChestPlates[3] = thirdChestplate;
 
-        newChestPlates[4] = forthChestplate;
+		newChestPlates[4] = forthChestplate;
 
-    }
+	}
 
-    @Override
-    public void legArmor() {
+	@Override
+	public void legArmor() {
 
-        Equip basicLegArmor = new Equip("Basic Leg Armor", "Leg Armor", 2);
+		Equip basicLegArmor = new Equip("Basic Leg Armor", "Leg Armor", 2);
 
-        Equip firstLegArmor = new Equip("Leather Legwraps", "Leg Armor", 5);
+		Equip firstLegArmor = new Equip("Leather Legwraps", "Leg Armor", 5);
 
-        Equip secondLegArmor = new Equip("Liar's Silk Breeches", "Leg Armor", 10);
+		Equip secondLegArmor = new Equip("Liar's Silk Breeches", "Leg Armor", 10);
 
-        Equip thirdLegArmor = new Equip("Bane of Diligence", "Leg Armor", 20);
+		Equip thirdLegArmor = new Equip("Bane of Diligence", "Leg Armor", 20);
 
-        Equip forthLegArmor = new Equip("Blight of Assassins", "Leg Armor", 30);
+		Equip forthLegArmor = new Equip("Blight of Assassins", "Leg Armor", 30);
 
-        newLegArmors[0] = basicLegArmor;
+		newLegArmors[0] = basicLegArmor;
 
-        newLegArmors[1] = firstLegArmor;
+		newLegArmors[1] = firstLegArmor;
 
-        newLegArmors[2] = secondLegArmor;
+		newLegArmors[2] = secondLegArmor;
 
-        newLegArmors[3] = thirdLegArmor;
+		newLegArmors[3] = thirdLegArmor;
 
-        newLegArmors[4] = forthLegArmor;
-    }
+		newLegArmors[4] = forthLegArmor;
+	}
 
-    @Override
-    public void abilities(Character enemy) {
+	@Override
+	public void abilities(Character enemy) {
 
+<<<<<<< Updated upstream
         String abilitiesWarrior[] = {"1- Thor's Hammer", "2- Ram load", "3- Battle cry", "4- Double edge", "5- Heroic jump"};
+=======
+		String abilitiesWarrior[] = {"Martillo de Thor", "Carga de ariete", "Grito de combate", "Doble filo", "Salto heroico"};
+>>>>>>> Stashed changes
 
-        int option;
+		int option;
 
-        boolean control = false;
+		boolean control = false;
 
-        do {
+		do {
 
-            System.out.println("What ability do you want to use?");
+			System.out.println("What ability do you want to use?");
 
-            if (this.getRole().equals("Warrior")) {
+			if (this.getRole().equals("Warrior")) {
 
-                for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
+				for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
 
-                    System.out.println(abilitiesWarrior[i]);
+					System.out.println((i + 1) + "- " + abilitiesWarrior[i]);
 
-                }
-            }
+				}
+			}
 
-            option = Teclat.llegirInt();
+			option = Teclat.llegirInt();
 
-            if (option <= ((this.getLevel() / 5) + 1) && option >= 1) {
+			if (option <= ((this.getLevel() / 5) + 1) && option >= 1) {
 
-                control = true;
+				control = true;
 
-            } else {
+			} else {
 
-                System.out.println("The ability is not available");
+				System.out.println("The ability is not available");
 
-            }
+			}
 
-        } while (!control);
+		} while (!control);
 
-        switch (option) {
+		switch (option) {
 
-            case 1:
+			case 1:
 
-                if (this.getMp() > 20) {
+				if (this.getMp() >= 20) {
 
-                    int damageDone = ((this.getSpecialDamage() * 4) - enemy.getDefence());
+					int damageDone = ((this.getSpecialDamage() * 4) - enemy.getDefence());
 
-                    enemy.setHp(enemy.getHp() - damageDone);
+					enemy.setHp(enemy.getHp() - damageDone);
 
-                    this.setMp(this.getMp() - 20);
+					this.setMp(this.getMp() - 20);
 
-                    System.out.println("You used " + abilitiesWarrior[option] + " on the enemy.");
-                    System.out.println("You did " + damageDone + " damage to the enemy.");
-                    System.out.println("-20 Mana");
+					System.out.println("You used " + abilitiesWarrior[option - 1] + " on the enemy.");
+					System.out.println("You did " + damageDone + " damage to the enemy.");
+					System.out.println("-20 Mana");
 
-                } else {
+				} else {
 
-                    System.out.println("You don't have mana");
+					System.out.println("You don't have mana");
 
-                }
+				}
 
-                break;
+				break;
 
-            case 2:
+			case 2:
 
-                if (this.getMp() > 40) {
+				if (this.getMp() >= 40) {
 
-                    int damageDone = ((this.getSpecialDamage() * 5) - enemy.getDefence());
+					int damageDone = ((this.getSpecialDamage() * 5) - enemy.getDefence());
 
-                    enemy.setHp(enemy.getHp() - damageDone);
+					enemy.setHp(enemy.getHp() - damageDone);
 
-                    this.setMp(this.getMp() - 40);
+					this.setMp(this.getMp() - 40);
 
-                    System.out.println("You used " + abilitiesWarrior[option] + " on the enemy.");
-                    System.out.println("You did " + damageDone + " damage to the enemy.");
-                    System.out.println("-40 Mana");
+					System.out.println("You used " + abilitiesWarrior[option - 1] + " on the enemy.");
+					System.out.println("You did " + damageDone + " damage to the enemy.");
+					System.out.println("-40 Mana");
 
-                } else {
+				} else {
 
-                    System.out.println("You don't have mana");
+					System.out.println("You don't have mana");
 
-                }
+				}
 
-                break;
+				break;
 
-            case 3:
+			case 3:
 
-                if (this.getMp() > 60) {
+				if (this.getMp() >= 60) {
 
-                    int damageDone = ((this.getSpecialDamage() * 6) - enemy.getDefence());
+					int damageDone = ((this.getSpecialDamage() * 6) - enemy.getDefence());
 
-                    enemy.setHp(enemy.getHp() - damageDone);
+					enemy.setHp(enemy.getHp() - damageDone);
 
-                    this.setMp(this.getMp() - 60);
+					this.setMp(this.getMp() - 60);
 
-                    System.out.println("You used " + abilitiesWarrior[option] + " on the enemy.");
-                    System.out.println("You did " + damageDone + " damage to the enemy.");
-                    System.out.println("-60 Mana");
+					System.out.println("You used " + abilitiesWarrior[option - 1] + " on the enemy.");
+					System.out.println("You did " + damageDone + " damage to the enemy.");
+					System.out.println("-60 Mana");
 
-                } else {
+				} else {
 
-                    System.out.println("You don't have mana");
+					System.out.println("You don't have mana");
 
-                }
+				}
 
-                break;
+				break;
 
-            case 4:
+			case 4:
 
-                if (this.getMp() > 80) {
+				if (this.getMp() >= 80) {
 
-                    int damageDone = ((this.getSpecialDamage() * 7) - enemy.getDefence());
+					int damageDone = ((this.getSpecialDamage() * 7) - enemy.getDefence());
 
-                    enemy.setHp(enemy.getHp() - damageDone);
+					enemy.setHp(enemy.getHp() - damageDone);
 
-                    this.setMp(this.getMp() - 80);
+					this.setMp(this.getMp() - 80);
 
-                    System.out.println("You used " + abilitiesWarrior[option] + " on the enemy.");
-                    System.out.println("You did " + damageDone + " damage to the enemy.");
-                    System.out.println("-80 Mana");
+					System.out.println("You used " + abilitiesWarrior[option - 1] + " on the enemy.");
+					System.out.println("You did " + damageDone + " damage to the enemy.");
+					System.out.println("-80 Mana");
 
-                } else {
+				} else {
 
-                    System.out.println("You don't have mana");
+					System.out.println("You don't have mana");
 
-                }
+				}
 
-                break;
+				break;
 
-        }
+		}
 
-    }
+	}
 
 }
