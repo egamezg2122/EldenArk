@@ -146,7 +146,7 @@ public class EldenArk {
 	// CLASS GENERATORS 
 	public static Warrior createWarrior() {
 
-		Warrior w = new Warrior(25, 17, 140, 140, 60, 60, 15, "Warrior", generateInventory());
+		Warrior w = new Warrior(25, 15, 140, 140, 60, 60, 15, "Warrior", generateInventory());
 
 		return w;
 
@@ -168,23 +168,7 @@ public class EldenArk {
 		return p;
 	}
 
-	/*
-	public static Equip[] generateEquipment() {
-
-		Equip[] equipment = new Equip[4];
-
-		Equip weapon = new Equip("Basic Weapon", "WeaponType", 5);
-		Equip helmet = new Equip("Basic Helmet", "HelmetType", 2);
-		Equip chest = new Equip("Basic Chestplate", "ChestType", 5);
-		Equip leg = new Equip("Basic Leg Armor", "LegType", 3);
-
-		equipment[0] = weapon;
-		equipment[1] = helmet;
-		equipment[2] = chest;
-		equipment[3] = leg;
-
-		return equipment;
-	}*/
+	
 	public static Object[] generateInventory() {
 
 		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", 2);

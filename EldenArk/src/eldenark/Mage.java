@@ -84,9 +84,9 @@ public class Mage extends Character {
 	}
 
 	@Override
-	public void abilities(Character enemy) {
+	public int abilities(Character enemy, int enemyOption) {
 
-        String abilitiesMage[] = {"1- Fireball", "2- Translation", "3- Frost Nova", "4- Thunder Weather", "5- Silvermoon"};
+        String abilitiesMage[] = {"Fireball", "Translation", "Frost Nova", "Thunder Weather", "Silvermoon"};
 
 
 		int option;
@@ -132,14 +132,14 @@ public class Mage extends Character {
 
 					this.setMp(this.getMp() - 20);
 
-					System.out.println("You used " + abilitiesMage[option - 1] + " on the enemy.");
+					System.out.println("\nYou used " + abilitiesMage[option - 1] + " on the enemy.");
 					System.out.println("You did " + damageDone + " damage to the enemy.");
 					System.out.println("-20 Mana");
 
 				} else {
 
 					System.out.println("You don't have mana");
-
+                                        enemyOption = 2;
 				}
 
 				break;
@@ -154,14 +154,14 @@ public class Mage extends Character {
 
 					this.setMp(this.getMp() - 40);
 
-					System.out.println("You used " + abilitiesMage[option - 1] + " on the enemy.");
+					System.out.println("\nYou used " + abilitiesMage[option - 1] + " on the enemy.");
 					System.out.println("You did " + damageDone + " damage to the enemy.");
 					System.out.println("-40 Mana");
 
 				} else {
 
 					System.out.println("You don't have mana");
-
+                                        enemyOption = 2;
 				}
 
 				break;
@@ -176,14 +176,14 @@ public class Mage extends Character {
 
 					this.setMp(this.getMp() - 60);
 
-					System.out.println("You used " + abilitiesMage[option - 1] + " on the enemy.");
+					System.out.println("\nYou used " + abilitiesMage[option - 1] + " on the enemy.");
 					System.out.println("You did " + damageDone + " damage to the enemy.");
 					System.out.println("-60 Mana");
 
 				} else {
 
 					System.out.println("You don't have mana");
-
+                                        enemyOption = 2;
 				}
 
 				break;
@@ -198,20 +198,21 @@ public class Mage extends Character {
 
 					this.setMp(this.getMp() - 80);
 
-					System.out.println("You used " + abilitiesMage[option - 1] + " on the enemy.");
+					System.out.println("\nYou used " + abilitiesMage[option - 1] + " on the enemy.");
 					System.out.println("You did " + damageDone + " damage to the enemy.");
 					System.out.println("-80 Mana");
-
+                                        
 				} else {
 
 					System.out.println("You don't have mana");
+                                        enemyOption = 2;
 
 				}
 
 				break;
 
 		}
-
+                return enemyOption;
 	}
 
 }

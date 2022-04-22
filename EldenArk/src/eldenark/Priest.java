@@ -87,9 +87,8 @@ public class Priest extends Character {
 	}
 
 	@Override
-
-	public void abilities(Character enemy) {
-		String abilitiesPriest[] = {"1- Power Infusion", "2- Punishment", "3- Jump of faith", "4- Levitation", "5- Desperate prayer"};
+	public int abilities(Character enemy, int enemyOption) {
+		String abilitiesPriest[] = {"Power Infusion", "Punishment", "Jump of faith", "Levitation", "Desperate prayer"};
 		int option;
 
 		boolean control = false;
@@ -146,19 +145,20 @@ public class Priest extends Character {
 
 						}
 
-						System.out.println("You used " + abilitiesPriest[option - 1] + " on the enemy.");
+						System.out.println("\nYou used " + abilitiesPriest[option - 1] + " on the enemy.");
 						System.out.println("You healed " + healed + " Hp.");
 						System.out.println("-20 Mana");
 
 					} else {
 
 						System.out.println("You have max HP");
-
+                                                
 					}
 
 				} else {
 
 					System.out.println("You don't have mana");
+                                        enemyOption = 2;
 
 				}
 
@@ -175,14 +175,14 @@ public class Priest extends Character {
 
 					this.setMp(this.getMp() - 40);
 
-					System.out.println("You used " + abilitiesPriest[option - 1] + " on the enemy.");
+					System.out.println("\nYou used " + abilitiesPriest[option - 1] + " on the enemy.");
 					System.out.println("You did " + damageDone + " damage to the enemy.");
 					System.out.println("-40 Mana");
 
 				} else {
 
 					System.out.println("You don't have mana");
-
+                                        enemyOption = 2;
 				}
 
 				break;
@@ -198,7 +198,7 @@ public class Priest extends Character {
 
 						this.setHp(this.getHp() + healed);
 
-						System.out.println("You used " + abilitiesPriest[option - 1] + " on the enemy.");
+						System.out.println("\nYou used " + abilitiesPriest[option - 1] + " on the enemy.");
 						System.out.println("You healed " + healed + " Hp.");
 						System.out.println("-60 Mana");
 
@@ -212,7 +212,7 @@ public class Priest extends Character {
 
 						}
 
-						System.out.println("You used " + abilitiesPriest[option - 1] + " on the enemy.");
+						System.out.println("\nYou used " + abilitiesPriest[option - 1] + " on the enemy.");
 						System.out.println("You heales " + healed + " Hp.");
 						System.out.println("-60 Mana");
 
@@ -225,7 +225,7 @@ public class Priest extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-
+                                        enemyOption = 2;
 				}
 
 				break;
@@ -241,20 +241,20 @@ public class Priest extends Character {
 
 					this.setMp(this.getMp() - 80);
 
-					System.out.println("You used " + abilitiesPriest[option - 1] + " on the enemy.");
+					System.out.println("\nYou used " + abilitiesPriest[option - 1] + " on the enemy.");
 					System.out.println("You did " + damageDone + " damage to the enemy.");
 					System.out.println("-80 Mana");
 
 				} else {
 
 					System.out.println("You don't have mana");
-
+                                        enemyOption = 2;
 				}
 
 				break;
 
 		}
-
+                return enemyOption;
 	}
 
 }
