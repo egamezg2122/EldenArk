@@ -57,7 +57,7 @@ public class Mage extends Character {
 
 	@Override
 	public void chestplate() {
-		Equip basicChestplate = new Equip("Blue Cloth Vest", "Chestplate", 5);
+		Equip basicChestplate = new Equip("Blue Cloth Vest", "Chestplate", 3);
 		Equip firstChestplate = new Equip("Confessor Armor", "Chestplate", 10);
 		Equip secondChestplate = new Equip("Cuckoo Surcoat", "Chestplate", 20);
 		Equip thirdChestplate = new Equip("Depraved Perfumer Robe", "Chestplate", 50);

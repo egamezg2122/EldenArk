@@ -60,7 +60,7 @@ public class Priest extends Character {
 
 	@Override
 	public void chestplate() {
-		Equip basicChestplate = new Equip("Basic Tunic", "Chestplate", 5);
+		Equip basicChestplate = new Equip("Basic Tunic", "Chestplate", 3);
 		Equip firstChestplate = new Equip("Alberich's Robe", "Chestplate", 10);
 		Equip secondChestplate = new Equip("Azur's Glintstone Robe", "Chestplate", 20);
 		Equip thirdChestplate = new Equip("God Monk Robe", "Chestplate", 50);

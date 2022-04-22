@@ -78,7 +78,7 @@ public class Warrior extends Character {
 	@Override
 	public void chestplate() {
 
-		Equip basicChestplate = new Equip("Basic ChestPlate", "Chestplate", 5);
+		Equip basicChestplate = new Equip("Basic ChestPlate", "Chestplate", 3);
 
 		Equip firstChestplate = new Equip("Burden of Fire", "Chestplate", 10);
 
