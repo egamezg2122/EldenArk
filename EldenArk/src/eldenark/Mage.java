@@ -86,11 +86,8 @@ public class Mage extends Character {
 	@Override
 	public void abilities(Character enemy) {
 
-<<<<<<< Updated upstream
         String abilitiesMage[] = {"1- Fireball", "2- Translation", "3- Frost Nova", "4- Thunder Weather", "5- Silvermoon"};
-=======
-		String abilitiesMage[] = {"Bola de fuego", "Traslación", "Nova de Escarcha", "Clima de Trueno", "Lunargenta"};
->>>>>>> Stashed changes
+
 
 		int option;
 

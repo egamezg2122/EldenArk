@@ -127,11 +127,9 @@ public class Warrior extends Character {
 	@Override
 	public void abilities(Character enemy) {
 
-<<<<<<< Updated upstream
+
         String abilitiesWarrior[] = {"1- Thor's Hammer", "2- Ram load", "3- Battle cry", "4- Double edge", "5- Heroic jump"};
-=======
-		String abilitiesWarrior[] = {"Martillo de Thor", "Carga de ariete", "Grito de combate", "Doble filo", "Salto heroico"};
->>>>>>> Stashed changes
+
 
 		int option;
 

@@ -88,14 +88,8 @@ public class Priest extends Character {
 
 	@Override
 
-<<<<<<< Updated upstream
-        String abilitiesPriest[] = {"1- Power Infusion", "2- Punishment", "3- Jump of faith", "4- Levitation", "5- Desperate prayer"};
-=======
 	public void abilities(Character enemy) {
->>>>>>> Stashed changes
-
-		String abilitiesPriest[] = {"Infusión de poder", "Punición", "Salto de fe", "Levitación", "Rezo desesperado"};
-
+		String abilitiesPriest[] = {"1- Power Infusion", "2- Punishment", "3- Jump of faith", "4- Levitation", "5- Desperate prayer"};
 		int option;
 
 		boolean control = false;
@@ -204,13 +198,11 @@ public class Priest extends Character {
 
 						this.setHp(this.getHp() + healed);
 
-<<<<<<< Updated upstream
-                        System.out.println("You used " + abilitiesPriest[option - 1] + " on the enemy.");
-                        System.out.println("You healed " + healed + " Hp.");
-                        System.out.println("-60 Mana");
-=======
+						System.out.println("You used " + abilitiesPriest[option - 1] + " on the enemy.");
+						System.out.println("You healed " + healed + " Hp.");
+						System.out.println("-60 Mana");
+
 						this.setMp(this.getMp() - 60);
->>>>>>> Stashed changes
 
 						if (this.getHp() > this.getMaxHP()) {
 
