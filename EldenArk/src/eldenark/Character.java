@@ -239,7 +239,7 @@ public class Character {
                 System.out.println("The enemy uses his special ability.");
                 System.out.println("The enemy did 0 damage to you. Wow, how did you not get hurt!?");
             }
-            enemy.setMp(enemy.getMp() - 40);
+            enemy.setMp(enemy.getMp() - 80);
             if (enemy.getMp() < 0) {
                 enemy.setMp(0);
             }
