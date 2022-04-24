@@ -9,55 +9,81 @@ package eldenark;
  *
  * @author cep
  */
-public class Potion extends Object{
-	
+public class Potion extends Object {
+
 	private int percentage;
-	
-	private int numOfUses;
-	
+
 	private String type;
 
-	public Potion(int percentage, int numOfUses, String type) {
-		this.percentage = percentage;
-		this.numOfUses = numOfUses;
-		this.type = type;
-	}
+    public Potion(String name, int percentage, String type, String description, int numOfUses) {
 
-	public int getPercentage() {
-		return percentage;
-	}
+        super(name, description, numOfUses);
 
-	public int getNumOfUses() {
-		return numOfUses;
-	}
+        this.percentage = percentage;
 
-	public String getType() {
-		return type;
-	}
+        this.type = type;
 
-	public void setPercentage(int percentage) {
-		this.percentage = percentage;
-	}
+    }
 
-	public void setNumOfUses(int numOfUses) {
-		this.numOfUses = numOfUses;
-	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
 
-	@Override
-	public String toString() {
-		return "Potion{" + "percentage=" + percentage + ", numOfUses=" + numOfUses + ", type=" + type + '}';
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 
+    public int getPercentage() {
+
+        return percentage;
+
+    }
+
+    public String getType() {
+
+        return type;
+
+    }
+
+    public void setPercentage(int percentage) {
+
+        this.percentage = percentage;
+
+    }
+
+    public void setType(String type) {
+
+        this.type = type;
+
+    }
+
+
+    @Override
+    public String toString() {
+
+        return this.getName() 
+
+                + " which " + this.getDescription();
+
+    }
+
+
+
+    @Override
+    public void use(Character c) {
+
+            switch(this.type){
+
+                    case "healing":
+
+                            c.setHp(c.getHp() + (c.getMaxHP() * this.percentage  / 100));
+
+                            c.checkMaxValues(c.getHp(),c.getMaxHP());
+
+                            break;
+
+                    case "mana":
+
+                            c.setMp(c.getMp()+ (c.getMaxMP() * this.percentage  / 100));
+
+                            c.checkMaxValues(c.getMp(),c.getMaxMP());
+            }
+
+            this.setNumOfUses(this.getNumOfUses() - 1);
+    }
 }

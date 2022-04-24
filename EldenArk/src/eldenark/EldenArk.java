@@ -1,4 +1,4 @@
-	/* 
+/* 
  
  /$$$$$$$$ /$$       /$$                            /$$$$$$            /$$      
 | $$_____/| $$      | $$                           /$$__  $$          | $$      
@@ -29,176 +29,173 @@ Version:
  */
 package eldenark;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 
 public class EldenArk {
 
-    static Random rn = new Random();
+	static Random rn = new Random();
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        // Main Logic
-        
-        Character mainCharacter;
-        
-        int[][] map = new int[10][10];
+		// Main Logic
+		introduction();
+		Character mainCharacter = pickClass();
 
-		mainCharacter = pickClass();
-		/*
-        mainCharacter = pickClass();
-        createMap(map);
-        
-        printMap(map, mainCharacter);
-        
-		mainCharacter.move();
-		*/
-		printMap(map, mainCharacter);
+		Gameplay g = new Gameplay(mainCharacter);
 
-        mainCharacter.menu();
+	}
 
+	public static String nicknameUser() {
+		boolean on = true;
+		String nickname;
+		do {
+			System.out.println("Introduce your name.");
+			nickname = Teclat.llegirString();
+			if ("".equals(nickname)) {
+				System.err.println("Try again.");
+				on = false;
+			}
+		} while (!on && "".equals(nickname));
 
-                
-		printMap(map, mainCharacter);
-                
-        do {
-            
-            mainCharacter.menu();
-            
-        } while (mainCharacter.getHp() > 0);
+		return nickname;
+	}
 
+	public static void gameOver() {
+		System.out.println("GAME OVER");
+		System.out.println("Do you want to play again? (Y/N)");
+		char option = Teclat.llegirChar();
+		if (option == 'y') {
+			Character newMainCharacter = pickClass();
 
-        /*
-		Warrior personajeInicial = createWarrior();
-
-		personajeInicial.showStats();
-		personajeInicial.setHp(25);
-		for (int i = 0; i < 5; i++) {
-			personajeInicial.levelUp();
+			Gameplay newGameplay = new Gameplay(newMainCharacter);
+		} else {
+			System.out.println("GoodBye!");
 		}
-		System.out.println("\n\n\n");
-		personajeInicial.showStats();
-         */
-    }
-
-    // User picking their character class
-    
-    public static Character pickClass() {
-        
-        Character main = new Character();
-        
-        int option;
-        
-        System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
-        
-        option = Teclat.llegirInt();
-        
-        switch (option) {
-            
-            case 1:
-                
-                main = createWarrior();
-                
-                break;
-                
-            case 2:
-                
-                main = createMage();
-                
-                break;
-                
-            case 3:
-                
-                main = createPriest();
-                
-                break;
-                
-            default:
-                
-                System.err.println("Not a valid number");
-                
-        }
-
-        return main;
-    }
-
-    // Testins creating a basic map
-    public static void createMap(int[][] array) {
-        /* 0 - Nothing
-        1 - Loot
-        2 - Enemy
-         */
-        for (int[] array1 : array) {
-            for (int j = 0; j < array.length; j++) {
-                array1[j] = rn.nextInt(3);
-            }
-        }
-    }
-
-    // Print map
-    public static void printMap(int[][] map, Character mainCharacter) {
-        for (int i = 0; i < map.length; i++) {
-            System.out.println("\n_____________________________________________________________\n");
-            for (int j = 0; j < map[i].length; j++) {
-				if (j == mainCharacter.getX() && i == mainCharacter.getY()) {
-					System.out.print("|" + "\u001B[34m"+"    O" + "\u001B[30m");
-				} else if (map[i][j]==0) {
-					System.out.print(String.format("|%5s", ""));
-				} else{
-					System.out.print(String.format("|%5d", map[i][j]));
-				}
-            }
-            System.out.print("|");
-        }
-        System.out.println("\n_____________________________________________________________");
-    }
-
-    // Test creating Warrior character
-    public static Warrior createWarrior() {
-
-        Warrior w = new Warrior(10, 10, 50, 50, 20, 20, 10, generateInventory());
-
-        return w;
-
-    }
-
-    // Test create a Mage object
-    public static Mage createMage() {
-
-        Mage m = new Mage(10, 10, 50, 50, 20, 20, 10, generateInventory());
-
-        return m;
-
-    }
-
-    // Test create a Priest object
-    public static Priest createPriest() {
-
-        Priest p = new Priest(10, 10, 50, 50, 20, 20, 10, generateInventory());
-
-        return p;
-
-    }
+	}
 	
-	
+	public static void win(String nickname) {
+		System.out.println("Congratulations " + nickname + " on compleating sucessfully Elden Ark. We hope you enjoyed the game and stay tuned for futures updates\n\n\n");
+		credits();
+
+	}
+
+	public static void credits() {
+		System.out.println(String.format("%50.50s %20.20s", "", "GAME DEVELOPED BY"));
+		System.out.println("\n\n");
+		System.out.println(String.format("%50.50s %20.20s", "", "Elias Gamez"));
+		System.out.println(String.format("%50.50s %20.20s", "", "Albert Salazar"));
+		System.out.println(String.format("%50.50s %20.20s", "", "Leo Ferraz"));
+		System.out.println(String.format("%50.50s %20.20s", "", "Marcel Homar"));
+	}
+
+	// User picking their character class
+	public static Character pickClass() {
+
+		Character main = new Character();
+
+		int option;
+
+		do {
+			System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
+			option = validation();
+			if (option <= 0 || option > 3) {
+				System.err.println("Invalid option.");
+			}
+		} while (option <= 0 || option > 3);
+		switch (option) {
+
+			case 1:
+
+				main = createWarrior();
+
+				System.out.println("You have chosen the warrior class");
+
+				break;
+
+			case 2:
+
+				main = createMage();
+
+				System.out.println("You have chosen the mage class");
+
+				break;
+
+			case 3:
+
+				main = createPriest();
+
+				System.out.println("You have chosen the priest class");
+
+				break;
+		}
+
+		return main;
+	}
+
+	public static int validation() {
+		int option;
+		try {
+			option = Teclat.llegirInt();
+		} catch (InputMismatchException e) {
+			option = -1;
+		}
+		return option;
+	}
+
+	// CLASS GENERATORS 
+	public static Warrior createWarrior() {
+
+		Warrior w = new Warrior(25, 15, 140, 140, 60, 60, 15, "Warrior", generateInventory());
+
+		return w;
+
+	}
+
+	// Test create a Mage object
+	public static Mage createMage() {
+
+		Mage m = new Mage(12, 5, 100, 100, 160, 160, 25, "Mage", generateInventory());
+
+		return m;
+	}
+
+	// Test create a Priest object
+	public static Priest createPriest() {
+
+		Priest p = new Priest(15, 10, 120, 120, 120, 120, 15, "Priest", generateInventory());
+
+		return p;
+	}
+
 	
 	public static Object[] generateInventory() {
-		
-		Potion smallHealing = new Potion(30, 2, "Healing");
-		
-		Potion largeHealing = new Potion(50, 0, "Healing");
-		
-		Potion smallMana = new Potion(30, 0, "Mana Regeneration");
-		
-		Potion largeMana = new Potion(50, 0, "Mana Regeneration");
+
+		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", 2);
+
+		Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "It restores 50% health of your max HP", 0);
+
+		Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "It restores 30% mana of your max MP", 2);
+
+		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "It restores 50% mana of your max MP", 0);
 
 		Object[] inventory = new Object[4];
-		
+
 		inventory[0] = smallHealing;
 		inventory[1] = largeHealing;
 		inventory[2] = smallMana;
 		inventory[3] = largeMana;
-		
+
 		return inventory;
+	}
+
+	private static void introduction() {
+		System.out.println("\t\t\t\t\tWelcome to Elden Ark!");
+		System.out.println("\n\nThis Roguelike Game is and RPG-playing video games characterized by a dungeon crawl through procedurally generated levels,\nturn-based gameplay, grid-based movement, and permanent death of the player character.");
+		System.out.println("\nIf you die, you will need to start again losing all your progress.\n\n");
+		System.out.println("The Tower of Elden Ark have 4 floors and when you kill the Final Boss you will advance to the next floor");
+		System.out.println("In addition, there will be 3 minibosses that give extra loot and experience. Try killing them whenever you need power");
+		System.out.println("Choose carefully your class and start leveling up to complete the TOWER OF THE ELDEN ARK\n");
 	}
 
 }
