@@ -38,15 +38,15 @@ public class Gameplay {
         createMap();
         reprint();
         running = true;
-        f = new JFrame("Demo");
+        f = new JFrame("Keyboard Listener");
 
         f.setLayout(new FlowLayout());
         f.setSize(400, 400);
         Label l = new Label();
 
-        l.setText("This is Map movement");
+        l.setText("This is only for map movement");
         f.add(l);
-
+        f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         f.setVisible(true);
 
         //Creating and adding the key listener
@@ -181,7 +181,7 @@ public class Gameplay {
     }
 
     public void mapTiles() {
-        System.out.println("M - Merchant\tY - MiniBoss\tX - Final Boss\t^ - Mountains");
+        System.out.println("M - Merchant\tY - MiniBoss\tX - Final Boss\t^ - Spikes");
     }
 
     public void printMoveOptions() {
