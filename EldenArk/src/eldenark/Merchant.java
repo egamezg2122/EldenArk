@@ -276,7 +276,7 @@ public class Merchant {
 
 				case 0:
 
-					System.out.println("See you <3");
+					System.out.println("See you ugu!");
 					
 					exit = true;
 					break;
