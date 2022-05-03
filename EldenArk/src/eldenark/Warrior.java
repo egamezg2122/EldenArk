@@ -9,7 +9,7 @@ public class Warrior extends Character {
 
 	//Constructors
 	// MAIN
-	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, ObjectP[] inventory) {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
 	}
 

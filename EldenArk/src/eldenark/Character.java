@@ -34,7 +34,7 @@ public class Character {
 
     private int y = 2; // Position in the map
 
-    protected Object[] inventory = new Object[4]; // Testing inventory
+    protected ObjectP[] inventory = new ObjectP[4]; // Testing inventory
 
     private Equip[] equipment = new Equip[4];
 
@@ -49,7 +49,7 @@ public class Character {
 
     // Constructors
     // Constructor for MAIN CHARACTER
-    public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+    public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, ObjectP[] inventory) {
 
         this.level = 1; // Always start at level 1
 
@@ -902,7 +902,7 @@ public class Character {
         return y;
     }
 
-    public Object[] getInventory() {
+    public ObjectP[] getInventory() {
         return inventory;
     }
 

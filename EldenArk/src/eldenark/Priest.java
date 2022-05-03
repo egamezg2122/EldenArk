@@ -8,7 +8,7 @@ package eldenark;
 public class Priest extends Character {
 
 	// MAIN
-	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, ObjectP[] inventory) {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
 	}
 

@@ -20,8 +20,8 @@ public class Merchant {
 	private int x;
 	private int floor;
 	private Character mainCharacter;
-	private Object sellingObject1;
-	private Object sellingObject2;
+	private ObjectP sellingObject1;
+	private ObjectP sellingObject2;
 	private Equip sellingEquip;
 	//private Weapon sellingWeapon1;
 	private int priceSmallObject = 20;
@@ -76,7 +76,7 @@ public class Merchant {
 
 	}
 
-	private Object generateSmallObject() {
+	private ObjectP generateSmallObject() {
 
 		Potion a;
 
@@ -104,7 +104,7 @@ public class Merchant {
 
 	}
 
-	private Object generateBigObject() {
+	private ObjectP generateBigObject() {
 
 		Potion a;
 

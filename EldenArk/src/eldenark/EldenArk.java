@@ -169,7 +169,7 @@ public class EldenArk {
 	}
 
 	
-	public static Object[] generateInventory() {
+	public static ObjectP[] generateInventory() {
 
 		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", 2);
 
@@ -179,7 +179,7 @@ public class EldenArk {
 
 		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "It restores 50% mana of your max MP", 0);
 
-		Object[] inventory = new Object[4];
+		ObjectP[] inventory = new ObjectP[4];
 
 		inventory[0] = smallHealing;
 		inventory[1] = largeHealing;

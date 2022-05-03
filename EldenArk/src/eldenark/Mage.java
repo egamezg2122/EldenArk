@@ -8,7 +8,7 @@ package eldenark;
 public class Mage extends Character {
 
 	// MAIN 
-	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, ObjectP[] inventory) {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
 	}
 
