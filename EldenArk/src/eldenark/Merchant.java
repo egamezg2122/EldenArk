@@ -368,14 +368,11 @@ public class Merchant {
 
                 case 0:
 
-<<<<<<< Updated upstream
-					System.out.println("See you ugu!");
+                    System.out.println("See you ugu!");
 					
-					exit = true;
-					break;
-=======
+                    exit = true;
+
                     System.out.println("See you <3");
->>>>>>> Stashed changes
 
                     exit = true;
                     
