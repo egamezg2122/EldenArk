@@ -1,58 +1,71 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package eldenark;
 
 /**
  *
  * @author cep
+ * 
  */
+
 public class Equip {
 
-	private String name;
+    private String name;
 
-	private String type;
+    private String type;
 
-	private int profit;
+    private int profit;
 
-	public Equip(String name, String type, int profit) {
-		this.name = name;
-		this.type = type;
-		this.profit = profit;
-	}
-	
-	public Equip(){
-		
-	}
+    public Equip(String name, String type, int profit) {
+        
+        this.name = name;
+        
+        this.type = type;
+        
+        this.profit = profit;
+        
+    }
 
-	//GETTERS
-	public String getName() {
-		return name;
-	}
+    public Equip() {
 
-	public int getProfit() {
-		return profit;
-	}
+    }
 
-	public String getType() {
-		return type;
-	}
+    //GETTERS
+    
+    public String getName() {
+        
+        return name;
+        
+    }
 
-	//SETTERS
-	public void setName(String name) {
-		this.name = name;
-	}
+    public int getProfit() {
+        
+        return profit;
+        
+    }
 
-	public void setProfit(int profit) {
-		this.profit = profit;
-	}
+    public String getType() {
+        
+        return type;
+        
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    //SETTERS
+    
+    public void setName(String name) {
+        
+        this.name = name;
+        
+    }
 
+    public void setProfit(int profit) {
+        
+        this.profit = profit;
+        
+    }
 
+    public void setType(String type) {
+        
+        this.type = type;
+        
+    }
 
 }
