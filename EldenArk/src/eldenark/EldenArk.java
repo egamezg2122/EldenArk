@@ -42,6 +42,10 @@ public class EldenArk {
     public static void main(String[] args) {
 
         // Show Introduction
+		
+		Map a = new Map();
+		
+		a.setVisible(true);
         
         introduction();
         
