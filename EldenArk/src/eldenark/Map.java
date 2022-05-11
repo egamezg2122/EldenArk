@@ -28,6 +28,14 @@ public class Map extends JFrame implements ActionListener {
 	
 	private JLabel[][] solidTiles = new JLabel[NUM_TILES_Y][NUM_TILES_X];
 	
+	private JLabel[] spikes = new JLabel[10];
+	
+	private JLabel[] minorBosses = new JLabel[4];
+	
+	private JLabel finalBoss;
+	
+	private JLabel mainCharacterLabel;
+	
 	private JLabel[] moveOptions = new JLabel[5];
 	
 	private JMenuBar frameMenu = new JMenuBar();
@@ -44,6 +52,12 @@ public class Map extends JFrame implements ActionListener {
         
          
         //this.addKeyListener(new MyKeyAdapter());
+		
+		spawnMainCharacter();
+		
+		spawnMobs();
+		
+		setSpikes();
 		
 		setMap();
 		
@@ -90,6 +104,8 @@ public class Map extends JFrame implements ActionListener {
 		finalSolidTile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/SUELO.png"))); // NOI18N
 		finalSolidTile.setBounds(SCREEN_WIDTH, SCREEN_HEIGHT, LABEL_SIZE, LABEL_SIZE);
 		
+		
+		
 	}
 
 	private void setOptions() {
@@ -133,6 +149,42 @@ public class Map extends JFrame implements ActionListener {
 		
 	}
 	
+	private void spawnMainCharacter() {
+		mainCharacterLabel = new JLabel();
+		this.add(mainCharacterLabel);
+		mainCharacterLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_BACK.png"))); // NOI18N
+		mainCharacterLabel.setBounds((LABEL_SIZE*12) - 2, LABEL_SIZE*12, LABEL_SIZE, LABEL_SIZE);
+		mainCharacterLabel.setName("Spikes"); // NOI18N
+		
+	}
+	
+	private void setSpikes() {
+		for (int i = 0; i < spikes.length; i++) {
+			spikes[i] = new javax.swing.JLabel();
+			this.add(spikes[i]);
+			spikes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/SPIKE.png"))); // NOI18N
+			spikes[i].setBounds(LABEL_SIZE, LABEL_SIZE*i , LABEL_SIZE, LABEL_SIZE);
+			spikes[i].setName("Spikes"); // NOI18N
+				
+		}
+	}
+	
+	private void spawnMobs(){
+		//FALTAN FOTOS
+		
+		for (int i = 0; i < 4; i++) {
+			minorBosses[i] = new javax.swing.JLabel();
+			this.add(minorBosses[i]);
+			minorBosses[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/sPIKE.png"))); // NOI18N
+			minorBosses[i].setBounds(LABEL_SIZE, LABEL_SIZE*2*i, LABEL_SIZE, LABEL_SIZE);
+			minorBosses[i].setName("Minor Boss"); // NOI18N
+		}
+	}
+	
+	
+	
+	
+	
 	@Override
 	 public void actionPerformed(ActionEvent e) {
         if (e.getSource()==save) {
@@ -142,6 +194,8 @@ public class Map extends JFrame implements ActionListener {
             this.dispose();
         }
     }
+
+	
 
     
 
