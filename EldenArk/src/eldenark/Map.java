@@ -19,9 +19,6 @@ public class Map extends JFrame implements ActionListener {
     static final int SCREEN_HEIGHT = 600;
 	static final int ACTUAL_SCREEN_WIDTH = 1205;
     static final int ACTUAL_SCREEN_HEIGHT = 700;
-    static final int UNIT_SIZE = 25;
-    static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / UNIT_SIZE;
-    static final int DELAY = 100;
 	static final int LABEL_SIZE = 30;
 	static final int NUM_TILES_X = SCREEN_WIDTH / LABEL_SIZE;
 	static final int NUM_TILES_Y = SCREEN_HEIGHT / LABEL_SIZE;

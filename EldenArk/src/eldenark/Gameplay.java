@@ -5,14 +5,12 @@
  */
 package eldenark;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
 
@@ -20,41 +18,202 @@ import javax.swing.*;
  *
  * @author cep
  */
-public class Gameplay {
+public class Gameplay extends JFrame implements ActionListener{
 
-    String nickname = EldenArk.nicknameUser();
-    int[][] map = new int[5][30];
+    	
+	//Frame variables
+	static final int SCREEN_WIDTH = 1200;
+    static final int SCREEN_HEIGHT = 600;
+	static final int ACTUAL_SCREEN_WIDTH = 1205;
+    static final int ACTUAL_SCREEN_HEIGHT = 700;
+	static final int LABEL_SIZE = 30;
+	static final int NUM_TILES_X = SCREEN_WIDTH / LABEL_SIZE;
+	static final int NUM_TILES_Y = SCREEN_HEIGHT / LABEL_SIZE;
+	
+	private JLabel[][] solidTiles = new JLabel[NUM_TILES_Y][NUM_TILES_X];
+	
+	private JLabel[] spikes = new JLabel[10];
+	
+	private JLabel[] minorBosses = new JLabel[4];
+	
+	private JLabel finalBoss;
+	
+	private JLabel mainCharacterLabel;
+	
+	private JLabel[] moveOptions = new JLabel[5];
+	
+	private JMenuBar frameMenu = new JMenuBar();
+	
+	private JMenu gameOption;
+	
+	private JMenuItem save, exit;
+	
+	// GAMEPLAY VARIABLES
+	String nickname = EldenArk.nicknameUser();
+    int[][] map = new int[NUM_TILES_Y][NUM_TILES_X];
     static Random rn = new Random();
     Character mainCharacter = new Character();
     boolean running = false;
     boolean inMap = true;
     JFrame f;
     int floor = 1;
-
     Merchant merchant;
-
+	
+	
     public Gameplay(Character mainCharacter) {
         this.mainCharacter = mainCharacter;
         createMap();
         reprint();
         running = true;
-        f = new JFrame("Keyboard Listener");
-
-        f.setLayout(new FlowLayout());
-        f.setSize(400, 400);
-        Label l = new Label();
-
-        l.setText("This is only for map movement");
-        f.add(l);
-        f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        f.setVisible(true);
+		this.setTitle("Map");
+        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setVisible(true);
 
         //Creating and adding the key listener
         MyKeyAdapter k;
         k = new MyKeyAdapter();
 
-        f.addKeyListener(k);
+        this.addKeyListener(k);
+		
+		this.setPreferredSize(new Dimension(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT));
 
+		spawnMainCharacter();
+		
+		spawnMobs();
+		
+		setSpikes();
+		
+		setMap();
+		
+		this.pack();
+		
+		setOptions();
+		
+		
+		
+		this.getContentPane().setBackground(Color.BLACK);
+		
+		this.setResizable(false);
+		
+		this.setJMenuBar(frameMenu);
+		
+		setMenu();
+    }
+	
+	//FRAME METHODS
+	private void setMap() {
+		
+		
+		for (int i = 0; i < NUM_TILES_Y; i++) {
+			for (int j = 0; j < NUM_TILES_X; j++) {
+				solidTiles[i][j] = new javax.swing.JLabel();
+				this.add(solidTiles[i][j]);
+				solidTiles[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/SUELO.png"))); // NOI18N
+				solidTiles[i][j].setBounds(LABEL_SIZE*j, LABEL_SIZE*i, LABEL_SIZE, LABEL_SIZE);
+				/*
+				solidTiles[i][j].setMaximumSize(new java.awt.Dimension(30, 30));
+				solidTiles[i][j].setMinimumSize(new java.awt.Dimension(30, 30));
+*/
+				solidTiles[i][j].setName("SOLID TILE"); // NOI18N
+				
+				
+			}
+		}
+		JLabel finalSolidTile = new JLabel();
+		this.add(finalSolidTile);
+		finalSolidTile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/SUELO.png"))); // NOI18N
+		finalSolidTile.setBounds(SCREEN_WIDTH, SCREEN_HEIGHT, LABEL_SIZE, LABEL_SIZE);
+		
+		
+		
+	}
+
+	private void setOptions() {
+		for (int i = 0; i < moveOptions.length; i++) {
+			moveOptions[i] = new JLabel();
+			this.add(moveOptions[i]);
+			moveOptions[i].setForeground(Color.WHITE);
+		}
+		moveOptions[0].setText("W - Upwards");
+		moveOptions[1].setText("A - Left");
+		moveOptions[2].setText("S - Downwards");
+		moveOptions[3].setText("D - Right");
+		
+		moveOptions[0].setBounds(200, 600, 300, 30);
+		moveOptions[1].setBounds(0, 615, 300, 30);
+		moveOptions[2].setBounds(200, 615, 300, 30);
+		moveOptions[3].setBounds(400, 615, 300, 30);
+		
+		
+		/*	
+		JLabel moveOptions = new JLabel();
+		this.add(moveOptions);
+		String text = "\nQ - Stats\tW - Upwards\tE - Equip\tR - Loot\nA - Left\tS - Downwards\tD - Right\t0 - Exit Game\nI - Inventory";
+		moveOptions.setText(text);
+		moveOptions.setName("Move Options");
+		moveOptions.setBounds(0, 600, 1200, 30);
+		moveOptions.setForeground(Color.WHITE);
+		*/
+		
+	}
+
+	private void setMenu() {
+		gameOption = new JMenu("Game");
+        frameMenu.add(gameOption);
+		save = new JMenuItem("Save");
+		exit = new JMenuItem("Exit");
+		save.addActionListener(this);
+		exit.addActionListener(this);
+		gameOption.add(save);
+		gameOption.add(exit);
+		
+	}
+	
+	private void spawnMainCharacter() {
+		mainCharacterLabel = new JLabel();
+		this.add(mainCharacterLabel);
+		mainCharacterLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_BACK.png"))); // NOI18N
+		mainCharacterLabel.setBounds((LABEL_SIZE*mainCharacter.getX()) - 2, (LABEL_SIZE*mainCharacter.getY()), LABEL_SIZE, LABEL_SIZE);
+		mainCharacterLabel.setName("MAIN CHARACTER LABEL"); // NOI18N
+		
+	}
+	
+	private void setSpikes() {
+		for (int i = 0; i < spikes.length; i++) {
+			spikes[i] = new javax.swing.JLabel();
+			this.add(spikes[i]);
+			spikes[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/SPIKE.png"))); // NOI18N
+			spikes[i].setBounds(LABEL_SIZE, LABEL_SIZE*i , LABEL_SIZE, LABEL_SIZE);
+			spikes[i].setName("Spikes"); // NOI18N
+				
+		}
+	}
+	
+	private void spawnMobs(){
+		//FALTAN FOTOS
+		
+		for (int i = 0; i < 4; i++) {
+			minorBosses[i] = new javax.swing.JLabel();
+			this.add(minorBosses[i]);
+			minorBosses[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/sPIKE.png"))); // NOI18N
+			minorBosses[i].setBounds(LABEL_SIZE, LABEL_SIZE*2*i, LABEL_SIZE, LABEL_SIZE);
+			minorBosses[i].setName("Minor Boss"); // NOI18N
+		}
+	}
+	
+	
+	
+	
+	
+	@Override
+	 public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==save) {
+            //Save WORK IN PROGRESS
+        }
+        if (e.getSource()==exit) {
+            this.dispose();
+        }
     }
 
     // GENERATING THE MAP
@@ -278,6 +437,7 @@ public class Gameplay {
             case 1:
                 System.out.println("You found loot");
                 break;
+			/*
             case 2:
                 System.out.println("You found a normal enemy. Starting combat");
                 startCombat();
@@ -299,7 +459,7 @@ public class Gameplay {
                     newFloor();
                 }
                 break;
-
+*/
         }
 
     }
@@ -451,6 +611,20 @@ public class Gameplay {
         newEquipmentProbability();
 
     }
+	
+	public void changeMainCharacterLabel(int direction){
+		mainCharacterLabel.setBounds((LABEL_SIZE * mainCharacter.getX()) - 2, (LABEL_SIZE * mainCharacter.getY()), LABEL_SIZE, LABEL_SIZE);
+		//1 - UP, 2 - Left, 3 - Down, 4 - Right
+		switch(direction){
+			case 1: mainCharacterLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_BACK.png")));
+			break;
+			case 2: mainCharacterLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_LEFT.png")));
+			break;
+			case 3: mainCharacterLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_FRONT.png")));
+			break;
+			case 4: mainCharacterLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_RIGHT.png")));
+		}
+	}
 
     public class MyKeyAdapter implements KeyListener {
 
@@ -463,16 +637,16 @@ public class Gameplay {
             switch (e.getKeyChar()) {
                 case 'w':
                     //Thing that happens when the 'w' key is pressed
-                    if (inMap) {
-                        tryToMoveUP();
-                        checkNewTile();
-                    }
+                    tryToMoveUP();
+                    checkNewTile();
+                    changeMainCharacterLabel(1);
                     break;
                 case 's':
                     //Thing that happens when the 's' key is pressed
                     if (inMap) {
                         tryToMoveDown();
                         checkNewTile();
+						changeMainCharacterLabel(3);
                     }
                     break;
                 case 'd':
@@ -480,6 +654,7 @@ public class Gameplay {
                     if (inMap) {
                         tryToMoveRight();
                         checkNewTile();
+						changeMainCharacterLabel(4);
                     }
                     break;
                 case 'a':
@@ -487,6 +662,7 @@ public class Gameplay {
                     if (inMap) {
                         tryToMoveLeft();
                         checkNewTile();
+						changeMainCharacterLabel(2);
                     }
                     break;
                 case 'r':
