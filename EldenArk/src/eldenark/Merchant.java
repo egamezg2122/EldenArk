@@ -438,4 +438,14 @@ public class Merchant {
 
     }
 
+	public int getY() {
+		return y;
+	}
+
+	public int getX() {
+		return x;
+	}
+	
+	
+
 }

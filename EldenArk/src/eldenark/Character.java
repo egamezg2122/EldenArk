@@ -30,9 +30,9 @@ public class Character {
 
     private String role;
 
-    private int x = 10; // Position in the map
+    private int x = 20; // Position in the map
 
-    private int y = 2; // Position in the map
+    private int y = 10; // Position in the map
 
     protected Object[] inventory = new Object[4]; // Testing inventory
 
@@ -46,6 +46,16 @@ public class Character {
     protected Equip[] newChestPlates = new Equip[5];
 
     protected Equip[] newLegArmors = new Equip[5];
+	
+	private String characterLookingUp;
+	
+	private String characterLookingLeft;
+	
+	private String characterLookingDown;
+	
+	private String characterLookingRight;
+	
+	public boolean sex = false; //true - male / false - women
 
     // Constructors
     // Constructor for MAIN CHARACTER
@@ -86,6 +96,8 @@ public class Character {
         equipment[3] = newLegArmors[0];
 
         addEquip(equipment);
+		
+		getImagePath();
 
     }
 
@@ -1005,4 +1017,44 @@ public class Character {
     public void legArmor() {
 
     }
+
+	public void getImagePath() {
+		
+	}
+
+	public void setCharacterLookingUp(String characterLookingUp) {
+		this.characterLookingUp = characterLookingUp;
+	}
+
+	public void setCharacterLookingLeft(String characterLookingLeft) {
+		this.characterLookingLeft = characterLookingLeft;
+	}
+
+	public void setCharacterLookingDown(String characterLookingDown) {
+		this.characterLookingDown = characterLookingDown;
+	}
+
+	public void setCharacterLookingRight(String characterLookingRight) {
+		this.characterLookingRight = characterLookingRight;
+	}
+
+	public String getCharacterLookingUp() {
+		return characterLookingUp;
+	}
+
+	public String getCharacterLookingLeft() {
+		return characterLookingLeft;
+	}
+
+	public String getCharacterLookingDown() {
+		return characterLookingDown;
+	}
+
+	public String getCharacterLookingRight() {
+		return characterLookingRight;
+	}
+	
+	
+	
+	
 }

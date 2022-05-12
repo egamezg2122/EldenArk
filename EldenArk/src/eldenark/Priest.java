@@ -253,4 +253,18 @@ public class Priest extends Character {
                 return enemyOption;
 	}
 
+	@Override
+	public void getImagePath() {
+		if(sex){
+			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_BACK.png");
+			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_LEFT.png");
+			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_FRONT.png");
+			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_RIGHT.png");
+		} else{
+			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_BACK.png");
+			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_LEFT.png");
+			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_FRONT.png");
+			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_RIGHT.png");
+		}
+	}
 }

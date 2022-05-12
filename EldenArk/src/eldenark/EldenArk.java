@@ -42,7 +42,11 @@ public class EldenArk {
     public static void main(String[] args) {
 
         // Show Introduction
-        
+		/*
+        Map m = new Map();
+		m.setVisible(true);
+		*/
+		
         introduction();
         
         // Let the user to choose the main character
