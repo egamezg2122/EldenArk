@@ -255,7 +255,7 @@ public class Priest extends Character {
 
 	@Override
 	public void getImagePath() {
-		if(sex){
+		if(sex == 0){
 			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_BACK.png");
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_FRONT.png");

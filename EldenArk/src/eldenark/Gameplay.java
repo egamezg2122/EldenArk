@@ -60,6 +60,12 @@ public class Gameplay extends JFrame implements ActionListener {
 	JFrame f;
 	int floor = 1;
 	Merchant merchant;
+	
+	// VARIABLES FOR SAVING THE GAME
+	static final int SIZE = 3324;
+	static final int STRING_SIZE = 12;
+	
+	
 
 	public Gameplay(Character mainCharacter) {
 		this.mainCharacter = mainCharacter;
@@ -216,6 +222,7 @@ public class Gameplay extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == save) {
 			//Save WORK IN PROGRESS
+			BinaryFile.saveGame(this);
 		}
 		if (e.getSource() == exit) {
 			this.dispose();
@@ -639,6 +646,20 @@ public class Gameplay extends JFrame implements ActionListener {
 			case 4:
 				mainCharacterLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(mainCharacter.getCharacterLookingRight())));
 		}
+	}
+	
+	
+	public static String stringParser (String a) {
+		String toReturn = a;
+		/*
+		if (toReturn.length() > STRING_SIZE) {
+			toReturn.substring(STRING_SIZE);
+		} else {
+			toReturn = String.format("%-" + STRING_SIZE + "." + STRING_SIZE + "s", toReturn);
+		}
+		*/
+		toReturn = String.format("%-" + STRING_SIZE + "." + STRING_SIZE + "s", toReturn);
+		return toReturn;
 	}
 
 	public class MyKeyAdapter implements KeyListener {

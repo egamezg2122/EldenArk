@@ -55,7 +55,7 @@ public class Character {
 	
 	private String characterLookingRight;
 	
-	public boolean sex = false; //true - male / false - women
+	public int sex = 0; //0 - male / 1 - women
 
     // Constructors
     // Constructor for MAIN CHARACTER
@@ -1053,6 +1053,29 @@ public class Character {
 	public String getCharacterLookingRight() {
 		return characterLookingRight;
 	}
+
+	public int getSex() {
+		return sex;
+	}
+
+	public Equip[] getNewWeapons() {
+		return newWeapons;
+	}
+
+	public Equip[] getNewHelmets() {
+		return newHelmets;
+	}
+
+	public Equip[] getNewChestPlates() {
+		return newChestPlates;
+	}
+
+	public Equip[] getNewLegArmors() {
+		return newLegArmors;
+	}
+	
+	
+	
 	
 	
 	

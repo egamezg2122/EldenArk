@@ -446,6 +446,54 @@ public class Merchant {
 		return x;
 	}
 	
+	public int getSmallObjectNum() {
+		int smallNum = 1;
+		if(sellingObject1.getName().equals("Small Healing Potion")){
+			smallNum = 0;
+		}
+		return smallNum;
+	}
+	
+	public int getBigObjectNum() {
+		int bigNum = 1;
+		if(sellingObject2.getName().equals("Large Healing Potion")){
+			bigNum = 0;
+		}
+		return bigNum;
+	}
+	
+	public int getEquipmentNum() {
+		int equipNum = 0;
+		switch(sellingEquip.getType()){
+			case "Weapon": 
+				equipNum = 0;
+				break;
+			case "Helmet":
+				equipNum = 1;
+				break;
+			case "Chestplate":
+				equipNum = 2;
+				break;
+			case "Leg Armor":
+				equipNum = 3;
+				break;
+		}
+		return equipNum;
+	}
+
+	public int getQuantitySmallObject() {
+		return quantitySmallObject;
+	}
+
+	public int getQuantityBigObject() {
+		return quantityBigObject;
+	}
+
+	public int getQuantityEquip() {
+		return quantityEquip;
+	}
+	
+	
 	
 
 }

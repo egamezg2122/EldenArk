@@ -67,5 +67,18 @@ public class Equip {
         this.type = type;
         
     }
+	
+	public static int getEquipNumber(Equip mainCharacterEquiped, Equip[] newEquip){
+		int equipFloor = 0;
+		int i = 0;
+		do {
+			if (mainCharacterEquiped.getName().equalsIgnoreCase(newEquip[i].getName())) {
+				equipFloor = i;
+			}
+			i++;
+		} while (i < newEquip.length && equipFloor == 0);
+		
+		return equipFloor;
+	}
 
 }
