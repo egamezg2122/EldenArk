@@ -55,7 +55,7 @@ public class Character {
 	
 	private String characterLookingRight;
 	
-	public int sex = 0; //0 - male / 1 - women
+	public int sex = 1; //0 - male / 1 - women
 
     // Constructors
     // Constructor for MAIN CHARACTER

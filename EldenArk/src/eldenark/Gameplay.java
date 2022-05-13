@@ -39,7 +39,7 @@ public class Gameplay extends JFrame implements ActionListener {
 	private JLabel finalBoss;
 
 	private JLabel mainCharacterLabel;
-	
+
 	private JLabel merchantLabel;
 
 	private JLabel[] moveOptions = new JLabel[5];
@@ -49,6 +49,8 @@ public class Gameplay extends JFrame implements ActionListener {
 	private JMenu gameOption;
 
 	private JMenuItem save, exit;
+
+	private String[] bossesPath = new String[4];
 
 	// GAMEPLAY VARIABLES
 	String nickname = EldenArk.nicknameUser();
@@ -60,12 +62,10 @@ public class Gameplay extends JFrame implements ActionListener {
 	JFrame f;
 	int floor = 1;
 	Merchant merchant;
-	
+
 	// VARIABLES FOR SAVING THE GAME
 	static final int SIZE = 3324;
 	static final int STRING_SIZE = 12;
-	
-	
 
 	public Gameplay(Character mainCharacter) {
 		this.mainCharacter = mainCharacter;
@@ -81,10 +81,13 @@ public class Gameplay extends JFrame implements ActionListener {
 
 		spawnMainCharacter();
 
-		//spawnMobs();
+		
+		spawnMobs();
+		
+		
 		
 		setMerchant();
-		
+
 		setSpikes();
 
 		setMap();
@@ -121,14 +124,14 @@ public class Gameplay extends JFrame implements ActionListener {
 		finalSolidTile.setBounds(SCREEN_WIDTH, SCREEN_HEIGHT, LABEL_SIZE, LABEL_SIZE);
 
 	}
-	
+
 	private void setMerchant() {
 		merchantLabel = new javax.swing.JLabel();
 		this.add(merchantLabel);
 		merchantLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MERCHANT/MERCHANT_MAP.png"))); // NOI18N
 		merchantLabel.setBounds((LABEL_SIZE * merchant.getX()) - 2, LABEL_SIZE * merchant.getY(), LABEL_SIZE, LABEL_SIZE);
 		merchantLabel.setName("SOLID TILE"); // NOI18N
-		
+
 	}
 
 	private void setOptions() {
@@ -208,13 +211,154 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	private void spawnMobs() {
 		//FALTAN FOTOS
+		int counter = 0;
+		setBossesPath();
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				if (map[i][j] == 4) {
+					minorBosses[counter] = new javax.swing.JLabel();
+					this.add(minorBosses[counter]);
+					minorBosses[counter].setIcon(new javax.swing.ImageIcon(getClass().getResource(bossesPath[counter]))); // NOI18N
+					minorBosses[counter].setBounds(((LABEL_SIZE * j) - 2), ((LABEL_SIZE * i) - 2), LABEL_SIZE, LABEL_SIZE);
+					minorBosses[counter].setName("Minor Boss"); // NOI18N
+					counter++;
+				} else if (map[i][j] == 5){
+					finalBoss = new javax.swing.JLabel();
+					this.add(finalBoss);
+					finalBoss.setIcon(new javax.swing.ImageIcon(getClass().getResource(bossesPath[bossesPath.length - 1]))); // NOI18N
+					finalBoss.setBounds(((LABEL_SIZE * j) - 2), LABEL_SIZE * i, LABEL_SIZE, LABEL_SIZE);
+					finalBoss.setName("Final Boss"); // NOI18N
+				}
+			}
+		}
+	}
 
-		for (int i = 0; i < 4; i++) {
-			minorBosses[i] = new javax.swing.JLabel();
-			this.add(minorBosses[i]);
-			minorBosses[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/sPIKE.png"))); // NOI18N
-			minorBosses[i].setBounds(LABEL_SIZE, LABEL_SIZE * 2 * i, LABEL_SIZE, LABEL_SIZE);
-			minorBosses[i].setName("Minor Boss"); // NOI18N
+	private void setBossesPath() {
+		switch (floor) {
+			case 1:
+				setBosses1Floor();
+				break;
+			case 2:
+				setBosses2Floor();
+				break;
+			case 3:
+				setBosses3Floor();
+				break;
+			case 4:
+				setBosses4Floor();
+				break;
+		}
+	}
+
+	private void setBosses1Floor() {
+		for (int i = 0; i < (bossesPath.length - 1); i++) {
+			switch (rn.nextInt(3)) {
+				case 0:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+					break;
+				case 1:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_MAGE_1.png";
+					break;
+				case 2:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_PRIEST_1.png";
+					break;
+				default:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+			}
+		}
+		switch (rn.nextInt(3)) {
+			case 0:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+				break;
+			case 1:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_MAGE_1.png";
+				break;
+			case 2:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_PRIEST_1.png";
+				break;
+			default:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+		}
+	}
+	
+	private void setBosses2Floor() {
+		for (int i = 0; i < (bossesPath.length - 1); i++) {
+			switch (rn.nextInt(3)) {
+				case 0:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+					break;
+				case 1:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_MAGE_1.png";
+					break;
+				case 2:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_PRIEST_1.png";
+					break;
+			}
+		}
+		switch (rn.nextInt(3)) {
+			case 0:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+				break;
+			case 1:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_MAGE_1.png";
+				break;
+			case 2:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_PRIEST_1.png";
+				break;
+		}
+	}
+	
+	private void setBosses3Floor() {
+		for (int i = 0; i < (bossesPath.length - 1); i++) {
+			switch (rn.nextInt(3)) {
+				case 0:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+					break;
+				case 1:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_MAGE_1.png";
+					break;
+				case 2:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_PRIEST_1.png";
+					break;
+			}
+		}
+		switch (rn.nextInt(3)) {
+			case 0:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+				break;
+			case 1:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_MAGE_1.png";
+				break;
+			case 2:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_PRIEST_1.png";
+				break;
+		}
+	}
+	
+	private void setBosses4Floor() {
+		for (int i = 0; i < (bossesPath.length - 1); i++) {
+			switch (rn.nextInt(3)) {
+				case 0:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+					break;
+				case 1:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_MAGE_1.png";
+					break;
+				case 2:
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_PRIEST_1.png";
+					break;
+			}
+		}
+		switch (rn.nextInt(3)) {
+			case 0:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+				break;
+			case 1:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_MAGE_1.png";
+				break;
+			case 2:
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_PRIEST_1.png";
+				break;
 		}
 	}
 
@@ -647,9 +791,8 @@ public class Gameplay extends JFrame implements ActionListener {
 				mainCharacterLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(mainCharacter.getCharacterLookingRight())));
 		}
 	}
-	
-	
-	public static String stringParser (String a) {
+
+	public static String stringParser(String a) {
 		String toReturn = a;
 		/*
 		if (toReturn.length() > STRING_SIZE) {
@@ -657,7 +800,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		} else {
 			toReturn = String.format("%-" + STRING_SIZE + "." + STRING_SIZE + "s", toReturn);
 		}
-		*/
+		 */
 		toReturn = String.format("%-" + STRING_SIZE + "." + STRING_SIZE + "s", toReturn);
 		return toReturn;
 	}
