@@ -27,8 +27,8 @@ public class Character {
     private int specialDamage;
 
     private int gold = 5;
-	
-	private String nickname;
+
+    private String nickname;
 
     private String role;
 
@@ -48,16 +48,16 @@ public class Character {
     protected Equip[] newChestPlates = new Equip[5];
 
     protected Equip[] newLegArmors = new Equip[5];
-	
-	private String characterLookingUp;
-	
-	private String characterLookingLeft;
-	
-	private String characterLookingDown;
-	
-	private String characterLookingRight;
-	
-	public int sex = 0; //0 - male / 1 - women
+
+    private String characterLookingUp;
+
+    private String characterLookingLeft;
+
+    private String characterLookingDown;
+
+    private String characterLookingRight;
+
+    public int sex = 0; //0 - male / 1 - women
 
     // Constructors
     // Constructor for MAIN CHARACTER
@@ -86,8 +86,8 @@ public class Character {
         this.role = role;
 
         this.inventory = inventory;
-		
-		this.nickname = nickname;
+
+        this.nickname = nickname;
 
         weapons();
         helmet();
@@ -100,8 +100,8 @@ public class Character {
         equipment[3] = newLegArmors[0];
 
         addEquip(equipment);
-		
-		getImagePath();
+
+        getImagePath();
 
     }
 
@@ -116,32 +116,32 @@ public class Character {
         this.specialDamage = specialDamage;
     }
 
-	//from loadFile
-    public Character(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, 
-			Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
-		this.level = lvl;
-		
-		this.xp = xp;
-		
-		this.hp = hp;
-		
-		this.mp = mp;
-		
-		this.x = x;
-		
-		this.y = y;
-		
-		this.gold = gold;
-		
-		this.sex = sex;
-		
-		getOtherStatsFromLevel(this.level);
-		
-		this.inventory = inventory;
-		
-		this.nickname = nickname;
-		
-		weapons();
+    //from loadFile
+    public Character(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex,
+            Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
+        this.level = lvl;
+
+        this.xp = xp;
+
+        this.hp = hp;
+
+        this.mp = mp;
+
+        this.x = x;
+
+        this.y = y;
+
+        this.gold = gold;
+
+        this.sex = sex;
+
+        getOtherStatsFromLevel(this.level);
+
+        this.inventory = inventory;
+
+        this.nickname = nickname;
+
+        weapons();
         helmet();
         chestplate();
         legArmor();
@@ -150,16 +150,14 @@ public class Character {
         equipment[1] = newHelmets[helmet];
         equipment[2] = newChestPlates[chest];
         equipment[3] = newLegArmors[leg];
-		
-		addEquip(equipment);
-		
-		getImagePath();
+
+        addEquip(equipment);
+
+        getImagePath();
     }
 
-	public Character() {
-	}
-	
-	
+    public Character() {
+    }
 
     //METHODS
     public void levelUp() {
@@ -216,11 +214,11 @@ public class Character {
         System.out.println(String.format("%-25.15s %10d", "GOLD", gold));
 
     }
-	
-	//DO THE OVERRIDE ONES
-	public void getOtherStatsFromLevel (int level){
-		
-	}
+
+    //DO THE OVERRIDE ONES
+    public void getOtherStatsFromLevel(int level) {
+
+    }
 
     public void moveUP() {
         y--;
@@ -824,7 +822,7 @@ public class Character {
     public void showInventory() {
         System.out.println("");
         for (int i = 0; i < inventory.length; i++) {
-            System.out.println( i + "- " +String.format("%-20.20s %-42.42s %-9.9s", inventory[i].getName(), ("+" + inventory[i].getDescription()), "|" + inventory[i].getNumOfUses()));
+            System.out.println(i + "- " + String.format("%-20.20s %-42.42s %-9.9s", inventory[i].getName(), ("+" + inventory[i].getDescription()), "|" + inventory[i].getNumOfUses()));
         }
     }
 
@@ -1068,70 +1066,64 @@ public class Character {
 
     }
 
-	public void getImagePath() {
-		
-	}
+    public void getImagePath() {
 
-	public void setCharacterLookingUp(String characterLookingUp) {
-		this.characterLookingUp = characterLookingUp;
-	}
+    }
 
-	public void setCharacterLookingLeft(String characterLookingLeft) {
-		this.characterLookingLeft = characterLookingLeft;
-	}
+    public void setCharacterLookingUp(String characterLookingUp) {
+        this.characterLookingUp = characterLookingUp;
+    }
 
-	public void setCharacterLookingDown(String characterLookingDown) {
-		this.characterLookingDown = characterLookingDown;
-	}
+    public void setCharacterLookingLeft(String characterLookingLeft) {
+        this.characterLookingLeft = characterLookingLeft;
+    }
 
-	public void setCharacterLookingRight(String characterLookingRight) {
-		this.characterLookingRight = characterLookingRight;
-	}
+    public void setCharacterLookingDown(String characterLookingDown) {
+        this.characterLookingDown = characterLookingDown;
+    }
 
-	public String getCharacterLookingUp() {
-		return characterLookingUp;
-	}
+    public void setCharacterLookingRight(String characterLookingRight) {
+        this.characterLookingRight = characterLookingRight;
+    }
 
-	public String getCharacterLookingLeft() {
-		return characterLookingLeft;
-	}
+    public String getCharacterLookingUp() {
+        return characterLookingUp;
+    }
 
-	public String getCharacterLookingDown() {
-		return characterLookingDown;
-	}
+    public String getCharacterLookingLeft() {
+        return characterLookingLeft;
+    }
 
-	public String getCharacterLookingRight() {
-		return characterLookingRight;
-	}
+    public String getCharacterLookingDown() {
+        return characterLookingDown;
+    }
 
-	public int getSex() {
-		return sex;
-	}
+    public String getCharacterLookingRight() {
+        return characterLookingRight;
+    }
 
-	public Equip[] getNewWeapons() {
-		return newWeapons;
-	}
+    public int getSex() {
+        return sex;
+    }
 
-	public Equip[] getNewHelmets() {
-		return newHelmets;
-	}
+    public Equip[] getNewWeapons() {
+        return newWeapons;
+    }
 
-	public Equip[] getNewChestPlates() {
-		return newChestPlates;
-	}
+    public Equip[] getNewHelmets() {
+        return newHelmets;
+    }
 
-	public Equip[] getNewLegArmors() {
-		return newLegArmors;
-	}
+    public Equip[] getNewChestPlates() {
+        return newChestPlates;
+    }
 
-	public String getNickname() {
-		return nickname;
-	}
-	
-	
-	
-	
-	
-	
-	
+    public Equip[] getNewLegArmors() {
+        return newLegArmors;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
 }
