@@ -69,6 +69,31 @@ public class Merchant {
         this.sellingEquip = equipGenerator(); // One Piece of equipment
 
     }
+	
+	public Merchant (int x, int y, int floor, Character mainCharacter, int obj1, int obj1Q, int obj2, int obj2Q, int equip, int equipQ){
+		
+		this.x = x; // X position
+        
+        this.y = y; // Y position
+        
+        this.floor = floor; // Get the current floor
+        
+        this.mainCharacter = mainCharacter; // Get the current Character
+		
+		this.sellingEquip = equipGeneratorLoad(equip);
+		
+		this.quantityEquip = equipQ;
+		
+		this.sellingObject1 = generateSmallObjectLoad(obj1);
+		
+		this.quantitySmallObject = obj1Q;
+				
+		this.sellingObject2 = generateBigObjectLoad(obj2);
+		
+		this.quantityBigObject = obj2Q;
+				
+		
+	}
     
     // Function to generate one equipment
 
@@ -116,6 +141,7 @@ public class Merchant {
         return selection;
 
     }
+	
     
     // Function to generate a small object
 
@@ -492,6 +518,120 @@ public class Merchant {
 	public int getQuantityEquip() {
 		return quantityEquip;
 	}
+	
+	//LOADING MERCHANT
+	//EQUIP GENERATOR FOR LOADING THE GAME
+	private Equip equipGeneratorLoad(int equip) {
+        
+       Equip selection = new Equip();
+
+        switch (equip) {
+            
+            case 0:
+                
+                selection = mainCharacter.newWeapons[floor];
+                
+                priceEquip = 100 * floor;
+                
+                break;
+            
+            case 1:
+             
+                selection = mainCharacter.newHelmets[floor];
+                
+                priceEquip = 60 * floor;
+                
+                break;
+            
+            case 2:
+               
+                selection = mainCharacter.newChestPlates[floor];
+                
+                priceEquip = 80 * floor;
+                
+                break;
+            
+            case 3:
+                
+                selection = mainCharacter.newLegArmors[floor];
+                
+                priceEquip = 70 * floor;
+                
+                break;
+        }
+
+        return selection;
+
+    }
+	
+	private Object generateSmallObjectLoad(int obj) {
+
+        Potion potion;
+
+        switch (obj) {
+
+            case 0:
+                
+                potion = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
+                
+                typeObject1 = 0;
+                
+                break;
+
+            case 1:
+
+                potion = new Potion("Small Mana Potion", 30, "mana", "restores 30% health of your max MP", 2);
+                
+                typeObject1 = 2;
+
+                break;
+
+            default:
+                         
+                potion = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
+                
+                typeObject1 = 0;
+
+        }
+
+        return potion;
+
+    }
+	
+	private Object generateBigObjectLoad(int obj) {
+
+        Potion potion;
+
+        switch (obj) {
+
+            case 0:
+                
+                
+                potion = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
+                
+                typeObject2 = 1;
+
+                break;
+
+            case 1:
+
+                potion = new Potion("Large Mana Potion", 50, "mana", "restores 50% health of your max MP", 2);
+                
+                typeObject2 = 3;
+
+                break;
+
+            default:
+                
+                potion = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
+                
+                typeObject2 = 1;
+
+        }
+
+        return potion;
+
+    }
 	
 	
 	

@@ -8,10 +8,16 @@ package eldenark;
 public class Priest extends Character {
 
 	// MAIN
-	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
+	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, nickname);
 	}
 
+	//FOR LOADING FILE
+
+	public Priest(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
+		super(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nickname);
+	}
+	
 	// ENEMIES
 	//Ns si poner la clase
 	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
@@ -19,6 +25,26 @@ public class Priest extends Character {
 	}
 
 	// Constructor
+	
+	@Override
+	public void getOtherStatsFromLevel(int level) {
+		if (level == 1) {
+			this.setDamage(15);
+			this.setDefence(10);
+			this.setMaxHP(120);
+			this.setMaxMP(120);
+			this.setSpecialDamage(15);
+		} else {
+			this.setDamage((int) (15 * 1.2) * (level - 1));
+			this.setDefence((int) (10 * 1.2) * (level - 1));
+			this.setMaxHP((int) (120 * 1.2) * (level - 1));
+			this.setMaxMP((int) (120 * 1.2) * (level - 1));
+			this.setSpecialDamage((int) (15 * 1.2) * (level - 1));
+		}
+
+	}
+	
+	
 	@Override
 	public void changeWeapon(Equip[] equipment, Equip newEquip) {
 		this.setDefence(this.getDefence() - equipment[0].getProfit());

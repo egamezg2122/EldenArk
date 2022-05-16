@@ -31,6 +31,7 @@ Version:
 
 package eldenark;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import java.util.Random;
@@ -47,15 +48,34 @@ public class EldenArk {
 		m.setVisible(true);
 		*/
 		
-        introduction();
+		
+		
+		ArrayList<Gameplay> saves = BinaryFile.getSaves();
+		System.out.println("Chose your character");
+		for (Gameplay a: saves){
+			
+			System.out.println(a.mainCharacter.getNickname());
+		}
+		int option = Teclat.llegirInt();
+		saves.get(option).setFrame();
+		
+		
+		
+        //introduction();
         
         // Let the user to choose the main character
         
-        Character mainCharacter = pickClass();
+		// Ask the username
+		
+		String name = nicknameUser();
+
+		//Character mainCharacter = pickClass(name);
+		
+		
         
         // Create gameplay
 
-        Gameplay g = new Gameplay(mainCharacter);
+        //Gameplay g = new Gameplay(mainCharacter);
 
     }
     
@@ -97,8 +117,10 @@ public class EldenArk {
         char option = Teclat.llegirChar();
         
         if (option == 'y') {
+			
+			String nickname = nicknameUser(); 
             
-            Character newMainCharacter = pickClass();
+            Character newMainCharacter = pickClass(nickname);
 
             Gameplay newGameplay = new Gameplay(newMainCharacter);
             
@@ -139,7 +161,7 @@ public class EldenArk {
 
     // User picking the character class
     
-    public static Character pickClass() {
+    public static Character pickClass(String name) {
 
         Character main = new Character();
 
@@ -167,7 +189,7 @@ public class EldenArk {
             
             case 1:
 
-                main = createWarrior();
+                main = createWarrior(name);
 
                 System.out.println("You have chosen the warrior class");
 
@@ -175,7 +197,7 @@ public class EldenArk {
 
             case 2:
 
-                main = createMage();
+                main = createMage(name);
 
                 System.out.println("You have chosen the mage class");
 
@@ -183,7 +205,7 @@ public class EldenArk {
 
             case 3:
 
-                main = createPriest();
+                main = createPriest(name);
 
                 System.out.println("You have chosen the priest class");
 
@@ -221,9 +243,9 @@ public class EldenArk {
     
     // Create a Warrior object
     
-    public static Warrior createWarrior() {
+    public static Warrior createWarrior(String name) {
 
-        Warrior warrior = new Warrior(25, 15, 140, 140, 60, 60, 15, "Warrior", generateInventory());
+        Warrior warrior = new Warrior(25, 15, 140, 140, 60, 60, 15, "Warrior", generateInventory(), name);
 
         return warrior;
 
@@ -231,9 +253,9 @@ public class EldenArk {
 
     // Create a Mage object
     
-    public static Mage createMage() {
+    public static Mage createMage(String name) {
 
-        Mage mage = new Mage(12, 5, 100, 100, 160, 160, 25, "Mage", generateInventory());
+        Mage mage = new Mage(12, 5, 100, 100, 160, 160, 25, "Mage", generateInventory(), name);
 
         return mage;
         
@@ -241,9 +263,9 @@ public class EldenArk {
 
     // Create a Priest object
     
-    public static Priest createPriest() {
+    public static Priest createPriest(String name) {
 
-        Priest priest = new Priest(15, 10, 120, 120, 120, 120, 15, "Priest", generateInventory());
+        Priest priest = new Priest(15, 10, 120, 120, 120, 120, 15, "Priest", generateInventory(), name);
 
         return priest;
         

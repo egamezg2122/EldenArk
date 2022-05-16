@@ -53,7 +53,6 @@ public class Gameplay extends JFrame implements ActionListener {
 	private String[] bossesPath = new String[4];
 
 	// GAMEPLAY VARIABLES
-	String nickname = EldenArk.nicknameUser();
 	int[][] map = new int[NUM_TILES_Y][NUM_TILES_X];
 	static Random rn = new Random();
 	Character mainCharacter = new Character();
@@ -74,6 +73,8 @@ public class Gameplay extends JFrame implements ActionListener {
 		running = true;
 
 		//Creating and adding the key listener
+		setFrame();
+		/*
 		MyKeyAdapter k;
 		k = new MyKeyAdapter();
 		this.addKeyListener(k);
@@ -82,7 +83,47 @@ public class Gameplay extends JFrame implements ActionListener {
 		spawnMainCharacter();
 
 		spawnMobs();
+
+		setMerchant();
+
+		setSpikes();
+
+		setMap();
+
+		this.pack();
+
+		setOptions();
+
+		this.getContentPane().setBackground(Color.BLACK);
+		this.setResizable(false);
+		this.setJMenuBar(frameMenu);
+		this.setTitle("Map");
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setVisible(true);
+
+		setMenu();
+		*/
+	}
+
+	public Gameplay(Character mainCharacter, Merchant merchant, int[][] map, int floor) {
+		this.mainCharacter = mainCharacter;
+		this.merchant = merchant;
+		this.map = map;
+		this.floor = floor;
 		
+	}
+
+	//FRAME METHODS
+	public void setFrame(){
+		MyKeyAdapter k;
+		k = new MyKeyAdapter();
+		this.addKeyListener(k);
+		this.setPreferredSize(new Dimension(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT));
+
+		spawnMainCharacter();
+
+		spawnMobs();
+
 		setMerchant();
 
 		setSpikes();
@@ -103,13 +144,6 @@ public class Gameplay extends JFrame implements ActionListener {
 		setMenu();
 	}
 	
-	public Gameplay(Character mainCharacter, Merchant merchant, int[][] map){
-		this.mainCharacter = mainCharacter;
-		this.merchant = merchant;
-		this.map = map;
-	}
-
-	//FRAME METHODS
 	private void setMap() {
 
 		for (int i = 0; i < NUM_TILES_Y; i++) {
@@ -225,7 +259,7 @@ public class Gameplay extends JFrame implements ActionListener {
 					minorBosses[counter].setBounds(((LABEL_SIZE * j) - 2), ((LABEL_SIZE * i) - 2), LABEL_SIZE, LABEL_SIZE);
 					minorBosses[counter].setName("Minor Boss"); // NOI18N
 					counter++;
-				} else if (map[i][j] == 5){
+				} else if (map[i][j] == 5) {
 					finalBoss = new javax.swing.JLabel();
 					this.add(finalBoss);
 					finalBoss.setIcon(new javax.swing.ImageIcon(getClass().getResource(bossesPath[bossesPath.length - 1]))); // NOI18N
@@ -283,7 +317,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_WARRIOR_1.png";
 		}
 	}
-	
+
 	private void setBosses2Floor() {
 		for (int i = 0; i < (bossesPath.length - 1); i++) {
 			switch (rn.nextInt(3)) {
@@ -310,7 +344,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				break;
 		}
 	}
-	
+
 	private void setBosses3Floor() {
 		for (int i = 0; i < (bossesPath.length - 1); i++) {
 			switch (rn.nextInt(3)) {
@@ -337,7 +371,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				break;
 		}
 	}
-	
+
 	private void setBosses4Floor() {
 		for (int i = 0; i < (bossesPath.length - 1); i++) {
 			switch (rn.nextInt(3)) {
@@ -645,7 +679,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		} else {
 			f.dispose();
 			running = false;
-			EldenArk.win(nickname);
+			EldenArk.win(mainCharacter.getNickname());
 		}
 
 	}
@@ -692,7 +726,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		f.setVisible(false);
 		int combatLevel = checkEnemyLevel();
 		Character enemy = createEnemy(combatLevel);
-		mainCharacter.fight(map, enemy, floor, nickname);
+		mainCharacter.fight(map, enemy, floor);
 		if (mainCharacter.getHp() <= 0) {
 			f.dispose();
 			running = false;
@@ -811,8 +845,9 @@ public class Gameplay extends JFrame implements ActionListener {
 	public int getFloor() {
 		return floor;
 	}
-
 	
+	
+
 	public class MyKeyAdapter implements KeyListener {
 
 		MyKeyAdapter() {

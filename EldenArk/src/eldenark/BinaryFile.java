@@ -31,7 +31,7 @@ public class BinaryFile {
 					randomAccess.writeInt(gameplay.map[j][k]);
 				}
 			}
-			randomAccess.write(Gameplay.stringParser(gameplay.nickname).getBytes(Charset.defaultCharset()));
+			randomAccess.write(Gameplay.stringParser(gameplay.mainCharacter.getNickname()).getBytes(Charset.defaultCharset()));
 			randomAccess.writeInt(gameplay.mainCharacter.getLevel());
 			randomAccess.writeInt(gameplay.mainCharacter.getMp());
 			randomAccess.writeInt(gameplay.mainCharacter.getHp());
@@ -68,6 +68,7 @@ public class BinaryFile {
 
 	public static ArrayList<Gameplay> getSaves() {
 		ArrayList<Gameplay> saves = new ArrayList<>();
+		Gameplay g;
 		File file;
 		RandomAccessFile randomAccess;
 		String a;
@@ -96,16 +97,18 @@ public class BinaryFile {
 				for (int i = 0; i < numSaves; i++) {
 					pos = gameplaySize * i;
 					randomAccess.seek(pos);
-					
+
 					for (int j = 0; j < map.length; j++) {
-						for (int k = 0; k < map.length; k++) {
+						for (int k = 0; k < map[j].length; k++) {
 							map[j][k] = randomAccess.readInt();
 						}
 					}
 					//Character Variables
+					
 					bNom = new byte[Gameplay.STRING_SIZE];
 					randomAccess.read(bNom);
-					nom = new String(bNom);
+					nom = new String(bNom).trim();
+					
 					lvl = randomAccess.readInt();
 					mp = randomAccess.readInt();
 					hp = randomAccess.readInt();
@@ -113,26 +116,26 @@ public class BinaryFile {
 					gold = randomAccess.readInt();
 					x = randomAccess.readInt();
 					y = randomAccess.readInt();
-					
+
 					bClase = new byte[Gameplay.STRING_SIZE];
 					randomAccess.read(bClase);
-					clase = new String(bClase);
-					
+					clase = new String(bClase).trim();
+
 					sex = randomAccess.readInt();
 					floor = randomAccess.readInt();
-					
+
 					//Equipment Variables
 					weapon = randomAccess.readInt();
 					helmet = randomAccess.readInt();
 					chestplate = randomAccess.readInt();
 					leg = randomAccess.readInt();
-					
+
 					//Objects Variables
 					obj1 = randomAccess.readInt();
 					obj2 = randomAccess.readInt();
 					obj3 = randomAccess.readInt();
 					obj4 = randomAccess.readInt();
-					
+
 					//Merchant Variables
 					merX = randomAccess.readInt();
 					merY = randomAccess.readInt();
@@ -142,12 +145,14 @@ public class BinaryFile {
 					merObj2Q = randomAccess.readInt();
 					merEquip = randomAccess.readInt();
 					merEquipQ = randomAccess.readInt();
-					
-					EldenArk.reDoInventory(obj1, obj2, obj3, obj4);
-					
+
+					Character mainCharacter = getMainCharacter(lvl, mp, hp, gold, xp, x, y, sex, clase, obj1, obj2, obj3, obj4, weapon, helmet, chestplate, leg, nom);
+					Merchant merchant = new Merchant(merX, merY, floor, mainCharacter, merObj1, merObj1Q, merObj2, merObj2Q, merEquip, merEquipQ);
+					g = new Gameplay(mainCharacter, merchant, map, floor);
+					saves.add(g);
 					
 				}
-			} else{
+			} else {
 				new Exception("No s'ha trobat l'arxiu" + FILE_PATH);
 			}
 
@@ -156,28 +161,31 @@ public class BinaryFile {
 		} catch (IOException e) {
 			System.out.println("No s'ha trobat l'arxiu" + FILE_PATH + "\n" + e.toString());
 		}
+		
 		return saves;
 	}
-	
-	public static Character getMainCharacter(int lvl, int mp, int hp, int gold, int xp, int x, int y, String clase){
+
+	public static Character getMainCharacter(int lvl, int mp, int hp, int gold, int xp, int x, int y, int sex,
+			String clase, int obj1, int obj2, int obj3, int obj4, int weapon, int helmet, int chest, int leg, String nom) {
 		Character mainCharacter;
-		
-		switch(clase){
+		Object[] inventory = EldenArk.reDoInventory(obj1, obj2, obj3, obj4);
+
+		switch (clase) {
 			case "Warrior":
-				
+				mainCharacter = new Warrior(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nom);
 				break;
 			case "Mage":
-				
+				mainCharacter = new Mage(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nom);
 				break;
 			case "Priest":
-				
+				mainCharacter = new Priest(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nom);
 				break;
 			default:
-				
+				mainCharacter = new Warrior(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nom);
 		}
-		
+
 		return mainCharacter;
-		
+
 	}
 	/*
 	public static Gameplay loadGame() {

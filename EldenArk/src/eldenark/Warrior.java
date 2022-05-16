@@ -9,9 +9,16 @@ public class Warrior extends Character {
 
 	//Constructors
 	// MAIN
-	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, nickname);
 	}
+	
+	//FOR LOADING FILE
+
+	public Warrior(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
+		super(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nickname);
+	}
+	
 
 	// ENEMIES
 	//Ns si poner la clase
@@ -20,6 +27,24 @@ public class Warrior extends Character {
 	}
 
 	// Constructor
+	@Override
+	public void getOtherStatsFromLevel(int level) {
+		if (level == 1) {
+			this.setDamage(25);
+			this.setDefence(15);
+			this.setMaxHP(140);
+			this.setMaxMP(60);
+			this.setSpecialDamage(15);
+		} else {
+			this.setDamage((int) (25 * 1.2) * (level - 1));
+			this.setDefence((int) (15 * 1.2) * (level - 1));
+			this.setMaxHP((int) (140 * 1.2) * (level - 1));
+			this.setMaxMP((int) (60 * 1.2) * (level - 1));
+			this.setSpecialDamage((int) (15 * 1.2) * (level - 1));
+		}
+
+	}
+
 	@Override
 	public void changeWeapon(Equip[] equipment, Equip newEquip) {
 		this.setDamage(this.getDamage() - equipment[0].getProfit());
@@ -127,9 +152,7 @@ public class Warrior extends Character {
 	@Override
 	public int abilities(Character enemy, int enemyOption) {
 
-
-        String abilitiesWarrior[] = {"Thor's Hammer", "Ram load", "Battle cry", "Double edge", "Heroic jump"};
-
+		String abilitiesWarrior[] = {"Thor's Hammer", "Ram load", "Battle cry", "Double edge", "Heroic jump"};
 
 		int option;
 
@@ -181,8 +204,7 @@ public class Warrior extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
-                                        
+					enemyOption = 2;
 
 				}
 
@@ -205,7 +227,7 @@ public class Warrior extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 
 				}
 
@@ -228,7 +250,7 @@ public class Warrior extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
@@ -250,23 +272,23 @@ public class Warrior extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
 
 		}
-                return enemyOption;
+		return enemyOption;
 	}
 
 	@Override
 	public void getImagePath() {
-		if(sex == 0){
+		if (sex == 0) {
 			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_BACK.png");
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_FRONT.png");
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_RIGHT.png");
-		} else{
+		} else {
 			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_BACK.png");
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_FRONT.png");

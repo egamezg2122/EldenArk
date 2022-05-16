@@ -27,6 +27,8 @@ public class Character {
     private int specialDamage;
 
     private int gold = 5;
+	
+	private String nickname;
 
     private String role;
 
@@ -59,7 +61,7 @@ public class Character {
 
     // Constructors
     // Constructor for MAIN CHARACTER
-    public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
+    public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
 
         this.level = 1; // Always start at level 1
 
@@ -84,6 +86,8 @@ public class Character {
         this.role = role;
 
         this.inventory = inventory;
+		
+		this.nickname = nickname;
 
         weapons();
         helmet();
@@ -113,7 +117,8 @@ public class Character {
     }
 
 	//from loadFile
-    public Character(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex) {
+    public Character(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, 
+			Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
 		this.level = lvl;
 		
 		this.xp = xp;
@@ -131,6 +136,24 @@ public class Character {
 		this.sex = sex;
 		
 		getOtherStatsFromLevel(this.level);
+		
+		this.inventory = inventory;
+		
+		this.nickname = nickname;
+		
+		weapons();
+        helmet();
+        chestplate();
+        legArmor();
+
+        equipment[0] = newWeapons[weapon];
+        equipment[1] = newHelmets[helmet];
+        equipment[2] = newChestPlates[chest];
+        equipment[3] = newLegArmors[leg];
+		
+		addEquip(equipment);
+		
+		getImagePath();
     }
 
 	public Character() {
@@ -746,7 +769,7 @@ public class Character {
     }
 
     //FIGHTS
-    public void fight(int map[][], Character enemy, int floor, String nickname) {
+    public void fight(int map[][], Character enemy, int floor) {
         int option, enemyOption;
         int mainDef = this.getDefence();
         int enemyDef = enemy.getDefence();
@@ -1099,6 +1122,10 @@ public class Character {
 
 	public Equip[] getNewLegArmors() {
 		return newLegArmors;
+	}
+
+	public String getNickname() {
+		return nickname;
 	}
 	
 	

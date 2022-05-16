@@ -8,9 +8,17 @@ package eldenark;
 public class Mage extends Character {
 
 	// MAIN 
-	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
+	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, nickname);
 	}
+	
+	//FOR LOADING FILE
+
+	public Mage(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
+		super(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nickname);
+	}
+	
+	
 
 	// ENEMY
 	//Ns si poner la clase
@@ -18,6 +26,26 @@ public class Mage extends Character {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
 	}
 
+	//Methods
+	@Override
+	public void getOtherStatsFromLevel(int level) {
+		if (level == 1) {
+			this.setDamage(12);
+			this.setDefence(5);
+			this.setMaxHP(100);
+			this.setMaxMP(160);
+			this.setSpecialDamage(25);
+		} else {
+			this.setDamage((int) (12 * 1.2) * (level - 1));
+			this.setDefence((int) (5 * 1.2) * (level - 1));
+			this.setMaxHP((int) (100 * 1.2) * (level - 1));
+			this.setMaxMP((int) (160 * 1.2) * (level - 1));
+			this.setSpecialDamage((int) (25 * 1.2) * (level - 1));
+		}
+
+	}
+	
+	
 	@Override
 	public void changeWeapon(Equip[] equipment, Equip newEquip) {
 		this.setSpecialDamage(this.getSpecialDamage() - equipment[0].getProfit());
