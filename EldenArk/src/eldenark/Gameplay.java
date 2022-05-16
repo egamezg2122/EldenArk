@@ -51,6 +51,8 @@ public class Gameplay extends JFrame implements ActionListener {
 	private JMenuItem save, exit;
 
 	private String[] bossesPath = new String[4];
+	
+	private String mapPath;
 
 	// GAMEPLAY VARIABLES
 	int[][] map = new int[NUM_TILES_Y][NUM_TILES_X];
@@ -115,6 +117,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	//FRAME METHODS
 	public void setFrame(){
+		setMapPath();
 		MyKeyAdapter k;
 		k = new MyKeyAdapter();
 		this.addKeyListener(k);
@@ -144,13 +147,30 @@ public class Gameplay extends JFrame implements ActionListener {
 		setMenu();
 	}
 	
+	private void setMapPath(){
+		switch(floor){
+			case 1:
+				mapPath = "/FOTOS ELDEN ARK/MAP/SUELO.png";
+				break;
+			case 2:
+				mapPath = "/FOTOS ELDEN ARK/MAP/SUELO2.png";
+				break;
+			case 3:
+				mapPath = "/FOTOS ELDEN ARK/MAP/SUELO3.png";
+				break;
+			case 4:
+				mapPath = "/FOTOS ELDEN ARK/MAP/SUELO4.png";
+				break;
+		}
+	}
+	
 	private void setMap() {
 
 		for (int i = 0; i < NUM_TILES_Y; i++) {
 			for (int j = 0; j < NUM_TILES_X; j++) {
 				solidTiles[i][j] = new javax.swing.JLabel();
 				this.add(solidTiles[i][j]);
-				solidTiles[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MAP/SUELO.png"))); // NOI18N
+				solidTiles[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource(mapPath))); // NOI18N
 				solidTiles[i][j].setBounds(LABEL_SIZE * j, LABEL_SIZE * i, LABEL_SIZE, LABEL_SIZE);
 				solidTiles[i][j].setName("SOLID TILE"); // NOI18N
 			}
@@ -322,25 +342,25 @@ public class Gameplay extends JFrame implements ActionListener {
 		for (int i = 0; i < (bossesPath.length - 1); i++) {
 			switch (rn.nextInt(3)) {
 				case 0:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_2.png";
 					break;
 				case 1:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_MAGE_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_MAGE_2.png";
 					break;
 				case 2:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_PRIEST_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_PRIEST_2.png";
 					break;
 			}
 		}
 		switch (rn.nextInt(3)) {
 			case 0:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_WARRIOR_2.png";
 				break;
 			case 1:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_MAGE_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_MAGE_2.png";
 				break;
 			case 2:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_PRIEST_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_PRIEST_2.png";
 				break;
 		}
 	}
@@ -349,25 +369,25 @@ public class Gameplay extends JFrame implements ActionListener {
 		for (int i = 0; i < (bossesPath.length - 1); i++) {
 			switch (rn.nextInt(3)) {
 				case 0:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_3.png";
 					break;
 				case 1:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_MAGE_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_MAGE_3.png";
 					break;
 				case 2:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_PRIEST_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_PRIEST_3.png";
 					break;
 			}
 		}
 		switch (rn.nextInt(3)) {
 			case 0:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_WARRIOR_3.png";
 				break;
 			case 1:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_MAGE_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_MAGE_3.png";
 				break;
 			case 2:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_PRIEST_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_PRIEST_3.png";
 				break;
 		}
 	}
@@ -376,25 +396,25 @@ public class Gameplay extends JFrame implements ActionListener {
 		for (int i = 0; i < (bossesPath.length - 1); i++) {
 			switch (rn.nextInt(3)) {
 				case 0:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_4.png";
 					break;
 				case 1:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_MAGE_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_MAGE_4.png";
 					break;
 				case 2:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_PRIEST_1.png";
+					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_PRIEST_4.png";
 					break;
 			}
 		}
 		switch (rn.nextInt(3)) {
 			case 0:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_WARRIOR_4.png";
 				break;
 			case 1:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_MAGE_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_MAGE_4.png";
 				break;
 			case 2:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_PRIEST_1.png";
+				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_PRIEST_4.png";
 				break;
 		}
 	}
@@ -416,8 +436,12 @@ public class Gameplay extends JFrame implements ActionListener {
         1 - Loot
         2 - Enemy
 		3 - Merchant
-		4 - Minor Boss
-		5 - Final Boss
+		4 - Minor Boss (Warrior)
+		5 - Minor Boss (Mage)
+		6 - Minor Boss (Priest)
+		7 - Final Boss (Warrior)
+		8 - Final Boss (Mage)
+		9 - Final Boss (Priest)
 		10 - Mountains
 		 */
 		for (int i = 0; i < map.length; i++) {

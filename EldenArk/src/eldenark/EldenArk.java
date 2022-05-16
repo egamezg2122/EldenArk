@@ -49,7 +49,7 @@ public class EldenArk {
 		*/
 		
 		
-		
+		/*
 		ArrayList<Gameplay> saves = BinaryFile.getSaves();
 		System.out.println("Chose your character");
 		for (Gameplay a: saves){
@@ -58,10 +58,10 @@ public class EldenArk {
 		}
 		int option = Teclat.llegirInt();
 		saves.get(option).setFrame();
+		*/
 		
 		
-		
-        //introduction();
+        introduction();
         
         // Let the user to choose the main character
         
@@ -69,13 +69,11 @@ public class EldenArk {
 		
 		String name = nicknameUser();
 
-		//Character mainCharacter = pickClass(name);
+		Character mainCharacter = pickClass(name);
 		
-		
-        
         // Create gameplay
 
-        //Gameplay g = new Gameplay(mainCharacter);
+        Gameplay g = new Gameplay(mainCharacter);
 
     }
     
