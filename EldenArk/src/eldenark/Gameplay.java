@@ -81,10 +81,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
 		spawnMainCharacter();
 
-		
 		spawnMobs();
-		
-		
 		
 		setMerchant();
 
@@ -104,6 +101,12 @@ public class Gameplay extends JFrame implements ActionListener {
 		this.setVisible(true);
 
 		setMenu();
+	}
+	
+	public Gameplay(Character mainCharacter, Merchant merchant, int[][] map){
+		this.mainCharacter = mainCharacter;
+		this.merchant = merchant;
+		this.map = map;
 	}
 
 	//FRAME METHODS
@@ -805,6 +808,11 @@ public class Gameplay extends JFrame implements ActionListener {
 		return toReturn;
 	}
 
+	public int getFloor() {
+		return floor;
+	}
+
+	
 	public class MyKeyAdapter implements KeyListener {
 
 		MyKeyAdapter() {

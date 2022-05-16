@@ -274,6 +274,29 @@ public class EldenArk {
         return inventory;
         
     }
+	
+	public static Object[] reDoInventory(int obj1, int obj2, int obj3, int obj4){
+		
+		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", obj1);
+
+        Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "It restores 50% health of your max HP", obj2);
+
+        Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "It restores 30% mana of your max MP", obj3);
+
+        Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "It restores 50% mana of your max MP", obj4);
+
+        Object[] inventory = new Object[4];
+
+        inventory[0] = smallHealing;
+        
+        inventory[1] = largeHealing;
+        
+        inventory[2] = smallMana;
+        
+        inventory[3] = largeMana;
+
+        return inventory;
+	}
     
     // Function to show a little explanation of the game
     

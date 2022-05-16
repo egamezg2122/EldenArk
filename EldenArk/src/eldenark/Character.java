@@ -112,9 +112,31 @@ public class Character {
         this.specialDamage = specialDamage;
     }
 
-    public Character() {
-
+	//from loadFile
+    public Character(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex) {
+		this.level = lvl;
+		
+		this.xp = xp;
+		
+		this.hp = hp;
+		
+		this.mp = mp;
+		
+		this.x = x;
+		
+		this.y = y;
+		
+		this.gold = gold;
+		
+		this.sex = sex;
+		
+		getOtherStatsFromLevel(this.level);
     }
+
+	public Character() {
+	}
+	
+	
 
     //METHODS
     public void levelUp() {
@@ -171,6 +193,11 @@ public class Character {
         System.out.println(String.format("%-25.15s %10d", "GOLD", gold));
 
     }
+	
+	//DO THE OVERRIDE ONES
+	public void getOtherStatsFromLevel (int level){
+		
+	}
 
     public void moveUP() {
         y--;
