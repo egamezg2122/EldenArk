@@ -562,7 +562,7 @@ public class Character {
         String name;
         switch (enemyClass) {
             case 1:
-                name = "Demi-Human Elder (Warrior)";
+                name = "Demi-Human (Warrior)";
                 break;
             case 2:
                 name = "Grand Bishop (Priest)";
@@ -571,7 +571,7 @@ public class Character {
                 name = "Ancestor Wizard (Mage)";
                 break;
             default:
-                name = "Demi-Human Elder (Warrior)";
+                name = "Demi-Human (Warrior)";
         }
         return name;
     }

@@ -148,7 +148,7 @@ public class Combat extends javax.swing.JFrame {
 
         mpEnemy.setText("MP");
 
-        enemysName.setText("ENEMY (enemy's name)");
+        enemysName.setText("Enemy's Name\n");
 
         username.setText("username" + "(YOU)" + " (" + this.getClass().getName().substring(9) + ")");
 

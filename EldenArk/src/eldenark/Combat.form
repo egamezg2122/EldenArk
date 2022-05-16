@@ -319,7 +319,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="enemysName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ENEMY (enemy&apos;s name)"/>
+            <Property name="text" type="java.lang.String" value="Enemy&apos;s Name&#xa;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="username">
