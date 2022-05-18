@@ -61,20 +61,21 @@ public class EldenArk {
 		*/
 		
 		
-        introduction();
+       // introduction();
         
         // Let the user to choose the main character
         
 		// Ask the username
 		
-		String name = nicknameUser();
+	//	String name = nicknameUser();
 
-		Character mainCharacter = pickClass(name);
+	//	Character mainCharacter = pickClass(name);
 		
         // Create gameplay
 
-        Gameplay g = new Gameplay(mainCharacter);
-
+     //   Gameplay g = new Gameplay(mainCharacter);
+		Combat c = new Combat();
+		c.setVisible(true);
     }
     
     // The user can choose the name of the character 
