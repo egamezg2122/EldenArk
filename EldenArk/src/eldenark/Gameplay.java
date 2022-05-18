@@ -42,7 +42,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	private JLabel merchantLabel;
 
-	private JLabel[] moveOptions = new JLabel[6];
+	private JLabel[] moveOptions = new JLabel[7];
 	
 	private JLabel information = new JLabel();
 
@@ -148,7 +148,6 @@ public class Gameplay extends JFrame implements ActionListener {
 
 		setMenu();
 		
-		setInformation();
 	}
 	
 	private void setMapPath(){
@@ -168,16 +167,15 @@ public class Gameplay extends JFrame implements ActionListener {
 		}
 	}
 	
-	private void setInformation(){
-		/*
-		this.add(information);
-		information.setForeground(Color.WHITE);
-		information.setText("Welcome to floor " + floor + "!");
-		information.setBounds(600, 615, 300, 50);
-		information.setBounds(600, 615, 300, 50);
-		information.setBounds(600, 615, 300, 50);
-		*/
+	private void setInformation(String string){
 		
+		moveOptions[moveOptions.length - 3].setText(string);
+		
+	}
+	
+	private void setSecondInformation(String string){
+		
+		moveOptions[moveOptions.length - 2].setText(string);
 	}
 	
 	private void setMap() {
@@ -217,13 +215,15 @@ public class Gameplay extends JFrame implements ActionListener {
 		moveOptions[1].setText("A - Left");
 		moveOptions[2].setText("S - Downwards");
 		moveOptions[3].setText("D - Right");
-		moveOptions[4].setText("Maricon");
+		moveOptions[4].setText("Welcome to floor " + floor + "!");
 
 		moveOptions[0].setBounds(200, 600, 300, 30);
 		moveOptions[1].setBounds(0, 615, 300, 30);
 		moveOptions[2].setBounds(200, 615, 300, 30);
 		moveOptions[3].setBounds(400, 615, 300, 30);
-		moveOptions[4].setBounds(600, 615, 300, 30);
+		
+		moveOptions[moveOptions.length - 3].setBounds(800, 600, 300, 30);
+		moveOptions[moveOptions.length - 2].setBounds(800, 615, 300, 30);
 
 		/*	
 		JLabel moveOptions = new JLabel();
@@ -696,11 +696,12 @@ public class Gameplay extends JFrame implements ActionListener {
 				mainCharacter.moveUP();
 				reprint();
 			} else {
-				System.out.println("You can't move there");
+				setInformation("You can't move there");
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			mainCharacter.moveDown();
-			System.out.println("You're at the edge of the map.");
+			
+			setInformation("You're at the edge of the map.");
+			
 		}
 
 	}
@@ -711,11 +712,11 @@ public class Gameplay extends JFrame implements ActionListener {
 				mainCharacter.moveDown();
 				reprint();
 			} else {
-				System.out.println("You can't move there");
+				setInformation("You can't move there");
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			mainCharacter.moveUP();
-			System.out.println("You're at the edge of the map.");
+			
+			setInformation("You're at the edge of the map.");
 		}
 
 	}
@@ -726,39 +727,42 @@ public class Gameplay extends JFrame implements ActionListener {
 				mainCharacter.moveRight();
 				reprint();
 			} else {
-				System.out.println("You can't move there");
+				setInformation("You can't move there");
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			mainCharacter.moveLeft();
-			System.out.println("You're at the edge of the map.");
+			setInformation("You're at the edge of the map.");
 		}
 	}
 
 	public void tryToMoveLeft() {
+		
 		try {
 			if (map[mainCharacter.getY()][mainCharacter.getX() - 1] != 10) {
 				mainCharacter.moveLeft();
 				reprint();
 			} else {
-				System.out.println("You can't move there");
+				setInformation("You can't move there");
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			mainCharacter.moveRight();
-			System.out.println("You're at the edge of the map.");
+			setInformation("You're at the edge of the map.");
 		}
 	}
 
 	public void checkNewTile() {
 
+		setSecondInformation("");
 		switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
 			case 1:
 				System.out.println("You found loot");
+				setInformation("You found loot");
 				break;
-			/*
+			
             case 2:
                 System.out.println("You found a normal enemy. Starting combat");
-                startCombat();
+				setInformation("You found a enemy");
+				//startCombat();
                 break;
+			/*
             case 3:
                 //Merchant
                 merchant.trade();
@@ -942,17 +946,21 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	public void generateLoot(int level) {
 		int gold = rn.nextInt(10 * level);
+		String goldText = "You found " + gold + " gold! " + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold);
 		System.out.println("You found " + gold + " gold!\n" + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold));
+		setInformation(goldText);
 		mainCharacter.setGold(mainCharacter.getGold() + gold);
 		int objects = rn.nextInt(20 / level);
 		try {
 			System.out.print("You found a " + mainCharacter.getInventory()[objects].getName());
+			String objectText = "You found a " + mainCharacter.getInventory()[objects].getName();
+			setSecondInformation(objectText);
 			System.out.println(": " + mainCharacter.getInventory()[objects].getNumOfUses() + " -> " + (mainCharacter.getInventory()[objects].getNumOfUses() + 1));
 			mainCharacter.getInventory()[objects].setNumOfUses(mainCharacter.getInventory()[objects].getNumOfUses() + 1);
 
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("You found no additionals objects");
-		}
+		} 
 		newEquipmentProbability();
 
 	}
@@ -1005,6 +1013,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			switch (e.getKeyChar()) {
 				case 'w':
 					//Thing that happens when the 'w' key is pressed
+					setInformation("");
 					tryToMoveUP();
 					checkNewTile();
 					changeMainCharacterLabel(1);
@@ -1012,6 +1021,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				case 's':
 					//Thing that happens when the 's' key is pressed
 					if (inMap) {
+						setInformation("");
 						tryToMoveDown();
 						checkNewTile();
 						changeMainCharacterLabel(3);
@@ -1020,6 +1030,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				case 'd':
 					//Thing that happens when the 'd' key is pressed
 					if (inMap) {
+						setInformation("");
 						tryToMoveRight();
 						checkNewTile();
 						changeMainCharacterLabel(4);
@@ -1028,6 +1039,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				case 'a':
 					//Thing that happens when the 'a' key is pressed
 					if (inMap) {
+						setInformation("");
 						tryToMoveLeft();
 						checkNewTile();
 						changeMainCharacterLabel(2);
@@ -1052,10 +1064,6 @@ public class Gameplay extends JFrame implements ActionListener {
 				case 'e':
 					reprint();
 					mainCharacter.showEquipment();
-					break;
-				case '0':
-					f.dispose();
-					System.out.println("Byebye");
 					break;
 				case 'i':
 					reprint();
