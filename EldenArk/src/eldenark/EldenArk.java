@@ -73,12 +73,17 @@ public class EldenArk {
 
 		Character mainCharacter = pickClass(name);
 		
+		
+		
+		Mage enemy = new Mage(20, 10, 100, 200, 150, 200, 40, 2, 1);
+		
         // Create gameplay
 
 
-       Gameplay g = new Gameplay(mainCharacter);
+       //Gameplay g = new Gameplay(mainCharacter);
 
-
+	   Combat c = new Combat(mainCharacter, enemy);
+	   c.setVisible(true);
 		
     }
     

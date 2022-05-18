@@ -20,8 +20,8 @@ public class Priest extends Character {
 	
 	// ENEMIES
 	//Ns si poner la clase
-	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
+	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int type, int floor) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, type, floor);
 	}
 
 	// Constructor
@@ -291,6 +291,15 @@ public class Priest extends Character {
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_FRONT.png");
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_RIGHT.png");
+		}
+	}
+	
+	@Override
+	public void getCombatImage() {
+		if (sex == 0) {
+			this.setMainCharacterImg("/FOTOS ELDEN ARK/MAIN CHARACTER/PRIEST_M.png");
+		} else {
+			this.setMainCharacterImg("/FOTOS ELDEN ARK/MAIN CHARACTER/PRIEST_W.png");
 		}
 	}
 }

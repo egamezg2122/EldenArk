@@ -12,18 +12,16 @@ public class Warrior extends Character {
 	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, nickname);
 	}
-	
-	//FOR LOADING FILE
 
+	//FOR LOADING FILE
 	public Warrior(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
 		super(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nickname);
 	}
-	
 
 	// ENEMIES
 	//Ns si poner la clase
-	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int type, int floor) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, type, floor);
 	}
 
 	// Constructor
@@ -293,6 +291,15 @@ public class Warrior extends Character {
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_FRONT.png");
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_RIGHT.png");
+		}
+	}
+
+	@Override
+	public void getCombatImage() {
+		if (sex == 0) {
+			this.setMainCharacterImg("/FOTOS ELDEN ARK/MAIN CHARACTER/WARRIOR_M.png");
+		} else {
+			this.setMainCharacterImg("/FOTOS ELDEN ARK/MAIN CHARACTER/WARRIOR_W.png");
 		}
 	}
 }

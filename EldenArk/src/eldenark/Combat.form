@@ -318,20 +318,30 @@
         </Component>
         <Component class="javax.swing.JLabel" name="enemysName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Enemy&apos;s Name&#xa;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="enemy.getNickname()" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="username">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;username&quot; + &quot;(YOU)&quot; + &quot; (&quot; + this.getClass().getName().substring(9) + &quot;)&quot;" type="code"/>
+              <Connection code="mainCharacter.getNickname() + &quot; (&quot; + mainCharacter.getClass().getName().substring(9) + &quot;)&quot;" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userPhoto">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(mainCharacter.getMainCharacterImg()))" type="code"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="enemyPhoto">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(enemy.getEnemyImg()))" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 200]"/>
             </Property>

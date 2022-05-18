@@ -5,17 +5,25 @@
  */
 package eldenark;
 
+import static eldenark.EldenArk.rn;
+
 /**
  *
  * @author cep
  */
 public class Combat extends javax.swing.JFrame {
 
+	Character mainCharacter;
+	Character enemy;
+
 	/**
 	 * Creates new form NewJFrame
 	 */
-	public Combat() {
+	public Combat(Character mainCharacter, Character enemy) {
+		this.mainCharacter = mainCharacter;
+		this.enemy = enemy;
 		initComponents();
+		setInitialValues();
 	}
 
 	/**
@@ -151,10 +159,13 @@ public class Combat extends javax.swing.JFrame {
 
         mpEnemy.setText("MP");
 
-        enemysName.setText("Enemy's Name\n");
+        enemysName.setText(enemy.getNickname());
 
-        username.setText("username" + "(YOU)" + " (" + this.getClass().getName().substring(9) + ")");
+        username.setText(mainCharacter.getNickname() + " (" + mainCharacter.getClass().getName().substring(9) + ")");
 
+        userPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(mainCharacter.getMainCharacterImg())));
+
+        enemyPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(enemy.getEnemyImg())));
         enemyPhoto.setMaximumSize(new java.awt.Dimension(200, 200));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -262,16 +273,108 @@ public class Combat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void swordsPhotoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_swordsPhotoKeyPressed
-        // TODO add your handling code here:
+		// TODO add your handling code here:
     }//GEN-LAST:event_swordsPhotoKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-		hpEnemyPBar.setValue(hpEnemyPBar.getValue() - 10);
-		textoAttack.setText("Le has hecho 10 de daño.");
+		int enemyDef, charDef;
+		enemyDef = enemy.getDefence();
+		charDef = mainCharacter.getDefence();
+		int enemyOption = rn.nextInt(2);
+		if (enemyOption == 0) {
+			enemy.setDefence((int) (enemy.getDefence() * 1.3));
+		}
+		int damageDone = mainCharacter.getDamage() - enemy.getDefence();
+		if (damageDone > 0) {
+			enemy.setHp(enemy.getHp() - damageDone);
+			//System.out.println("You did " + (damageDone) + " damage.");
+		} else {
+			//System.out.println("You did 0 damage. The enemy's defense is to powerfull");
+		}
+		if (enemy.getHp() > 0) {
+			if (enemyOption == 1) {
+				enemyAttacks();
+			}
+		}
+		//COMBATE
+		/*
+		enemy decision
+		mainChar decision = basic attack
+		textAttack.setText("Lo que pondrias");
+		
+		 */
+
+		recheckValues();
+		mainCharacter.setDefence(charDef);
+		enemy.setDefence(enemyDef);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+	private void enemyAttacks() {
+		int optionAttack;
+		optionAttack = rn.nextInt(2);
+		switch (optionAttack) {
+			case 0:
+				//BASIC ATTACK
+				enemyBasicAttack();
+				break;
+			case 1:
+				//SPECIAL ABILITY
+				enemySpecialAbilities();
+
+		}
+	}
+
+	private void enemyBasicAttack() {
+		int damageDone = enemy.getDamage() - mainCharacter.getDefence();
+		//System.out.println("\nThe enemy used his basic attack.");
+		if (damageDone > 0) {
+			mainCharacter.setHp(mainCharacter.getHp() - damageDone);
+			//System.out.println("The enemy did " + (damageDone) + " damage.");
+		} else {
+			//System.out.println("The enemy did 0 damage to you. Your defense is incredible");
+		}
+	}
+
+	private void enemySpecialAbilities() {
+		int damageDone = enemy.getSpecialDamage() - mainCharacter.getDefence();
+		if (enemy.getMp() >= 40) {
+			if (damageDone > 0) {
+				mainCharacter.setHp(mainCharacter.getHp() - damageDone);
+				//System.out.println("The enemy uses his special ability.");
+				//System.out.println("The enemy did " + (damageDone) + " damage.");
+
+			} else {
+				//System.out.println("The enemy uses his special ability.");
+				//System.out.println("The enemy did 0 damage to you. Wow, how did you not get hurt!?");
+			}
+			enemy.setMp(enemy.getMp() - 80);
+			if (enemy.getMp() < 0) {
+				enemy.setMp(0);
+			}
+		} else {
+			enemyBasicAttack();
+		}
+
+	}
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+		int enemyDef, charDef;
+		enemyDef = enemy.getDefence();
+		charDef = mainCharacter.getDefence();
+		int enemyOption = rn.nextInt(2);
+		if (enemyOption == 0) {
+			enemy.setDefence((int) (enemy.getDefence() * 1.3));
+		}
+		mainCharacter.setDefence((int) (charDef * 1.3));
+		if (enemy.getHp() > 0) {
+			if (enemyOption == 1) {
+				enemyAttacks();
+			}
+		}
+		recheckValues();
+		mainCharacter.setDefence(charDef);
+		enemy.setDefence(enemyDef);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -283,6 +386,25 @@ public class Combat extends javax.swing.JFrame {
 		AbilitiesFrame abilities = new AbilitiesFrame();
 		abilities.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+	private void setInitialValues() {
+		hpUserPBar.setMaximum(mainCharacter.getMaxHP());
+		hpUserPBar.setValue(mainCharacter.getHp());
+		mpUserPBar.setMaximum(mainCharacter.getMaxMP());
+		mpUserPBar.setValue(mainCharacter.getMp());
+
+		hpEnemyPBar.setMaximum(enemy.getMaxHP());
+		hpEnemyPBar.setValue(enemy.getHp());
+		mpEnemyPBar.setMaximum(enemy.getMaxMP());
+		mpEnemyPBar.setValue(enemy.getMp());
+	}
+
+	private void recheckValues() {
+		hpUserPBar.setValue(mainCharacter.getHp());
+		mpUserPBar.setValue(mainCharacter.getMp());
+		hpEnemyPBar.setValue(enemy.getHp());
+		mpEnemyPBar.setValue(enemy.getMp());
+	}
 
 	/**
 	 * @param args the command line arguments
@@ -315,12 +437,14 @@ public class Combat extends javax.swing.JFrame {
 		//</editor-fold>
 
 		/* Create and display the form */
+ /*
 		java.awt.EventQueue.invokeLater(new Runnable() {
                         @Override
 			public void run() {
-				new Combat().setVisible(true);
+				new Combat(mainCharacter, enemy).setVisible(true);
 			}
 		});
+		 */
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

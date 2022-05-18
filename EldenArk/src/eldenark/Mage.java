@@ -22,8 +22,8 @@ public class Mage extends Character {
 
 	// ENEMY
 	//Ns si poner la clase
-	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
+	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int type, int floor) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, type, floor);
 	}
 
 	//Methods
@@ -257,5 +257,13 @@ public class Mage extends Character {
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_W_RIGHT.png");
 		}
 	}
-
+	
+	@Override
+	public void getCombatImage() {
+		if (sex == 0) {
+			this.setMainCharacterImg("/FOTOS ELDEN ARK/MAIN CHARACTER/MAGE_M.png");
+		} else {
+			this.setMainCharacterImg("/FOTOS ELDEN ARK/MAIN CHARACTER/MAGE_W.png");
+		}
+	}
 }
