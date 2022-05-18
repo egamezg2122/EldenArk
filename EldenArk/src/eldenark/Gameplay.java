@@ -42,7 +42,9 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	private JLabel merchantLabel;
 
-	private JLabel[] moveOptions = new JLabel[5];
+	private JLabel[] moveOptions = new JLabel[6];
+	
+	private JLabel information = new JLabel();
 
 	private JMenuBar frameMenu = new JMenuBar();
 
@@ -145,6 +147,8 @@ public class Gameplay extends JFrame implements ActionListener {
 		this.setVisible(true);
 
 		setMenu();
+		
+		setInformation();
 	}
 	
 	private void setMapPath(){
@@ -162,6 +166,18 @@ public class Gameplay extends JFrame implements ActionListener {
 				mapPath = "/FOTOS ELDEN ARK/MAP/SUELO4.png";
 				break;
 		}
+	}
+	
+	private void setInformation(){
+		/*
+		this.add(information);
+		information.setForeground(Color.WHITE);
+		information.setText("Welcome to floor " + floor + "!");
+		information.setBounds(600, 615, 300, 50);
+		information.setBounds(600, 615, 300, 50);
+		information.setBounds(600, 615, 300, 50);
+		*/
+		
 	}
 	
 	private void setMap() {
@@ -201,11 +217,13 @@ public class Gameplay extends JFrame implements ActionListener {
 		moveOptions[1].setText("A - Left");
 		moveOptions[2].setText("S - Downwards");
 		moveOptions[3].setText("D - Right");
+		moveOptions[4].setText("Maricon");
 
 		moveOptions[0].setBounds(200, 600, 300, 30);
 		moveOptions[1].setBounds(0, 615, 300, 30);
 		moveOptions[2].setBounds(200, 615, 300, 30);
 		moveOptions[3].setBounds(400, 615, 300, 30);
+		moveOptions[4].setBounds(600, 615, 300, 30);
 
 		/*	
 		JLabel moveOptions = new JLabel();
@@ -272,14 +290,14 @@ public class Gameplay extends JFrame implements ActionListener {
 		setBossesPath();
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
-				if (map[i][j] == 4) {
+				if (map[i][j] >= 4 && map[i][j] <= 6) {
 					minorBosses[counter] = new javax.swing.JLabel();
 					this.add(minorBosses[counter]);
 					minorBosses[counter].setIcon(new javax.swing.ImageIcon(getClass().getResource(bossesPath[counter]))); // NOI18N
 					minorBosses[counter].setBounds(((LABEL_SIZE * j) - 2), ((LABEL_SIZE * i) - 2), LABEL_SIZE, LABEL_SIZE);
 					minorBosses[counter].setName("Minor Boss"); // NOI18N
 					counter++;
-				} else if (map[i][j] == 5) {
+				} else if (map[i][j] >= 7 && map[i][j] <= 9) {
 					finalBoss = new javax.swing.JLabel();
 					this.add(finalBoss);
 					finalBoss.setIcon(new javax.swing.ImageIcon(getClass().getResource(bossesPath[bossesPath.length - 1]))); // NOI18N
@@ -308,6 +326,37 @@ public class Gameplay extends JFrame implements ActionListener {
 	}
 
 	private void setBosses1Floor() {
+		
+		int counter = 0;
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				switch (map[i][j]){
+					case 4:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
+						counter++;
+						break;
+					case 5:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_MAGE_1.png";
+						counter++;
+						break;
+					case 6:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_PRIEST_1.png";
+						counter++;
+						break;
+					case 7:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_WARRIOR_1.png";
+						break;
+					case 8:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_MAGE_1.png";
+						break;
+					case 9:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_PRIEST_1.png";
+						break;
+						
+				}
+			}
+		}
+		/*
 		for (int i = 0; i < (bossesPath.length - 1); i++) {
 			switch (rn.nextInt(3)) {
 				case 0:
@@ -323,6 +372,7 @@ public class Gameplay extends JFrame implements ActionListener {
 					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
 			}
 		}
+		
 		switch (rn.nextInt(3)) {
 			case 0:
 				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_WARRIOR_1.png";
@@ -336,86 +386,106 @@ public class Gameplay extends JFrame implements ActionListener {
 			default:
 				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_WARRIOR_1.png";
 		}
+		*/
 	}
+		
 
 	private void setBosses2Floor() {
-		for (int i = 0; i < (bossesPath.length - 1); i++) {
-			switch (rn.nextInt(3)) {
-				case 0:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_2.png";
-					break;
-				case 1:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_MAGE_2.png";
-					break;
-				case 2:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_PRIEST_2.png";
-					break;
+		int counter = 0;
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				switch (map[i][j]){
+					case 4:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_2.png";
+						counter++;
+						break;
+					case 5:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_MAGE_2.png";
+						counter++;
+						break;
+					case 6:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_PRIEST_2.png";
+						counter++;
+						break;
+					case 7:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_WARRIOR_2.png";
+						break;
+					case 8:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_MAGE_2.png";
+						break;
+					case 9:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_PRIEST_2.png";
+						break;
+						
+				}
 			}
 		}
-		switch (rn.nextInt(3)) {
-			case 0:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_WARRIOR_2.png";
-				break;
-			case 1:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_MAGE_2.png";
-				break;
-			case 2:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_PRIEST_2.png";
-				break;
-		}
+		
+		
 	}
 
 	private void setBosses3Floor() {
-		for (int i = 0; i < (bossesPath.length - 1); i++) {
-			switch (rn.nextInt(3)) {
-				case 0:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_3.png";
-					break;
-				case 1:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_MAGE_3.png";
-					break;
-				case 2:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_PRIEST_3.png";
-					break;
+		int counter = 0;
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				switch (map[i][j]){
+					case 4:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_3.png";
+						counter++;
+						break;
+					case 5:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_MAGE_3.png";
+						counter++;
+						break;
+					case 6:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_PRIEST_3.png";
+						counter++;
+						break;
+					case 7:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_WARRIOR_3.png";
+						break;
+					case 8:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_MAGE_3.png";
+						break;
+					case 9:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_PRIEST_3.png";
+						break;
+						
+				}
 			}
 		}
-		switch (rn.nextInt(3)) {
-			case 0:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_WARRIOR_3.png";
-				break;
-			case 1:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_MAGE_3.png";
-				break;
-			case 2:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_PRIEST_3.png";
-				break;
-		}
+		
 	}
 
 	private void setBosses4Floor() {
-		for (int i = 0; i < (bossesPath.length - 1); i++) {
-			switch (rn.nextInt(3)) {
-				case 0:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_4.png";
-					break;
-				case 1:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_MAGE_4.png";
-					break;
-				case 2:
-					bossesPath[i] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_PRIEST_4.png";
-					break;
+		int counter = 0;
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				switch (map[i][j]){
+					case 4:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_4.png";
+						counter++;
+						break;
+					case 5:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_MAGE_4.png";
+						counter++;
+						break;
+					case 6:
+						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_PRIEST_4.png";
+						counter++;
+						break;
+					case 7:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_WARRIOR_4.png";
+						break;
+					case 8:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_MAGE_4.png";
+						break;
+					case 9:
+						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_PRIEST_4.png";
+						break;
+						
+				}
 			}
-		}
-		switch (rn.nextInt(3)) {
-			case 0:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_WARRIOR_4.png";
-				break;
-			case 1:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_MAGE_4.png";
-				break;
-			case 2:
-				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_PRIEST_4.png";
-				break;
 		}
 	}
 
@@ -443,12 +513,11 @@ public class Gameplay extends JFrame implements ActionListener {
 		8 - Final Boss (Mage)
 		9 - Final Boss (Priest)
 		10 - Mountains
-		 */
-		for (int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				map[i][j] = rn.nextInt(3);
-			}
-		}
+		*/
+		
+		generateLootTiles();
+		generateEnemyTiles();
+		
 		for (int i = 0; i < 7; i++) {
 			generateMountains();
 		}
@@ -456,6 +525,30 @@ public class Gameplay extends JFrame implements ActionListener {
 		generateBoss();
 		generateMerchant();
 
+	}
+	
+	public void generateLootTiles(){
+		int x, y, i = 0;
+		do {
+			x = rn.nextInt(map[2].length);
+			y = rn.nextInt(map.length);
+			if (checkUsageTile(x, y)) {
+				map[y][x] = 1;
+				i++;
+			}
+		} while (i < 30);
+	}
+	
+	public void generateEnemyTiles(){
+		int x, y, i = 0;
+		do {
+			x = rn.nextInt(map[i].length);
+			y = rn.nextInt(map.length);
+			if (checkUsageTile(x, y)) {
+				map[y][x] = 2;
+				i++;
+			}
+		} while (i < 20);
 	}
 
 	//Function to generate Mountains
@@ -507,7 +600,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			x = rn.nextInt(map[i].length);
 			y = rn.nextInt(map.length);
 			if (checkUsageTile(x, y)) {
-				map[y][x] = 4;
+				map[y][x] = rn.nextInt(7 - 4) + 4;
 				i++;
 			}
 		} while (i < 3);
@@ -522,7 +615,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			y = rn.nextInt(map.length);
 			isUsable = checkUsageTile(x, y);
 			if (isUsable) {
-				map[y][x] = 5;
+				map[y][x] = rn.nextInt(10 - 7) + 7;
 			}
 		} while (!isUsable);
 	}
@@ -547,7 +640,8 @@ public class Gameplay extends JFrame implements ActionListener {
 	//Function to check if the tile does not containt special events
 	public boolean checkUsageTile(int x, int y) {
 		boolean isUsable = false;
-		if (!(map[y][x] == 10 || map[y][x] == 4 || map[y][x] == 5 || (mainCharacter.getX() == x && mainCharacter.getY() == y))) {
+		if (!(map[y][x] == 10 || map[y][x] == 4 || map[y][x] == 5 || map[y][x] == 6 ||
+				map[y][x] == 7 || map[y][x] == 8 || map[y][x] == 9 ||(mainCharacter.getX() == x && mainCharacter.getY() == y))) {
 			isUsable = true;
 		}
 
@@ -668,14 +762,18 @@ public class Gameplay extends JFrame implements ActionListener {
             case 3:
                 //Merchant
                 merchant.trade();
-                f.setVisible(true);
+                this.setVisible(true);
                 reprint();
                 break;
             case 4:
+			case 5:
+			case 6:
                 System.out.println("You found a miniBoss. Get ready to fight!");
                 startCombat();
                 break;
-            case 5:
+            case 7:
+			case 8:
+			case 9:
                 System.out.println("FINAL BOSS");
                 startCombat();
                 if (mainCharacter.getHp() > 0) {
@@ -694,14 +792,15 @@ public class Gameplay extends JFrame implements ActionListener {
 			System.out.println("You're now in the " + (floor + 1) + " floor. New adventures are comming.");
 			floor++;
 			createMap();
-			mainCharacter.setX(10);
-			mainCharacter.setY(2);
+			mainCharacter.setX(20);
+			mainCharacter.setY(10);
 			System.out.println("Are you ready?");
 			String s = Teclat.llegirString();
-			reprint();
-			f.setVisible(true);
+			setFrame();
+			//reprint();
+			this.setVisible(true);
 		} else {
-			f.dispose();
+			this.dispose();
 			running = false;
 			EldenArk.win(mainCharacter.getNickname());
 		}
@@ -709,8 +808,24 @@ public class Gameplay extends JFrame implements ActionListener {
 	}
 
 	public int checkEnemyLevel() {
+		int level = 2;
+		switch(map[mainCharacter.getY()][mainCharacter.getX()]){
+			case 2:
+				level = 2;
+				break;
+			case 4:
+			case 5:
+			case 6:
+				level = 4;
+				break;
+			case 7:
+			case 8:
+			case 9:
+				level = 5;
+				break;
+		}
 
-		return map[mainCharacter.getY()][mainCharacter.getX()] * floor;
+		return level * floor;
 	}
 
 	//Enemy creation
@@ -718,21 +833,24 @@ public class Gameplay extends JFrame implements ActionListener {
 
 		Character enemy;
 
-		switch (rn.nextInt(3)) {
+		switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
 
-			case 0:
+			case 4:
+			case 7:
 
 				enemy = new Warrior(20 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 14 * difficulty);
 
 				break;
 
-			case 1:
+			case 5:
+			case 8:
 
 				enemy = new Mage(13 * difficulty, 4 * difficulty, 66 * difficulty, 66 * difficulty, 70 * difficulty, 70 * difficulty, 30 * difficulty);
 
 				break;
 
-			case 2:
+			case 6:
+			case 9:
 
 				enemy = new Priest(11 * difficulty, 6 * difficulty, 84 * difficulty, 84 * difficulty, 60 * difficulty, 60 * difficulty, 25 * difficulty);
 
@@ -747,12 +865,12 @@ public class Gameplay extends JFrame implements ActionListener {
 	}
 
 	public void startCombat() {
-		f.setVisible(false);
+		this.setVisible(false);
 		int combatLevel = checkEnemyLevel();
 		Character enemy = createEnemy(combatLevel);
 		mainCharacter.fight(map, enemy, floor);
 		if (mainCharacter.getHp() <= 0) {
-			f.dispose();
+			this.dispose();
 			running = false;
 			EldenArk.gameOver();
 		} else {
@@ -762,7 +880,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			System.out.println("\t\t\t\tPress enter to continue...");
 			String s = Teclat.llegirString();
 			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
-			f.setVisible(true);
+			this.setVisible(true);
 			reprint();
 		}
 	}
@@ -778,9 +896,13 @@ public class Gameplay extends JFrame implements ActionListener {
 				generateEquipmentLoot(98);
 				break;
 			case 4:
+			case 5:
+			case 6:
 				generateEquipmentLoot(14);
 				break;
-			case 5:
+			case 7:
+			case 8:
+			case 9:
 				generateEquipmentLoot(4);
 				break;
 		}

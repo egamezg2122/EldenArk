@@ -61,6 +61,7 @@ public class EldenArk {
 		*/
 		
 		
+		
         introduction();
         
         // Let the user to choose the main character
@@ -74,6 +75,7 @@ public class EldenArk {
         // Create gameplay
 
         Gameplay g = new Gameplay(mainCharacter);
+		
 
     }
     
