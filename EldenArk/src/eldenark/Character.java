@@ -154,34 +154,10 @@ public class Character {
 		chestplate();
 		legArmor();
 
-<<<<<<< Updated upstream
 		equipment[0] = newWeapons[weapon];
 		equipment[1] = newHelmets[helmet];
 		equipment[2] = newChestPlates[chest];
 		equipment[3] = newLegArmors[leg];
-=======
-    //METHODS
-    public void levelUp() {
-        level++;
-        damage = (int) (damage * 1.2);
-        defence = (int) (defence * 1.2);
-        specialDamage = (int) (specialDamage * 1.2);
-        hp = (int) ((maxHP * 1.2) - (maxHP - hp));
-        maxHP = (int) (maxHP * 1.2);
-        mp = (int) ((maxMP * 1.2) - (maxMP - mp));
-        maxMP = (int) (maxMP * 1.2);
-        xp = 0;
-        maxXP *= 1.5;
-        if (level % 5 == 0) {
-            //get new hability
-            System.out.println("NEW ABILITY UNLOCKED");
-        }
-    }
-    
-    
-    
-    
->>>>>>> Stashed changes
 
 		addEquip(equipment);
 

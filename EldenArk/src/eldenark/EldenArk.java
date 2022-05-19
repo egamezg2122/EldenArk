@@ -41,7 +41,7 @@ public class EldenArk {
     static Random rn = new Random();
 
     public static void main(String[] args) {
-                
+
         // Show Introduction
 		/*
         Map m = new Map();

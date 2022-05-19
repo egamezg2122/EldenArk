@@ -216,41 +216,41 @@ public class Priest extends Character {
 			// Hability 3 heals the Character    
 			case 3:
 
-                            if (this.getMp() >= 60) {
+				if (this.getMp() >= 60) {
 
-                                    if (this.getHp() < this.getMaxHP()) {
+					if (this.getHp() < this.getMaxHP()) {
 
-                                            int healed = this.getSpecialDamage() * 6;
+						int healed = this.getSpecialDamage() * 6;
 
-                                            this.setHp(this.getHp() + healed);
+						this.setHp(this.getHp() + healed);
 
-                                            this.setMp(this.getMp() - 60);
+						this.setMp(this.getMp() - 60);
 
-                                            if (this.getHp() > this.getMaxHP()) {
+						if (this.getHp() > this.getMaxHP()) {
 
-                                                    this.setHp(this.checkMaxValues(this.getHp(), this.getMaxHP()));
+							this.setHp(this.checkMaxValues(this.getHp(), this.getMaxHP()));
 
-                                                    healed = this.getHp() - tempHp;;
+							healed = this.getHp() - tempHp;;
 
-                                            }
+						}
 
-                                            System.out.println("\nYou used " + abilitiesPriest[option - 1] + " on the enemy.");
-                                            System.out.println("You heales " + healed + " Hp.");
-                                            System.out.println("-60 Mana");
+						System.out.println("\nYou used " + abilitiesPriest[option - 1] + " on the enemy.");
+						System.out.println("You heales " + healed + " Hp.");
+						System.out.println("-60 Mana");
 
-                                    } else {
+					} else {
 
-                                            System.out.println("You have max HP");
+						System.out.println("You have max HP");
 
-                                    }
+					}
 
-                            } else {
+				} else {
 
-                                    System.out.println("You don't have mana");
-                                    enemyOption = 2;
-                            }
+					System.out.println("You don't have mana");
+                                        enemyOption = 2;
+				}
 
-                            break;
+				break;
 
 			// Hability 4 does damage    
 			case 4:
@@ -286,7 +286,7 @@ public class Priest extends Character {
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_FRONT.png");
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_RIGHT.png");
-		} else {
+		} else{
 			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_BACK.png");
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_FRONT.png");
