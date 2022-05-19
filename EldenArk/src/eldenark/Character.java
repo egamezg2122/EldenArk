@@ -69,12 +69,8 @@ public class Character {
 	// Constructor for MAIN CHARACTER
 	public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
 
-<<<<<<< Updated upstream
-		this.level = 100; // Always start at level 1
-=======
-		this.level = 5; // Always start at level 1
->>>>>>> Stashed changes
-
+		this.level = 1; // Always start at level 1
+		
 		this.xp = 0; // Experience always start at 0
 
 		this.maxXP = 100;
