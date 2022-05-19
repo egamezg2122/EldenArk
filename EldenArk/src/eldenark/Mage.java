@@ -112,6 +112,14 @@ public class Mage extends Character {
 	}
 
 	@Override
+	public void setAbilityNames(){
+		abilities[0] = "Fireball";
+		abilities[1] = "Translation";
+		abilities[2] = "Frost Nova";
+		abilities[3] = "Thunder Weather";
+	}
+	
+	@Override
 	public int abilities(Character enemy, int enemyOption) {
 
         String abilitiesMage[] = {"Fireball", "Translation", "Frost Nova", "Thunder Weather", "Silvermoon"};

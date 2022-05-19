@@ -148,6 +148,14 @@ public class Warrior extends Character {
 	}
 
 	@Override
+	public void setAbilityNames(){
+		abilities[0] = "Thor's Hammer";
+		abilities[1] = "Ram load";
+		abilities[2] = "Battle cry";
+		abilities[3] = "Double edge";
+	}
+	
+	@Override
 	public int abilities(Character enemy, int enemyOption) {
 
 		String abilitiesWarrior[] = {"Thor's Hammer", "Ram load", "Battle cry", "Double edge", "Heroic jump"};

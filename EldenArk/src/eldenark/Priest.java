@@ -113,6 +113,16 @@ public class Priest extends Character {
 	}
 
 	@Override
+	public void setAbilityNames(){
+		abilities[0] = "Power Infusion";
+		abilities[1] = "Punishment";
+		abilities[2] = "Jump of Faith";
+		abilities[3] = "Levitation";
+	}
+	
+	
+	
+	@Override
 	public int abilities(Character enemy, int enemyOption) {
 		String abilitiesPriest[] = {"Power Infusion", "Punishment", "Jump of faith", "Levitation", "Desperate prayer"};
 		int option;

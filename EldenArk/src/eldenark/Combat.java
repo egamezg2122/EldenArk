@@ -6,6 +6,7 @@
 package eldenark;
 
 import static eldenark.EldenArk.rn;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,11 +39,12 @@ public class Combat extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        attackButton = new javax.swing.JButton();
+        abilitiesButton = new javax.swing.JButton();
+        defendButton = new javax.swing.JButton();
+        objectsButton = new javax.swing.JButton();
         textoAttack = new javax.swing.JLabel();
+        textDesc = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         mpUser = new javax.swing.JLabel();
         hpUser = new javax.swing.JLabel();
@@ -57,44 +59,53 @@ public class Combat extends javax.swing.JFrame {
         username = new javax.swing.JLabel();
         userPhoto = new javax.swing.JLabel();
         enemyPhoto = new javax.swing.JLabel();
+        textEnemy1 = new javax.swing.JTextField();
+        textEnemy2 = new javax.swing.JTextField();
+        hpNumbers = new javax.swing.JLabel();
+        mpNumbers = new javax.swing.JLabel();
+        mpNumbersEnemy = new javax.swing.JLabel();
+        hpNumbersEnemy = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Combat");
         setAutoRequestFocus(false);
         setBackground(java.awt.Color.red);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1205, 700));
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1205, 900));
+        setPreferredSize(new java.awt.Dimension(1265, 700));
         setResizable(false);
 
-        jButton1.setText("Attack");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        attackButton.setText("Attack");
+        attackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                attackButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Abilities");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        abilitiesButton.setText("Abilities");
+        abilitiesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                abilitiesButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Defend");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        defendButton.setText("Defend");
+        defendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                defendButtonActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Objects");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        objectsButton.setText("Objects");
+        objectsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                objectsButtonActionPerformed(evt);
             }
         });
 
         textoAttack.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+
+        textDesc.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,17 +114,19 @@ public class Combat extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton8)
+                    .addComponent(objectsButton)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton4)
-                        .addComponent(jButton3)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(defendButton)
+                        .addComponent(abilitiesButton)
+                        .addComponent(attackButton)))
+                .addGap(27, 27, 27)
+                .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addComponent(textoAttack, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton3, jButton4});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {abilitiesButton, attackButton, defendButton});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,13 +135,15 @@ public class Combat extends javax.swing.JFrame {
                     .addComponent(textoAttack, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jButton1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(attackButton)
+                            .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(defendButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)
+                        .addComponent(objectsButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(abilitiesButton)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -170,6 +185,20 @@ public class Combat extends javax.swing.JFrame {
         enemyPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(enemy.getEnemyImg())));
         enemyPhoto.setMaximumSize(new java.awt.Dimension(200, 200));
 
+        textEnemy1.setEditable(false);
+        textEnemy1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textEnemy1ActionPerformed(evt);
+            }
+        });
+
+        textEnemy2.setEditable(false);
+        textEnemy2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textEnemy2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -182,24 +211,33 @@ public class Combat extends javax.swing.JFrame {
                             .addComponent(hpUser)
                             .addComponent(mpUser))
                         .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hpUserPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(mpUserPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(swordsPhoto))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mpNumbers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(hpUserPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hpNumbers, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(swordsPhoto))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(userPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(username)))
-                .addGap(288, 288, 288)
+                .addGap(62, 62, 62)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(enemysName)
                         .addGap(73, 73, 73))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(hpNumbersEnemy, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                            .addComponent(mpNumbersEnemy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(hpEnemyPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,6 +249,10 @@ public class Combat extends javax.swing.JFrame {
                                 .addComponent(mpEnemy)))
                         .addGap(41, 41, 41))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textEnemy1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEnemy2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enemyPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))))
         );
@@ -221,18 +263,27 @@ public class Combat extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hpEnemyPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hpEnemy))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(hpEnemyPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(hpEnemy)
+                                    .addComponent(hpNumbersEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mpEnemy)
-                                    .addComponent(mpEnemyPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(enemyPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(mpEnemy)
+                                            .addComponent(mpEnemyPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(enemyPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(textEnemy1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(textEnemy2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(mpNumbersEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
+                                .addGap(31, 31, 31)
                                 .addComponent(swordsPhoto)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,12 +293,14 @@ public class Combat extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hpUserPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hpUser))
+                            .addComponent(hpUser)
+                            .addComponent(hpNumbers, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(mpUser)
-                            .addComponent(mpUserPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(mpUserPBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mpNumbers, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addComponent(userPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))))
         );
@@ -260,7 +313,7 @@ public class Combat extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(571, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,40 +331,38 @@ public class Combat extends javax.swing.JFrame {
 		// TODO add your handling code here:
     }//GEN-LAST:event_swordsPhotoKeyPressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void attackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attackButtonActionPerformed
 		int enemyDef, charDef;
 		enemyDef = enemy.getDefence();
 		charDef = mainCharacter.getDefence();
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
+			textEnemy1.setText("The enemy auments his defence");
+			textEnemy2.setText("");
 		}
 		int damageDone = mainCharacter.getDamage() - enemy.getDefence();
 		if (damageDone > 0) {
 			enemy.setHp(enemy.getHp() - damageDone);
+			textDesc.setText("You did " + damageDone + " damage.");
 			//System.out.println("You did " + (damageDone) + " damage.");
 		} else {
+			textDesc.setText("You did 0 damage. The enemy's defense is to powerfull");
 			//System.out.println("You did 0 damage. The enemy's defense is to powerfull");
 		}
 		if (enemy.getHp() > 0) {
 			if (enemyOption == 1) {
 				enemyAttacks();
 			}
+		} else {
+			endCombat();
 		}
-		//COMBATE
-		/*
-		enemy decision
-		mainChar decision = basic attack
-		textAttack.setText("Lo que pondrias");
-		
-		 */
-
 		recheckValues();
 		mainCharacter.setDefence(charDef);
 		enemy.setDefence(enemyDef);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_attackButtonActionPerformed
 
-	private void enemyAttacks() {
+	protected void enemyAttacks() {
 		int optionAttack;
 		optionAttack = rn.nextInt(2);
 		switch (optionAttack) {
@@ -329,10 +380,13 @@ public class Combat extends javax.swing.JFrame {
 	private void enemyBasicAttack() {
 		int damageDone = enemy.getDamage() - mainCharacter.getDefence();
 		//System.out.println("\nThe enemy used his basic attack.");
+		textEnemy1.setText("The enemy used his basic attack");
 		if (damageDone > 0) {
 			mainCharacter.setHp(mainCharacter.getHp() - damageDone);
+			textEnemy2.setText("The enemy did " + (damageDone) + " damage");
 			//System.out.println("The enemy did " + (damageDone) + " damage.");
 		} else {
+			textEnemy2.setText("The enemy did 0 damage to you. Your defense is incredible");
 			//System.out.println("The enemy did 0 damage to you. Your defense is incredible");
 		}
 	}
@@ -342,10 +396,13 @@ public class Combat extends javax.swing.JFrame {
 		if (enemy.getMp() >= 40) {
 			if (damageDone > 0) {
 				mainCharacter.setHp(mainCharacter.getHp() - damageDone);
+				textEnemy1.setText("The enemy uses his special ability");
+				textEnemy2.setText("The enemy did " + (damageDone) + " damage");
 				//System.out.println("The enemy uses his special ability.");
 				//System.out.println("The enemy did " + (damageDone) + " damage.");
-
 			} else {
+				textEnemy1.setText("The enemy uses his special ability");
+				textEnemy2.setText("The enemy did 0 damage to you. Wow, how did you not get hurt!?");
 				//System.out.println("The enemy uses his special ability.");
 				//System.out.println("The enemy did 0 damage to you. Wow, how did you not get hurt!?");
 			}
@@ -359,15 +416,18 @@ public class Combat extends javax.swing.JFrame {
 
 	}
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void defendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defendButtonActionPerformed
 		int enemyDef, charDef;
 		enemyDef = enemy.getDefence();
 		charDef = mainCharacter.getDefence();
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
+			textEnemy1.setText("The enemy auments his defence");
+			textEnemy2.setText("");
 		}
 		mainCharacter.setDefence((int) (charDef * 1.3));
+		textDesc.setText("You aument your defence");
 		if (enemy.getHp() > 0) {
 			if (enemyOption == 1) {
 				enemyAttacks();
@@ -376,20 +436,36 @@ public class Combat extends javax.swing.JFrame {
 		recheckValues();
 		mainCharacter.setDefence(charDef);
 		enemy.setDefence(enemyDef);
+    }//GEN-LAST:event_defendButtonActionPerformed
 
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-		PotionFrame potion = new PotionFrame();
+    private void objectsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_objectsButtonActionPerformed
+		textDesc.setText("");
+		textEnemy1.setText("");
+		textEnemy2.setText("");
+		PotionFrame potion = new PotionFrame(mainCharacter, enemy, this);
 		potion.setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_objectsButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void abilitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abilitiesButtonActionPerformed
+		AbilitiesFrame abilities = new AbilitiesFrame(mainCharacter, enemy, this);
+		abilities.setVisible(true);
+    }//GEN-LAST:event_abilitiesButtonActionPerformed
+
+    private void textEnemy1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEnemy1ActionPerformed
+		// TODO add your handling code here:
+    }//GEN-LAST:event_textEnemy1ActionPerformed
+
+    private void textEnemy2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEnemy2ActionPerformed
+		// TODO add your handling code here:
+    }//GEN-LAST:event_textEnemy2ActionPerformed
+
+	private void endCombat() {
 		this.dispose();
+		String textEndCombat;
+		textEndCombat = "You have defeated " + enemy.getNickname() + "\nReturning to map...";
+		JOptionPane.showMessageDialog(this, textEndCombat);
 		game.endBattle();
-		/*AbilitiesFrame abilities = new AbilitiesFrame();
-		abilities.setVisible(true);*/
-    }//GEN-LAST:event_jButton3ActionPerformed
+	}
 
 	private void setInitialValues() {
 		hpUserPBar.setMaximum(mainCharacter.getMaxHP());
@@ -397,17 +473,28 @@ public class Combat extends javax.swing.JFrame {
 		mpUserPBar.setMaximum(mainCharacter.getMaxMP());
 		mpUserPBar.setValue(mainCharacter.getMp());
 
+		hpNumbers.setText(mainCharacter.getHp() + "/" + mainCharacter.getMaxHP());
+		mpNumbers.setText(mainCharacter.getMp() + "/" + mainCharacter.getMaxMP());
+		hpNumbersEnemy.setText(enemy.getHp() + "/" + enemy.getMaxHP());
+		mpNumbersEnemy.setText(enemy.getMp() + "/" + enemy.getMaxMP());
+
 		hpEnemyPBar.setMaximum(enemy.getMaxHP());
 		hpEnemyPBar.setValue(enemy.getHp());
 		mpEnemyPBar.setMaximum(enemy.getMaxMP());
 		mpEnemyPBar.setValue(enemy.getMp());
 	}
 
-	private void recheckValues() {
+	protected void recheckValues() {
+		mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP());
+		mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP());
 		hpUserPBar.setValue(mainCharacter.getHp());
+		hpNumbers.setText(mainCharacter.getHp() + "/" + mainCharacter.getMaxHP());
 		mpUserPBar.setValue(mainCharacter.getMp());
+		mpNumbers.setText(mainCharacter.getMp() + "/" + mainCharacter.getMaxMP());
 		hpEnemyPBar.setValue(enemy.getHp());
+		hpNumbersEnemy.setText(enemy.getHp() + "/" + enemy.getMaxHP());
 		mpEnemyPBar.setValue(enemy.getMp());
+		mpNumbersEnemy.setText(enemy.getMp() + "/" + enemy.getMaxMP());
 	}
 
 	/**
@@ -452,23 +539,30 @@ public class Combat extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton abilitiesButton;
+    private javax.swing.JButton attackButton;
+    private javax.swing.JButton defendButton;
     private javax.swing.JLabel enemyPhoto;
     private javax.swing.JLabel enemysName;
     private javax.swing.JLabel hpEnemy;
     private javax.swing.JProgressBar hpEnemyPBar;
+    private javax.swing.JLabel hpNumbers;
+    private javax.swing.JLabel hpNumbersEnemy;
     private javax.swing.JLabel hpUser;
     private javax.swing.JProgressBar hpUserPBar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel mpEnemy;
     private javax.swing.JProgressBar mpEnemyPBar;
+    private javax.swing.JLabel mpNumbers;
+    private javax.swing.JLabel mpNumbersEnemy;
     private javax.swing.JLabel mpUser;
     private javax.swing.JProgressBar mpUserPBar;
+    private javax.swing.JButton objectsButton;
     private javax.swing.JLabel swordsPhoto;
+    private javax.swing.JTextField textDesc;
+    private javax.swing.JTextField textEnemy1;
+    private javax.swing.JTextField textEnemy2;
     private javax.swing.JLabel textoAttack;
     private javax.swing.JLabel userPhoto;
     private javax.swing.JLabel username;

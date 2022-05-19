@@ -5,6 +5,8 @@
  */
 package eldenark;
 
+import static eldenark.EldenArk.rn;
+
 /**
  *
  * @author cep
@@ -14,8 +16,16 @@ public class PotionFrame extends javax.swing.JFrame {
 	/**
 	 * Creates new form Potion
 	 */
-	public PotionFrame() {
+	Character mainCharacter;
+	Character enemy;
+	Combat combat;
+
+	public PotionFrame(Character mainCharacter, Character enemy, Combat combat) {
+		this.mainCharacter = mainCharacter;
+		this.enemy = enemy;
+		this.combat = combat;
 		initComponents();
+		setInitialDescriptions();
 	}
 
 	/**
@@ -28,33 +38,92 @@ public class PotionFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        smallManaimg = new javax.swing.JLabel();
+        largeManaimg = new javax.swing.JLabel();
+        largeHealimg = new javax.swing.JLabel();
+        smallHealimg = new javax.swing.JLabel();
+        smallManaButton = new javax.swing.JButton();
+        smallHealButton = new javax.swing.JButton();
+        largeHealButton = new javax.swing.JButton();
+        largeManaButton = new javax.swing.JButton();
+        shDesc = new javax.swing.JTextField();
+        lhDesc = new javax.swing.JTextField();
+        smDesc = new javax.swing.JTextField();
+        lmDesc = new javax.swing.JTextField();
+        textUses = new javax.swing.JLabel();
+        usesSH = new javax.swing.JLabel();
+        usesLH = new javax.swing.JLabel();
+        usesSM = new javax.swing.JLabel();
+        usesLM = new javax.swing.JLabel();
+        textPotion = new javax.swing.JTextField();
 
         setTitle("Potions");
         setResizable(false);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_MANA.png"))); // NOI18N
+        smallManaimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_MANA.png"))); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_MANA.png"))); // NOI18N
+        largeManaimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_MANA.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_HEAL.png"))); // NOI18N
+        largeHealimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_HEAL.png"))); // NOI18N
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_HEAL.png"))); // NOI18N
+        smallHealimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_HEAL.png"))); // NOI18N
 
-        jButton1.setText("SMALL MANA POTION");
+        smallManaButton.setText("SMALL MANA POTION");
+        smallManaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smallManaButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("SMALL HEAL POTION");
+        smallHealButton.setText("SMALL HEAL POTION");
+        smallHealButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smallHealButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("LARGE HEAL POTION");
+        largeHealButton.setText("LARGE HEAL POTION");
+        largeHealButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                largeHealButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("LARGE MANA POTION");
+        largeManaButton.setText("LARGE MANA POTION");
+        largeManaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                largeManaButtonActionPerformed(evt);
+            }
+        });
+
+        shDesc.setEditable(false);
+        shDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shDescActionPerformed(evt);
+            }
+        });
+
+        lhDesc.setEditable(false);
+
+        smDesc.setEditable(false);
+
+        lmDesc.setEditable(false);
+
+        textUses.setText("USES");
+
+        usesSH.setText("USES");
+
+        usesLH.setText("USES");
+
+        usesSM.setText("USES");
+
+        usesLM.setText("USES");
+
+        textPotion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPotionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,43 +132,88 @@ public class PotionFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(largeHealimg)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(largeHealButton, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lhDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                        .addComponent(usesLH))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(smallHealimg)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(smallHealButton, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(shDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(usesSH))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(textUses))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
+                            .addComponent(smallManaimg)
+                            .addComponent(largeManaimg))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(426, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(largeManaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lmDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(usesLM))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(smallManaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(smDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(usesSM))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(textPotion, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(165, 165, 165))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(smallHealimg, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(smallHealButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(shDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(usesSH))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(textUses)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(largeHealimg, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(largeHealButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lhDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usesLH)))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(smallManaimg, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(smallManaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(smDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usesSM)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(largeManaimg, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(largeManaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lmDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usesLM)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textPotion, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -111,11 +225,168 @@ public class PotionFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void smallManaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallManaButtonActionPerformed
+		int enemyDef, charDef;
+		enemyDef = enemy.getDefence();
+		charDef = mainCharacter.getDefence();
+		int enemyOption = rn.nextInt(2);
+		if (enemyOption == 0) {
+			enemy.setDefence((int) (enemy.getDefence() * 1.3));
+			textPotion.setText("The enemy auments his defence");
+		}
+		if (mainCharacter.inventory[2].getNumOfUses() > 0 && mainCharacter.getMp()< mainCharacter.getMaxMP()) {
+			mainCharacter.inventory[2].use(mainCharacter);
+			mainCharacter.setMp(mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP()));
+			recheckUses();
+			if (enemy.getHp() > 0) {
+				if (enemyOption == 1) {
+					textPotion.setText("Watch out the main combat window. The enemy is attacking.");
+					combat.enemyAttacks();
+					combat.recheckValues();
+					recheckUses();
+					mainCharacter.setDefence(charDef);
+					enemy.setDefence(enemyDef);
+				}else{
+					combat.recheckValues();
+					recheckUses();
+				}
+			}
+		} else {
+			textPotion.setText("You don't have this potion anymore or you have full mana");
+		}
+		mainCharacter.setDefence(charDef);
+		enemy.setDefence(enemyDef);
+    }//GEN-LAST:event_smallManaButtonActionPerformed
+
+    private void shDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shDescActionPerformed
+		// TODO add your handling code here:
+    }//GEN-LAST:event_shDescActionPerformed
+
+    private void smallHealButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallHealButtonActionPerformed
+		int enemyDef, charDef;
+		enemyDef = enemy.getDefence();
+		charDef = mainCharacter.getDefence();
+		int enemyOption = rn.nextInt(2);
+		if (enemyOption == 0) {
+			enemy.setDefence((int) (enemy.getDefence() * 1.3));
+			textPotion.setText("The enemy auments his defence");
+		}
+		if (mainCharacter.inventory[0].getNumOfUses() > 0 && mainCharacter.getHp()< mainCharacter.getMaxHP()) {
+			mainCharacter.inventory[0].use(mainCharacter);
+			mainCharacter.setHp(mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP()));
+			recheckUses();
+			this.dispose();
+			if (enemy.getHp() > 0) {
+				if (enemyOption == 1) {
+					combat.enemyAttacks();
+					combat.recheckValues();
+					recheckUses();
+					mainCharacter.setDefence(charDef);
+					enemy.setDefence(enemyDef);
+				}else{
+					combat.recheckValues();
+					recheckUses();
+				}
+			}
+		} else {
+			textPotion.setText("You don't have this potion anymore or you are full HP");
+		}
+		mainCharacter.setDefence(charDef);
+		enemy.setDefence(enemyDef);
+    }//GEN-LAST:event_smallHealButtonActionPerformed
+
+    private void textPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPotionActionPerformed
+		// TODO add your handling code here:
+    }//GEN-LAST:event_textPotionActionPerformed
+
+    private void largeHealButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_largeHealButtonActionPerformed
+		int enemyDef, charDef;
+		enemyDef = enemy.getDefence();
+		charDef = mainCharacter.getDefence();
+		int enemyOption = rn.nextInt(2);
+		if (enemyOption == 0) {
+			enemy.setDefence((int) (enemy.getDefence() * 1.3));
+			textPotion.setText("The enemy auments his defence");
+		}
+		if (mainCharacter.inventory[1].getNumOfUses() > 0 && mainCharacter.getHp()< mainCharacter.getMaxHP()) {
+			mainCharacter.inventory[1].use(mainCharacter);
+			mainCharacter.setHp(mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP()));
+			recheckUses();
+			if (enemy.getHp() > 0) {
+				if (enemyOption == 1) {
+					textPotion.setText("Watch out the main combat window. The enemy is attacking.");
+					combat.enemyAttacks();
+					combat.recheckValues();
+					recheckUses();
+					mainCharacter.setDefence(charDef);
+					enemy.setDefence(enemyDef);
+				}else{
+					combat.recheckValues();
+					recheckUses();
+				}
+			}
+		} else {
+			textPotion.setText("You don't have this potion anymore or you are full HP");
+		}
+
+	    }//GEN-LAST:event_largeHealButtonActionPerformed
+
+    private void largeManaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_largeManaButtonActionPerformed
+		int enemyDef, charDef;
+		enemyDef = enemy.getDefence();
+		charDef = mainCharacter.getDefence();
+		int enemyOption = rn.nextInt(2);
+		if (enemyOption == 0) {
+			enemy.setDefence((int) (enemy.getDefence() * 1.3));
+			textPotion.setText("The enemy auments his defence");
+		}
+		if (mainCharacter.inventory[3].getNumOfUses() > 0 && mainCharacter.getMp()< mainCharacter.getMaxMP()) {
+			mainCharacter.inventory[3].use(mainCharacter);
+			mainCharacter.setMp(mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP()));
+			recheckUses();
+			if (enemy.getHp() > 0) {
+				if (enemyOption == 1) {
+					textPotion.setText("Watch out the main combat window. The enemy is attacking.");
+					combat.enemyAttacks();
+					combat.recheckValues();
+					recheckUses();
+					mainCharacter.setDefence(charDef);
+					enemy.setDefence(enemyDef);
+				}else{
+					combat.recheckValues();
+					recheckUses();
+				}
+			}
+		} else {
+			textPotion.setText("You don't have this potion anymore or you have full mana");
+		}
+	    }//GEN-LAST:event_largeManaButtonActionPerformed
+
+	private void setInitialDescriptions() {
+		shDesc.setText(mainCharacter.inventory[0].getDescription());
+		lhDesc.setText(mainCharacter.inventory[1].getDescription());
+		smDesc.setText(mainCharacter.inventory[2].getDescription());
+		lmDesc.setText(mainCharacter.inventory[3].getDescription());
+		usesSH.setText("" + mainCharacter.inventory[0].getNumOfUses());
+		usesLH.setText("" + mainCharacter.inventory[1].getNumOfUses());
+		usesSM.setText("" + mainCharacter.inventory[2].getNumOfUses());
+		usesLM.setText("" + mainCharacter.inventory[3].getNumOfUses());
+	}
+
+	private void recheckUses() {
+		usesSH.setText("" + mainCharacter.inventory[0].getNumOfUses());
+		usesLH.setText("" + mainCharacter.inventory[1].getNumOfUses());
+		usesSM.setText("" + mainCharacter.inventory[2].getNumOfUses());
+		usesLM.setText("" + mainCharacter.inventory[3].getNumOfUses());
+	}
 
 	/**
 	 * @param args the command line arguments
@@ -148,22 +419,32 @@ public class PotionFrame extends javax.swing.JFrame {
 		//</editor-fold>
 
 		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new PotionFrame().setVisible(true);
-			}
-		});
+ /*java.awt.EventQueue.invokeLater(new Runnable() {
+		public void run() {
+		new PotionFrame().setVisible(true);
+		}
+		});*/
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton largeHealButton;
+    private javax.swing.JLabel largeHealimg;
+    private javax.swing.JButton largeManaButton;
+    private javax.swing.JLabel largeManaimg;
+    private javax.swing.JTextField lhDesc;
+    private javax.swing.JTextField lmDesc;
+    private javax.swing.JTextField shDesc;
+    private javax.swing.JTextField smDesc;
+    private javax.swing.JButton smallHealButton;
+    private javax.swing.JLabel smallHealimg;
+    private javax.swing.JButton smallManaButton;
+    private javax.swing.JLabel smallManaimg;
+    private javax.swing.JTextField textPotion;
+    private javax.swing.JLabel textUses;
+    private javax.swing.JLabel usesLH;
+    private javax.swing.JLabel usesLM;
+    private javax.swing.JLabel usesSH;
+    private javax.swing.JLabel usesSM;
     // End of variables declaration//GEN-END:variables
 }
