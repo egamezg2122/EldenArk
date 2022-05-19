@@ -63,15 +63,16 @@ public class Gameplay extends JFrame implements ActionListener {
 	boolean running = false;
 	boolean inMap = true;
 	JFrame f;
-	int floor = 1;
+	int floor;
 	Merchant merchant;
 
 	// VARIABLES FOR SAVING THE GAME
 	static final int SIZE = 3324;
 	static final int STRING_SIZE = 12;
 
-	public Gameplay(Character mainCharacter) {
+	public Gameplay(Character mainCharacter, int floor) {
 		this.mainCharacter = mainCharacter;
+		this.floor = floor;
 		createMap();
 		reprint();
 		running = true;
@@ -758,9 +759,9 @@ public class Gameplay extends JFrame implements ActionListener {
 			case 2:
 				System.out.println("You found a normal enemy. Starting combat");
 				setInformation("You found a enemy");
-				startCombat();
+				//startCombat();
 				break;
-			/*
+			
             case 3:
                 //Merchant
                 merchant.trade();
@@ -771,39 +772,45 @@ public class Gameplay extends JFrame implements ActionListener {
 			case 5:
 			case 6:
                 System.out.println("You found a miniBoss. Get ready to fight!");
-                startCombat();
+                //startCombat();
                 break;
             case 7:
 			case 8:
 			case 9:
                 System.out.println("FINAL BOSS");
-                startCombat();
+                //startCombat();
                 if (mainCharacter.getHp() > 0) {
                     newFloor();
                 }
                 break;
-			 */
+			
 		}
 
 	}
 
 	public void newFloor() {
-		f.setVisible(false);
+		this.setVisible(false);
+		JOptionPane.showMessageDialog(this,"Good job defeating the final boss of " + floor + " floor.");
 		System.out.println("Good job defeating the final boss of " + floor + " floor.");
 		if (floor < 4) {
+			JOptionPane.showMessageDialog(this,"You're now in the " + (floor + 1) + " floor. New adventures are comming.");
 			System.out.println("You're now in the " + (floor + 1) + " floor. New adventures are comming.");
 			floor++;
-			createMap();
 			mainCharacter.setX(20);
 			mainCharacter.setY(10);
-			System.out.println("Are you ready?");
-			String s = Teclat.llegirString();
-			setFrame();
+			this.dispose();
+			Gameplay newFloor = new Gameplay(mainCharacter, floor);
+			
+			
+			
+			//setFrame();
 			//reprint();
-			this.setVisible(true);
+			
 		} else {
 			this.dispose();
 			running = false;
+			GameEndFrame end = new GameEndFrame(mainCharacter, "WIN");
+			end.setVisible(true);
 			EldenArk.win(mainCharacter.getNickname());
 		}
 
@@ -905,18 +912,20 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	public void endBattle() {
 
-		
 		int combatLevel = checkEnemyLevel();
 		if (mainCharacter.getHp() <= 0) {
 			this.dispose();
 			running = false;
-			EldenArk.gameOver();
+			GameEndFrame o = new GameEndFrame(mainCharacter, "GAME OVER");
+			o.setVisible(true);
+			//EldenArk.gameOver();
 		} else {
+			this.setVisible(true);
 			generateLoot(combatLevel);
 			mainCharacter.checkLevelUp(getExperience(combatLevel));
 			System.out.println("Returning to the map");
 			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
-			this.setVisible(true);
+			
 			reprint();
 		}  
 	}
@@ -946,8 +955,13 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	public void generateEquipmentLoot(int probability) {
 		int random = rn.nextInt(probability);
+		String text;
 		switch (random) {
 			case 0:
+				text = "You found a Weapon!\n" + mainCharacter.newWeapons[floor].getName() + "\n" + 
+						String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[0].getName()), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage")
+						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newWeapons[floor].getName()), ("+" + mainCharacter.newWeapons[floor].getProfit()), " damage");
+				JOptionPane.showMessageDialog(this, text);
 				System.out.println("\nYou found a Weapon!\n" + mainCharacter.newWeapons[floor].getName());
 				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[0].getName()), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage"));
 				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newWeapons[floor].getName()), ("+" + mainCharacter.newWeapons[floor].getProfit()), " damage"));
@@ -955,18 +969,36 @@ public class Gameplay extends JFrame implements ActionListener {
 				System.out.println("\n");
 				break;
 			case 1:
+				text = "You found a Helmet!\n" + mainCharacter.newHelmets[floor].getName() + "\n" + 
+						String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[1].getName()), ("+" + mainCharacter.getEquipment()[1].getProfit()), " defence")
+						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newHelmets[floor].getName()), ("+" + mainCharacter.newHelmets[floor].getProfit()), " defence");
+				JOptionPane.showMessageDialog(this, text);
 				System.out.println("You found a Helmet!\n" + mainCharacter.newHelmets[floor].getName());
 				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[1].getName()), ("+" + mainCharacter.getEquipment()[1].getProfit()), " defence"));
 				System.out.println(String.format("%-40.40s %5.5s %9.9s", mainCharacter.newHelmets[floor].getName(), ("+" + mainCharacter.newHelmets[floor].getProfit()), " defence"));
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[floor]);
 				break;
 			case 2:
+				text = "You found a Helmet!\n" + mainCharacter.newChestPlates[floor].getName() + "\n" + 
+						String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[2].getName()), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence")
+						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newChestPlates[floor].getName()), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence");
+				JOptionPane.showMessageDialog(this, text);
+				
+				
 				System.out.println("You found a Chestplate!\n" + mainCharacter.newChestPlates[floor].getName());
 				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[2].getName()), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence"));
 				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newChestPlates[floor].getName()), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence"));
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[floor]);
 				break;
 			case 3:
+				text = "You found a Leg!\n" + mainCharacter.newLegArmors[floor].getName() + "\n" + 
+						String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[3].getName()), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence")
+						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newLegArmors[floor].getName()), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence");
+				JOptionPane.showMessageDialog(this, text);
+				
+				
+				
+				
 				System.out.println("You found a Leg Armor!\n" + mainCharacter.newLegArmors[floor].getName());
 				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[3].getName()), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence"));
 				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newLegArmors[floor].getName()), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence"));
@@ -1089,7 +1121,8 @@ public class Gameplay extends JFrame implements ActionListener {
 					break;
 				case 'q':
 					reprint();
-					mainCharacter.showStats();
+					JOptionPane.showMessageDialog(rootPane, mainCharacter.showStats());
+								
 					break;
 				case 'e':
 					reprint();

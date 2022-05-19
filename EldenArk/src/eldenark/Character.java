@@ -67,7 +67,7 @@ public class Character {
 	// Constructor for MAIN CHARACTER
 	public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
 
-		this.level = 1; // Always start at level 1
+		this.level = 100; // Always start at level 1
 
 		this.xp = 0; // Experience always start at 0
 
@@ -205,11 +205,37 @@ public class Character {
 	}
 
 	//Funtion for showing the stats of the character
-	public void showStats() {
+	public String showStats() {
 		/*
 		The first String has a maximum length of 15 and has 25 blank spaces. The text is left justified.
 		Then, right jutifed we have the value of each atribute
 		 */
+		String levelS = "LEVEL:       " + level;
+		String damageS = "DAMAGE:       " + damage;
+		String defenceS = "DEFENCE:       " + defence;
+		String specialDmgS = "SPECIAL DAMAGE:     " + specialDamage;
+		String hpS = "HP:       " + hp + "/" + maxHP;
+		String mpS = "MP:       " + mp + "/" + maxMP;
+		String xpS = "EXP:      " + xp + "/" + maxXP;
+		String goldS = "GOLD:        " + gold;
+		
+		String toReturn = "";
+		toReturn = toReturn.concat(levelS);
+		toReturn = toReturn.concat("\n" + damageS);
+		toReturn = toReturn.concat("\n" + defenceS);
+		toReturn = toReturn.concat("\n" + specialDmgS);
+		toReturn = toReturn.concat("\n" + hpS);
+		toReturn = toReturn.concat("\n" + mpS);
+		toReturn = toReturn.concat("\n" + xpS);
+		toReturn = toReturn.concat("\n" + goldS);
+		
+		
+		
+		/*
+		String toReturn = String.format("%-25.15s %-10d", "LEVEL", level) + "\n" + String.format("%-25.15s %10d", "Damage", damage) + "\n" +
+			String.format("%-25.15s %-10d", "Defense", defence) + "\n" + String.format("%-25.15s %10d", "Special Damage", specialDamage) +  "\n" +
+				String.format("%-25.15s %10s", "HP", hp + "/" + maxHP) + "\n" + String.format("%-25.15s %10s", "MP", mp + "/" + maxMP) +  "\n" +
+					String.format("%-25.15s %10s", "EXP", xp + "/" + maxXP) + "\n" + String.format("%-25.15s %10d", "GOLD", gold);
 		System.out.println("");
 		System.out.println(String.format("%-25.15s %10d", "LEVEL", level));
 		System.out.println(String.format("%-25.15s %10d", "Damage", damage));
@@ -219,8 +245,9 @@ public class Character {
 		System.out.println(String.format("%-25.15s %10s", "MP", mp + "/" + maxMP));
 		System.out.println(String.format("%-25.15s %10s", "EXP", xp + "/" + maxXP));
 		System.out.println("");
-		System.out.println(String.format("%-25.15s %10d", "GOLD", gold));
-
+		System.out.println(String.format("%-25.15s %10d", "GOLD", gold));*/
+		
+		return toReturn;
 	}
 
 	//DO THE OVERRIDE ONES

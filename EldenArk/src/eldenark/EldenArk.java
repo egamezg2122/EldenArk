@@ -88,7 +88,9 @@ public class EldenArk {
         // Create gameplay
 
 
-       Gameplay g = new Gameplay(mainCharacter);
+
+		Gameplay g = new Gameplay(mainCharacter, 1);
+		
 
 	   //Combat c = new Combat(mainCharacter, enemy);
 	   //c.setVisible(true);
@@ -138,7 +140,7 @@ public class EldenArk {
             
             Character newMainCharacter = pickClass(nickname);
 
-            Gameplay newGameplay = new Gameplay(newMainCharacter);
+            Gameplay newGameplay = new Gameplay(newMainCharacter, 1);
             
         } else {
             
