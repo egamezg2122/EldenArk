@@ -62,12 +62,18 @@ public class Character {
 	private String enemyImg = "FOTOS ELDEN ARK/ENEMY/1 FLOOR/MAGE.PNG";
 
 	public int sex = 0; //0 - male / 1 - women
+	
+	protected String[] abilities = new String[4];
 
 	// Constructors
 	// Constructor for MAIN CHARACTER
 	public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
 
+<<<<<<< Updated upstream
 		this.level = 100; // Always start at level 1
+=======
+		this.level = 5; // Always start at level 1
+>>>>>>> Stashed changes
 
 		this.xp = 0; // Experience always start at 0
 
@@ -108,6 +114,8 @@ public class Character {
 		getImagePath();
 
 		getCombatImage();
+		
+		setAbilityNames();
 
 	}
 
@@ -162,6 +170,10 @@ public class Character {
 		addEquip(equipment);
 
 		getImagePath();
+		
+		getCombatImage();
+		
+		setAbilityNames();
 	}
 
 	public Character() {
@@ -1191,6 +1203,10 @@ public class Character {
 
 	public String getNickname() {
 		return nickname;
+	}
+	
+	public void setAbilityNames(){
+		 
 	}
 
 }

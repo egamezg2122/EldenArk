@@ -903,7 +903,6 @@ public class Gameplay extends JFrame implements ActionListener {
 		this.setVisible(false);
 		int combatLevel = checkEnemyLevel();
 		Character enemy = createEnemy(combatLevel);
-
 		Combat c = new Combat(mainCharacter, enemy, this);
 		c.setVisible(true);
 		//mainCharacter.fight(map, enemy, floor);
@@ -927,7 +926,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
 			
 			reprint();
-		}  
+		}
 	}
 
 	public int getExperience(int level) {
