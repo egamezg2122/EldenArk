@@ -13,15 +13,17 @@ import static eldenark.EldenArk.rn;
  */
 public class Combat extends javax.swing.JFrame {
 
+	Gameplay game;
 	Character mainCharacter;
 	Character enemy;
 
 	/**
 	 * Creates new form NewJFrame
 	 */
-	public Combat(Character mainCharacter, Character enemy) {
+	public Combat(Character mainCharacter, Character enemy, Gameplay game) {
 		this.mainCharacter = mainCharacter;
 		this.enemy = enemy;
+		this.game = game;
 		initComponents();
 		setInitialValues();
 	}
@@ -383,8 +385,10 @@ public class Combat extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-		AbilitiesFrame abilities = new AbilitiesFrame();
-		abilities.setVisible(true);
+		this.dispose();
+		game.endBattle();
+		/*AbilitiesFrame abilities = new AbilitiesFrame();
+		abilities.setVisible(true);*/
     }//GEN-LAST:event_jButton3ActionPerformed
 
 	private void setInitialValues() {

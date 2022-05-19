@@ -43,7 +43,7 @@ public class Gameplay extends JFrame implements ActionListener {
 	private JLabel merchantLabel;
 
 	private JLabel[] moveOptions = new JLabel[7];
-	
+
 	private JLabel information = new JLabel();
 
 	private JMenuBar frameMenu = new JMenuBar();
@@ -53,7 +53,7 @@ public class Gameplay extends JFrame implements ActionListener {
 	private JMenuItem save, exit;
 
 	private String[] bossesPath = new String[4];
-	
+
 	private String mapPath;
 
 	// GAMEPLAY VARIABLES
@@ -106,7 +106,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		this.setVisible(true);
 
 		setMenu();
-		*/
+		 */
 	}
 
 	public Gameplay(Character mainCharacter, Merchant merchant, int[][] map, int floor) {
@@ -114,11 +114,11 @@ public class Gameplay extends JFrame implements ActionListener {
 		this.merchant = merchant;
 		this.map = map;
 		this.floor = floor;
-		
+
 	}
 
 	//FRAME METHODS
-	public void setFrame(){
+	public void setFrame() {
 		setMapPath();
 		MyKeyAdapter k;
 		k = new MyKeyAdapter();
@@ -147,11 +147,11 @@ public class Gameplay extends JFrame implements ActionListener {
 		this.setVisible(true);
 
 		setMenu();
-		
+
 	}
-	
-	private void setMapPath(){
-		switch(floor){
+
+	private void setMapPath() {
+		switch (floor) {
 			case 1:
 				mapPath = "/FOTOS ELDEN ARK/MAP/SUELO.png";
 				break;
@@ -166,18 +166,18 @@ public class Gameplay extends JFrame implements ActionListener {
 				break;
 		}
 	}
-	
-	private void setInformation(String string){
-		
+
+	private void setInformation(String string) {
+
 		moveOptions[moveOptions.length - 3].setText(string);
-		
+
 	}
-	
-	private void setSecondInformation(String string){
-		
+
+	private void setSecondInformation(String string) {
+
 		moveOptions[moveOptions.length - 2].setText(string);
 	}
-	
+
 	private void setMap() {
 
 		for (int i = 0; i < NUM_TILES_Y; i++) {
@@ -221,7 +221,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		moveOptions[1].setBounds(0, 615, 300, 30);
 		moveOptions[2].setBounds(200, 615, 300, 30);
 		moveOptions[3].setBounds(400, 615, 300, 30);
-		
+
 		moveOptions[moveOptions.length - 3].setBounds(800, 600, 300, 30);
 		moveOptions[moveOptions.length - 2].setBounds(800, 615, 300, 30);
 
@@ -326,11 +326,11 @@ public class Gameplay extends JFrame implements ActionListener {
 	}
 
 	private void setBosses1Floor() {
-		
+
 		int counter = 0;
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
-				switch (map[i][j]){
+				switch (map[i][j]) {
 					case 4:
 						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_1.png";
 						counter++;
@@ -352,7 +352,7 @@ public class Gameplay extends JFrame implements ActionListener {
 					case 9:
 						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_PRIEST_1.png";
 						break;
-						
+
 				}
 			}
 		}
@@ -386,15 +386,14 @@ public class Gameplay extends JFrame implements ActionListener {
 			default:
 				bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/1 FLOOR/BOSS/BOSS_WARRIOR_1.png";
 		}
-		*/
+		 */
 	}
-		
 
 	private void setBosses2Floor() {
 		int counter = 0;
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
-				switch (map[i][j]){
+				switch (map[i][j]) {
 					case 4:
 						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_2.png";
 						counter++;
@@ -416,19 +415,18 @@ public class Gameplay extends JFrame implements ActionListener {
 					case 9:
 						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/2 FLOOR/BOSS/BOSS_PRIEST_2.png";
 						break;
-						
+
 				}
 			}
 		}
-		
-		
+
 	}
 
 	private void setBosses3Floor() {
 		int counter = 0;
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
-				switch (map[i][j]){
+				switch (map[i][j]) {
 					case 4:
 						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_3.png";
 						counter++;
@@ -450,18 +448,18 @@ public class Gameplay extends JFrame implements ActionListener {
 					case 9:
 						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/3 FLOOR/BOSS/BOSS_PRIEST_3.png";
 						break;
-						
+
 				}
 			}
 		}
-		
+
 	}
 
 	private void setBosses4Floor() {
 		int counter = 0;
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
-				switch (map[i][j]){
+				switch (map[i][j]) {
 					case 4:
 						bossesPath[counter] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/MINIBOSS/MINIBOSS_WARRIOR_4.png";
 						counter++;
@@ -483,7 +481,7 @@ public class Gameplay extends JFrame implements ActionListener {
 					case 9:
 						bossesPath[bossesPath.length - 1] = "/FOTOS ELDEN ARK/ENEMY MAP/4 FLOOR/BOSS/BOSS_PRIEST_4.png";
 						break;
-						
+
 				}
 			}
 		}
@@ -513,11 +511,11 @@ public class Gameplay extends JFrame implements ActionListener {
 		8 - Final Boss (Mage)
 		9 - Final Boss (Priest)
 		10 - Mountains
-		*/
-		
+		 */
+
 		generateLootTiles();
 		generateEnemyTiles();
-		
+
 		for (int i = 0; i < 7; i++) {
 			generateMountains();
 		}
@@ -526,8 +524,8 @@ public class Gameplay extends JFrame implements ActionListener {
 		generateMerchant();
 
 	}
-	
-	public void generateLootTiles(){
+
+	public void generateLootTiles() {
 		int x, y, i = 0;
 		do {
 			x = rn.nextInt(map[2].length);
@@ -538,8 +536,8 @@ public class Gameplay extends JFrame implements ActionListener {
 			}
 		} while (i < 30);
 	}
-	
-	public void generateEnemyTiles(){
+
+	public void generateEnemyTiles() {
 		int x, y, i = 0;
 		do {
 			x = rn.nextInt(map[i].length);
@@ -640,8 +638,8 @@ public class Gameplay extends JFrame implements ActionListener {
 	//Function to check if the tile does not containt special events
 	public boolean checkUsageTile(int x, int y) {
 		boolean isUsable = false;
-		if (!(map[y][x] == 10 || map[y][x] == 4 || map[y][x] == 5 || map[y][x] == 6 ||
-				map[y][x] == 7 || map[y][x] == 8 || map[y][x] == 9 ||(mainCharacter.getX() == x && mainCharacter.getY() == y))) {
+		if (!(map[y][x] == 10 || map[y][x] == 4 || map[y][x] == 5 || map[y][x] == 6
+				|| map[y][x] == 7 || map[y][x] == 8 || map[y][x] == 9 || (mainCharacter.getX() == x && mainCharacter.getY() == y))) {
 			isUsable = true;
 		}
 
@@ -699,9 +697,9 @@ public class Gameplay extends JFrame implements ActionListener {
 				setInformation("You can't move there");
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			
+
 			setInformation("You're at the edge of the map.");
-			
+
 		}
 
 	}
@@ -715,7 +713,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				setInformation("You can't move there");
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			
+
 			setInformation("You're at the edge of the map.");
 		}
 
@@ -735,7 +733,7 @@ public class Gameplay extends JFrame implements ActionListener {
 	}
 
 	public void tryToMoveLeft() {
-		
+
 		try {
 			if (map[mainCharacter.getY()][mainCharacter.getX() - 1] != 10) {
 				mainCharacter.moveLeft();
@@ -756,12 +754,12 @@ public class Gameplay extends JFrame implements ActionListener {
 				System.out.println("You found loot");
 				setInformation("You found loot");
 				break;
-			
-            case 2:
-                System.out.println("You found a normal enemy. Starting combat");
+
+			case 2:
+				System.out.println("You found a normal enemy. Starting combat");
 				setInformation("You found a enemy");
-				//startCombat();
-                break;
+				startCombat();
+				break;
 			/*
             case 3:
                 //Merchant
@@ -813,7 +811,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	public int checkEnemyLevel() {
 		int level = 2;
-		switch(map[mainCharacter.getY()][mainCharacter.getX()]){
+		switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
 			case 2:
 				level = 2;
 				break;
@@ -836,35 +834,61 @@ public class Gameplay extends JFrame implements ActionListener {
 	public Character createEnemy(int difficulty) {
 
 		Character enemy;
+		int type;
 
 		switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
-
+			case 2:
+				type = 2;
+				enemy = newNormalEnemy(type, difficulty);
+				break;
 			case 4:
+				type = 4;
+				enemy = new Warrior(20 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 14 * difficulty, type, floor);
+				break;
 			case 7:
-
-				enemy = new Warrior(20 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 14 * difficulty);
-
+				type = 7;
+				enemy = new Warrior(20 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 14 * difficulty, type, floor);
 				break;
-
 			case 5:
+				type = 4;
+				enemy = new Mage(13 * difficulty, 4 * difficulty, 66 * difficulty, 66 * difficulty, 70 * difficulty, 70 * difficulty, 30 * difficulty, type, floor);
+				break;
 			case 8:
-
-				enemy = new Mage(13 * difficulty, 4 * difficulty, 66 * difficulty, 66 * difficulty, 70 * difficulty, 70 * difficulty, 30 * difficulty);
-
+				type = 7;
+				enemy = new Mage(13 * difficulty, 4 * difficulty, 66 * difficulty, 66 * difficulty, 70 * difficulty, 70 * difficulty, 30 * difficulty, type, floor);
 				break;
-
 			case 6:
-			case 9:
-
-				enemy = new Priest(11 * difficulty, 6 * difficulty, 84 * difficulty, 84 * difficulty, 60 * difficulty, 60 * difficulty, 25 * difficulty);
-
+				type = 4;
+				enemy = new Priest(11 * difficulty, 6 * difficulty, 84 * difficulty, 84 * difficulty, 60 * difficulty, 60 * difficulty, 25 * difficulty, type, floor);
 				break;
-
+			case 9:
+				type = 7;
+				enemy = new Priest(11 * difficulty, 6 * difficulty, 84 * difficulty, 84 * difficulty, 60 * difficulty, 60 * difficulty, 25 * difficulty, type, floor);
+				break;
 			default:
-
-				enemy = new Warrior(20 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 12 * difficulty);
+				type = 4;
+				enemy = new Warrior(20 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 14 * difficulty, type, floor);
 		}
 
+		return enemy;
+	}
+
+	private Character newNormalEnemy(int type, int difficulty) {
+		Character enemy;
+		switch (rn.nextInt(3)) {
+			case 0:
+				enemy = new Warrior(20 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 14 * difficulty, type, floor);
+				break;
+			case 1:
+				enemy = new Mage(13 * difficulty, 4 * difficulty, 66 * difficulty, 66 * difficulty, 70 * difficulty, 70 * difficulty, 30 * difficulty, type, floor);
+				break;
+			case 2:
+				enemy = new Priest(11 * difficulty, 6 * difficulty, 84 * difficulty, 84 * difficulty, 60 * difficulty, 60 * difficulty, 25 * difficulty, type, floor);
+				break;
+			default:
+				enemy = new Warrior(20 * difficulty, 8 * difficulty, 70 * difficulty, 70 * difficulty, 50 * difficulty, 50 * difficulty, 14 * difficulty, type, floor);
+
+		}
 		return enemy;
 	}
 
@@ -872,7 +896,17 @@ public class Gameplay extends JFrame implements ActionListener {
 		this.setVisible(false);
 		int combatLevel = checkEnemyLevel();
 		Character enemy = createEnemy(combatLevel);
-		mainCharacter.fight(map, enemy, floor);
+
+		Combat c = new Combat(mainCharacter, enemy, this);
+		c.setVisible(true);
+		//mainCharacter.fight(map, enemy, floor);
+
+	}
+
+	public void endBattle() {
+
+		
+		int combatLevel = checkEnemyLevel();
 		if (mainCharacter.getHp() <= 0) {
 			this.dispose();
 			running = false;
@@ -881,12 +915,10 @@ public class Gameplay extends JFrame implements ActionListener {
 			generateLoot(combatLevel);
 			mainCharacter.checkLevelUp(getExperience(combatLevel));
 			System.out.println("Returning to the map");
-			System.out.println("\t\t\t\tPress enter to continue...");
-			String s = Teclat.llegirString();
 			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
 			this.setVisible(true);
 			reprint();
-		}
+		}  
 	}
 
 	public int getExperience(int level) {
@@ -960,7 +992,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("You found no additionals objects");
-		} 
+		}
 		newEquipmentProbability();
 
 	}
@@ -999,8 +1031,6 @@ public class Gameplay extends JFrame implements ActionListener {
 	public int getFloor() {
 		return floor;
 	}
-	
-	
 
 	public class MyKeyAdapter implements KeyListener {
 
