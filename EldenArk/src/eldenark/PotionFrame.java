@@ -246,19 +246,14 @@ public class PotionFrame extends javax.swing.JFrame {
 			mainCharacter.inventory[2].use(mainCharacter);
 			mainCharacter.setMp(mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP()));
 			recheckUses();
-			if (enemy.getHp() > 0) {
-				if (enemyOption == 1) {
-					textPotion.setText("Watch out the main combat window. The enemy is attacking.");
-					combat.enemyAttacks();
-					combat.recheckValues();
-					recheckUses();
-					mainCharacter.setDefence(charDef);
-					enemy.setDefence(enemyDef);
-				}else{
-					combat.recheckValues();
-					recheckUses();
-				}
-			}
+			this.dispose();
+			combat.combatStatus(enemyOption);
+			combat.recheckValues();
+			recheckUses();
+			mainCharacter.setDefence(charDef);
+			enemy.setDefence(enemyDef);
+			combat.recheckValues();
+			recheckUses();
 		} else {
 			textPotion.setText("You don't have this potion anymore or you have full mana");
 		}
@@ -284,18 +279,13 @@ public class PotionFrame extends javax.swing.JFrame {
 			mainCharacter.setHp(mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP()));
 			recheckUses();
 			this.dispose();
-			if (enemy.getHp() > 0) {
-				if (enemyOption == 1) {
-					combat.enemyAttacks();
-					combat.recheckValues();
-					recheckUses();
-					mainCharacter.setDefence(charDef);
-					enemy.setDefence(enemyDef);
-				}else{
-					combat.recheckValues();
-					recheckUses();
-				}
-			}
+			combat.combatStatus(enemyOption);
+			combat.recheckValues();
+			recheckUses();
+			mainCharacter.setDefence(charDef);
+			enemy.setDefence(enemyDef);
+			combat.recheckValues();
+			recheckUses();
 		} else {
 			textPotion.setText("You don't have this potion anymore or you are full HP");
 		}
@@ -320,19 +310,14 @@ public class PotionFrame extends javax.swing.JFrame {
 			mainCharacter.inventory[1].use(mainCharacter);
 			mainCharacter.setHp(mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP()));
 			recheckUses();
-			if (enemy.getHp() > 0) {
-				if (enemyOption == 1) {
-					textPotion.setText("Watch out the main combat window. The enemy is attacking.");
-					combat.enemyAttacks();
-					combat.recheckValues();
-					recheckUses();
-					mainCharacter.setDefence(charDef);
-					enemy.setDefence(enemyDef);
-				}else{
-					combat.recheckValues();
-					recheckUses();
-				}
-			}
+			this.dispose();
+			combat.combatStatus(enemyOption);
+			combat.recheckValues();
+			recheckUses();
+			mainCharacter.setDefence(charDef);
+			enemy.setDefence(enemyDef);
+			combat.recheckValues();
+			recheckUses();
 		} else {
 			textPotion.setText("You don't have this potion anymore or you are full HP");
 		}
@@ -352,19 +337,14 @@ public class PotionFrame extends javax.swing.JFrame {
 			mainCharacter.inventory[3].use(mainCharacter);
 			mainCharacter.setMp(mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP()));
 			recheckUses();
-			if (enemy.getHp() > 0) {
-				if (enemyOption == 1) {
-					textPotion.setText("Watch out the main combat window. The enemy is attacking.");
-					combat.enemyAttacks();
-					combat.recheckValues();
-					recheckUses();
-					mainCharacter.setDefence(charDef);
-					enemy.setDefence(enemyDef);
-				}else{
-					combat.recheckValues();
-					recheckUses();
-				}
-			}
+			this.dispose();
+			combat.combatStatus(enemyOption);
+			combat.recheckValues();
+			recheckUses();
+			mainCharacter.setDefence(charDef);
+			enemy.setDefence(enemyDef);
+			combat.recheckValues();
+			recheckUses();
 		} else {
 			textPotion.setText("You don't have this potion anymore or you have full mana");
 		}

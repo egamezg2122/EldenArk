@@ -53,8 +53,8 @@ public class EldenArk {
 		ArrayList<Gameplay> saves = BinaryFile.getSaves();
 		System.out.println("Chose your character");
 		for (Gameplay a: saves){
-			
-			System.out.println(a.mainCharacter.getNickname());
+		
+		System.out.println(a.mainCharacter.getNickname());
 		}
 		int option = Teclat.llegirInt();
 		saves.get(option).setFrame();
@@ -62,15 +62,12 @@ public class EldenArk {
 		
 		
 
-        introduction();
-
-        
-        // Let the user to choose the main character
-        
+		introduction();
+		
+		
+		// Let the user to choose the main character
+		
 		// Ask the username
-		
-		
-		
 		
 		
 		String name = nicknameUser();
@@ -78,17 +75,11 @@ public class EldenArk {
 		Character mainCharacter = pickClass(name);
 		
 		
-		/*
-		Mage enemy = new Mage(20, 10, 100, 200, 150, 200, 40, 2, 1);*/
+		
+		// Create gameplay
 		
 		
 		
-		
-		
-        // Create gameplay
-
-
-
 		Gameplay g = new Gameplay(mainCharacter, 1);
 		
 
@@ -283,7 +274,7 @@ public class EldenArk {
     
     public static Priest createPriest(String name) {
 
-        Priest priest = new Priest(15, 10, 120, 120, 120, 120, 15, "Priest", generateInventory(), name);
+        Priest priest = new Priest(20, 10, 120, 120, 120, 120, 15, "Priest", generateInventory(), name);
 
         return priest;
         

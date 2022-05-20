@@ -7,13 +7,14 @@ package eldenark;
 
 import static eldenark.EldenArk.rn;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author cep
  */
 public class Combat extends javax.swing.JFrame {
-
+	
 	Gameplay game;
 	Character mainCharacter;
 	Character enemy;
@@ -350,18 +351,12 @@ public class Combat extends javax.swing.JFrame {
 			textDesc.setText("You did 0 damage. The enemy's defense is to powerfull");
 			//System.out.println("You did 0 damage. The enemy's defense is to powerfull");
 		}
-		if (enemy.getHp() > 0) {
-			if (enemyOption == 1) {
-				enemyAttacks();
-			}
-		} else {
-			endCombat();
-		}
+		combatStatus(enemyOption);
 		recheckValues();
 		mainCharacter.setDefence(charDef);
 		enemy.setDefence(enemyDef);
     }//GEN-LAST:event_attackButtonActionPerformed
-
+	
 	protected void enemyAttacks() {
 		int optionAttack;
 		optionAttack = rn.nextInt(2);
@@ -373,10 +368,10 @@ public class Combat extends javax.swing.JFrame {
 			case 1:
 				//SPECIAL ABILITY
 				enemySpecialAbilities();
-
+			
 		}
 	}
-
+	
 	private void enemyBasicAttack() {
 		int damageDone = enemy.getDamage() - mainCharacter.getDefence();
 		//System.out.println("\nThe enemy used his basic attack.");
@@ -390,7 +385,7 @@ public class Combat extends javax.swing.JFrame {
 			//System.out.println("The enemy did 0 damage to you. Your defense is incredible");
 		}
 	}
-
+	
 	private void enemySpecialAbilities() {
 		int damageDone = enemy.getSpecialDamage() - mainCharacter.getDefence();
 		if (enemy.getMp() >= 40) {
@@ -413,7 +408,7 @@ public class Combat extends javax.swing.JFrame {
 		} else {
 			enemyBasicAttack();
 		}
-
+		
 	}
 
     private void defendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defendButtonActionPerformed
@@ -428,16 +423,25 @@ public class Combat extends javax.swing.JFrame {
 		}
 		mainCharacter.setDefence((int) (charDef * 1.3));
 		textDesc.setText("You aument your defence");
-		if (enemy.getHp() > 0) {
-			if (enemyOption == 1) {
-				enemyAttacks();
-			}
-		}
+		combatStatus(enemyOption);
+		
 		recheckValues();
 		mainCharacter.setDefence(charDef);
 		enemy.setDefence(enemyDef);
     }//GEN-LAST:event_defendButtonActionPerformed
-
+	
+	protected void combatStatus(int enemyOption) {
+		if (enemy.getHp() > 0 && mainCharacter.getHp() > 0) {
+			if (enemyOption == 1) {
+				enemyAttacks();
+				if (mainCharacter.getHp() <= 0) {
+					endCombat();
+				}
+			}
+		} else {
+			endCombat();
+		}
+	}
     private void objectsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_objectsButtonActionPerformed
 		textDesc.setText("");
 		textEnemy1.setText("");
@@ -458,35 +462,39 @@ public class Combat extends javax.swing.JFrame {
     private void textEnemy2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEnemy2ActionPerformed
 		// TODO add your handling code here:
     }//GEN-LAST:event_textEnemy2ActionPerformed
-
+	
 	private void endCombat() {
 		this.dispose();
-		String textEndCombat;
-		textEndCombat = "You have defeated " + enemy.getNickname() + "\nReturning to map...";
+		String textEndCombat = "";
+		if (enemy.getHp() <= 0) {
+			textEndCombat = "You have defeated " + enemy.getNickname() + "\nReturning to map...";
+		} else if (mainCharacter.getHp() <= 0) {
+			textEndCombat = "You have been defeated " + "\nEnding game...";
+		}
 		JOptionPane.showMessageDialog(this, textEndCombat);
 		game.endBattle();
 	}
-
+	
 	private void setInitialValues() {
 		hpUserPBar.setMaximum(mainCharacter.getMaxHP());
 		hpUserPBar.setValue(mainCharacter.getHp());
 		mpUserPBar.setMaximum(mainCharacter.getMaxMP());
 		mpUserPBar.setValue(mainCharacter.getMp());
-
+		
 		hpNumbers.setText(mainCharacter.getHp() + "/" + mainCharacter.getMaxHP());
 		mpNumbers.setText(mainCharacter.getMp() + "/" + mainCharacter.getMaxMP());
 		hpNumbersEnemy.setText(enemy.getHp() + "/" + enemy.getMaxHP());
 		mpNumbersEnemy.setText(enemy.getMp() + "/" + enemy.getMaxMP());
-
+		
 		hpEnemyPBar.setMaximum(enemy.getMaxHP());
 		hpEnemyPBar.setValue(enemy.getHp());
 		mpEnemyPBar.setMaximum(enemy.getMaxMP());
 		mpEnemyPBar.setValue(enemy.getMp());
 	}
-
+	
 	protected void recheckValues() {
-		mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP());
-		mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP());
+		mainCharacter.setHp(mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP()));
+		mainCharacter.setMp(mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP()));
 		hpUserPBar.setValue(mainCharacter.getHp());
 		hpNumbers.setText(mainCharacter.getHp() + "/" + mainCharacter.getMaxHP());
 		mpUserPBar.setValue(mainCharacter.getMp());
@@ -537,6 +545,11 @@ public class Combat extends javax.swing.JFrame {
 		});
 		 */
 	}
+	
+	public JTextField getTextDesc() {
+		return textDesc;
+	}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton abilitiesButton;

@@ -135,7 +135,7 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
-			abilityDesc.setText("The enemy auments his defence");
+			combat.getTextDesc().setText("The enemy auments his defence");
 		}
 		if (mainCharacter.getMp() >= 40) {
 
@@ -147,13 +147,13 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
 			combat.recheckValues();
-			abilityDesc.setText("You used " + mainCharacter.abilities[1] + " on the enemy.");
-			abilityDesc2.setText("You did " + damageDone + " damage to the enemy.");
-
+			this.dispose();
+			combat.combatStatus(enemyOption);
+			combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
 		} else {
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			System.out.println("You don't have mana");
+			abilityDesc.setText("You don't have mana");
 		}
     }//GEN-LAST:event_ab2ButtonActionPerformed
 
@@ -164,25 +164,39 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
-			abilityDesc.setText("The enemy auments his defence");
+			combat.getTextDesc().setText("The enemy auments his defence");
 		}
 		if (mainCharacter.getMp() >= 20) {
+			if (mainCharacter.getClass() == Priest.class) {
+				if (mainCharacter.getHp() < mainCharacter.getMaxHP()) {
+					int healed = mainCharacter.getSpecialDamage() * 4;
+					mainCharacter.setHp(mainCharacter.getHp() + healed);
+					mainCharacter.setMp(mainCharacter.getMp() - 20);
+					combat.recheckValues();
+					this.dispose();
+					combat.combatStatus(enemyOption);
+					combat.getTextDesc().setText("You healed " + healed + " Hp.");
+				} else {
+					abilityDesc.setText("You have max HP");
+				}
+			} else {
+				int damageDone = ((mainCharacter.getSpecialDamage() * 4) - enemy.getDefence());
 
-			int damageDone = ((mainCharacter.getSpecialDamage() * 4) - enemy.getDefence());
+				enemy.setHp(enemy.getHp() - damageDone);
 
-			enemy.setHp(enemy.getHp() - damageDone);
-
-			mainCharacter.setMp(mainCharacter.getMp() - 20);
-			mainCharacter.setDefence(charDef);
-			enemy.setDefence(enemyDef);
-			combat.recheckValues();
-			abilityDesc.setText("You used " + mainCharacter.abilities[0] + " on the enemy.");
-			abilityDesc2.setText("You did " + damageDone + " damage to the enemy.");
+				mainCharacter.setMp(mainCharacter.getMp() - 20);
+				mainCharacter.setDefence(charDef);
+				enemy.setDefence(enemyDef);
+				combat.recheckValues();
+				this.dispose();
+				combat.combatStatus(enemyOption);
+				combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
+			}
 
 		} else {
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			System.out.println("You don't have mana");
+			abilityDesc.setText("You don't have mana");
 		}
     }//GEN-LAST:event_ab1ButtonActionPerformed
 
@@ -193,25 +207,38 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
-			abilityDesc.setText("The enemy auments his defence");
+			combat.getTextDesc().setText("The enemy auments his defence");
 		}
 		if (mainCharacter.getMp() >= 60) {
+			if (mainCharacter.getClass() == Priest.class) {
+				if (mainCharacter.getHp() < mainCharacter.getMaxHP()) {
+					int healed = mainCharacter.getSpecialDamage() * 6;
+					mainCharacter.setHp(mainCharacter.getHp() + healed);
+					mainCharacter.setMp(mainCharacter.getMp() - 60);
+					combat.recheckValues();
+					this.dispose();
+					combat.combatStatus(enemyOption);
+					combat.getTextDesc().setText("You healed " + healed + " Hp.");
+				} else {
+					abilityDesc.setText("You have max HP");
+				}
+			} else {
+				int damageDone = ((mainCharacter.getSpecialDamage() * 6) - enemy.getDefence());
 
-			int damageDone = ((mainCharacter.getSpecialDamage() * 6) - enemy.getDefence());
+				enemy.setHp(enemy.getHp() - damageDone);
 
-			enemy.setHp(enemy.getHp() - damageDone);
-
-			mainCharacter.setMp(mainCharacter.getMp() - 60);
-			mainCharacter.setDefence(charDef);
-			enemy.setDefence(enemyDef);
-			combat.recheckValues();
-			abilityDesc.setText("You used " + mainCharacter.abilities[2] + " on the enemy.");
-			abilityDesc2.setText("You did " + damageDone + " damage to the enemy.");
-
+				mainCharacter.setMp(mainCharacter.getMp() - 60);
+				mainCharacter.setDefence(charDef);
+				enemy.setDefence(enemyDef);
+				combat.recheckValues();
+				this.dispose();
+				combat.combatStatus(enemyOption);
+				combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
+			}
 		} else {
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			System.out.println("You don't have mana");
+			abilityDesc.setText("You don't have mana");
 		}
     }//GEN-LAST:event_ab3ButtonActionPerformed
 
@@ -222,7 +249,7 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
-			abilityDesc.setText("The enemy auments his defence");
+			combat.getTextDesc().setText("The enemy auments his defence");
 		}
 		if (mainCharacter.getMp() >= 80) {
 
@@ -234,13 +261,13 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
 			combat.recheckValues();
-			abilityDesc.setText("You used " + mainCharacter.abilities[0] + " on the enemy.");
-			abilityDesc2.setText("You did " + damageDone + " damage to the enemy.");
-
+			this.dispose();
+			combat.combatStatus(enemyOption);
+			combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
 		} else {
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			System.out.println("You don't have mana");
+			abilityDesc.setText("You don't have mana");
 		}
     }//GEN-LAST:event_ab4ButtonActionPerformed
 
@@ -259,10 +286,10 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 	}
 
 	private void abilitiesNames() {
-		ab1Button.setText(mainCharacter.abilities[0] + "\n20 Mana");
-		ab2Button.setText(mainCharacter.abilities[1] + "\n40 Mana");
-		ab3Button.setText(mainCharacter.abilities[2] + "\n60 Mana");
-		ab4Button.setText(mainCharacter.abilities[3] + "\n80 Mana");
+		ab1Button.setText(mainCharacter.abilities[0] + " - 20 Mana");
+		ab2Button.setText(mainCharacter.abilities[1] + " - 40 Mana");
+		ab3Button.setText(mainCharacter.abilities[2] + " - 60 Mana");
+		ab4Button.setText(mainCharacter.abilities[3] + " - 80 Mana");
 	}
 
 	/**
