@@ -50,10 +50,9 @@ public class EquipmentFrame extends javax.swing.JFrame {
         Chest = new javax.swing.JLabel();
         Leg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(400, 400));
-        setPreferredSize(new java.awt.Dimension(400, 400));
 
         Weapon.setIcon(new javax.swing.ImageIcon(getClass().getResource(weaponPath)));
 

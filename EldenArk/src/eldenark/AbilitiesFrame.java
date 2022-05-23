@@ -47,6 +47,8 @@ public class AbilitiesFrame extends javax.swing.JFrame {
         abilityDesc = new javax.swing.JTextField();
         abilityDesc2 = new javax.swing.JTextField();
 
+        setResizable(false);
+
         ab2Button.setText("Ability2");
         ab2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,9 +148,9 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 			mainCharacter.setMp(mainCharacter.getMp() - 40);
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			combat.recheckValues();
 			this.dispose();
 			combat.combatStatus(enemyOption);
+			combat.recheckValues();
 			combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
 		} else {
 			mainCharacter.setDefence(charDef);
@@ -172,9 +174,9 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 					int healed = mainCharacter.getSpecialDamage() * 4;
 					mainCharacter.setHp(mainCharacter.getHp() + healed);
 					mainCharacter.setMp(mainCharacter.getMp() - 20);
-					combat.recheckValues();
 					this.dispose();
 					combat.combatStatus(enemyOption);
+					combat.recheckValues();
 					combat.getTextDesc().setText("You healed " + healed + " Hp.");
 				} else {
 					abilityDesc.setText("You have max HP");
@@ -187,9 +189,9 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 				mainCharacter.setMp(mainCharacter.getMp() - 20);
 				mainCharacter.setDefence(charDef);
 				enemy.setDefence(enemyDef);
-				combat.recheckValues();
 				this.dispose();
 				combat.combatStatus(enemyOption);
+				combat.recheckValues();
 				combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
 			}
 
@@ -215,9 +217,9 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 					int healed = mainCharacter.getSpecialDamage() * 6;
 					mainCharacter.setHp(mainCharacter.getHp() + healed);
 					mainCharacter.setMp(mainCharacter.getMp() - 60);
-					combat.recheckValues();
 					this.dispose();
 					combat.combatStatus(enemyOption);
+					combat.recheckValues();
 					combat.getTextDesc().setText("You healed " + healed + " Hp.");
 				} else {
 					abilityDesc.setText("You have max HP");
@@ -230,9 +232,9 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 				mainCharacter.setMp(mainCharacter.getMp() - 60);
 				mainCharacter.setDefence(charDef);
 				enemy.setDefence(enemyDef);
-				combat.recheckValues();
 				this.dispose();
 				combat.combatStatus(enemyOption);
+				combat.recheckValues();
 				combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
 			}
 		} else {
@@ -260,9 +262,9 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 			mainCharacter.setMp(mainCharacter.getMp() - 80);
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			combat.recheckValues();
 			this.dispose();
 			combat.combatStatus(enemyOption);
+			combat.recheckValues();
 			combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
 		} else {
 			mainCharacter.setDefence(charDef);
@@ -273,15 +275,22 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 
 	private void showAbilities() {
 		ab1Button.setVisible(true);
+		this.setSize(561, 244);
 		ab2Button.setVisible(false);
 		ab3Button.setVisible(false);
 		ab4Button.setVisible(false);
-		if (mainCharacter.getLevel() >= 5) {
+		if (mainCharacter.getLevel() >= 5 && mainCharacter.getLevel() < 10) {
 			ab2Button.setVisible(true);
-		} else if (mainCharacter.getLevel() >= 10) {
+			this.setSize(561, 344);
+		} else if (mainCharacter.getLevel() >= 10 && mainCharacter.getLevel() < 15) {
+			ab2Button.setVisible(true);
 			ab3Button.setVisible(true);
+			this.setSize(561, 400);
 		} else if (mainCharacter.getLevel() >= 15) {
+			ab2Button.setVisible(true);
+			ab3Button.setVisible(true);
 			ab4Button.setVisible(true);
+			this.setSize(561, 460);
 		}
 	}
 

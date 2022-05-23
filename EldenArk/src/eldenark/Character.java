@@ -67,7 +67,7 @@ public class Character {
 	// Constructor for MAIN CHARACTER
 	public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
 
-		this.level = 1; // Always start at level 1
+		this.level = 15; // Always start at level 1
 		
 		this.xp = 0; // Experience always start at 0
 
@@ -559,15 +559,19 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Demon Soldier of Kushan (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/WARRIOR.png");
 				break;
 			case 2:
 				name = "Friar of Ubik (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/PRIEST.png");
 				break;
 			case 3:
 				name = "Low-Class Elf (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/MAGE.png");
 				break;
 			default:
 				name = "Demon Soldier of Kushan(Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/WARRIOR.png");
 		}
 		return name;
 	}
@@ -577,15 +581,19 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Mesh's Cavalry (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/WARRIOR.png");
 				break;
 			case 2:
 				name = "White Abbot (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/PRIEST.png");
 				break;
 			case 3:
 				name = "Old Rot Wizard (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/MAGE.png");
 				break;
 			default:
 				name = "Mesh's Cavalry (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/WARRIOR.png");
 		}
 		return name;
 	}
@@ -595,15 +603,19 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Giant with a Mace (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/WARRIOR.png");
 				break;
 			case 2:
 				name = "Follower of Frederic (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/PRIEST.png");
 				break;
 			case 3:
 				name = "Black Magician (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/MAGE.png");
 				break;
 			default:
 				name = "Giant with a Maze (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/WARRIOR.png");
 		}
 		return name;
 	}
@@ -635,15 +647,19 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Moon Knight (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/MINIBOSS_WARRIOR.png");
 				break;
 			case 2:
 				name = "God Hand (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/MINIBOSS_PRIEST.png");
 				break;
 			case 3:
 				name = "Great Witch (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/MINIBOSS_MAGE.png");
 				break;
 			default:
 				name = "Moon Knight (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/MINIBOSS_WARRIOR.png");
 		}
 		return name;
 	}
@@ -653,15 +669,19 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Bloody Beast (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/MINIBOSS_WARRIOR.png");
 				break;
 			case 2:
 				name = "Cardenal of Lord Void (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/MINIBOSS_PRIEST.png");
 				break;
 			case 3:
 				name = "Servant of Caster (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/MINIBOSS_MAGE.png");
 				break;
 			default:
 				name = "Bloody Beast (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/MINIBOSS_WARRIOR.png");
 		}
 		return name;
 	}
@@ -671,15 +691,19 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Beast Titan (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/MINIBOSS_WARRIOR.png");
 				break;
 			case 2:
 				name = "Great Archbishop (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/MINIBOSS_PRIEST.png");
 				break;
 			case 3:
 				name = "Aklesh's Greatest Follower (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/MINIBOSS_MAGE.png");
 				break;
 			default:
 				name = "Beast Titan (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/MINIBOSS_WARRIOR.png");
 		}
 		return name;
 	}
@@ -711,12 +735,15 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Skull Knight, The Vengeance (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/BOSS_WARRIOR.png");
 				break;
 			case 2:
 				name = "Femto, The Black Falcon (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/BOSS_PRIEST.png");
 				break;
 			case 3:
 				name = "Beherit, God's Right Hand (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/2 FLOOR/BOSS_MAGE.png");
 				break;
 			default:
 				name = "Skull Knight, The Vengeance (Warrior)";
@@ -729,15 +756,19 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Mesh, The King of Heroes (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/BOSS_WARRIOR.png");
 				break;
 			case 2:
 				name = "Lord Void, The Nothing (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/BOSS_PRIEST.png");
 				break;
 			case 3:
 				name = "Caster, The Queen of Everything (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/BOSS_MAGE.png");
 				break;
 			default:
 				name = "Mesh, The King of Heroes (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/3 FLOOR/BOSS_WARRIOR.png");
 		}
 		return name;
 	}
@@ -747,15 +778,19 @@ public class Character {
 		switch (enemyClass) {
 			case 1:
 				name = "Troll, Troll (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/BOSS_WARRIOR.png");
 				break;
 			case 2:
 				name = "Frederic, Pope of All Living Beings (Priest)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/BOSS_PRIEST.png");
 				break;
 			case 3:
 				name = "Aklesh, the Demon Summoner (insert epic battle music) (Mage)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/BOSS_MAGE.png");
 				break;
 			default:
 				name = "Troll, Troll (Warrior)";
+				this.setEnemyImg("/FOTOS ELDEN ARK/ENEMY/4 FLOOR/BOSS_WARRIOR.png");
 		}
 		return name;
 	}

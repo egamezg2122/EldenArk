@@ -245,15 +245,12 @@ public class PotionFrame extends javax.swing.JFrame {
 		if (mainCharacter.inventory[2].getNumOfUses() > 0 && mainCharacter.getMp()< mainCharacter.getMaxMP()) {
 			mainCharacter.inventory[2].use(mainCharacter);
 			mainCharacter.setMp(mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP()));
-			recheckUses();
 			this.dispose();
 			combat.combatStatus(enemyOption);
 			combat.recheckValues();
 			recheckUses();
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			combat.recheckValues();
-			recheckUses();
 		} else {
 			textPotion.setText("You don't have this potion anymore or you have full mana");
 		}
@@ -277,15 +274,12 @@ public class PotionFrame extends javax.swing.JFrame {
 		if (mainCharacter.inventory[0].getNumOfUses() > 0 && mainCharacter.getHp()< mainCharacter.getMaxHP()) {
 			mainCharacter.inventory[0].use(mainCharacter);
 			mainCharacter.setHp(mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP()));
-			recheckUses();
 			this.dispose();
 			combat.combatStatus(enemyOption);
 			combat.recheckValues();
 			recheckUses();
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			combat.recheckValues();
-			recheckUses();
 		} else {
 			textPotion.setText("You don't have this potion anymore or you are full HP");
 		}
@@ -309,15 +303,12 @@ public class PotionFrame extends javax.swing.JFrame {
 		if (mainCharacter.inventory[1].getNumOfUses() > 0 && mainCharacter.getHp()< mainCharacter.getMaxHP()) {
 			mainCharacter.inventory[1].use(mainCharacter);
 			mainCharacter.setHp(mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP()));
-			recheckUses();
 			this.dispose();
 			combat.combatStatus(enemyOption);
 			combat.recheckValues();
 			recheckUses();
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			combat.recheckValues();
-			recheckUses();
 		} else {
 			textPotion.setText("You don't have this potion anymore or you are full HP");
 		}
@@ -336,15 +327,12 @@ public class PotionFrame extends javax.swing.JFrame {
 		if (mainCharacter.inventory[3].getNumOfUses() > 0 && mainCharacter.getMp()< mainCharacter.getMaxMP()) {
 			mainCharacter.inventory[3].use(mainCharacter);
 			mainCharacter.setMp(mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP()));
-			recheckUses();
 			this.dispose();
 			combat.combatStatus(enemyOption);
 			combat.recheckValues();
 			recheckUses();
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			combat.recheckValues();
-			recheckUses();
 		} else {
 			textPotion.setText("You don't have this potion anymore or you have full mana");
 		}
