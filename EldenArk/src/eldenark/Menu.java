@@ -128,10 +128,8 @@ public class Menu extends javax.swing.JFrame {
 			default:
 				mainCharacter = createWarrior(username, sex);
 		}
-		mainCharacter.getOtherStatsFromLevel(mainCharacter.getLevel());
 		this.dispose();
 		Gameplay g = new Gameplay(mainCharacter, 4);
-
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed

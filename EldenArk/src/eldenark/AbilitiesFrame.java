@@ -47,6 +47,7 @@ public class AbilitiesFrame extends javax.swing.JFrame {
         abilityDesc = new javax.swing.JTextField();
         abilityDesc2 = new javax.swing.JTextField();
 
+        setTitle("Abilities");
         setResizable(false);
 
         ab2Button.setText("Ability2");
