@@ -37,6 +37,15 @@ public class GameEndFrame extends javax.swing.JFrame {
 		getData();
 		closeDB();
 	}
+	
+	public GameEndFrame(String mode) {
+		this.mode = mode;
+		initComponents();
+		this.getContentPane().setBackground(Color.DARK_GRAY);
+		conectToDatabase();
+		getData();
+		closeDB();
+	}
 
 	private void closeDB() {
 		try {

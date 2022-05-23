@@ -9,8 +9,8 @@ public class Warrior extends Character {
 
 	//Constructors
 	// MAIN
-	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, nickname);
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, sex, inventory, nickname);
 	}
 
 	//FOR LOADING FILE
@@ -148,13 +148,13 @@ public class Warrior extends Character {
 	}
 
 	@Override
-	public void setAbilityNames(){
+	public void setAbilityNames() {
 		abilities[0] = "Thor's Hammer";
 		abilities[1] = "Ram load";
 		abilities[2] = "Battle cry";
 		abilities[3] = "Double edge";
 	}
-	
+
 	@Override
 	public int abilities(Character enemy, int enemyOption) {
 
@@ -168,13 +168,10 @@ public class Warrior extends Character {
 
 			System.out.println("What ability do you want to use?");
 
-			if (this.getRole().equals("Warrior")) {
+			for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
 
-				for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
+				System.out.println((i + 1) + "- " + abilitiesWarrior[i]);
 
-					System.out.println((i + 1) + "- " + abilitiesWarrior[i]);
-
-				}
 			}
 
 			option = Teclat.llegirInt();

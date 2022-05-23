@@ -30,8 +30,6 @@ public class Character {
 
 	private String nickname;
 
-	private String role;
-
 	private int x = 20; // Position in the map
 
 	private int y = 10; // Position in the map
@@ -67,7 +65,7 @@ public class Character {
 
 	// Constructors
 	// Constructor for MAIN CHARACTER
-	public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
+	public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
 
 		this.level = 1; // Always start at level 1
 		
@@ -89,7 +87,7 @@ public class Character {
 
 		this.specialDamage = specialDamage;
 
-		this.role = role;
+		this.sex = sex;
 
 		this.inventory = inventory;
 
@@ -1005,10 +1003,6 @@ public class Character {
 		return gold;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
 	public int getX() {
 		return x;
 	}
@@ -1084,9 +1078,6 @@ public class Character {
 		this.gold = gold;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public void setMaxXP(int maxXP) {
 		this.maxXP = maxXP;

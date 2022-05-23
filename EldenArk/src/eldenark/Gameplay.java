@@ -308,6 +308,14 @@ public class Gameplay extends JFrame implements ActionListener {
 			}
 		}
 	}
+	
+	private void deleteMiniBoss(){
+		for (JLabel boss : minorBosses) {
+			if ((mainCharacter.getY() * LABEL_SIZE) == boss.getAlignmentY() && (mainCharacter.getX()*LABEL_SIZE) == boss.getAlignmentX()) {
+				this.remove(boss);
+			}
+		}
+	}
 
 	private void setBossesPath() {
 		switch (floor) {
@@ -758,7 +766,6 @@ public class Gameplay extends JFrame implements ActionListener {
 
 			case 2:
 				System.out.println("You found a normal enemy. Starting combat");
-				setInformation("You found a enemy");
 				startCombat();
 				break;
 
@@ -919,7 +926,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			} else{
 				this.setVisible(true);
 			}
-			
+			deleteMiniBoss();
 			generateLoot(combatLevel);
 			mainCharacter.checkLevelUp(getExperience(combatLevel));
 			System.out.println("Returning to the map");

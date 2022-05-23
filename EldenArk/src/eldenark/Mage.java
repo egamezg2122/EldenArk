@@ -8,17 +8,14 @@ package eldenark;
 public class Mage extends Character {
 
 	// MAIN 
-	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, nickname);
+	public Mage(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, sex, inventory, nickname);
 	}
-	
-	//FOR LOADING FILE
 
+	//FOR LOADING FILE
 	public Mage(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
 		super(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nickname);
 	}
-	
-	
 
 	// ENEMY
 	//Ns si poner la clase
@@ -44,8 +41,7 @@ public class Mage extends Character {
 		}
 
 	}
-	
-	
+
 	@Override
 	public void changeWeapon(Equip[] equipment, Equip newEquip) {
 		this.setSpecialDamage(this.getSpecialDamage() - equipment[0].getProfit());
@@ -112,18 +108,17 @@ public class Mage extends Character {
 	}
 
 	@Override
-	public void setAbilityNames(){
+	public void setAbilityNames() {
 		abilities[0] = "Fireball";
 		abilities[1] = "Translation";
 		abilities[2] = "Frost Nova";
 		abilities[3] = "Thunder Weather";
 	}
-	
+
 	@Override
 	public int abilities(Character enemy, int enemyOption) {
 
-        String abilitiesMage[] = {"Fireball", "Translation", "Frost Nova", "Thunder Weather", "Silvermoon"};
-
+		String abilitiesMage[] = {"Fireball", "Translation", "Frost Nova", "Thunder Weather", "Silvermoon"};
 
 		int option;
 
@@ -133,13 +128,10 @@ public class Mage extends Character {
 
 			System.out.println("What ability do you want to use??");
 
-			if (this.getRole().equals("Mage")) {
+			for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
 
-				for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
+				System.out.println((i + 1) + "- " + abilitiesMage[i]);
 
-					System.out.println((i + 1) + "- " + abilitiesMage[i]);
-
-				}
 			}
 
 			option = Teclat.llegirInt();
@@ -175,7 +167,7 @@ public class Mage extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
@@ -197,7 +189,7 @@ public class Mage extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
@@ -219,7 +211,7 @@ public class Mage extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
@@ -237,35 +229,35 @@ public class Mage extends Character {
 					System.out.println("\nYou used " + abilitiesMage[option - 1] + " on the enemy.");
 					System.out.println("You did " + damageDone + " damage to the enemy.");
 					System.out.println("-80 Mana");
-                                        
+
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 
 				}
 
 				break;
 
 		}
-                return enemyOption;
+		return enemyOption;
 	}
-	
+
 	@Override
 	public void getImagePath() {
-		if(sex == 0){
+		if (sex == 0) {
 			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_M_BACK.png");
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_M_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_M_FRONT.png");
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_M_RIGHT.png");
-		} else{
+		} else {
 			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_W_BACK.png");
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_W_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_W_FRONT.png");
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/MAGE/MAGE_W_RIGHT.png");
 		}
 	}
-	
+
 	@Override
 	public void getCombatImage() {
 		if (sex == 0) {

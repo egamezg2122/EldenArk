@@ -8,16 +8,15 @@ package eldenark;
 public class Priest extends Character {
 
 	// MAIN
-	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, Object[] inventory, String nickname) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory, nickname);
+	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, sex, inventory, nickname);
 	}
 
 	//FOR LOADING FILE
-
 	public Priest(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
 		super(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nickname);
 	}
-	
+
 	// ENEMIES
 	//Ns si poner la clase
 	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int type, int floor) {
@@ -25,7 +24,6 @@ public class Priest extends Character {
 	}
 
 	// Constructor
-	
 	@Override
 	public void getOtherStatsFromLevel(int level) {
 		if (level == 1) {
@@ -43,8 +41,7 @@ public class Priest extends Character {
 		}
 
 	}
-	
-	
+
 	@Override
 	public void changeWeapon(Equip[] equipment, Equip newEquip) {
 		this.setDefence(this.getDefence() - equipment[0].getProfit());
@@ -113,15 +110,13 @@ public class Priest extends Character {
 	}
 
 	@Override
-	public void setAbilityNames(){
+	public void setAbilityNames() {
 		abilities[0] = "Power Infusion";
 		abilities[1] = "Punishment";
 		abilities[2] = "Jump of Faith";
 		abilities[3] = "Levitation";
 	}
-	
-	
-	
+
 	@Override
 	public int abilities(Character enemy, int enemyOption) {
 		String abilitiesPriest[] = {"Power Infusion", "Punishment", "Jump of faith", "Levitation", "Desperate prayer"};
@@ -135,13 +130,10 @@ public class Priest extends Character {
 
 			System.out.println("What ability do you want to use??");
 
-			if (this.getRole().equals("Priest")) {
+			for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
 
-				for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
+				System.out.println((i + 1) + "- " + abilitiesPriest[i]);
 
-					System.out.println((i + 1) + "- " + abilitiesPriest[i]);
-
-				}
 			}
 
 			option = Teclat.llegirInt();
@@ -188,13 +180,13 @@ public class Priest extends Character {
 					} else {
 
 						System.out.println("You have max HP");
-                                                
+
 					}
 
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 
 				}
 
@@ -218,7 +210,7 @@ public class Priest extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
@@ -257,7 +249,7 @@ public class Priest extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
@@ -280,30 +272,30 @@ public class Priest extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
 
 		}
-                return enemyOption;
+		return enemyOption;
 	}
 
 	@Override
 	public void getImagePath() {
-		if(sex == 0){
+		if (sex == 0) {
 			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_BACK.png");
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_FRONT.png");
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_RIGHT.png");
-		} else{
+		} else {
 			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_BACK.png");
 			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_LEFT.png");
 			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_FRONT.png");
 			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_RIGHT.png");
 		}
 	}
-	
+
 	@Override
 	public void getCombatImage() {
 		if (sex == 0) {

@@ -43,6 +43,10 @@ public class EldenArk {
     public static void main(String[] args) {
 
         // Show Introduction
+		
+		
+		Menu menu = new Menu();
+		menu.setVisible(true);
 		/*
         Map m = new Map();
 		m.setVisible(true);
@@ -62,7 +66,8 @@ public class EldenArk {
 		
 		
 
-		introduction();
+		
+		//introduction();
 		
 		
 		// Let the user to choose the main character
@@ -70,9 +75,9 @@ public class EldenArk {
 		// Ask the username
 		
 		
-		String name = nicknameUser();
+		//String name = nicknameUser();
 		
-		Character mainCharacter = pickClass(name);
+		//Character mainCharacter = pickClass(name);
 		
 		
 		
@@ -80,7 +85,7 @@ public class EldenArk {
 		
 		
 		
-		Gameplay g = new Gameplay(mainCharacter, 1);
+		//Gameplay g = new Gameplay(mainCharacter, 1);
 		
 
 	   //Combat c = new Combat(mainCharacter, enemy);
@@ -117,28 +122,28 @@ public class EldenArk {
     
     // Function called when the game is over, and start again
     
-    public static void gameOver() {
-        
-        System.out.println("GAME OVER");
-        
-        System.out.println("Do you want to play again? (Y/N)");
-        
-        char option = Teclat.llegirChar();
-        
-        if (option == 'y') {
-			
-			String nickname = nicknameUser(); 
-            
-            Character newMainCharacter = pickClass(nickname);
-
-            Gameplay newGameplay = new Gameplay(newMainCharacter, 1);
-            
-        } else {
-            
-            System.out.println("GoodBye!");
-            
-        }
-    }
+	/*public static void gameOver() {
+	
+	System.out.println("GAME OVER");
+	
+	System.out.println("Do you want to play again? (Y/N)");
+	
+	char option = Teclat.llegirChar();
+	
+	if (option == 'y') {
+	
+	String nickname = nicknameUser();
+	
+	Character newMainCharacter = pickClass(nickname);
+	
+	Gameplay newGameplay = new Gameplay(newMainCharacter, 1);
+	
+	} else {
+	
+	System.out.println("GoodBye!");
+	
+	}
+	}*/
     
     // Function called if the user won the game
     
@@ -170,60 +175,60 @@ public class EldenArk {
 
     // User picking the character class
     
-    public static Character pickClass(String name) {
-
-        Character main = new Character();
-
-        int option;
-
-        do {
-            
-            System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
-            
-            // Validate user input
-            
-            option = validation();
-            
-            if (option <= 0 || option > 3) {
-                
-                System.err.println("Invalid option.");
-            
-            }
-            
-        } while (option <= 0 || option > 3);
-        
-        // Choosing the character based on input
-        
-        switch (option) {
-            
-            case 1:
-
-                main = createWarrior(name);
-
-                System.out.println("You have chosen the warrior class");
-
-                break;
-
-            case 2:
-
-                main = createMage(name);
-
-                System.out.println("You have chosen the mage class");
-
-                break;
-
-            case 3:
-
-                main = createPriest(name);
-
-                System.out.println("You have chosen the priest class");
-
-                break;
-        }
-
-        return main;
-        
-    }
+	/*public static Character pickClass(String name) {
+	
+	Character main = new Character();
+	
+	int option;
+	
+	do {
+	
+	System.out.println("What class do you want to choose?\n\t1 - Warrior\n\t2 - Mage\n\t3 - Priest");
+	
+	// Validate user input
+	
+	option = validation();
+	
+	if (option <= 0 || option > 3) {
+	
+	System.err.println("Invalid option.");
+	
+	}
+	
+	} while (option <= 0 || option > 3);
+	
+	// Choosing the character based on input
+	
+	switch (option) {
+	
+	case 1:
+	
+	main = createWarrior(name);
+	
+	System.out.println("You have chosen the warrior class");
+	
+	break;
+	
+	case 2:
+	
+	main = createMage(name);
+	
+	System.out.println("You have chosen the mage class");
+	
+	break;
+	
+	case 3:
+	
+	main = createPriest(name);
+	
+	System.out.println("You have chosen the priest class");
+	
+	break;
+	}
+	
+	return main;
+	
+	}*/
     
     // User input validation
 
@@ -252,6 +257,7 @@ public class EldenArk {
     
     // Create a Warrior object
     
+	/*
     public static Warrior createWarrior(String name) {
 
         Warrior warrior = new Warrior(25, 15, 140, 140, 60, 60, 15, "Warrior", generateInventory(), name);
@@ -305,7 +311,7 @@ public class EldenArk {
         return inventory;
         
     }
-	
+	*/
 	public static Object[] reDoInventory(int obj1, int obj2, int obj3, int obj4){
 		
 		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", obj1);
@@ -329,6 +335,7 @@ public class EldenArk {
         return inventory;
 	}
     
+
     // Function to show a little explanation of the game
     
     private static void introduction() {
