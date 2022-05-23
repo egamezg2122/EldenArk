@@ -99,8 +99,8 @@ public class Priest extends Character {
 	public void legArmor() {
 		Equip basicLegArmor = new Equip("Confessor Boots", "Leg Armor", 2);
 		Equip firstLegArmor = new Equip("Kaiden Iron Legs", "Leg Armor", 5);
-		Equip secondLegArmor = new Equip("Lionel's Greaves", "Leg Armor", 10);
-		Equip thirdLegArmor = new Equip("God of Sun Greaves", "Leg Armor", 20);
+		Equip secondLegArmor = new Equip("Sun Noble Waistcloth", "Leg Armor", 10);
+		Equip thirdLegArmor = new Equip("God of Sun Skirt", "Leg Armor", 20);
 		Equip forthLegArmor = new Equip("Gift of the Prince", "Leg Armor", 30);
 		newLegArmors[0] = basicLegArmor;
 		newLegArmors[1] = firstLegArmor;

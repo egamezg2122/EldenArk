@@ -81,7 +81,7 @@ public class Mage extends Character {
 
 	@Override
 	public void chestplate() {
-		Equip basicChestplate = new Equip("Blue Cloth Vest", "Chestplate", 3);
+		Equip basicChestplate = new Equip("Gray Cloth Vest", "Chestplate", 3);
 		Equip firstChestplate = new Equip("Confessor Armor", "Chestplate", 10);
 		Equip secondChestplate = new Equip("Cuckoo Surcoat", "Chestplate", 20);
 		Equip thirdChestplate = new Equip("Depraved Perfumer Robe", "Chestplate", 50);
@@ -96,10 +96,10 @@ public class Mage extends Character {
 	@Override
 	public void legArmor() {
 		Equip basicLegArmor = new Equip("Bandit Boots", "Leg Armor", 2);
-		Equip firstLegArmor = new Equip("Green Bull-Goat Kilt", "Leg Armor", 5);
+		Equip firstLegArmor = new Equip("White Bull-Goat Greave", "Leg Armor", 5);
 		Equip secondLegArmor = new Equip("Golden Leggings", "Leg Armor", 10);
-		Equip thirdLegArmor = new Equip("Eccentric's Breeches", "Leg Armor", 20);
-		Equip forthLegArmor = new Equip("Diamond Boots", "Leg Armor", 30);
+		Equip thirdLegArmor = new Equip("Clown's Breeches", "Leg Armor", 20);
+		Equip forthLegArmor = new Equip("Ruby Boots", "Leg Armor", 30);
 		newLegArmors[0] = basicLegArmor;
 		newLegArmors[1] = firstLegArmor;
 		newLegArmors[2] = secondLegArmor;

@@ -594,7 +594,7 @@ public class Character {
 		String name;
 		switch (enemyClass) {
 			case 1:
-				name = "Giant with a Maze(Warrior)";
+				name = "Giant with a Mace (Warrior)";
 				break;
 			case 2:
 				name = "Follower of Frederic (Priest)";
