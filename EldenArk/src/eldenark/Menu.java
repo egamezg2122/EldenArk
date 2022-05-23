@@ -130,7 +130,7 @@ public class Menu extends javax.swing.JFrame {
 		}
 		mainCharacter.getOtherStatsFromLevel(mainCharacter.getLevel());
 		this.dispose();
-		Gameplay g = new Gameplay(mainCharacter, 2);
+		Gameplay g = new Gameplay(mainCharacter, 4);
 
     }//GEN-LAST:event_startButtonActionPerformed
 

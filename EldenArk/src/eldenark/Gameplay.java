@@ -813,7 +813,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			running = false;
 			GameEndFrame end = new GameEndFrame(mainCharacter, "WIN");
 			end.setVisible(true);
-			EldenArk.win(mainCharacter.getNickname());
+			//EldenArk.win(mainCharacter.getNickname());
 		}
 
 	}
@@ -1028,8 +1028,10 @@ public class Gameplay extends JFrame implements ActionListener {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("You found no additionals objects");
 		}
-		newEquipmentProbability();
-
+		if (floor != 4 && map[mainCharacter.getY()][mainCharacter.getX()] < 7) {
+			newEquipmentProbability();
+		} 
+		
 	}
 
 	public void changeMainCharacterLabel(int direction) {
