@@ -310,11 +310,12 @@ public class Gameplay extends JFrame implements ActionListener {
 	}
 	
 	private void deleteMiniBoss(){
-		for (JLabel boss : minorBosses) {
-			if ((mainCharacter.getY() * LABEL_SIZE) == boss.getAlignmentY() && (mainCharacter.getX()*LABEL_SIZE) == boss.getAlignmentX()) {
-				this.remove(boss);
+		for (int i = 0; i < 3; i++) {
+			if ((mainCharacter.getY() * LABEL_SIZE) == (minorBosses[i].getY() + 2) && (mainCharacter.getX()*LABEL_SIZE) == (minorBosses[i].getX() + 2)) {
+				this.remove(minorBosses[i]);
 			}
 		}
+		
 	}
 
 	private void setBossesPath() {
@@ -1127,10 +1128,12 @@ public class Gameplay extends JFrame implements ActionListener {
 
 					break;
 				case 'e':
+					EquipmentFrame equip = new EquipmentFrame(mainCharacter);
+					equip.setVisible(true);
 					reprint();
 					mainCharacter.showEquipment();
 					break;
-				case 'i':
+				case 'i':				
 					reprint();
 					mainCharacter.showInventory();
 					askObject();
