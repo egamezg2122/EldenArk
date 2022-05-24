@@ -67,7 +67,7 @@ public class Character {
 	// Constructor for MAIN CHARACTER
 	public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
 
-		this.level = 15; // Always start at level 1
+		this.level = 1; // Always start at level 1
 		
 		this.xp = 0; // Experience always start at 0
 

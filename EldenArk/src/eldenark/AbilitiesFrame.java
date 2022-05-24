@@ -140,19 +140,19 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
 			combat.getTextDesc().setText("The enemy auments his defence");
 		}
-		if (mainCharacter.getMp() >= 40) {
+		if (mainCharacter.getMp() >= 70) {
 
-			int damageDone = ((mainCharacter.getSpecialDamage() * 5) - enemy.getDefence());
+			int damageDone = ((mainCharacter.getSpecialDamage() * 2) - enemy.getDefence());
 
 			enemy.setHp(enemy.getHp() - damageDone);
 
-			mainCharacter.setMp(mainCharacter.getMp() - 40);
+			mainCharacter.setMp(mainCharacter.getMp() - 70);
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			this.dispose();
 			combat.combatStatus(enemyOption);
 			combat.recheckValues();
 			combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
+			this.dispose();
 		} else {
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
@@ -175,25 +175,29 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 					int healed = mainCharacter.getSpecialDamage() * 4;
 					mainCharacter.setHp(mainCharacter.getHp() + healed);
 					mainCharacter.setMp(mainCharacter.getMp() - 20);
-					this.dispose();
 					combat.combatStatus(enemyOption);
 					combat.recheckValues();
 					combat.getTextDesc().setText("You healed " + healed + " Hp.");
+					this.dispose();
 				} else {
 					abilityDesc.setText("You have max HP");
 				}
 			} else {
-				int damageDone = ((mainCharacter.getSpecialDamage() * 4) - enemy.getDefence());
-
+				int damageDone = ((mainCharacter.getSpecialDamage() + 30) - enemy.getDefence());
+				if (damageDone < 0) {
+					damageDone = 0;
+					combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy. His defence is to powerfull.");
+					this.dispose();
+				}
 				enemy.setHp(enemy.getHp() - damageDone);
 
 				mainCharacter.setMp(mainCharacter.getMp() - 20);
 				mainCharacter.setDefence(charDef);
 				enemy.setDefence(enemyDef);
-				this.dispose();
 				combat.combatStatus(enemyOption);
 				combat.recheckValues();
 				combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
+				this.dispose();
 			}
 
 		} else {
@@ -212,31 +216,31 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
 			combat.getTextDesc().setText("The enemy auments his defence");
 		}
-		if (mainCharacter.getMp() >= 60) {
+		if (mainCharacter.getMp() >= 300) {
 			if (mainCharacter.getClass() == Priest.class) {
 				if (mainCharacter.getHp() < mainCharacter.getMaxHP()) {
 					int healed = mainCharacter.getSpecialDamage() * 6;
 					mainCharacter.setHp(mainCharacter.getHp() + healed);
-					mainCharacter.setMp(mainCharacter.getMp() - 60);
-					this.dispose();
+					mainCharacter.setMp(mainCharacter.getMp() - 300);
 					combat.combatStatus(enemyOption);
 					combat.recheckValues();
 					combat.getTextDesc().setText("You healed " + healed + " Hp.");
+					this.dispose();
 				} else {
 					abilityDesc.setText("You have max HP");
 				}
 			} else {
-				int damageDone = ((mainCharacter.getSpecialDamage() * 6) - enemy.getDefence());
+				int damageDone = ((mainCharacter.getSpecialDamage() * 3 - 100) - enemy.getDefence());
 
 				enemy.setHp(enemy.getHp() - damageDone);
 
-				mainCharacter.setMp(mainCharacter.getMp() - 60);
+				mainCharacter.setMp(mainCharacter.getMp() - 300);
 				mainCharacter.setDefence(charDef);
 				enemy.setDefence(enemyDef);
-				this.dispose();
 				combat.combatStatus(enemyOption);
 				combat.recheckValues();
 				combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
+				this.dispose();
 			}
 		} else {
 			mainCharacter.setDefence(charDef);
@@ -254,19 +258,19 @@ public class AbilitiesFrame extends javax.swing.JFrame {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
 			combat.getTextDesc().setText("The enemy auments his defence");
 		}
-		if (mainCharacter.getMp() >= 80) {
+		if (mainCharacter.getMp() >= 800) {
 
-			int damageDone = ((mainCharacter.getSpecialDamage() * 7) - enemy.getDefence());
+			int damageDone = ((mainCharacter.getSpecialDamage() * 4) - enemy.getDefence());
 
 			enemy.setHp(enemy.getHp() - damageDone);
 
-			mainCharacter.setMp(mainCharacter.getMp() - 80);
+			mainCharacter.setMp(mainCharacter.getMp() - 800);
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);
-			this.dispose();
 			combat.combatStatus(enemyOption);
 			combat.recheckValues();
 			combat.getTextDesc().setText("You did " + damageDone + " damage to the enemy.");
+			this.dispose();
 		} else {
 			mainCharacter.setDefence(charDef);
 			enemy.setDefence(enemyDef);

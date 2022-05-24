@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  * @author cep
  */
 public class Combat extends javax.swing.JFrame {
-	
+
 	Gameplay game;
 	Character mainCharacter;
 	Character enemy;
@@ -345,7 +345,7 @@ public class Combat extends javax.swing.JFrame {
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
-			textEnemy1.setText("The enemy auments his defence");
+			textEnemy1.setText("The enemy aumented his defence");
 			textEnemy2.setText("");
 		}
 		int damageDone = mainCharacter.getDamage() - enemy.getDefence();
@@ -362,7 +362,7 @@ public class Combat extends javax.swing.JFrame {
 		mainCharacter.setDefence(charDef);
 		enemy.setDefence(enemyDef);
     }//GEN-LAST:event_attackButtonActionPerformed
-	
+
 	protected void enemyAttacks() {
 		int optionAttack;
 		optionAttack = rn.nextInt(2);
@@ -374,10 +374,10 @@ public class Combat extends javax.swing.JFrame {
 			case 1:
 				//SPECIAL ABILITY
 				enemySpecialAbilities();
-			
+
 		}
 	}
-	
+
 	private void enemyBasicAttack() {
 		int damageDone = enemy.getDamage() - mainCharacter.getDefence();
 		//System.out.println("\nThe enemy used his basic attack.");
@@ -391,10 +391,12 @@ public class Combat extends javax.swing.JFrame {
 			//System.out.println("The enemy did 0 damage to you. Your defense is incredible");
 		}
 	}
-	
+
 	private void enemySpecialAbilities() {
 		int damageDone = enemy.getSpecialDamage() - mainCharacter.getDefence();
-		if (enemy.getMp() >= 40) {
+		double enemyManaWasted;
+		enemyManaWasted =  enemy.getMaxMP() * 0.3;
+		if (enemy.getMp() >= enemyManaWasted) {
 			if (damageDone > 0) {
 				mainCharacter.setHp(mainCharacter.getHp() - damageDone);
 				textEnemy1.setText("The enemy uses his special ability");
@@ -407,14 +409,14 @@ public class Combat extends javax.swing.JFrame {
 				//System.out.println("The enemy uses his special ability.");
 				//System.out.println("The enemy did 0 damage to you. Wow, how did you not get hurt!?");
 			}
-			enemy.setMp(enemy.getMp() - 80);
+			enemy.setMp(enemy.getMp() - (int)enemyManaWasted);
 			if (enemy.getMp() < 0) {
 				enemy.setMp(0);
 			}
 		} else {
 			enemyBasicAttack();
 		}
-		
+
 	}
 
     private void defendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defendButtonActionPerformed
@@ -424,18 +426,18 @@ public class Combat extends javax.swing.JFrame {
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
-			textEnemy1.setText("The enemy auments his defence");
+			textEnemy1.setText("The enemy aumented his defence");
 			textEnemy2.setText("");
 		}
 		mainCharacter.setDefence((int) (charDef * 1.3));
 		textDesc.setText("You aument your defence");
 		combatStatus(enemyOption);
-		
+
 		recheckValues();
 		mainCharacter.setDefence(charDef);
 		enemy.setDefence(enemyDef);
     }//GEN-LAST:event_defendButtonActionPerformed
-	
+
 	protected void combatStatus(int enemyOption) {
 		if (enemy.getHp() > 0 && mainCharacter.getHp() > 0) {
 			if (enemyOption == 1) {
@@ -443,6 +445,9 @@ public class Combat extends javax.swing.JFrame {
 				if (mainCharacter.getHp() <= 0) {
 					endCombat();
 				}
+			} else {
+				textEnemy1.setText("The enemy aumented his defence");
+				textEnemy2.setText("");
 			}
 		} else {
 			endCombat();
@@ -468,7 +473,7 @@ public class Combat extends javax.swing.JFrame {
     private void textEnemy2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEnemy2ActionPerformed
 		// TODO add your handling code here:
     }//GEN-LAST:event_textEnemy2ActionPerformed
-	
+
 	private void endCombat() {
 		this.dispose();
 		String textEndCombat = "";
@@ -480,24 +485,24 @@ public class Combat extends javax.swing.JFrame {
 		JOptionPane.showMessageDialog(this, textEndCombat);
 		game.endBattle();
 	}
-	
+
 	private void setInitialValues() {
 		hpUserPBar.setMaximum(mainCharacter.getMaxHP());
 		hpUserPBar.setValue(mainCharacter.getHp());
 		mpUserPBar.setMaximum(mainCharacter.getMaxMP());
 		mpUserPBar.setValue(mainCharacter.getMp());
-		
+
 		hpNumbers.setText(mainCharacter.getHp() + "/" + mainCharacter.getMaxHP());
 		mpNumbers.setText(mainCharacter.getMp() + "/" + mainCharacter.getMaxMP());
 		hpNumbersEnemy.setText(enemy.getHp() + "/" + enemy.getMaxHP());
 		mpNumbersEnemy.setText(enemy.getMp() + "/" + enemy.getMaxMP());
-		
+
 		hpEnemyPBar.setMaximum(enemy.getMaxHP());
 		hpEnemyPBar.setValue(enemy.getHp());
 		mpEnemyPBar.setMaximum(enemy.getMaxMP());
 		mpEnemyPBar.setValue(enemy.getMp());
 	}
-	
+
 	protected void recheckValues() {
 		mainCharacter.setHp(mainCharacter.checkMaxValues(mainCharacter.getHp(), mainCharacter.getMaxHP()));
 		mainCharacter.setMp(mainCharacter.checkMaxValues(mainCharacter.getMp(), mainCharacter.getMaxMP()));
@@ -551,7 +556,7 @@ public class Combat extends javax.swing.JFrame {
 		});
 		 */
 	}
-	
+
 	public JTextField getTextDesc() {
 		return textDesc;
 	}
