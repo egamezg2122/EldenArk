@@ -129,7 +129,18 @@ public class Menu extends javax.swing.JFrame {
 				mainCharacter = createWarrior(username, sex);
 		}
 		this.dispose();
-		Gameplay g = new Gameplay(mainCharacter, 4);
+		mainCharacter.setLevel(15);
+		mainCharacter.getOtherStatsFromLevel(15);
+		mainCharacter.setHp(mainCharacter.getMaxHP());
+		mainCharacter.setMp(mainCharacter.getMaxMP());
+		
+		/*mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newWeapons[4]);
+		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[4]);
+		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[4]);
+		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[4]);*/
+		
+		
+		Gameplay g = new Gameplay(mainCharacter, 3);
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed

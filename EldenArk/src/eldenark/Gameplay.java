@@ -308,14 +308,14 @@ public class Gameplay extends JFrame implements ActionListener {
 			}
 		}
 	}
-	
-	private void deleteMiniBoss(){
+
+	private void deleteMiniBoss() {
 		for (int i = 0; i < 3; i++) {
-			if ((mainCharacter.getY() * LABEL_SIZE) == (minorBosses[i].getY() + 2) && (mainCharacter.getX()*LABEL_SIZE) == (minorBosses[i].getX() + 2)) {
+			if ((mainCharacter.getY() * LABEL_SIZE) == (minorBosses[i].getY() + 2) && (mainCharacter.getX() * LABEL_SIZE) == (minorBosses[i].getX() + 2)) {
 				this.remove(minorBosses[i]);
 			}
 		}
-		
+
 	}
 
 	private void setBossesPath() {
@@ -820,20 +820,38 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	public int checkEnemyLevel() {
 		int level = 2;
-		switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
+		if (floor == 1) {
+			switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
+				case 2:
+					level = 2;
+					break;
+				case 4:
+				case 5:
+				case 6:
+					level = 4;
+					break;
+				case 7:
+				case 8:
+				case 9:
+					level = 5;
+					break;
+			}
+		} else {
+			switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
 			case 2:
-				level = 2;
+				level = 5;
 				break;
 			case 4:
 			case 5:
 			case 6:
-				level = 4;
+				level = 10;
 				break;
 			case 7:
 			case 8:
 			case 9:
-				level = 5;
+				level = 20;
 				break;
+		}
 		}
 
 		return level * floor;
@@ -924,7 +942,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		} else {
 			if (map[mainCharacter.getY()][mainCharacter.getX()] >= 7) {
 				newFloor();
-			} else{
+			} else {
 				this.setVisible(true);
 			}
 			deleteMiniBoss();
@@ -986,7 +1004,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[floor]);
 				break;
 			case 2:
-				text = "You found a Helmet!\n" + mainCharacter.newChestPlates[floor].getName() + "\n"
+				text = "You found a Chestplate!\n" + mainCharacter.newChestPlates[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[2].getName()), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newChestPlates[floor].getName()), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence");
 				JOptionPane.showMessageDialog(this, text);
@@ -997,7 +1015,7 @@ public class Gameplay extends JFrame implements ActionListener {
 				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[floor]);
 				break;
 			case 3:
-				text = "You found a Leg!\n" + mainCharacter.newLegArmors[floor].getName() + "\n"
+				text = "You found a Leg Armor!\n" + mainCharacter.newLegArmors[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[3].getName()), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newLegArmors[floor].getName()), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence");
 				JOptionPane.showMessageDialog(this, text);
@@ -1030,8 +1048,8 @@ public class Gameplay extends JFrame implements ActionListener {
 		}
 		if (floor != 4 && map[mainCharacter.getY()][mainCharacter.getX()] < 7) {
 			newEquipmentProbability();
-		} 
-		
+		}
+
 	}
 
 	public void changeMainCharacterLabel(int direction) {
@@ -1135,7 +1153,7 @@ public class Gameplay extends JFrame implements ActionListener {
 					reprint();
 					mainCharacter.showEquipment();
 					break;
-				case 'i':				
+				case 'i':
 					reprint();
 					mainCharacter.showInventory();
 					askObject();

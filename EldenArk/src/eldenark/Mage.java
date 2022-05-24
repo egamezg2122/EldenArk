@@ -38,6 +38,7 @@ public class Mage extends Character {
 			this.setMaxHP((int) (100 * 1.2) * (level - 1));
 			this.setMaxMP((int) (160 * 1.2) * (level - 1));
 			this.setSpecialDamage((int) (25 * 1.2) * (level - 1));
+			this.setMaxXP((int) (100 * 1.5) * (level - 1));
 		}
 
 	}

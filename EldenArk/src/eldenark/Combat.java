@@ -31,7 +31,7 @@ public class Combat extends javax.swing.JFrame {
 		setInitialValues();
 		jPanel2.setBackground(Color.GRAY);
 		jPanel1.setBackground(Color.DARK_GRAY);
-		this.getContentPane().setBackground(Color.BLACK);
+		this.getContentPane().setBackground(Color.DARK_GRAY);
 	}
 
 	/**

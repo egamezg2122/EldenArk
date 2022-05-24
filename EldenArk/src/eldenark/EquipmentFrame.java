@@ -19,7 +19,14 @@ public class EquipmentFrame extends javax.swing.JFrame {
 	private String chestPath;
 	private String legPath;
 	private String weaponPath;
-	private String stats;
+	private String weaponString;
+	private String helmetString;
+	private String chestString;
+	private String legString;
+	private String weaponHover;
+	private String helmetHover;
+	private String chestHover;
+	private String legHover;
 	Character mainCharacter;
 	JLabel[] background = new JLabel[4];
 	/**
@@ -27,22 +34,25 @@ public class EquipmentFrame extends javax.swing.JFrame {
 	 */
 	public EquipmentFrame(Character mainCharacter) {
 		this.mainCharacter = mainCharacter;
+		setInformation();
 		setCorrectPath();
 		initComponents();
-		setInformation();
+		
 		background();
 		this.getContentPane().setBackground(Color.DARK_GRAY);
 	}
 	
 	private void setInformation(){
-		stats = "Equipment name                Stats\n"
-				+ mainCharacter.getEquipment()[0].getName() + "        " + mainCharacter.getEquipment()[0].getProfit();
-		System.out.println(String.format("%-18.18s %17.17s", "Equipment name", "Stats"));
-		System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[0].getName(), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage"));
-		for (int i = 1; i < mainCharacter.getEquipment().length; i++) {
-			System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[i].getName(), ("+" + mainCharacter.getEquipment()[i].getProfit()), " defense"));
-		}
-	}
+		weaponString = mainCharacter.getEquipment()[0].getName();
+		helmetString = mainCharacter.getEquipment()[1].getName();
+		chestString = mainCharacter.getEquipment()[2].getName();
+		legString  = mainCharacter.getEquipment()[3].getName();
+		weaponHover = "+" + mainCharacter.getEquipment()[0].getProfit() + " damage";
+		helmetHover = "+" + mainCharacter.getEquipment()[1].getProfit() + " defence";
+		chestHover = "+" + mainCharacter.getEquipment()[2].getProfit() + " defence";
+		legHover = "+" + mainCharacter.getEquipment()[3].getProfit() + " defence";
+	
+	} 
 	
 	private void background(){
 		for (int i = 0; i < background.length; i++) {
@@ -80,52 +90,91 @@ public class EquipmentFrame extends javax.swing.JFrame {
         Helmet = new javax.swing.JLabel();
         Chest = new javax.swing.JLabel();
         Leg = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 400));
-        setMinimumSize(new java.awt.Dimension(400, 400));
+        setMaximumSize(new java.awt.Dimension(500, 464));
+        setMinimumSize(new java.awt.Dimension(500, 464));
 
         Weapon.setIcon(new javax.swing.ImageIcon(getClass().getResource(weaponPath)));
+        Weapon.setToolTipText(weaponHover);
 
         Helmet.setIcon(new javax.swing.ImageIcon(getClass().getResource(helmetPath)));
+        Helmet.setToolTipText(helmetHover);
 
         Chest.setIcon(new javax.swing.ImageIcon(getClass().getResource(chestPath)));
+        Chest.setToolTipText(chestHover);
 
         Leg.setIcon(new javax.swing.ImageIcon(getClass().getResource(legPath)));
+        Leg.setToolTipText(legHover);
         Leg.setMaximumSize(new java.awt.Dimension(600, 600));
         Leg.setMinimumSize(new java.awt.Dimension(600, 600));
         Leg.setPreferredSize(new java.awt.Dimension(600, 600));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText(weaponString);
+        jLabel1.setToolTipText(weaponString);
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText(helmetString);
+        jLabel2.setToolTipText(helmetString);
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText(chestString);
+        jLabel3.setToolTipText(chestString);
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText(legString);
+        jLabel4.setToolTipText(legString);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(165, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Leg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Helmet, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(144, 144, 144))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Chest, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Weapon, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(20, 20, 20)))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 157, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Leg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Chest, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Helmet, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Weapon, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(Helmet, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Helmet, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Chest, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Weapon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Leg, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Chest, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Weapon, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Leg, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,5 +220,9 @@ public class EquipmentFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Helmet;
     private javax.swing.JLabel Leg;
     private javax.swing.JLabel Weapon;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

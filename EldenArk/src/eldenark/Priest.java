@@ -38,6 +38,7 @@ public class Priest extends Character {
 			this.setMaxHP((int) (120 * 1.2) * (level - 1));
 			this.setMaxMP((int) (120 * 1.2) * (level - 1));
 			this.setSpecialDamage((int) (15 * 1.2) * (level - 1));
+			this.setMaxXP((int) (100 * 1.5) * (level - 1));
 		}
 
 	}
