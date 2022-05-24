@@ -6,6 +6,7 @@
 package eldenark;
 
 import static eldenark.EldenArk.rn;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -28,6 +29,9 @@ public class Combat extends javax.swing.JFrame {
 		this.game = game;
 		initComponents();
 		setInitialValues();
+		jPanel2.setBackground(Color.GRAY);
+		jPanel1.setBackground(Color.DARK_GRAY);
+		this.getContentPane().setBackground(Color.BLACK);
 	}
 
 	/**

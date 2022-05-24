@@ -5,6 +5,9 @@
  */
 package eldenark;
 
+import java.awt.Color;
+import javax.swing.JLabel;
+
 /**
  *
  * @author cep
@@ -16,7 +19,9 @@ public class EquipmentFrame extends javax.swing.JFrame {
 	private String chestPath;
 	private String legPath;
 	private String weaponPath;
+	private String stats;
 	Character mainCharacter;
+	JLabel[] background = new JLabel[4];
 	/**
 	 * Creates new form EquipmentFrame
 	 */
@@ -24,6 +29,32 @@ public class EquipmentFrame extends javax.swing.JFrame {
 		this.mainCharacter = mainCharacter;
 		setCorrectPath();
 		initComponents();
+		setInformation();
+		background();
+		this.getContentPane().setBackground(Color.DARK_GRAY);
+	}
+	
+	private void setInformation(){
+		stats = "Equipment name                Stats\n"
+				+ mainCharacter.getEquipment()[0].getName() + "        " + mainCharacter.getEquipment()[0].getProfit();
+		System.out.println(String.format("%-18.18s %17.17s", "Equipment name", "Stats"));
+		System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[0].getName(), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage"));
+		for (int i = 1; i < mainCharacter.getEquipment().length; i++) {
+			System.out.println(String.format("%-20.20s %5.5s %9.9s", mainCharacter.getEquipment()[i].getName(), ("+" + mainCharacter.getEquipment()[i].getProfit()), " defense"));
+		}
+	}
+	
+	private void background(){
+		for (int i = 0; i < background.length; i++) {
+			background[i] = new JLabel();
+			this.add(background[i]);
+			background[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/weapon background.png")));
+	
+		}
+		background[0].setBounds(Chest.getX(), Chest.getY(), 90, 90);
+		background[1].setBounds(Weapon.getX(), Weapon.getY(), 90, 90);
+		background[2].setBounds(Helmet.getX(), Helmet.getY(), 90, 90);
+		background[3].setBounds(Leg.getX(), Leg.getY(), 90, 90);
 	}
 	
 	private void setCorrectPath(){
