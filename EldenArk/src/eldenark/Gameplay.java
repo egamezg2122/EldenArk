@@ -42,7 +42,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	private JLabel merchantLabel;
 
-	private JLabel[] moveOptions = new JLabel[7];
+	private JLabel[] moveOptions = new JLabel[11];
 
 	private JLabel information = new JLabel();
 
@@ -74,40 +74,9 @@ public class Gameplay extends JFrame implements ActionListener {
 		this.mainCharacter = mainCharacter;
 		this.floor = floor;
 		createMap();
-		reprint();
 		running = true;
-
 		//Creating and adding the key listener
 		setFrame();
-		/*
-		MyKeyAdapter k;
-		k = new MyKeyAdapter();
-		this.addKeyListener(k);
-		this.setPreferredSize(new Dimension(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT));
-
-		spawnMainCharacter();
-
-		spawnMobs();
-
-		setMerchant();
-
-		setSpikes();
-
-		setMap();
-
-		this.pack();
-
-		setOptions();
-
-		this.getContentPane().setBackground(Color.BLACK);
-		this.setResizable(false);
-		this.setJMenuBar(frameMenu);
-		this.setTitle("Map");
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setVisible(true);
-
-		setMenu();
-		 */
 	}
 
 	public Gameplay(Character mainCharacter, Merchant merchant, int[][] map, int floor) {
@@ -217,11 +186,17 @@ public class Gameplay extends JFrame implements ActionListener {
 		moveOptions[2].setText("S - Downwards");
 		moveOptions[3].setText("D - Right");
 		moveOptions[4].setText("Welcome to floor " + floor + "!");
+		moveOptions[5].setText("Q - Stats");
+		moveOptions[6].setText("E - Equipment");
+		moveOptions[7].setText("R - Loot");
 
 		moveOptions[0].setBounds(200, 600, 300, 30);
 		moveOptions[1].setBounds(0, 615, 300, 30);
 		moveOptions[2].setBounds(200, 615, 300, 30);
 		moveOptions[3].setBounds(400, 615, 300, 30);
+		moveOptions[5].setBounds(0, 600, 300, 30);
+		moveOptions[6].setBounds(400, 600, 300, 30);
+		moveOptions[7].setBounds(600, 600, 300, 30);
 
 		moveOptions[moveOptions.length - 3].setBounds(800, 600, 300, 30);
 		moveOptions[moveOptions.length - 2].setBounds(800, 615, 300, 30);
@@ -656,53 +631,11 @@ public class Gameplay extends JFrame implements ActionListener {
 		return isUsable;
 	}
 
-	// PRINT THE MAP 
-	public void reprint() {
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-		mapTiles();
-		printMap();
-		printMoveOptions();
-	}
-
-	public void mapTiles() {
-		System.out.println("M - Merchant\tY - MiniBoss\tX - Final Boss\t^ - Spikes");
-	}
-
-	public void printMoveOptions() {
-		System.out.println("\nQ - Stats\tW - Upwards\tE - Equip\tR - Loot\nA - Left\tS - Downwards\tD - Right\t0 - Exit Game\nI - Inventory");
-	}
-
-	//Method to print the map
-	public void printMap() {
-		for (int i = 0; i < map.length; i++) {
-			System.out.println("_________________________________________________________________________________________");
-			for (int j = 0; j < map[i].length; j++) {
-				if (j == mainCharacter.getX() && i == mainCharacter.getY()) {
-					System.out.print("\u001B[34m" + "O" + "\u001B[30m");
-				} else if (map[i][j] == 10) {
-					System.out.print("^");
-				} else if (map[i][j] == 4) {
-					System.out.print("Y");
-				} else if (map[i][j] == 5) {
-					System.out.print("X");
-				} else if (map[i][j] == 3) {
-					System.out.print("M");
-				} else {
-					System.out.print(" ");
-				}
-				System.out.print("  ");
-			}
-			System.out.println("");
-		}
-		System.out.println("_________________________________________________________________________________________");
-	}
-
 	// MOVING METHODS 
 	public void tryToMoveUP() {
 		try {
 			if (map[mainCharacter.getY() - 1][mainCharacter.getX()] != 10) {
 				mainCharacter.moveUP();
-				reprint();
 			} else {
 				setInformation("You can't move there");
 			}
@@ -718,7 +651,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		try {
 			if (map[mainCharacter.getY() + 1][mainCharacter.getX()] != 10) {
 				mainCharacter.moveDown();
-				reprint();
+				
 			} else {
 				setInformation("You can't move there");
 			}
@@ -733,7 +666,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		try {
 			if (map[mainCharacter.getY()][mainCharacter.getX() + 1] != 10) {
 				mainCharacter.moveRight();
-				reprint();
+				
 			} else {
 				setInformation("You can't move there");
 			}
@@ -747,7 +680,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		try {
 			if (map[mainCharacter.getY()][mainCharacter.getX() - 1] != 10) {
 				mainCharacter.moveLeft();
-				reprint();
+				
 			} else {
 				setInformation("You can't move there");
 			}
@@ -795,10 +728,10 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	public void newFloor() {
 		this.setVisible(false);
-		JOptionPane.showMessageDialog(this, "Good job defeating the final boss of " + floor + " floor.");
+		JOptionPane.showMessageDialog(this, "Good job defeating the final boss of " + floor + " floor.", "Information", JOptionPane.INFORMATION_MESSAGE);
 		System.out.println("Good job defeating the final boss of " + floor + " floor.");
 		if (floor < 4) {
-			JOptionPane.showMessageDialog(this, "You're now in the " + (floor + 1) + " floor. New adventures are comming.");
+			JOptionPane.showMessageDialog(this, "You're now in the " + (floor + 1) + " floor. New adventures are comming.", "Information", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("You're now in the " + (floor + 1) + " floor. New adventures are comming.");
 			floor++;
 			mainCharacter.setX(20);
@@ -838,20 +771,20 @@ public class Gameplay extends JFrame implements ActionListener {
 			}
 		} else {
 			switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
-			case 2:
-				level = 5;
-				break;
-			case 4:
-			case 5:
-			case 6:
-				level = 10;
-				break;
-			case 7:
-			case 8:
-			case 9:
-				level = 20;
-				break;
-		}
+				case 2:
+					level = 5;
+					break;
+				case 4:
+				case 5:
+				case 6:
+					level = 10;
+					break;
+				case 7:
+				case 8:
+				case 9:
+					level = 20;
+					break;
+			}
 		}
 
 		return level * floor;
@@ -951,7 +884,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			System.out.println("Returning to the map");
 			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
 
-			reprint();
+			
 		}
 	}
 
@@ -986,44 +919,29 @@ public class Gameplay extends JFrame implements ActionListener {
 				text = "You found a Weapon!\n" + mainCharacter.newWeapons[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[0].getName()), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newWeapons[floor].getName()), ("+" + mainCharacter.newWeapons[floor].getProfit()), " damage");
-				JOptionPane.showMessageDialog(this, text);
-				System.out.println("\nYou found a Weapon!\n" + mainCharacter.newWeapons[floor].getName());
-				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[0].getName()), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage"));
-				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newWeapons[floor].getName()), ("+" + mainCharacter.newWeapons[floor].getProfit()), " damage"));
-				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newWeapons[floor]);
-				System.out.println("\n");
+				JOptionPane.showMessageDialog(this, text, "Equipment found", JOptionPane.INFORMATION_MESSAGE);
+
 				break;
 			case 1:
 				text = "You found a Helmet!\n" + mainCharacter.newHelmets[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[1].getName()), ("+" + mainCharacter.getEquipment()[1].getProfit()), " defence")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newHelmets[floor].getName()), ("+" + mainCharacter.newHelmets[floor].getProfit()), " defence");
-				JOptionPane.showMessageDialog(this, text);
-				System.out.println("You found a Helmet!\n" + mainCharacter.newHelmets[floor].getName());
-				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[1].getName()), ("+" + mainCharacter.getEquipment()[1].getProfit()), " defence"));
-				System.out.println(String.format("%-40.40s %5.5s %9.9s", mainCharacter.newHelmets[floor].getName(), ("+" + mainCharacter.newHelmets[floor].getProfit()), " defence"));
-				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[floor]);
+				JOptionPane.showMessageDialog(this, text, "Equipment found", JOptionPane.INFORMATION_MESSAGE);
+
 				break;
 			case 2:
 				text = "You found a Chestplate!\n" + mainCharacter.newChestPlates[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[2].getName()), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newChestPlates[floor].getName()), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence");
-				JOptionPane.showMessageDialog(this, text);
+				JOptionPane.showMessageDialog(this, text, "Equipment found", JOptionPane.INFORMATION_MESSAGE);
 
-				System.out.println("You found a Chestplate!\n" + mainCharacter.newChestPlates[floor].getName());
-				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[2].getName()), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence"));
-				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newChestPlates[floor].getName()), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence"));
-				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[floor]);
 				break;
 			case 3:
 				text = "You found a Leg Armor!\n" + mainCharacter.newLegArmors[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[3].getName()), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newLegArmors[floor].getName()), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence");
-				JOptionPane.showMessageDialog(this, text);
+				JOptionPane.showMessageDialog(this, text, "Equipment found", JOptionPane.INFORMATION_MESSAGE);
 
-				System.out.println("You found a Leg Armor!\n" + mainCharacter.newLegArmors[floor].getName());
-				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[3].getName()), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence"));
-				System.out.println(String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newLegArmors[floor].getName()), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence"));
-				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[floor]);
 				break;
 		}
 
@@ -1072,13 +990,6 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	public static String stringParser(String a) {
 		String toReturn = a;
-		/*
-		if (toReturn.length() > STRING_SIZE) {
-			toReturn.substring(STRING_SIZE);
-		} else {
-			toReturn = String.format("%-" + STRING_SIZE + "." + STRING_SIZE + "s", toReturn);
-		}
-		 */
 		toReturn = String.format("%-" + STRING_SIZE + "." + STRING_SIZE + "s", toReturn);
 		return toReturn;
 	}
@@ -1105,140 +1016,128 @@ public class Gameplay extends JFrame implements ActionListener {
 					break;
 				case 's':
 					//Thing that happens when the 's' key is pressed
-					if (inMap) {
-						setInformation("");
-						tryToMoveDown();
-						checkNewTile();
-						changeMainCharacterLabel(3);
-					}
+
+					setInformation("");
+					tryToMoveDown();
+					checkNewTile();
+					changeMainCharacterLabel(3);
+
 					break;
 				case 'd':
 					//Thing that happens when the 'd' key is pressed
-					if (inMap) {
-						setInformation("");
-						tryToMoveRight();
-						checkNewTile();
-						changeMainCharacterLabel(4);
-					}
+
+					setInformation("");
+					tryToMoveRight();
+					checkNewTile();
+					changeMainCharacterLabel(4);
+
 					break;
 				case 'a':
 					//Thing that happens when the 'a' key is pressed
-					if (inMap) {
-						setInformation("");
-						tryToMoveLeft();
-						checkNewTile();
-						changeMainCharacterLabel(2);
-					}
+
+					setInformation("");
+					tryToMoveLeft();
+					checkNewTile();
+					changeMainCharacterLabel(2);
+
 					break;
 				case 'r':
 					//Loot tile
-					if (inMap) {
-						if (map[mainCharacter.getY()][mainCharacter.getX()] == 1) {
-							reprint();
-							generateLoot(floor);
-							map[mainCharacter.getY()][mainCharacter.getX()] = 0;
-
-						}
-
+					if (map[mainCharacter.getY()][mainCharacter.getX()] == 1) {
+						generateLoot(floor);
+						map[mainCharacter.getY()][mainCharacter.getX()] = 0;
 					}
 					break;
 				case 'q':
-					reprint();
-					JOptionPane.showMessageDialog(rootPane, mainCharacter.showStats());
 
+					JOptionPane.showMessageDialog(rootPane, mainCharacter.showStats(), "Stats", JOptionPane.INFORMATION_MESSAGE);
 					break;
 				case 'e':
 					EquipmentFrame equip = new EquipmentFrame(mainCharacter);
 					equip.setVisible(true);
-					reprint();
-					mainCharacter.showEquipment();
-					break;
-				case 'i':
-					reprint();
-					mainCharacter.showInventory();
-					askObject();
 
+					break;
 			}
 		}
 
-		public void askObject() {
-			int i = 0;
-			boolean confirm;
-			boolean on = true;
-			do {
-				if (mainCharacter.inventory[i].getNumOfUses() > 0) {
-					System.out.println("\nDo you want to use any object?");
-					confirm = confirmationO();
-					if (confirm) {
-						useObject(mainCharacter);
-						mainCharacter.hp = mainCharacter.checkMaxValues(mainCharacter.hp, mainCharacter.maxHP);
-						mainCharacter.mp = mainCharacter.checkMaxValues(mainCharacter.mp, mainCharacter.maxMP);
-						on = false;
-						reprint();
-						System.out.println("\nOpen the Map Movement window");
-					} else {
-						on = false;
-						reprint();
-						System.out.println("\nOpen the Map Movement window");
-
-					}
-				}
-				on = false;
-				System.out.println("You dont have potions.");
-				System.out.println("I guess you are out of luck. Try going to the merchant.");
-				System.out.println("Type to keep playing.");
-				Teclat.llegirString();
-				reprint();
-				System.out.println("\nOpen the Map Movement window");
-			} while (on);
-			i++;
+		/*public void askObject() {
+		int i = 0;
+		boolean confirm;
+		boolean on = true;
+		do {
+		if (mainCharacter.inventory[i].getNumOfUses() > 0) {
+		System.out.println("\nDo you want to use any object?");
+		confirm = confirmationO();
+		if (confirm) {
+		useObject(mainCharacter);
+		mainCharacter.hp = mainCharacter.checkMaxValues(mainCharacter.hp, mainCharacter.maxHP);
+		mainCharacter.mp = mainCharacter.checkMaxValues(mainCharacter.mp, mainCharacter.maxMP);
+		on = false;
+		reprint();
+		System.out.println("\nOpen the Map Movement window");
+		} else {
+		on = false;
+		reprint();
+		System.out.println("\nOpen the Map Movement window");
+		
 		}
-
+		}
+		on = false;
+		System.out.println("You dont have potions.");
+		System.out.println("I guess you are out of luck. Try going to the merchant.");
+		System.out.println("Type to keep playing.");
+		Teclat.llegirString();
+		reprint();
+		System.out.println("\nOpen the Map Movement window");
+		} while (on);
+		i++;
+		}
+		
 		public boolean confirmationO() {
-			boolean answer = false;
-			boolean on = true;
-			String ask;
-			do {
-				System.out.println("Type (Y/N)");
-				ask = Teclat.llegirString();
-				ask = ask.toLowerCase();
-				if (ask.equals("y")) {
-					answer = true;
-					on = false;
-				} else if (ask.equals("n")) {
-					answer = false;
-					on = false;
-				} else {
-					System.out.println("Invalid answer.");
-				}
-			} while (on);
-
-			return answer;
+		boolean answer = false;
+		boolean on = true;
+		String ask;
+		do {
+		System.out.println("Type (Y/N)");
+		ask = Teclat.llegirString();
+		ask = ask.toLowerCase();
+		if (ask.equals("y")) {
+		answer = true;
+		on = false;
+		} else if (ask.equals("n")) {
+		answer = false;
+		on = false;
+		} else {
+		System.out.println("Invalid answer.");
 		}
-
+		} while (on);
+		
+		return answer;
+		}
+		
 		public void useObject(Character mainCharacter) {
-			int option;
-			boolean on = true;
-			do {
-				System.out.println("\nWhat object do you want to use?");
-				System.out.println("Type 4 to go back");
-				option = Teclat.llegirInt();
-				if (option == 4) {
-					on = false;
-				} else if (option > 4) {
-					on = true;
-					System.err.println("Invalid option");
-				} else if (mainCharacter.inventory[option].getNumOfUses() > 0) {
-					System.out.println(mainCharacter.inventory[option].getDescription());
-					if (mainCharacter.confirmation()) {
-						mainCharacter.inventory[option].use(mainCharacter);
-						on = false;
-					}
-				} else {
-					System.out.println("\nYou don't have this potion anymore.");
-				}
-			} while (on);
+		int option;
+		boolean on = true;
+		do {
+		System.out.println("\nWhat object do you want to use?");
+		System.out.println("Type 4 to go back");
+		option = Teclat.llegirInt();
+		if (option == 4) {
+		on = false;
+		} else if (option > 4) {
+		on = true;
+		System.err.println("Invalid option");
+		} else if (mainCharacter.inventory[option].getNumOfUses() > 0) {
+		System.out.println(mainCharacter.inventory[option].getDescription());
+		if (mainCharacter.confirmation()) {
+		mainCharacter.inventory[option].use(mainCharacter);
+		on = false;
 		}
+		} else {
+		System.out.println("\nYou don't have this potion anymore.");
+		}
+		} while (on);
+		}*/
 
 		@Override
 		public void keyPressed(KeyEvent e) {
