@@ -704,9 +704,8 @@ public class Gameplay extends JFrame implements ActionListener {
 
 			case 3:
 				//Merchant
-				/*merchant.trade();
+				merchant.trade();
 				this.setVisible(true);
-				reprint();*/
 				break;
 			case 4:
 			case 5:

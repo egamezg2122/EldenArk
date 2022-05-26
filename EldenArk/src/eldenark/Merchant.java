@@ -46,6 +46,46 @@ public class Merchant {
     
     private int typeObject2;
     
+    private String merchantImage;
+
+    public String getName() {
+        return name;
+    }
+
+    public Object getSellingObject1() {
+        return sellingObject1;
+    }
+
+    public Object getSellingObject2() {
+        return sellingObject2;
+    }
+
+    public Equip getSellingEquip() {
+        return sellingEquip;
+    }
+
+    public int getPriceSmallObject() {
+        return priceSmallObject;
+    }
+
+    public int getPriceBigObject() {
+        return priceBigObject;
+    }
+
+    public int getPriceEquip() {
+        return priceEquip;
+    }
+
+    public String getMerchantImage() {
+        return merchantImage;
+    }
+
+    public void setMerchantImage(String merchantImage) {
+        this.merchantImage = merchantImage;
+    }
+    
+    
+    
     // Merchant generator
 
     public Merchant(int x, int y, int floor, Character mainCharacter) {
@@ -653,6 +693,24 @@ public class Merchant {
 		
 		
 	}
+    
+    public void merchantImage () {
+        switch (floor) {
+            case 1:
+                setMerchantImage("FOTOS ELDEN ARK/MERCHANT/ROGELIO.png");
+                break;
+            case 2:
+                setMerchantImage("FOTOS ELDEN ARK/MERCHANT/FRANCISCO.png");
+                break;
+            case 3:
+                setMerchantImage("FOTOS ELDEN ARK/MERCHANT/HEISENBERG.png");
+                break;
+            case 4:
+                setMerchantImage("FOTOS ELDEN ARK/MERCHANT/ALMENDRAS.png");
+                break;
+        }
+    }
+    
 	
 
 }
