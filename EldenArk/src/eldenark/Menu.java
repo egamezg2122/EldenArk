@@ -117,6 +117,7 @@ public class Menu extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
 		// TODO add your handling code here:
 		String username = JOptionPane.showInputDialog("Introduce your username");
+		username = Gameplay.stringParser(username).trim();
 		int sex = JOptionPane.showOptionDialog(this, "Choose your gender", "Gender", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
 				null, new String[]{"Male", "Female"}, "Male");
 		int characterClass = JOptionPane.showOptionDialog(this, "Choose your class", "Class", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,

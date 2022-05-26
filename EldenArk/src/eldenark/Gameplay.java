@@ -651,7 +651,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		try {
 			if (map[mainCharacter.getY() + 1][mainCharacter.getX()] != 10) {
 				mainCharacter.moveDown();
-				
+
 			} else {
 				setInformation("You can't move there");
 			}
@@ -666,7 +666,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		try {
 			if (map[mainCharacter.getY()][mainCharacter.getX() + 1] != 10) {
 				mainCharacter.moveRight();
-				
+
 			} else {
 				setInformation("You can't move there");
 			}
@@ -680,7 +680,7 @@ public class Gameplay extends JFrame implements ActionListener {
 		try {
 			if (map[mainCharacter.getY()][mainCharacter.getX() - 1] != 10) {
 				mainCharacter.moveLeft();
-				
+
 			} else {
 				setInformation("You can't move there");
 			}
@@ -694,12 +694,11 @@ public class Gameplay extends JFrame implements ActionListener {
 		setSecondInformation("");
 		switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
 			case 1:
-				System.out.println("You found loot");
 				setInformation("You found loot");
 				break;
 
 			case 2:
-				System.out.println("You found a normal enemy. Starting combat");
+				
 				startCombat();
 				break;
 
@@ -712,13 +711,13 @@ public class Gameplay extends JFrame implements ActionListener {
 			case 4:
 			case 5:
 			case 6:
-				System.out.println("You found a miniBoss. Get ready to fight!");
+				
 				startCombat();
 				break;
 			case 7:
 			case 8:
 			case 9:
-				System.out.println("FINAL BOSS");
+				
 				startCombat();
 				break;
 
@@ -729,10 +728,10 @@ public class Gameplay extends JFrame implements ActionListener {
 	public void newFloor() {
 		this.setVisible(false);
 		JOptionPane.showMessageDialog(this, "Good job defeating the final boss of " + floor + " floor.", "Information", JOptionPane.INFORMATION_MESSAGE);
-		System.out.println("Good job defeating the final boss of " + floor + " floor.");
+		
 		if (floor < 4) {
 			JOptionPane.showMessageDialog(this, "You're now in the " + (floor + 1) + " floor. New adventures are comming.", "Information", JOptionPane.INFORMATION_MESSAGE);
-			System.out.println("You're now in the " + (floor + 1) + " floor. New adventures are comming.");
+			
 			floor++;
 			mainCharacter.setX(20);
 			mainCharacter.setY(10);
@@ -880,11 +879,13 @@ public class Gameplay extends JFrame implements ActionListener {
 			}
 			deleteMiniBoss();
 			generateLoot(combatLevel);
+			int tempLvl = mainCharacter.getLevel();
 			mainCharacter.checkLevelUp(getExperience(combatLevel));
-			System.out.println("Returning to the map");
+			if (tempLvl != mainCharacter.getLevel()) {
+				JOptionPane.showMessageDialog(this, "Check your new awasstats!", "LEVEL UP!", JOptionPane.INFORMATION_MESSAGE);
+			}
 			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
 
-			
 		}
 	}
 
@@ -950,19 +951,16 @@ public class Gameplay extends JFrame implements ActionListener {
 	public void generateLoot(int level) {
 		int gold = rn.nextInt(10 * level);
 		String goldText = "You found " + gold + " gold! " + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold);
-		System.out.println("You found " + gold + " gold!\n" + mainCharacter.getGold() + " - " + (mainCharacter.getGold() + gold));
+
 		setInformation(goldText);
 		mainCharacter.setGold(mainCharacter.getGold() + gold);
 		int objects = rn.nextInt(20 / level);
 		try {
-			System.out.print("You found a " + mainCharacter.getInventory()[objects].getName());
 			String objectText = "You found a " + mainCharacter.getInventory()[objects].getName();
 			setSecondInformation(objectText);
-			System.out.println(": " + mainCharacter.getInventory()[objects].getNumOfUses() + " -> " + (mainCharacter.getInventory()[objects].getNumOfUses() + 1));
 			mainCharacter.getInventory()[objects].setNumOfUses(mainCharacter.getInventory()[objects].getNumOfUses() + 1);
 
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("You found no additionals objects");
 		}
 		if (floor != 4 && map[mainCharacter.getY()][mainCharacter.getX()] < 7) {
 			newEquipmentProbability();
@@ -1138,7 +1136,6 @@ public class Gameplay extends JFrame implements ActionListener {
 		}
 		} while (on);
 		}*/
-
 		@Override
 		public void keyPressed(KeyEvent e) {
 			switch (e.getKeyCode()) {

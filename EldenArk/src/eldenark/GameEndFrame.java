@@ -102,9 +102,6 @@ public class GameEndFrame extends javax.swing.JFrame {
 				level.setBounds(620, 200 + (50 * i), 100, 100);
 				image.setBounds(720, 200 + (50 * i), 100, 100);
 
-				System.out.println("NICKNAME: " + nicknames.get(i));
-				System.out.println("LEVEL: " + levels.get(i));
-				System.out.println("IMAGE: " + path.get(i));
 				i++;
 			} while(i < nicknames.size() && i < MAX_LEADERBOARD);
 
