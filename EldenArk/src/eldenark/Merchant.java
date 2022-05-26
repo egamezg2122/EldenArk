@@ -84,6 +84,14 @@ public class Merchant {
         return merchantImage;
     }
 
+    public int getTypeObject1() {
+        return typeObject1;
+    }
+
+    public int getTypeObject2() {
+        return typeObject2;
+    }
+
     public void setMerchantImage(String merchantImage) {
         this.merchantImage = merchantImage;
     }
@@ -110,6 +118,18 @@ public class Merchant {
 
     public void setEquipImage(String equipImage) {
         this.equipImage = equipImage;
+    }
+
+    public void setQuantitySmallObject(int quantitySmallObject) {
+        this.quantitySmallObject = quantitySmallObject;
+    }
+
+    public void setQuantityBigObject(int quantityBigObject) {
+        this.quantityBigObject = quantityBigObject;
+    }
+
+    public void setQuantityEquip(int quantityEquip) {
+        this.quantityEquip = quantityEquip;
     }
 
     // Merchant generator

@@ -5,7 +5,9 @@
  */
 package eldenark;
 
+import java.util.HashSet;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +18,7 @@ public class MerchantFrame extends javax.swing.JFrame {
     Merchant merchant;
     Character mainCharacter;
     JLabel background = new JLabel();
+    Gameplay x;
 
     public MerchantFrame(Merchant merchant, Character mainCharacter) {
 
@@ -69,15 +72,26 @@ public class MerchantFrame extends javax.swing.JFrame {
         merchantMan1.setPreferredSize(new java.awt.Dimension(1265, 700));
 
         smallObject.setText(merchant.getSellingObject1().getName());
+        smallObject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smallObjectActionPerformed(evt);
+            }
+        });
 
         smallObject1.setText(merchant.getSellingObject2().getName());
         smallObject1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 smallObject1ActionPerformed(evt);
+                bigObjectActionPerformed(evt);
             }
         });
 
         jButton1.setText(merchant.getSellingEquip().getName());
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                equipActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,7 +154,31 @@ public class MerchantFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_smallObject1ActionPerformed
 
-    /**
+    private void smallObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallObjectActionPerformed
+        if (mainCharacter.getGold() >= merchant.getPriceSmallObject() && merchant.getQuantitySmallObject() > 0) {
+            mainCharacter.getInventory()[merchant.getTypeObject1()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject1()].getNumOfUses()+1);
+            mainCharacter.setGold(mainCharacter.getGold()-merchant.getPriceSmallObject());
+            merchant.setQuantitySmallObject(-1);
+        }
+    }//GEN-LAST:event_smallObjectActionPerformed
+
+    private void bigObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bigObjectActionPerformed
+        if (mainCharacter.getGold() >= merchant.getPriceBigObject() && merchant.getQuantityBigObject() > 0) {
+            mainCharacter.getInventory()[merchant.getTypeObject2()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject2()].getNumOfUses()+1);
+            mainCharacter.setGold(mainCharacter.getGold()-merchant.getPriceBigObject());
+            merchant.setQuantityBigObject(-1);
+        }
+
+    }//GEN-LAST:event_bigObjectActionPerformed
+
+    private void equipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipActionPerformed
+        if (mainCharacter.getGold() >= merchant.getPriceEquip() && merchant.getQuantityEquip()> 0) {
+            mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceEquip());
+            mainCharacter.changeEquip(mainCharacter.getEquipment(), merchant.getSellingEquip());
+            merchant.setQuantityEquip(-1);
+        }
+    }//GEN-LAST:event_equipActionPerformed
+     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

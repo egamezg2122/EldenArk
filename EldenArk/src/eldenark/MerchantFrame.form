@@ -139,6 +139,9 @@
           <Connection code="merchant.getSellingObject1().getName()" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smallObjectActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="smallObject1">
       <Properties>
@@ -147,7 +150,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smallObject1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smallObject1ActionPerformed,bigObjectActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
@@ -156,6 +159,9 @@
           <Connection code="merchant.getSellingEquip().getName()" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="equipActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
