@@ -20,7 +20,6 @@ public class Menu extends javax.swing.JFrame {
 	
 	public Menu() {
 		
-	
 		initComponents();
 		JLabel background = new JLabel();
 		this.add(background);
@@ -142,7 +141,7 @@ public class Menu extends javax.swing.JFrame {
 		
 		this.dispose();
 		
-		mainCharacter.setLevel(20);
+		/*mainCharacter.setLevel(20);
 		mainCharacter.getOtherStatsFromLevel(20);
 		mainCharacter.setHp(mainCharacter.getMaxHP());
 		mainCharacter.setMp(mainCharacter.getMaxMP());
@@ -150,7 +149,7 @@ public class Menu extends javax.swing.JFrame {
 		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newWeapons[4]);
 		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[4]);
 		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[4]);
-		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[4]);
+		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[4]);*/
 		
 		
 		Gameplay g = new Gameplay(mainCharacter, 1);
@@ -158,7 +157,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
 		// TODO add your handling code here:
-		System.out.println("Continue");
+		
 		int i = 0;
 
 		ArrayList<Gameplay> saves = BinaryFile.getSaves();
@@ -236,7 +235,7 @@ public class Menu extends javax.swing.JFrame {
 	// Create a Warrior object
 	public static Warrior createWarrior(String name, int sex) {
 
-		Warrior warrior = new Warrior(25, 15, 140, 140, 60, 60, 15, sex, generateInventory(), name);
+		Warrior warrior = new Warrior(30, 20, 200, 200, 100, 100, 15, sex, generateInventory(), name);
 
 		return warrior;
 
@@ -245,7 +244,7 @@ public class Menu extends javax.swing.JFrame {
 	// Create a Mage object
 	public static Mage createMage(String name, int sex) {
 
-		Mage mage = new Mage(12, 5, 100, 100, 160, 160, 25, sex, generateInventory(), name);
+		Mage mage = new Mage(15, 8, 120, 120, 240, 240, 30, sex, generateInventory(), name);
 
 		return mage;
 
@@ -254,7 +253,7 @@ public class Menu extends javax.swing.JFrame {
 	// Create a Priest object
 	public static Priest createPriest(String name, int sex) {
 
-		Priest priest = new Priest(20, 10, 120, 120, 120, 120, 15, sex, generateInventory(), name);
+		Priest priest = new Priest(25, 17, 180, 180, 180, 180, 55, sex, generateInventory(), name);
 
 		return priest;
 

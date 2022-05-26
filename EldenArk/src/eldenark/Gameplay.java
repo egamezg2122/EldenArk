@@ -771,17 +771,17 @@ public class Gameplay extends JFrame implements ActionListener {
 		} else {
 			switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
 				case 2:
-					level = 5;
+					level = 3;
 					break;
 				case 4:
 				case 5:
 				case 6:
-					level = 10;
+					level = 8;
 					break;
 				case 7:
 				case 8:
 				case 9:
-					level = 20;
+					level = 15;
 					break;
 			}
 		}
@@ -882,7 +882,7 @@ public class Gameplay extends JFrame implements ActionListener {
 			int tempLvl = mainCharacter.getLevel();
 			mainCharacter.checkLevelUp(getExperience(combatLevel));
 			if (tempLvl != mainCharacter.getLevel()) {
-				JOptionPane.showMessageDialog(this, "Check your new awasstats!", "LEVEL UP!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Check your new stats!", "LEVEL UP!", JOptionPane.INFORMATION_MESSAGE);
 			}
 			map[mainCharacter.getY()][mainCharacter.getX()] = 0;
 
@@ -921,28 +921,28 @@ public class Gameplay extends JFrame implements ActionListener {
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[0].getName()), ("+" + mainCharacter.getEquipment()[0].getProfit()), " damage")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newWeapons[floor].getName()), ("+" + mainCharacter.newWeapons[floor].getProfit()), " damage");
 				JOptionPane.showMessageDialog(this, text, "Equipment found", JOptionPane.INFORMATION_MESSAGE);
-
+				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newWeapons[floor]);
 				break;
 			case 1:
 				text = "You found a Helmet!\n" + mainCharacter.newHelmets[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[1].getName()), ("+" + mainCharacter.getEquipment()[1].getProfit()), " defence")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newHelmets[floor].getName()), ("+" + mainCharacter.newHelmets[floor].getProfit()), " defence");
 				JOptionPane.showMessageDialog(this, text, "Equipment found", JOptionPane.INFORMATION_MESSAGE);
-
+				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[floor]);
 				break;
 			case 2:
 				text = "You found a Chestplate!\n" + mainCharacter.newChestPlates[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[2].getName()), ("+" + mainCharacter.getEquipment()[2].getProfit()), " defence")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newChestPlates[floor].getName()), ("+" + mainCharacter.newChestPlates[floor].getProfit()), " defence");
 				JOptionPane.showMessageDialog(this, text, "Equipment found", JOptionPane.INFORMATION_MESSAGE);
-
+				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[floor]);
 				break;
 			case 3:
 				text = "You found a Leg Armor!\n" + mainCharacter.newLegArmors[floor].getName() + "\n"
 						+ String.format("%-40.40s %5.5s %9.9s", ("Actual: " + mainCharacter.getEquipment()[3].getName()), ("+" + mainCharacter.getEquipment()[3].getProfit()), " defence")
 						+ "\n" + String.format("%-40.40s %5.5s %9.9s", ("Found: " + mainCharacter.newLegArmors[floor].getName()), ("+" + mainCharacter.newLegArmors[floor].getProfit()), " defence");
 				JOptionPane.showMessageDialog(this, text, "Equipment found", JOptionPane.INFORMATION_MESSAGE);
-
+				mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[floor]);
 				break;
 		}
 
