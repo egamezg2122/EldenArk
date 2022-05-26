@@ -13,7 +13,7 @@ public class MerchantFrame extends javax.swing.JFrame {
 
     Merchant merchant;
     Character mainCharacter;
-    Object objectpo;
+    
     public MerchantFrame(Merchant merchant, Character mainCharacter) {
         initComponents();
         this.merchant = merchant;
@@ -42,17 +42,14 @@ public class MerchantFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         merchantMan.setIcon(new javax.swing.ImageIcon(getClass().getResource(merchant.getMerchantImage())));
-        merchantMan.setText("Man");
         merchantMan.setPreferredSize(new java.awt.Dimension(1265, 700));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_HEAL.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(merchant.getSmallObjImage())));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_MANA.png"))); // NOI18N
-        jLabel4.setText("Poti grande");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(merchant.getLargeObjImage())));
         jLabel4.setMinimumSize(new java.awt.Dimension(51, 14));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/EQUIPMENT/WARRIOR/BANE OF DILIGENCE.png"))); // NOI18N
-        jLabel5.setText("Arma");
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource(merchant.getEquipImage())));
         jLabel5.setMinimumSize(new java.awt.Dimension(51, 14));
 
         jLabel3.setText("Salir");
@@ -69,10 +66,10 @@ public class MerchantFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(270, 270, 270)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(218, 218, 218)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(194, 194, 194)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(merchantMan, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -87,7 +84,7 @@ public class MerchantFrame extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

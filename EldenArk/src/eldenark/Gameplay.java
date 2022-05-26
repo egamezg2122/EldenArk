@@ -704,8 +704,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
 			case 3:
 				//Merchant
-				merchant.trade();
-				this.setVisible(true);
+				merchantFrame();
 				break;
 			case 4:
 			case 5:
@@ -724,6 +723,12 @@ public class Gameplay extends JFrame implements ActionListener {
 
 	}
 
+	public void merchantFrame(){
+		this.setVisible(false);
+		MerchantFrame mer = new MerchantFrame(merchant, mainCharacter);
+		mer.setVisible(true);
+	}
+	
 	public void newFloor() {
 		this.setVisible(false);
 		JOptionPane.showMessageDialog(this, "Good job defeating the final boss of " + floor + " floor.", "Information", JOptionPane.INFORMATION_MESSAGE);
