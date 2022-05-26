@@ -316,9 +316,7 @@ public class Merchant {
 
     }
 
-    public void trade() {
-
-        int option;
+    public void trade(int option) {
 
         boolean exit = false, confirmation;
 
