@@ -27,8 +27,6 @@ Version:
     * Version 1.0
 
  */
-
-
 package eldenark;
 
 import java.util.ArrayList;
@@ -43,86 +41,40 @@ public class EldenArk {
     public static void main(String[] args) {
 
         // Show Introduction
-		
-		
-		Menu menu = new Menu();
-		menu.setVisible(true);
-		/*
-        Map m = new Map();
-		m.setVisible(true);
-		*/
-		
-		
-		/*
-		ArrayList<Gameplay> saves = BinaryFile.getSaves();
-		System.out.println("Chose your character");
-		for (Gameplay a: saves){
-		
-		System.out.println(a.mainCharacter.getNickname());
-		}
-		int option = Teclat.llegirInt();
-		saves.get(option).setFrame();
-		*/
-		
-		
+        
+        Menu menu = new Menu();
+        menu.setVisible(true);
 
-		
-		//introduction();
-		
-		
-		// Let the user to choose the main character
-		
-		// Ask the username
-		
-		
-		//String name = nicknameUser();
-		
-		//Character mainCharacter = pickClass(name);
-		
-		
-		
-		// Create gameplay
-		
-		
-		
-		//Gameplay g = new Gameplay(mainCharacter, 1);
-		
-
-	   //Combat c = new Combat(mainCharacter, enemy);
-	   //c.setVisible(true);
-		
     }
-    
-    // The user can choose the name of the character 
 
+    // The user can choose the name of the character 
     public static String nicknameUser() {
-        
+
         boolean on = true;
-        
+
         String nickname;
-        
+
         do {
-            
+
             System.out.println("Introduce your name.");
-            
+
             nickname = Teclat.llegirString();
-            
+
             if ("".equals(nickname)) {
-                
+
                 System.err.println("Try again.");
-                
+
                 on = false;
-                
+
             }
-            
+
         } while (!on && "".equals(nickname));
 
         return nickname;
     }
-    
+
     // Function called when the game is over, and start again
-    
-	/*public static void gameOver() {
+    /*public static void gameOver() {
 	
 	System.out.println("GAME OVER");
 	
@@ -144,38 +96,34 @@ public class EldenArk {
 	
 	}
 	}*/
-    
     // Function called if the user won the game
-    
     public static void win(String nickname) {
-        
+
         System.out.println("Congratulations " + nickname + " on compleating sucessfully EldenArk. We hope you enjoyed the game and stay tuned for future updates\n\n\n");
-        
+
         credits();
 
     }
-    
+
     // Show credits
-    
     public static void credits() {
 
         System.out.println(String.format("%50.50s %20.20s", "", "GAME DEVELOPED BY"));
-        
+
         System.out.println("\n\n");
-        
+
         System.out.println(String.format("%50.50s %20.20s", "", "Elias Gamez"));
-        
+
         System.out.println(String.format("%50.50s %20.20s", "", "Albert Salazar"));
-        
+
         System.out.println(String.format("%50.50s %20.20s", "", "Leo Ferraz"));
-        
+
         System.out.println(String.format("%50.50s %20.20s", "", "Marcel Homar"));
-        
+
     }
 
     // User picking the character class
-    
-	/*public static Character pickClass(String name) {
+    /*public static Character pickClass(String name) {
 	
 	Character main = new Character();
 	
@@ -229,24 +177,22 @@ public class EldenArk {
 	return main;
 	
 	}*/
-    
     // User input validation
-
     public static int validation() {
-        
+
         int option;
-        
+
         try {
-            
+
             option = Teclat.llegirInt();
-            
+
         } catch (InputMismatchException e) {
-            
+
             option = -1;
         }
-        
+
         return option;
-        
+
     }
 
     /* ************************************************************
@@ -254,10 +200,8 @@ public class EldenArk {
      *                     CLASS GENERATORS                       *
      *                                                            *
      **************************************************************/
-    
     // Create a Warrior object
-    
-	/*
+    /*
     public static Warrior createWarrior(String name) {
 
         Warrior warrior = new Warrior(25, 15, 140, 140, 60, 60, 15, "Warrior", generateInventory(), name);
@@ -311,10 +255,10 @@ public class EldenArk {
         return inventory;
         
     }
-	*/
-	public static Object[] reDoInventory(int obj1, int obj2, int obj3, int obj4){
-		
-		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", obj1);
+     */
+    public static Object[] reDoInventory(int obj1, int obj2, int obj3, int obj4) {
+
+        Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", obj1);
 
         Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "It restores 50% health of your max HP", obj2);
 
@@ -325,33 +269,31 @@ public class EldenArk {
         Object[] inventory = new Object[4];
 
         inventory[0] = smallHealing;
-        
+
         inventory[1] = largeHealing;
-        
+
         inventory[2] = smallMana;
-        
+
         inventory[3] = largeMana;
 
         return inventory;
-	}
-    
+    }
 
     // Function to show a little explanation of the game
-    
     private static void introduction() {
-        
+
         System.out.println("\t\t\t\t\tWelcome to Elden Ark!");
-        
+
         System.out.println("\n\nThis Roguelike Game is and RPG-playing video games characterized by a dungeon crawl through procedurally generated levels,\nturn-based gameplay, grid-based movement, and permanent death of the player character.");
-        
+
         System.out.println("\nIf you die, you will need to start again losing all your progress.\n\n");
-        
+
         System.out.println("The Tower of Elden Ark have 4 floors and when you kill the Final Boss you will advance to the next floor");
-        
+
         System.out.println("In addition, there will be 3 minibosses that give extra loot and experience. Try killing them whenever you need power");
-        
+
         System.out.println("Choose carefully your class and start leveling up to complete the TOWER OF THE ELDEN ARK\n");
-    
+
     }
 
 }

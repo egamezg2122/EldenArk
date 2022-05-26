@@ -6,6 +6,9 @@ package eldenark;
  *
  */
 public class Warrior extends Character {
+    
+    
+    Sound sound = new Sound();
 
 	//Constructors
 	// MAIN

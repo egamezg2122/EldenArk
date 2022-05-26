@@ -69,14 +69,23 @@ public class Gameplay extends JFrame implements ActionListener {
     // VARIABLES FOR SAVING THE GAME
     static final int SIZE = 3324;
     static final int STRING_SIZE = 12;
+    
+    Sound sound = new Sound();
 
     public Gameplay(Character mainCharacter, int floor) {
+        
+
         this.mainCharacter = mainCharacter;
         this.floor = floor;
         createMap();
         running = true;
         //Creating and adding the key listener
         setFrame();
+        
+        
+        
+        
+        
     }
 
     public Gameplay(Character mainCharacter, Merchant merchant, int[][] map, int floor) {
@@ -86,6 +95,8 @@ public class Gameplay extends JFrame implements ActionListener {
         this.floor = floor;
 
     }
+    
+    
 
     //FRAME METHODS
     public void setFrame() {
@@ -638,10 +649,12 @@ public class Gameplay extends JFrame implements ActionListener {
                 mainCharacter.moveUP();
             } else {
                 setInformation("You can't move there");
+                sound.playSE(7);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
 
             setInformation("You're at the edge of the map.");
+            sound.playSE(7);
 
         }
 
@@ -654,10 +667,12 @@ public class Gameplay extends JFrame implements ActionListener {
 
             } else {
                 setInformation("You can't move there");
+                sound.playSE(7);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
 
             setInformation("You're at the edge of the map.");
+            sound.playSE(7);
         }
 
     }
@@ -669,9 +684,11 @@ public class Gameplay extends JFrame implements ActionListener {
 
             } else {
                 setInformation("You can't move there");
+                sound.playSE(7);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             setInformation("You're at the edge of the map.");
+            sound.playSE(7);
         }
     }
 
@@ -683,9 +700,11 @@ public class Gameplay extends JFrame implements ActionListener {
 
             } else {
                 setInformation("You can't move there");
+                sound.playSE(7);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             setInformation("You're at the edge of the map.");
+            sound.playSE(7);
         }
     }
 
@@ -694,11 +713,12 @@ public class Gameplay extends JFrame implements ActionListener {
         setSecondInformation("");
         switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
             case 1:
+                sound.playSE(6);
                 setInformation("You found loot");
                 break;
 
             case 2:
-
+                
                 startCombat();
                 break;
 
@@ -856,46 +876,69 @@ public class Gameplay extends JFrame implements ActionListener {
     }
 
     public void startCombat() {
+        
         this.setVisible(false);
         int combatLevel = checkEnemyLevel();
         Character enemy = createEnemy(combatLevel);
         Combat c = new Combat(mainCharacter, enemy, this);
         c.setVisible(true);
+        
         //mainCharacter.fight(map, enemy, floor);
 
     }
 
     public void endBattle() {
-
+        
+   
+                
         int combatLevel = checkEnemyLevel();
-
         if (mainCharacter.getHp() <= 0) {
             this.dispose();
             running = false;
             GameEndFrame o = new GameEndFrame(mainCharacter, "GAME OVER");
             o.setVisible(true);
+ 
+            
             //EldenArk.gameOver();
         } else {
             if (map[mainCharacter.getY()][mainCharacter.getX()] >= 7) {
                 newFloor();
+                // Stop Combat Music
+
+                
             } else {
                 this.setVisible(true);
+                // Stop Combat Music
+
             }
             deleteMiniBoss();
+            
             generateLoot(combatLevel);
+            
             int tempLvl = mainCharacter.getLevel();
+            
             mainCharacter.checkLevelUp(getExperience(combatLevel));
+            
             if (tempLvl != mainCharacter.getLevel()) {
-                JOptionPane.showMessageDialog(this, "Check your new stats!", "LEVEL UP!", JOptionPane.INFORMATION_MESSAGE);
-            }
-            map[mainCharacter.getY()][mainCharacter.getX()] = 0;
+                
+                // Play level up music
+                
+                sound.playSE(4);
+                
+                JOptionPane.showMessageDialog(this, "Check your new stats!", "LEVEL UP!", JOptionPane.INFORMATION_MESSAGE);             
 
+            }
+            
+            map[mainCharacter.getY()][mainCharacter.getX()] = 0;
+            
         }
     }
 
     public int getExperience(int level) {
+        
         int base = 30;
         return base * level;
+        
     }
 
     public void newEquipmentProbability() {

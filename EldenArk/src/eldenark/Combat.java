@@ -14,8 +14,11 @@ import javax.swing.JTextField;
  *
  * @author cep
  */
-public class Combat extends javax.swing.JFrame {
 
+
+
+public class Combat extends javax.swing.JFrame {
+        Sound sound = new Sound();
 	Gameplay game;
 	Character mainCharacter;
 	Character enemy;
@@ -24,6 +27,7 @@ public class Combat extends javax.swing.JFrame {
 	 * Creates new form NewJFrame
 	 */
 	public Combat(Character mainCharacter, Character enemy, Gameplay game) {
+                
 		this.mainCharacter = mainCharacter;
 		this.enemy = enemy;
 		this.game = game;
@@ -343,6 +347,7 @@ public class Combat extends javax.swing.JFrame {
 		charDef = mainCharacter.getDefence();
 		int enemyOption = rn.nextInt(2);
 		if (enemyOption == 0) {
+                        sound.playSE(11);
 			enemy.setDefence((int) (enemy.getDefence() * 1.3));
 			textEnemy1.setText("The enemy aumented his defence");
 			textEnemy2.setText("");
@@ -368,16 +373,20 @@ public class Combat extends javax.swing.JFrame {
 		switch (optionAttack) {
 			case 0:
 				//BASIC ATTACK
+                                
 				enemyBasicAttack();
 				break;
 			case 1:
 				//SPECIAL ABILITY
+                                
 				enemySpecialAbilities();
 
 		}
 	}
 
 	private void enemyBasicAttack() {
+                sound.playSE(10);
+
 		int damageDone = enemy.getDamage() - mainCharacter.getDefence();
 		//System.out.println("\nThe enemy used his basic attack.");
 		textEnemy1.setText("The enemy used his basic attack");
@@ -392,6 +401,8 @@ public class Combat extends javax.swing.JFrame {
 	}
 
 	private void enemySpecialAbilities() {
+                sound.playSE(8);
+
 		int damageDone = enemy.getSpecialDamage() - mainCharacter.getDefence();
 		double enemyManaWasted;
 		enemyManaWasted =  enemy.getMaxMP() * 0.3;

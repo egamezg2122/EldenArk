@@ -14,12 +14,13 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     public Menu() {
-
+        
         initComponents();
         JLabel background = new JLabel();
         this.add(background);
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MENUBKGRND.gif")));
         background.setBounds(0, 0, 800, 600);
+        
     }
 
     /**
@@ -53,6 +54,8 @@ public class Menu extends javax.swing.JFrame {
         startButton.setBackground(null);
         startButton.setForeground(null);
         startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/NEWGAME.png"))); // NOI18N
+        startButton.setBorderPainted(false);
+        startButton.setContentAreaFilled(false);
         startButton.setOpaque(false);
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +64,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         continueButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/CONTINUE.png"))); // NOI18N
+        continueButton.setContentAreaFilled(false);
         continueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 continueButtonActionPerformed(evt);
@@ -68,6 +72,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         leaderboardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/LEADERBOARD.png"))); // NOI18N
+        leaderboardButton.setContentAreaFilled(false);
         leaderboardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leaderboardButtonActionPerformed(evt);
@@ -75,6 +80,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/EXIT.png"))); // NOI18N
+        exitButton.setContentAreaFilled(false);
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
@@ -118,8 +124,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
-        String username = JOptionPane.showInputDialog("Introduce your username");
+        String username = JOptionPane.showInputDialog(null, "Introduce your username");
+        
         username = Gameplay.stringParser(username).trim();
+        
         int sex = JOptionPane.showOptionDialog(this, "Choose your gender", "Gender", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
                 null, new String[]{"Male", "Female"}, "Male");
         int characterClass = JOptionPane.showOptionDialog(this, "Choose your class", "Class", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
