@@ -633,7 +633,26 @@ public class Merchant {
 
     }
 	
-	
+	public void getEquipImg(){
+		String path = "/FOTOS ELDEN ARK/EQUIPMENT/";
+		String toReturn;
+		switch(sellingEquip.getType()){
+			case "Weapon":
+				toReturn = path.concat(mainCharacter.getClass().getName().substring(9) + "/" + mainCharacter.getNewWeapons()[floor].getName() + ".png");
+				break;
+			case "Helmet":
+				toReturn = path.concat(mainCharacter.getClass().getName().substring(9) + "/" + mainCharacter.getNewHelmets()[floor].getName() + ".png");
+				break;
+			case "Chestplate":
+				toReturn = path.concat(mainCharacter.getClass().getName().substring(9) + "/" + mainCharacter.getNewChestPlates()[floor].getName() + ".png");
+				break;
+			case "Leg Armor":
+				toReturn = path.concat(mainCharacter.getClass().getName().substring(9) + "/" + mainCharacter.getNewLegArmors()[floor].getName() + ".png");
+				break;
+		}
+		
+		
+	}
 	
 
 }

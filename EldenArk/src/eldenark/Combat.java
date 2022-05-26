@@ -77,7 +77,6 @@ public class Combat extends javax.swing.JFrame {
         setBackground(java.awt.Color.red);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 1205, 900));
-        setPreferredSize(new java.awt.Dimension(1265, 700));
         setResizable(false);
 
         attackButton.setText("Attack");

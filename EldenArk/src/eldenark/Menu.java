@@ -142,7 +142,7 @@ public class Menu extends javax.swing.JFrame {
 		
 		this.dispose();
 		
-		/*mainCharacter.setLevel(20);
+		mainCharacter.setLevel(20);
 		mainCharacter.getOtherStatsFromLevel(20);
 		mainCharacter.setHp(mainCharacter.getMaxHP());
 		mainCharacter.setMp(mainCharacter.getMaxMP());
@@ -150,7 +150,7 @@ public class Menu extends javax.swing.JFrame {
 		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newWeapons[4]);
 		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newHelmets[4]);
 		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newChestPlates[4]);
-		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[4]);*/
+		mainCharacter.changeEquip(mainCharacter.getEquipment(), mainCharacter.newLegArmors[4]);
 		
 		
 		Gameplay g = new Gameplay(mainCharacter, 1);
