@@ -163,14 +163,14 @@ public class Menu extends javax.swing.JFrame {
 
 		ArrayList<Gameplay> saves = BinaryFile.getSaves();
 		String[] savedNames = new String[saves.size()];
-		System.out.println("Chose your character");
+		
 
 		for (Gameplay a : saves) {
 
 			savedNames[i] = a.mainCharacter.getNickname();
 			i++;
 
-			System.out.println(a.mainCharacter.getNickname());
+			
 		}
 		int option = JOptionPane.showOptionDialog(this, "Choose your game", "Load game", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
 				null, savedNames, "1");

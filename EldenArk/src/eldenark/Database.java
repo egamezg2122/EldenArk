@@ -43,7 +43,7 @@ public class Database {
 
 
         int nRows = st.executeUpdate();
-        System.out.println(nRows);
+   
     }
 	
 	public ArrayList<String> getNicknameData() throws SQLException{

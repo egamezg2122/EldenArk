@@ -14,13 +14,25 @@ public class BinaryFile {
 	public static void saveGame(Gameplay gameplay) {
 
 		RandomAccessFile randomAccess;
+		boolean isSaved = false;
+		int i = 0;
+		int isSavedPos;
 		long pos;
 		String clase = gameplay.mainCharacter.getClass().getName().substring(9);
 		int weapon = Equip.getEquipNumber(gameplay.mainCharacter.getEquipment()[0], gameplay.mainCharacter.getNewWeapons());
 		int helmet = Equip.getEquipNumber(gameplay.mainCharacter.getEquipment()[1], gameplay.mainCharacter.getNewHelmets());
 		int chest = Equip.getEquipNumber(gameplay.mainCharacter.getEquipment()[2], gameplay.mainCharacter.getNewChestPlates());
 		int leg = Equip.getEquipNumber(gameplay.mainCharacter.getEquipment()[3], gameplay.mainCharacter.getNewLegArmors());
-
+		String nickname = Gameplay.stringParser(gameplay.mainCharacter.getNickname());
+		ArrayList<Gameplay> savesFiles = getSaves();
+		do {
+			if (savesFiles.get(i).mainCharacter.getNickname().equals(nickname)) {
+				isSaved = true;
+				isSavedPos = i;
+			}
+			i++;
+		} while (!isSaved && i < savesFiles.size());
+			
 		try {
 			randomAccess = new RandomAccessFile(FILE_PATH, "rw");
 			pos = randomAccess.length();
@@ -31,7 +43,7 @@ public class BinaryFile {
 					randomAccess.writeInt(gameplay.map[j][k]);
 				}
 			}
-			randomAccess.write(Gameplay.stringParser(gameplay.mainCharacter.getNickname()).getBytes(Charset.defaultCharset()));
+			randomAccess.write(nickname.getBytes(Charset.defaultCharset()));
 			randomAccess.writeInt(gameplay.mainCharacter.getLevel());
 			randomAccess.writeInt(gameplay.mainCharacter.getMp());
 			randomAccess.writeInt(gameplay.mainCharacter.getHp());
