@@ -5,6 +5,7 @@
  */
 package eldenark;
 
+import java.awt.Color;
 import java.util.HashSet;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Gato
  */
 public class MerchantFrame extends javax.swing.JFrame {
-
+    Sound sound = new Sound();
     Merchant merchant;
     Character mainCharacter;
     Gameplay game;
@@ -27,7 +28,12 @@ public class MerchantFrame extends javax.swing.JFrame {
         this.mainCharacter = mainCharacter;
         this.game = game;
         initComponents();
+        JLabel background = new JLabel();
+        this.add(background);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MERCHANTBG.gif")));
+        background.setBounds(0, 0, 1200, 700);
         setValues();
+                
     }
 
     /**
@@ -47,15 +53,14 @@ public class MerchantFrame extends javax.swing.JFrame {
         smallObject = new javax.swing.JButton();
         smallObject1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        priceSmall = new javax.swing.JLabel();
-        priceBig = new javax.swing.JLabel();
-        priceEquip = new javax.swing.JLabel();
-        quantitySmall = new javax.swing.JLabel();
-        quantityBig = new javax.swing.JLabel();
-        quantityEquip = new javax.swing.JLabel();
         currentGold = new javax.swing.JTextField();
-        merchantDesc = new javax.swing.JTextField();
         merchantNames = new javax.swing.JLabel();
+        priceSmall = new javax.swing.JTextField();
+        quantitySmall = new javax.swing.JTextField();
+        priceBig = new javax.swing.JTextField();
+        quantityBig = new javax.swing.JTextField();
+        priceEquip = new javax.swing.JTextField();
+        quantityEquip = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -101,85 +106,84 @@ public class MerchantFrame extends javax.swing.JFrame {
             }
         });
 
-        priceSmall.setText("jLabel1");
-
-        priceBig.setText("jLabel1");
-
-        priceEquip.setText("jLabel1");
-
-        quantitySmall.setText("jLabel1");
-
-        quantityBig.setText("jLabel1");
-
-        quantityEquip.setText("jLabel1");
-
         currentGold.setEditable(false);
 
-        merchantDesc.setEditable(false);
-
         merchantNames.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        merchantNames.setForeground(new java.awt.Color(255, 255, 255));
         merchantNames.setText("jLabel1");
+
+        priceSmall.setEditable(false);
+        priceSmall.setText("jTextField1");
+
+        quantitySmall.setEditable(false);
+        quantitySmall.setText("jTextField1");
+
+        priceBig.setEditable(false);
+        priceBig.setText("jTextField1");
+
+        quantityBig.setEditable(false);
+        quantityBig.setText("jTextField1");
+
+        priceEquip.setEditable(false);
+        priceEquip.setText("jTextField1");
+
+        quantityEquip.setEditable(false);
+        quantityEquip.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(287, 287, 287)
+                .addComponent(merchantMan1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addComponent(currentGold, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(189, 189, 189))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(merchantMan1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(currentGold, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(merchantDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(363, 363, 363)
+                        .addComponent(merchantNames, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(smallObject, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(363, 363, 363)
-                                .addComponent(merchantNames, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(170, 170, 170)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(smallObject, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(39, 39, 39)
+                                        .addComponent(smallObjectimg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(108, 108, 108)
+                                        .addComponent(largeObjectImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(204, 204, 204)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(39, 39, 39)
-                                                .addComponent(smallObjectimg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(108, 108, 108)
-                                                .addComponent(largeObjectImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(21, 21, 21)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(priceSmall, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(quantitySmall))
-                                                        .addGap(96, 96, 96)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(quantityBig)
-                                                            .addComponent(priceBig, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(183, 183, 183)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(exitMerchant, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(smallObject1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(exitMerchant, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(smallObject1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(priceSmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(quantitySmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(147, 147, 147)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(priceBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(quantityBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(56, 56, 56)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(56, 56, 56)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(45, 45, 45)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(quantityEquip)
-                                                            .addComponent(priceEquip, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(97, 97, 97)
-                                                .addComponent(equipImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                                .addGap(45, 45, 45)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(quantityEquip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(priceEquip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(97, 97, 97)
+                                        .addComponent(equipImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,10 +193,7 @@ public class MerchantFrame extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(merchantMan1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(currentGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(merchantDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(currentGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(smallObjectimg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,23 +205,23 @@ public class MerchantFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(smallObject, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(smallObject1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(priceBig)
-                            .addComponent(priceSmall))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(priceSmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(priceBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(quantitySmall)
-                            .addComponent(quantityBig)))
+                            .addComponent(quantitySmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(quantityBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(priceEquip)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(priceEquip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(quantityEquip)))
+                        .addComponent(quantityEquip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(exitMerchant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,10 +238,11 @@ public class MerchantFrame extends javax.swing.JFrame {
             mainCharacter.getInventory()[merchant.getTypeObject1()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject1()].getNumOfUses() + 1);
             mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceSmallObject());
             merchant.setQuantitySmallObject(merchant.getQuantitySmallObject() - 1);
-            merchantDesc.setText("You have bought succesfully " + merchant.getSellingObject1().getName());
+            JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingObject1().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
+            sound.playSE(5);
             setValues();
         } else {
-            merchantDesc.setText("You can't buy this you have no gold / I ran out of this item");
+            JOptionPane.showMessageDialog(this, "You can't buy this object", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_smallObjectActionPerformed
 
@@ -249,10 +251,11 @@ public class MerchantFrame extends javax.swing.JFrame {
             mainCharacter.getInventory()[merchant.getTypeObject2()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject2()].getNumOfUses() + 1);
             mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceBigObject());
             merchant.setQuantityBigObject(merchant.getQuantityBigObject() - 1);
-            merchantDesc.setText("You have bought succesfully " + merchant.getSellingObject2().getName());
+            JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingObject2().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
+            sound.playSE(5);
             setValues();
         } else {
-            merchantDesc.setText("You can't buy this you have no gold / I ran out of this item");
+            JOptionPane.showMessageDialog(this, "You can't buy this object", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
 
@@ -263,17 +266,18 @@ public class MerchantFrame extends javax.swing.JFrame {
             mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceEquip());
             mainCharacter.changeEquip(mainCharacter.getEquipment(), merchant.getSellingEquip());
             merchant.setQuantityEquip(merchant.getQuantityEquip() - 1);
-            merchantDesc.setText("You have bought succesfully " + merchant.getSellingEquip().getName());
+            JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingEquip().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
+            sound.playSE(5);
             setValues();
         } else {
-            merchantDesc.setText("You can't buy this you have no gold / I ran out of this item");
+            JOptionPane.showMessageDialog(this, "You can't buy this object", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_equipActionPerformed
 
     private void setValues() {
         merchantNames.setText(merchant.getName());
-        priceSmall.setText(merchant.getPriceSmallObject() + " Gold");
-        priceBig.setText(merchant.getPriceBigObject() + " Gold");
+        priceSmall.setText(merchant.getPriceSmallObject() + " Gold");      
+        priceBig.setText(merchant.getPriceBigObject() + " Gold");       
         priceEquip.setText(merchant.getPriceEquip() + " Gold");
         quantitySmall.setText(merchant.getQuantitySmallObject() + " Units");
         quantityBig.setText(merchant.getQuantityBigObject() + " Units");
@@ -322,15 +326,14 @@ public class MerchantFrame extends javax.swing.JFrame {
     private javax.swing.JButton exitMerchant;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel largeObjectImg;
-    private javax.swing.JTextField merchantDesc;
     private javax.swing.JLabel merchantMan1;
     private javax.swing.JLabel merchantNames;
-    private javax.swing.JLabel priceBig;
-    private javax.swing.JLabel priceEquip;
-    private javax.swing.JLabel priceSmall;
-    private javax.swing.JLabel quantityBig;
-    private javax.swing.JLabel quantityEquip;
-    private javax.swing.JLabel quantitySmall;
+    private javax.swing.JTextField priceBig;
+    private javax.swing.JTextField priceEquip;
+    private javax.swing.JTextField priceSmall;
+    private javax.swing.JTextField quantityBig;
+    private javax.swing.JTextField quantityEquip;
+    private javax.swing.JTextField quantitySmall;
     private javax.swing.JButton smallObject;
     private javax.swing.JButton smallObject1;
     private javax.swing.JLabel smallObjectimg;
