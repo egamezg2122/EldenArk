@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Gato
  */
 public class MerchantFrame extends javax.swing.JFrame {
+
     Sound sound = new Sound();
     Merchant merchant;
     Character mainCharacter;
@@ -33,7 +34,7 @@ public class MerchantFrame extends javax.swing.JFrame {
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MERCHANTBG.gif")));
         background.setBounds(0, 0, 1200, 700);
         setValues();
-                
+
     }
 
     /**
@@ -234,50 +235,83 @@ public class MerchantFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMerchantActionPerformed
 
     private void smallObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallObjectActionPerformed
-        if (mainCharacter.getGold() >= merchant.getPriceSmallObject() && merchant.getQuantitySmallObject() > 0) {
-            mainCharacter.getInventory()[merchant.getTypeObject1()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject1()].getNumOfUses() + 1);
-            mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceSmallObject());
-            merchant.setQuantitySmallObject(merchant.getQuantitySmallObject() - 1);
-            JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingObject1().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
-            sound.playSE(5);
-            setValues();
+        if (mainCharacter.getGold() >= merchant.getPriceSmallObject()) {
+
+            if (merchant.getQuantitySmallObject() > 0) {
+                mainCharacter.getInventory()[merchant.getTypeObject1()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject1()].getNumOfUses() + 1);
+                mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceSmallObject());
+                merchant.setQuantitySmallObject(merchant.getQuantitySmallObject() - 1);
+                JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingObject1().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
+                sound.playSE(5);
+                setValues();
+            } else {
+                JOptionPane.showMessageDialog(this, "You can't buy this object I ran out of this item", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "You can't buy this object", "Error", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(this, "You can't buy this object you have no gold", "Error", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_smallObjectActionPerformed
 
     private void bigObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bigObjectActionPerformed
-        if (mainCharacter.getGold() >= merchant.getPriceBigObject() && merchant.getQuantityBigObject() > 0) {
-            mainCharacter.getInventory()[merchant.getTypeObject2()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject2()].getNumOfUses() + 1);
-            mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceBigObject());
-            merchant.setQuantityBigObject(merchant.getQuantityBigObject() - 1);
-            JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingObject2().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
-            sound.playSE(5);
-            setValues();
+
+        if (mainCharacter.getGold() >= merchant.getPriceBigObject()) {
+
+            if (merchant.getQuantityBigObject() > 0) {
+                mainCharacter.getInventory()[merchant.getTypeObject2()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject2()].getNumOfUses() + 1);
+                mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceBigObject());
+                merchant.setQuantityBigObject(merchant.getQuantityBigObject() - 1);
+                JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingObject2().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
+                sound.playSE(5);
+                setValues();
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "You can't buy this object I ran out of this item", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+
         } else {
-            JOptionPane.showMessageDialog(this, "You can't buy this object", "Error", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(this, "You can't buy this object you have no gold", "Error", JOptionPane.ERROR_MESSAGE);
+
         }
 
 
     }//GEN-LAST:event_bigObjectActionPerformed
 
     private void equipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipActionPerformed
-        if (mainCharacter.getGold() >= merchant.getPriceEquip() && merchant.getQuantityEquip() > 0) {
-            mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceEquip());
-            mainCharacter.changeEquip(mainCharacter.getEquipment(), merchant.getSellingEquip());
-            merchant.setQuantityEquip(merchant.getQuantityEquip() - 1);
-            JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingEquip().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
-            sound.playSE(5);
-            setValues();
+        
+        if (mainCharacter.getGold() >= merchant.getPriceEquip()) {
+
+            if (merchant.getQuantityEquip() > 0) {
+                
+                mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceEquip());
+                mainCharacter.changeEquip(mainCharacter.getEquipment(), merchant.getSellingEquip());
+                merchant.setQuantityEquip(merchant.getQuantityEquip() - 1);
+                JOptionPane.showMessageDialog(this, "You have bought succesfully " + merchant.getSellingEquip().getName(), "Buy", JOptionPane.INFORMATION_MESSAGE);
+                sound.playSE(5);
+                setValues();
+                
+            } else {
+
+                JOptionPane.showMessageDialog(this, "You can't buy this object I ran out of this item", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+
         } else {
-            JOptionPane.showMessageDialog(this, "You can't buy this object", "Error", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(this, "You can't buy this object you have no gold", "Error", JOptionPane.ERROR_MESSAGE);
+
         }
+
     }//GEN-LAST:event_equipActionPerformed
 
     private void setValues() {
         merchantNames.setText(merchant.getName());
-        priceSmall.setText(merchant.getPriceSmallObject() + " Gold");      
-        priceBig.setText(merchant.getPriceBigObject() + " Gold");       
+        priceSmall.setText(merchant.getPriceSmallObject() + " Gold");
+        priceBig.setText(merchant.getPriceBigObject() + " Gold");
         priceEquip.setText(merchant.getPriceEquip() + " Gold");
         quantitySmall.setText(merchant.getQuantitySmallObject() + " Units");
         quantityBig.setText(merchant.getQuantityBigObject() + " Units");
