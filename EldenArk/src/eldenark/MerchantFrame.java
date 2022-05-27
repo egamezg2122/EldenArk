@@ -17,18 +17,17 @@ public class MerchantFrame extends javax.swing.JFrame {
 
     Merchant merchant;
     Character mainCharacter;
+    Gameplay game;
     JLabel background = new JLabel();
     Gameplay x;
 
-    public MerchantFrame(Merchant merchant, Character mainCharacter) {
+    public MerchantFrame(Merchant merchant, Character mainCharacter, Gameplay game) {
 
         this.merchant = merchant;
         this.mainCharacter = mainCharacter;
+        this.game = game;
         initComponents();
-        JLabel background = new JLabel();
-        this.add(background);
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/alfombraMerchant.png")));
-        background.setBounds(0, 0, 1200, 700);
+        setValues();
     }
 
     /**
@@ -48,8 +47,18 @@ public class MerchantFrame extends javax.swing.JFrame {
         smallObject = new javax.swing.JButton();
         smallObject1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        priceSmall = new javax.swing.JLabel();
+        priceBig = new javax.swing.JLabel();
+        priceEquip = new javax.swing.JLabel();
+        quantitySmall = new javax.swing.JLabel();
+        quantityBig = new javax.swing.JLabel();
+        quantityEquip = new javax.swing.JLabel();
+        currentGold = new javax.swing.JTextField();
+        merchantDesc = new javax.swing.JTextField();
+        merchantNames = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1200, 700));
         setResizable(false);
 
@@ -81,7 +90,6 @@ public class MerchantFrame extends javax.swing.JFrame {
         smallObject1.setText(merchant.getSellingObject2().getName());
         smallObject1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                smallObject1ActionPerformed(evt);
                 bigObjectActionPerformed(evt);
             }
         });
@@ -93,92 +101,187 @@ public class MerchantFrame extends javax.swing.JFrame {
             }
         });
 
+        priceSmall.setText("jLabel1");
+
+        priceBig.setText("jLabel1");
+
+        priceEquip.setText("jLabel1");
+
+        quantitySmall.setText("jLabel1");
+
+        quantityBig.setText("jLabel1");
+
+        quantityEquip.setText("jLabel1");
+
+        currentGold.setEditable(false);
+
+        merchantDesc.setEditable(false);
+
+        merchantNames.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        merchantNames.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exitMerchant, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(142, 142, 142))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(smallObject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(smallObjectimg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(81, 81, 81)
+                        .addGap(287, 287, 287)
+                        .addComponent(merchantMan1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(smallObject1)
-                            .addComponent(largeObjectImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(equipImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(currentGold, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(merchantDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(merchantMan1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(645, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(363, 363, 363)
+                                .addComponent(merchantNames, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(170, 170, 170)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(smallObject, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(39, 39, 39)
+                                                .addComponent(smallObjectimg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(108, 108, 108)
+                                                .addComponent(largeObjectImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(21, 21, 21)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(priceSmall, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(quantitySmall))
+                                                        .addGap(96, 96, 96)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(quantityBig)
+                                                            .addComponent(priceBig, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(183, 183, 183)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(exitMerchant, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(smallObject1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(56, 56, 56)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(45, 45, 45)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(quantityEquip)
+                                                            .addComponent(priceEquip, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(97, 97, 97)
+                                                .addComponent(equipImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exitMerchant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(merchantMan1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(16, 16, 16)
+                .addComponent(merchantNames, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(largeObjectImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(merchantMan1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(currentGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(merchantDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(smallObjectimg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(equipImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(smallObjectimg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(smallObject1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(smallObject, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(185, Short.MAX_VALUE))
+                    .addComponent(largeObjectImg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(smallObject, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(smallObject1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(priceBig)
+                            .addComponent(priceSmall))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(quantitySmall)
+                            .addComponent(quantityBig)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(priceEquip)
+                        .addGap(18, 18, 18)
+                        .addComponent(quantityEquip)))
+                .addGap(18, 18, 18)
+                .addComponent(exitMerchant, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMerchantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMerchantActionPerformed
-            this.dispose();
-    }//GEN-LAST:event_exitMerchantActionPerformed
+        this.dispose();
+        game.setVisible(true);
 
-    private void smallObject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallObject1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_smallObject1ActionPerformed
+    }//GEN-LAST:event_exitMerchantActionPerformed
 
     private void smallObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallObjectActionPerformed
         if (mainCharacter.getGold() >= merchant.getPriceSmallObject() && merchant.getQuantitySmallObject() > 0) {
-            mainCharacter.getInventory()[merchant.getTypeObject1()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject1()].getNumOfUses()+1);
-            mainCharacter.setGold(mainCharacter.getGold()-merchant.getPriceSmallObject());
-            merchant.setQuantitySmallObject(-1);
+            mainCharacter.getInventory()[merchant.getTypeObject1()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject1()].getNumOfUses() + 1);
+            mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceSmallObject());
+            merchant.setQuantitySmallObject(merchant.getQuantitySmallObject() - 1);
+            merchantDesc.setText("You have bought succesfully " + merchant.getSellingObject1().getName());
+            setValues();
+        } else {
+            merchantDesc.setText("You can't buy this you have no gold / I ran out of this item");
         }
     }//GEN-LAST:event_smallObjectActionPerformed
 
     private void bigObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bigObjectActionPerformed
         if (mainCharacter.getGold() >= merchant.getPriceBigObject() && merchant.getQuantityBigObject() > 0) {
-            mainCharacter.getInventory()[merchant.getTypeObject2()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject2()].getNumOfUses()+1);
-            mainCharacter.setGold(mainCharacter.getGold()-merchant.getPriceBigObject());
-            merchant.setQuantityBigObject(-1);
+            mainCharacter.getInventory()[merchant.getTypeObject2()].setNumOfUses(mainCharacter.getInventory()[merchant.getTypeObject2()].getNumOfUses() + 1);
+            mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceBigObject());
+            merchant.setQuantityBigObject(merchant.getQuantityBigObject() - 1);
+            merchantDesc.setText("You have bought succesfully " + merchant.getSellingObject2().getName());
+            setValues();
+        } else {
+            merchantDesc.setText("You can't buy this you have no gold / I ran out of this item");
         }
+
 
     }//GEN-LAST:event_bigObjectActionPerformed
 
     private void equipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipActionPerformed
-        if (mainCharacter.getGold() >= merchant.getPriceEquip() && merchant.getQuantityEquip()> 0) {
+        if (mainCharacter.getGold() >= merchant.getPriceEquip() && merchant.getQuantityEquip() > 0) {
             mainCharacter.setGold(mainCharacter.getGold() - merchant.getPriceEquip());
             mainCharacter.changeEquip(mainCharacter.getEquipment(), merchant.getSellingEquip());
-            merchant.setQuantityEquip(-1);
+            merchant.setQuantityEquip(merchant.getQuantityEquip() - 1);
+            merchantDesc.setText("You have bought succesfully " + merchant.getSellingEquip().getName());
+            setValues();
+        } else {
+            merchantDesc.setText("You can't buy this you have no gold / I ran out of this item");
         }
     }//GEN-LAST:event_equipActionPerformed
-     /**
+
+    private void setValues() {
+        merchantNames.setText(merchant.getName());
+        priceSmall.setText(merchant.getPriceSmallObject() + " Gold");
+        priceBig.setText(merchant.getPriceBigObject() + " Gold");
+        priceEquip.setText(merchant.getPriceEquip() + " Gold");
+        quantitySmall.setText(merchant.getQuantitySmallObject() + " Units");
+        quantityBig.setText(merchant.getQuantityBigObject() + " Units");
+        quantityEquip.setText(merchant.getQuantityEquip() + " Unit");
+        currentGold.setText("Current Gold: " + mainCharacter.getGold());
+    }
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -214,11 +317,20 @@ public class MerchantFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField currentGold;
     private javax.swing.JLabel equipImg;
     private javax.swing.JButton exitMerchant;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel largeObjectImg;
+    private javax.swing.JTextField merchantDesc;
     private javax.swing.JLabel merchantMan1;
+    private javax.swing.JLabel merchantNames;
+    private javax.swing.JLabel priceBig;
+    private javax.swing.JLabel priceEquip;
+    private javax.swing.JLabel priceSmall;
+    private javax.swing.JLabel quantityBig;
+    private javax.swing.JLabel quantityEquip;
+    private javax.swing.JLabel quantitySmall;
     private javax.swing.JButton smallObject;
     private javax.swing.JButton smallObject1;
     private javax.swing.JLabel smallObjectimg;

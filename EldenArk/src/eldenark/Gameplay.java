@@ -745,7 +745,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
     public void merchantFrame() {
         this.setVisible(false);
-            MerchantFrame mer = new MerchantFrame(merchant, mainCharacter);
+            MerchantFrame mer = new MerchantFrame(merchant, mainCharacter, this);
         mer.setVisible(true);
     }
 
