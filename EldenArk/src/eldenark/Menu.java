@@ -322,6 +322,7 @@ public class Menu extends javax.swing.JFrame {
 	}
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+
 		// TODO add your handling code here:
 
 		jLabel1.setVisible(false);
@@ -329,6 +330,16 @@ public class Menu extends javax.swing.JFrame {
 		continueButton.setVisible(false);
 		startButton.setVisible(false);
 		leaderboardButton.setVisible(false);
+
+
+        
+		/*
+		this.remove(jLabel1);
+		this.remove(exitButton);
+		this.remove(continueButton);
+		this.remove(startButton);
+		this.remove(leaderboardButton);
+		*/
 
 		nicknameField.setVisible(true);
 		nicknameField.setBounds(300, 500, 200, 20);
@@ -347,6 +358,7 @@ public class Menu extends javax.swing.JFrame {
 
 		setCharsLabels();
 		
+
 		enterButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,6 +371,7 @@ public class Menu extends javax.swing.JFrame {
 				exitSmallButtonActionPerformed(evt);
 			}
 		});
+
 		
 		/*
         String username = JOptionPane.showInputDialog(null, "Introduce your username");
@@ -389,8 +402,10 @@ public class Menu extends javax.swing.JFrame {
 
         this.dispose();
 
-        Gameplay g = new Gameplay(mainCharacter, 1);*/
+        Gameplay g = new Gameplay(mainCharacter, 1);
+		
 
+		*/
     }//GEN-LAST:event_startButtonActionPerformed
 
 	private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
