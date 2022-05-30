@@ -13,8 +13,18 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+	
+	private javax.swing.JTextField nicknameField;
+	private javax.swing.JButton enterButton;
+	private javax.swing.JButton exitSmallButton;
+	private javax.swing.JRadioButton genderMale;
+	private javax.swing.JRadioButton genderFemale;
+	
+	
+	
+	
     public Menu() {
-        
+		initC();
         initComponents();
         JLabel background = new JLabel();
         this.add(background);
@@ -125,8 +135,86 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	private void initC(){
+		 nicknameField = new javax.swing.JTextField();
+		enterButton = new javax.swing.JButton();
+		exitSmallButton = new javax.swing.JButton();
+		genderMale = new javax.swing.JRadioButton();
+		genderFemale = new javax.swing.JRadioButton();
+		this.add(nicknameField);
+		this.add(enterButton);
+		this.add(exitSmallButton);
+		this.add(genderMale);
+		this.add(genderFemale);
+		nicknameField.setVisible(false);
+		enterButton.setVisible(false);
+		exitSmallButton.setVisible(false);
+		genderMale.setVisible(false);
+		genderFemale.setVisible(false);
+	}
+	
+	private void genderMaleActionPerformed(java.awt.event.ActionEvent evt) {
+		genderFemale.setSelected(false);
+	}
+	
+	private void genderFemaleActionPerformed(java.awt.event.ActionEvent evt){
+		genderMale.setSelected(false);
+	}
+	
+	private void setGenderRadio(){
+		genderMale.setVisible(true);
+		
+		genderMale.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderMaleActionPerformed(evt);
+            }
+        });
+		
+		genderFemale.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderFemaleActionPerformed(evt);
+            }
+        });
+		
+	
+		genderFemale.setVisible(true);
+		genderMale.setText("Male");
+		genderFemale.setText("Female");
+		genderMale.setBounds(300, 460, 100, 30);
+		genderFemale.setBounds(400, 460, 100, 30);
+	}
+	
+	
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
+		this.remove(jLabel1);
+		this.remove(exitButton);
+		this.remove(continueButton);
+		this.remove(startButton);
+		this.remove(leaderboardButton);
+		
+		nicknameField.setVisible(true);
+		nicknameField.setBounds(300, 500, 200, 20);
+		nicknameField.setText("Enter your nickname here");
+		
+		
+		
+		enterButton.setVisible(true);
+		exitSmallButton.setVisible(true);
+		
+		enterButton.setBounds(300, 530, 100, 30);
+		exitSmallButton.setBounds(400, 530, 100, 30);
+		
+		enterButton.setText("Start");
+		exitSmallButton.setText("Exit");
+		
+		setGenderRadio();
+		
+		
+		
+		/*
         String username = JOptionPane.showInputDialog(null, "Introduce your username");
         
         username = Gameplay.stringParser(username).trim();
@@ -156,6 +244,7 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
 
         Gameplay g = new Gameplay(mainCharacter, 1);
+		*/
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed

@@ -96,6 +96,7 @@ public class EquipmentFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Equipment");
         setMaximumSize(new java.awt.Dimension(500, 464));
         setMinimumSize(new java.awt.Dimension(500, 464));
 
