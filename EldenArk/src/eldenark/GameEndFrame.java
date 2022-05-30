@@ -23,6 +23,7 @@ public class GameEndFrame extends javax.swing.JFrame {
 	Character mainCharacter;
 	Database db;
 	private final int MAX_LEADERBOARD = 8;
+	private JLabel background;
 
 	/**
 	 * Creates new form NewJFrame
@@ -36,6 +37,11 @@ public class GameEndFrame extends javax.swing.JFrame {
 		saveData();
 		getData();
 		closeDB();
+		background = new JLabel();
+		this.add(background);
+		background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/LEADERBOARD.jpeg")));
+		background.setBounds(0, 0, 1265, 700);
+		
 	}
 	
 	public GameEndFrame(String mode) {

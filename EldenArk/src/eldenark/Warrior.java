@@ -10,6 +10,12 @@ public class Warrior extends Character {
     
     Sound sound = new Sound();
 
+	public static final String maleMapLookingDownPath = "/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_FRONT.png";
+	public static final String femaleMapLookingDownPath = "/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_FRONT.png";
+	public static final String maleCombatPath = "/FOTOS ELDEN ARK/MAIN CHARACTER/WARRIOR_M.png";
+	public static final String femaleCombatPath = "/FOTOS ELDEN ARK/MAIN CHARACTER/WARRIOR_W.png";
+	
+	
 	//Constructors
 	// MAIN
 	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
@@ -306,9 +312,9 @@ public class Warrior extends Character {
 	@Override
 	public void getCombatImage() {
 		if (sex == 0) {
-			this.setMainCharacterImg("/FOTOS ELDEN ARK/MAIN CHARACTER/WARRIOR_M.png");
+			this.setMainCharacterImg(maleCombatPath);
 		} else {
-			this.setMainCharacterImg("/FOTOS ELDEN ARK/MAIN CHARACTER/WARRIOR_W.png");
+			this.setMainCharacterImg(femaleCombatPath);
 		}
 	}
 }

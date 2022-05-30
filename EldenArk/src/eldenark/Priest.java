@@ -7,6 +7,11 @@ package eldenark;
  */
 public class Priest extends Character {
 
+	public static final String maleMapLookingDownPath = "/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_M_FRONT.png";
+	public static final String femaleMapLookingDownPath = "/FOTOS ELDEN ARK/MAIN CHARACTER MAP/PRIEST/PRIEST_W_FRONT.png";
+	public static final String maleCombatPath = "/FOTOS ELDEN ARK/MAIN CHARACTER/PRIEST_M.png";
+	public static final String femaleCombatPath = "/FOTOS ELDEN ARK/MAIN CHARACTER/PRIEST_W.png";
+	
 	// MAIN
 	public Priest(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, sex, inventory, nickname);

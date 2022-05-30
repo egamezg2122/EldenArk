@@ -29,6 +29,7 @@ public class EquipmentFrame extends javax.swing.JFrame {
 	private String legHover;
 	Character mainCharacter;
 	JLabel[] background = new JLabel[4];
+	private JLabel frameBackground;
 	/**
 	 * Creates new form EquipmentFrame
 	 */
@@ -39,7 +40,10 @@ public class EquipmentFrame extends javax.swing.JFrame {
 		initComponents();
 		
 		background();
-		this.getContentPane().setBackground(Color.DARK_GRAY);
+		frameBackground = new JLabel();
+		this.add(frameBackground);
+		frameBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/EQUIPMENT.jpeg")));
+		frameBackground.setBounds(0, 0, 752, 464);
 	}
 	
 	private void setInformation(){
