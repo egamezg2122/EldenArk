@@ -164,6 +164,7 @@ public class Merchant {
 
     }
 
+	//FOR LOADING THE MERCHANT
     public Merchant(int x, int y, int floor, Character mainCharacter, int obj1, int obj1Q, int obj2, int obj2Q, int equip, int equipQ) {
 
         this.x = x; // X position
@@ -185,6 +186,12 @@ public class Merchant {
         this.sellingObject2 = generateBigObjectLoad(obj2);
 
         this.quantityBigObject = obj2Q;
+		
+		merchantImage();
+        getPotionSmallImg();
+        getPotionLargeImg();
+        getEquipImg();
+		merchantNameFloor(floor);
 
     }
 
