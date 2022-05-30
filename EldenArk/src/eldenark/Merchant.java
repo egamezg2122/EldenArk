@@ -132,6 +132,10 @@ public class Merchant {
         this.quantityEquip = quantityEquip;
     }
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
     // Merchant generator
     public Merchant(int x, int y, int floor, Character mainCharacter) {
 
@@ -156,6 +160,7 @@ public class Merchant {
         getPotionSmallImg();
         getPotionLargeImg();
         getEquipImg();
+		merchantNameFloor(floor);
 
     }
 
@@ -300,39 +305,35 @@ public class Merchant {
     }
 
     // Setting the different names of the Merchant
-    public String merchantNameFloor(int floor) {
+    public void merchantNameFloor(int floor) {
 
         String nameMerchant = null;
 
         switch (floor) {
 
             case 1:
-
-                nameMerchant = "Rogelio";
-
+				
+                this.setName("Rogelio");
+				
                 break;
 
             case 2:
-
-                nameMerchant = "Francisco";
-
+				this.setName("Francisco");
+				
                 break;
 
             case 3:
-
-                nameMerchant = "Heisenberg";
-
+				this.setName("Heisenberg");
+				
                 break;
 
             case 4:
 
-                nameMerchant = "Almendras";
-
+				this.setName("Almendras");
+				
                 break;
 
         }
-
-        return nameMerchant;
 
     }
 
@@ -340,7 +341,7 @@ public class Merchant {
 
         boolean exit = false, confirmation;
 
-        name = merchantNameFloor(floor);
+        merchantNameFloor(floor);
 
         do {
 

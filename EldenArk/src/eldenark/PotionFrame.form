@@ -51,7 +51,7 @@
                           <Component id="largeHealButton" min="-2" pref="375" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lhDesc" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="224" max="32767" attributes="0"/>
+                          <EmptySpace pref="133" max="32767" attributes="0"/>
                           <Component id="usesLH" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -161,28 +161,28 @@
         <Component class="javax.swing.JLabel" name="smallManaimg">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_MANA.png"/>
+              <Image iconType="3" name="/FOTOS ELDEN ARK/POTIONS/SMALL_POTION_MANA.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="largeManaimg">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_MANA.png"/>
+              <Image iconType="3" name="/FOTOS ELDEN ARK/POTIONS/LARGE_POTION_MANA.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="largeHealimg">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_HEAL.png"/>
+              <Image iconType="3" name="/FOTOS ELDEN ARK/POTIONS/LARGE_POTION_HEAL.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="smallHealimg">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_HEAL.png"/>
+              <Image iconType="3" name="/FOTOS ELDEN ARK/POTIONS/SMALL_POTION_HEAL.png"/>
             </Property>
           </Properties>
         </Component>

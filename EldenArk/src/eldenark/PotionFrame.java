@@ -60,13 +60,13 @@ public class PotionFrame extends javax.swing.JFrame {
         setTitle("Potions");
         setResizable(false);
 
-        smallManaimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_MANA.png"))); // NOI18N
+        smallManaimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL_POTION_MANA.png"))); // NOI18N
 
-        largeManaimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_MANA.png"))); // NOI18N
+        largeManaimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE_POTION_MANA.png"))); // NOI18N
 
-        largeHealimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE/LARGE_POTION_HEAL.png"))); // NOI18N
+        largeHealimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/LARGE_POTION_HEAL.png"))); // NOI18N
 
-        smallHealimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL/SMALL_POTION_HEAL.png"))); // NOI18N
+        smallHealimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/POTIONS/SMALL_POTION_HEAL.png"))); // NOI18N
 
         smallManaButton.setText("SMALL MANA POTION");
         smallManaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +138,7 @@ public class PotionFrame extends javax.swing.JFrame {
                         .addComponent(largeHealButton, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lhDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(usesLH))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(smallHealimg)

@@ -165,7 +165,7 @@ public class Combat extends javax.swing.JFrame {
         mpUserPBar.setForeground(new java.awt.Color(51, 51, 255));
         mpUserPBar.setValue(100);
 
-        swordsPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/swords.png"))); // NOI18N
+        swordsPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/swords.jpg"))); // NOI18N
         swordsPhoto.setFocusable(false);
         swordsPhoto.setRequestFocusEnabled(false);
         swordsPhoto.addKeyListener(new java.awt.event.KeyAdapter() {
