@@ -795,17 +795,17 @@ public class Gameplay extends JFrame implements ActionListener {
         } else {
             switch (map[mainCharacter.getY()][mainCharacter.getX()]) {
                 case 2:
-                    level = 3;
+                    level = 2;
                     break;
                 case 4:
                 case 5:
                 case 6:
-                    level = 8;
+                    level = 5;
                     break;
                 case 7:
                 case 8:
                 case 9:
-                    level = 15;
+                    level = 10;
                     break;
             }
         }
@@ -908,6 +908,7 @@ public class Gameplay extends JFrame implements ActionListener {
                 
             } else {
                 this.setVisible(true);
+                map[mainCharacter.getY()][mainCharacter.getX()] = 0;
                 // Stop Combat Music
 
             }
@@ -929,7 +930,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
             }
             
-            map[mainCharacter.getY()][mainCharacter.getX()] = 0;
+            
             
         }
     }
@@ -1001,7 +1002,7 @@ public class Gameplay extends JFrame implements ActionListener {
 
         setInformation(goldText);
         mainCharacter.setGold(mainCharacter.getGold() + gold);
-        int objects = rn.nextInt(20 / level);
+        int objects = rn.nextInt(4);
         try {
             String objectText = "You found a " + mainCharacter.getInventory()[objects].getName();
             setSecondInformation(objectText);
