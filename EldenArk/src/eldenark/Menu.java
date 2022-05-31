@@ -478,7 +478,6 @@ public class Menu extends javax.swing.JFrame {
 		}
 		this.dispose();
 		
-				mainCharacter.getOtherStatsFromLevel(16);
         Gameplay g = new Gameplay(mainCharacter, 3);
 	
 		

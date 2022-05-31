@@ -26,7 +26,7 @@ public class Character {
 
 	private int specialDamage;
 
-	private int gold = 200;
+	private int gold = 10;
 
 	private String nickname;
 

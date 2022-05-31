@@ -494,6 +494,7 @@ public class Combat extends javax.swing.JFrame {
 		}
 		JOptionPane.showMessageDialog(this, textEndCombat);
 		game.endBattle();
+		this.dispose();
 	}
 
 	private void setInitialValues() {
