@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package eldenark;
 
 import java.util.Random;
@@ -10,319 +5,787 @@ import java.util.Random;
 /**
  *
  * @author Gato
+ *
  */
 public class Merchant {
 
-	Random rn = new Random();
+    // Begin variables
+    Random rn = new Random();
 
-	private String name;
-	private int y;
-	private int x;
-	private int floor;
-	private Character mainCharacter;
-	private ObjectP sellingObject1;
-	private ObjectP sellingObject2;
-	private Equip sellingEquip;
-	//private Weapon sellingWeapon1;
-	private int priceSmallObject = 20;
-	private int priceBigObject = 50;
-	private int priceEquip;
-	//private int priceWeapon = 500;
-	private int quantitySmallObject = 5;
-	private int quantityBigObject = 2;
-	private int quantityEquip = 1;
-	//private int quantityWeapon;
-	private int typeObject1;
-	private int typeObject2;
+    private String name;
 
-	public Merchant(int x, int y, int floor, Character mainCharacter) {
+    private int y;
 
-		this.name = "Rogelio";
-		this.x = x;
-		this.y = y;
-		this.floor = floor;
-		this.mainCharacter = mainCharacter;
-		this.sellingObject1 = generateSmallObject();
-		this.sellingObject2 = generateBigObject();
-		this.sellingEquip = equipGenerator();
+    private int x;
 
+    private int floor;
+
+    private Character mainCharacter;
+
+    private Object sellingObject1;
+
+    private Object sellingObject2;
+
+    private Equip sellingEquip;
+
+    private int priceSmallObject = 20;
+
+    private int priceBigObject = 50;
+
+    private int priceEquip;
+
+    private int quantitySmallObject = 5;
+
+    private int quantityBigObject = 2;
+
+    private int quantityEquip = 1;
+
+    private int typeObject1;
+
+    private int typeObject2;
+
+    private String merchantImage;
+
+    private String equipImage;
+
+    private String smallObjImage;
+
+    private String largeObjImage;
+
+    public String getName() {
+        return name;
+    }
+
+    public Object getSellingObject1() {
+        return sellingObject1;
+    }
+
+    public Object getSellingObject2() {
+        return sellingObject2;
+    }
+
+    public Equip getSellingEquip() {
+        return sellingEquip;
+    }
+
+    public int getPriceSmallObject() {
+        return priceSmallObject;
+    }
+
+    public int getPriceBigObject() {
+        return priceBigObject;
+    }
+
+    public int getPriceEquip() {
+        return priceEquip;
+    }
+
+    public String getMerchantImage() {
+        return merchantImage;
+    }
+
+    public int getTypeObject1() {
+        return typeObject1;
+    }
+
+    public int getTypeObject2() {
+        return typeObject2;
+    }
+
+    public void setMerchantImage(String merchantImage) {
+        this.merchantImage = merchantImage;
+    }
+
+    public String getSmallObjImage() {
+        return smallObjImage;
+    }
+
+    public String getLargeObjImage() {
+        return largeObjImage;
+    }
+
+    public String getEquipImage() {
+        return equipImage;
+    }
+
+    public void setSmallObjImage(String smallObjImage) {
+        this.smallObjImage = smallObjImage;
+    }
+
+    public void setLargeObjImage(String largeObjImage) {
+        this.largeObjImage = largeObjImage;
+    }
+
+    public void setEquipImage(String equipImage) {
+        this.equipImage = equipImage;
+    }
+
+    public void setQuantitySmallObject(int quantitySmallObject) {
+        this.quantitySmallObject = quantitySmallObject;
+    }
+
+    public void setQuantityBigObject(int quantityBigObject) {
+        this.quantityBigObject = quantityBigObject;
+    }
+
+    public void setQuantityEquip(int quantityEquip) {
+        this.quantityEquip = quantityEquip;
+    }
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	private Equip equipGenerator() {
-		int random = rn.nextInt(4);
+    // Merchant generator
+    public Merchant(int x, int y, int floor, Character mainCharacter) {
 
-		Equip selection = new Equip();
+        this.name = "Rogelio"; // Name
 
-		switch (random) {
-			case 0:
-				selection = mainCharacter.newWeapons[floor];
-				priceEquip = 100 * floor;
-				break;
-			case 1:
-				selection = mainCharacter.newHelmets[floor];
-				priceEquip = 60 * floor;
-				break;
-			case 2:
-				selection = mainCharacter.newChestPlates[floor];
-				priceEquip = 80 * floor;
-				break;
-			case 3:
-				selection = mainCharacter.newLegArmors[floor];
-				priceEquip = 70 * floor;
-				break;
-		}
-
-		return selection;
-
-	}
-
-	private ObjectP generateSmallObject() {
-
-		Potion a;
+        this.x = x; // X position
 
-		switch (rn.nextInt(2)) {
+        this.y = y; // Y position
 
-			case 0:
-				a = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
-				typeObject1 = 0;
-				break;
+        this.floor = floor; // Get the current floor
 
-			case 1:
+        this.mainCharacter = mainCharacter; // Get the current Character
 
-				a = new Potion("Small Mana Potion", 30, "mana", "restores 30% health of your max MP", 2);
-				typeObject1 = 2;
+        // The Marchant always generates this objects
+        this.sellingObject1 = generateSmallObject(); // One Small object
 
-				break;
+        this.sellingObject2 = generateBigObject(); // One big object
 
-			default:
-				a = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
-				typeObject1 = 0;
+        this.sellingEquip = equipGenerator(); // One Piece of equipment
 
-		}
+        merchantImage();
+        getPotionSmallImg();
+        getPotionLargeImg();
+        getEquipImg();
+		merchantNameFloor(floor);
 
-		return a;
+    }
 
-	}
+	//FOR LOADING THE MERCHANT
+    public Merchant(int x, int y, int floor, Character mainCharacter, int obj1, int obj1Q, int obj2, int obj2Q, int equip, int equipQ) {
 
-	private ObjectP generateBigObject() {
+        this.x = x; // X position
 
-		Potion a;
+        this.y = y; // Y position
 
-		switch (rn.nextInt(2)) {
+        this.floor = floor; // Get the current floor
 
-			case 0:
-				a = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
-				typeObject2 = 1;
+        this.mainCharacter = mainCharacter; // Get the current Character
 
-				break;
+        this.sellingEquip = equipGeneratorLoad(equip);
 
-			case 1:
+        this.quantityEquip = equipQ;
 
-				a = new Potion("Large Mana Potion", 50, "mana", "restores 50% health of your max MP", 2);
-				typeObject2 = 3;
+        this.sellingObject1 = generateSmallObjectLoad(obj1);
 
-				break;
+        this.quantitySmallObject = obj1Q;
 
-			default:
-				a = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
-				typeObject2 = 1;
+        this.sellingObject2 = generateBigObjectLoad(obj2);
 
-		}
+        this.quantityBigObject = obj2Q;
+		
+		merchantImage();
+        getPotionSmallImg();
+        getPotionLargeImg();
+        getEquipImg();
+		merchantNameFloor(floor);
 
-		return a;
+    }
 
-	}
+    // Function to generate one equipment
+    private Equip equipGenerator() {
 
-	public String merchantNameFloor(int floor) {
-		String nameMerchant = null;
-		switch (floor) {
-			case 1:
-				nameMerchant = "Rogelio";
-				break;
-			case 2:
-				nameMerchant = "Francisco";
-				break;
-			case 3:
-				nameMerchant = "Heisenberg";
-				break;
-			case 4:
-				nameMerchant = "Almendras";
-				break;
+        int random = rn.nextInt(4);
 
-		}
-		return nameMerchant;
-	}
+        Equip selection = new Equip();
 
-	public void trade() {
-		int option;
-		boolean exit = false, confirmation;
-		name = merchantNameFloor(floor);
-		do {
-			do {
-				System.out.println("\nSHOP\n");
-				System.out.println("Hello I'm " + name + ", what do you want to buy?");
-				System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t1- " + sellingObject1.getName(), ("(" + quantitySmallObject + ")"), "|", (priceSmallObject + " Gold")));
-				System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t2- " + sellingObject2.getName(), ("(" + quantityBigObject + ")"), "|", (priceBigObject + " Gold")));
-				System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t3- " + sellingEquip.getName(), ("(" + quantityEquip + ")"), "|", (priceEquip + " Gold")));
-				System.out.println(String.format("%-30.25s ", "\n\t0- " + "Exit the shop"));
-				//System.out.println("\n\t1-" + sellingObject1.getName() + " (" + quantitySmallObject + ")" + " | " + priceSmallObject + " Gold" + "\n\t2-" + sellingObject2.getName() + " (" + quantityBigObject + ")" + " | " + priceBigObject + " Gold" + "\n\t3-" + sellingEquip.getName() + " (" + sellingEquip.getType() + ")" + " (" + quantityEquip + ")" + " | " + priceEquip + " Gold" + "\n\t0- Exit the shop");
-				System.out.println("\nCurrent money " + mainCharacter.getGold() + " Gold");
-				option = EldenArk.validation();
-				if (option < 0 || option > 3) {
-					System.err.println("Invalid option.");
-				}
-			} while (option < 0 || option > 3);
-			switch (option) {
+        switch (random) {
 
-				case 1:
+            case 0:
 
-					if (mainCharacter.getGold() < priceSmallObject) {
+                selection = mainCharacter.newWeapons[floor];
 
-						System.out.println("\nYou don't have enough money");
+                priceEquip = 100 * floor;
 
-					} else if (quantitySmallObject > 0) {
+                break;
 
-						confirmation = buyingConfirmation();
+            case 1:
 
-						if (confirmation) {
+                selection = mainCharacter.newHelmets[floor];
 
-							System.out.println("You have bought a " + sellingObject1.toString());
+                priceEquip = 60 * floor;
 
-							quantitySmallObject--;
+                break;
 
-							mainCharacter.setGold(mainCharacter.getGold() - priceSmallObject);
+            case 2:
 
-							mainCharacter.getInventory()[typeObject1].setNumOfUses(mainCharacter.getInventory()[typeObject1].getNumOfUses() + 1);
+                selection = mainCharacter.newChestPlates[floor];
 
-						} else {
+                priceEquip = 80 * floor;
 
-							System.out.println("\nYou haven't bought anything");
+                break;
 
-						}
-					} else {
+            case 3:
 
-						System.out.println("I don't have that anymore");
+                selection = mainCharacter.newLegArmors[floor];
 
-					}
+                priceEquip = 70 * floor;
 
-					break;
+                break;
+        }
 
-				case 2:
+        return selection;
 
-					if (mainCharacter.getGold() < priceBigObject) {
+    }
 
-						System.out.println("\nYou don't have enough money");
+    // Function to generate a small object
+    private Object generateSmallObject() {
 
-					} else if (quantityBigObject > 0) {
+        Potion potion;
 
-						confirmation = buyingConfirmation();
+        switch (rn.nextInt(2)) {
 
-						if (confirmation) {
+            case 0:
 
-							System.out.println("You have bought a " + sellingObject2);
+                potion = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
 
-							quantityBigObject--;
+                typeObject1 = 0;
 
-							mainCharacter.setGold(mainCharacter.getGold() - priceBigObject);
+                break;
 
-							mainCharacter.getInventory()[typeObject2].setNumOfUses(mainCharacter.getInventory()[typeObject2].getNumOfUses() + 1);
+            case 1:
 
-						} else {
+                potion = new Potion("Small Mana Potion", 30, "mana", "restores 30% health of your max MP", 2);
 
-							System.out.println("\nYou haven't bought anything");
+                typeObject1 = 2;
 
-						}
-					} else {
+                break;
 
-						System.out.println("I don't have that anymore");
+            default:
 
-					}
+                potion = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
 
-					break;
+                typeObject1 = 0;
 
-				case 3:
+        }
 
-					if (mainCharacter.getGold() < priceEquip) {
+        return potion;
 
-						System.out.println("\nYou don't have enough money");
+    }
 
-					} else if (quantityEquip > 0) {
+    // Function to generate a big object
+    private Object generateBigObject() {
 
-						confirmation = buyingConfirmation();
+        Potion potion;
 
-						if (confirmation) {
+        switch (rn.nextInt(2)) {
 
-							System.out.println("You have bought " + sellingEquip.getName());
+            case 0:
 
-							quantityEquip--;
+                potion = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
 
-							mainCharacter.setGold(mainCharacter.getGold() - priceEquip);
+                typeObject2 = 1;
 
-							mainCharacter.changeEquip(mainCharacter.getEquipment(), sellingEquip);
+                break;
 
-						} else {
+            case 1:
 
-							System.out.println("\nYou haven't bought anything");
+                potion = new Potion("Large Mana Potion", 50, "mana", "restores 50% health of your max MP", 2);
 
-						}
+                typeObject2 = 3;
 
-					} else {
+                break;
 
-						System.out.println("I don't have that anymore");
+            default:
 
-					}
+                potion = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
 
-					break;
+                typeObject2 = 1;
 
-				case 0:
+        }
 
-					System.out.println("See you <3");
-					
-					exit = true;
-					break;
+        return potion;
 
-				default:
-					System.out.println("I can't sell you anything if I don't have it");
+    }
 
-			}
-		} while (!exit);
-	}
+    // Setting the different names of the Merchant
+    public void merchantNameFloor(int floor) {
 
-	public void setY(int y) {
-		this.y = y;
-	}
+        String nameMerchant = null;
 
-	public void setX(int x) {
-		this.x = x;
-	}
+        switch (floor) {
 
-	private boolean buyingConfirmation() {
+            case 1:
+				
+                this.setName("Rogelio");
+				
+                break;
 
-		String answer;
-		boolean correct = false, confirmation = false;
+            case 2:
+				this.setName("Francisco");
+				
+                break;
 
-		do {
-			System.out.println("Are you sure you want to buy this object? (Y/N)");
-			answer = Teclat.llegirString();
+            case 3:
+				this.setName("Heisenberg");
+				
+                break;
 
-			answer = answer.toUpperCase();
+            case 4:
 
-			if (answer.equals("Y") || answer.equals("N")) {
+				this.setName("Almendras");
+				
+                break;
 
-				correct = true;
+        }
 
-			}
+    }
 
-		} while (!correct);
+    public void trade(int option) {
 
-		if (answer.equals("Y")) {
+        boolean exit = false, confirmation;
 
-			confirmation = true;
+        merchantNameFloor(floor);
 
-		}
+        do {
 
-		return confirmation;
+            do {
 
-	}
+                System.out.println("\nSHOP\n");
+
+                System.out.println("Hello I'm " + name + ", what do you want to buy?");
+
+                System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t1- " + sellingObject1.getName(), ("(" + quantitySmallObject + ")"), "|", (priceSmallObject + " Gold")));
+
+                System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t2- " + sellingObject2.getName(), ("(" + quantityBigObject + ")"), "|", (priceBigObject + " Gold")));
+
+                System.out.println(String.format("%-30.25s %3.3s %s %8.8s", "\n\t3- " + sellingEquip.getName(), ("(" + quantityEquip + ")"), "|", (priceEquip + " Gold")));
+
+                System.out.println(String.format("%-30.25s ", "\n\t0- " + "Exit the shop"));
+
+                System.out.println("\nCurrent money " + mainCharacter.getGold() + " Gold");
+
+                option = EldenArk.validation();
+
+                if (option < 0 || option > 3) {
+
+                    System.err.println("Invalid option.");
+
+                }
+
+            } while (option < 0 || option > 3);
+
+            switch (option) {
+
+                case 1:
+
+                    if (mainCharacter.getGold() < priceSmallObject) {
+
+                        System.out.println("\nYou don't have enough money");
+
+                    } else if (quantitySmallObject > 0) {
+
+                        confirmation = buyingConfirmation();
+
+                        if (confirmation) {
+
+                            System.out.println("You have bought a " + sellingObject1.toString());
+
+                            quantitySmallObject--;
+
+                            mainCharacter.setGold(mainCharacter.getGold() - priceSmallObject);
+
+                            mainCharacter.getInventory()[typeObject1].setNumOfUses(mainCharacter.getInventory()[typeObject1].getNumOfUses() + 1);
+
+                        } else {
+
+                            System.out.println("\nYou haven't bought anything");
+
+                        }
+                    } else {
+
+                        System.out.println("I don't have that anymore");
+
+                    }
+
+                    break;
+
+                case 2:
+
+                    if (mainCharacter.getGold() < priceBigObject) {
+
+                        System.out.println("\nYou don't have enough money");
+
+                    } else if (quantityBigObject > 0) {
+
+                        confirmation = buyingConfirmation();
+
+                        if (confirmation) {
+
+                            System.out.println("You have bought a " + sellingObject2);
+
+                            quantityBigObject--;
+
+                            mainCharacter.setGold(mainCharacter.getGold() - priceBigObject);
+
+                            mainCharacter.getInventory()[typeObject2].setNumOfUses(mainCharacter.getInventory()[typeObject2].getNumOfUses() + 1);
+
+                        } else {
+
+                            System.out.println("\nYou haven't bought anything");
+
+                        }
+                    } else {
+
+                        System.out.println("I don't have that anymore");
+
+                    }
+
+                    break;
+
+                case 3:
+
+                    if (mainCharacter.getGold() < priceEquip) {
+
+                        System.out.println("\nYou don't have enough money");
+
+                    } else if (quantityEquip > 0) {
+
+                        confirmation = buyingConfirmation();
+
+                        if (confirmation) {
+
+                            System.out.println("You have bought " + sellingEquip.getName());
+
+                            quantityEquip--;
+
+                            mainCharacter.setGold(mainCharacter.getGold() - priceEquip);
+
+                            mainCharacter.changeEquip(mainCharacter.getEquipment(), sellingEquip);
+
+                        } else {
+
+                            System.out.println("\nYou haven't bought anything");
+
+                        }
+
+                    } else {
+
+                        System.out.println("I don't have that anymore");
+
+                    }
+
+                    break;
+
+                case 0:
+
+                    System.out.println("See you ugu!");
+
+                    exit = true;
+
+                    System.out.println("See you <3");
+
+                    exit = true;
+
+                    break;
+
+                default:
+
+                    System.out.println("I can't sell you anything if I don't have it");
+
+            }
+
+        } while (!exit);
+
+    }
+
+    // Setting the Y position of the Merchant
+    public void setY(int y) {
+
+        this.y = y;
+
+    }
+
+    // Setting the X position of the Merchant
+    public void setX(int x) {
+
+        this.x = x;
+
+    }
+
+    // Confirming the buy action of the user
+    private boolean buyingConfirmation() {
+
+        String answer;
+
+        boolean correct = false, confirmation = false;
+
+        do {
+
+            System.out.println("Are you sure you want to buy this object? (Y/N)");
+
+            answer = Teclat.llegirString();
+
+            answer = answer.toUpperCase();
+
+            if (answer.equals("Y") || answer.equals("N")) {
+
+                correct = true;
+
+            }
+
+        } while (!correct);
+
+        if (answer.equals("Y")) {
+
+            confirmation = true;
+
+        }
+
+        return confirmation;
+
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getSmallObjectNum() {
+        int smallNum = 1;
+        if (sellingObject1.getName().equals("Small Healing Potion")) {
+            smallNum = 0;
+        }
+        return smallNum;
+    }
+
+    public int getBigObjectNum() {
+        int bigNum = 1;
+        if (sellingObject2.getName().equals("Large Healing Potion")) {
+            bigNum = 0;
+        }
+        return bigNum;
+    }
+
+    public int getEquipmentNum() {
+        int equipNum = 0;
+        switch (sellingEquip.getType()) {
+            case "Weapon":
+                equipNum = 0;
+                break;
+            case "Helmet":
+                equipNum = 1;
+                break;
+            case "Chestplate":
+                equipNum = 2;
+                break;
+            case "Leg Armor":
+                equipNum = 3;
+                break;
+        }
+        return equipNum;
+    }
+
+    public int getQuantitySmallObject() {
+        return quantitySmallObject;
+    }
+
+    public int getQuantityBigObject() {
+        return quantityBigObject;
+    }
+
+    public int getQuantityEquip() {
+        return quantityEquip;
+    }
+
+    //LOADING MERCHANT
+    //EQUIP GENERATOR FOR LOADING THE GAME
+    private Equip equipGeneratorLoad(int equip) {
+
+        Equip selection = new Equip();
+
+        switch (equip) {
+
+            case 0:
+
+                selection = mainCharacter.newWeapons[floor];
+
+                priceEquip = 100 * floor;
+
+                break;
+
+            case 1:
+
+                selection = mainCharacter.newHelmets[floor];
+
+                priceEquip = 60 * floor;
+
+                break;
+
+            case 2:
+
+                selection = mainCharacter.newChestPlates[floor];
+
+                priceEquip = 80 * floor;
+
+                break;
+
+            case 3:
+
+                selection = mainCharacter.newLegArmors[floor];
+
+                priceEquip = 70 * floor;
+
+                break;
+        }
+
+        return selection;
+
+    }
+
+    private Object generateSmallObjectLoad(int obj) {
+
+        Potion potion;
+
+        switch (obj) {
+
+            case 0:
+
+                potion = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
+
+                typeObject1 = 0;
+
+                break;
+
+            case 1:
+
+                potion = new Potion("Small Mana Potion", 30, "mana", "restores 30% health of your max MP", 2);
+
+                typeObject1 = 2;
+
+                break;
+
+            default:
+
+                potion = new Potion("Small Healing Potion", 30, "healing", "restores 30% health of your max HP", 2);
+
+                typeObject1 = 0;
+
+        }
+
+        return potion;
+
+    }
+
+    private Object generateBigObjectLoad(int obj) {
+
+        Potion potion;
+
+        switch (obj) {
+
+            case 0:
+
+                potion = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
+
+                typeObject2 = 1;
+
+                break;
+
+            case 1:
+
+                potion = new Potion("Large Mana Potion", 50, "mana", "restores 50% health of your max MP", 2);
+
+                typeObject2 = 3;
+
+                break;
+
+            default:
+
+                potion = new Potion("Large Healing Potion", 50, "healing", "restores 50% health of your max HP", 2);
+
+                typeObject2 = 1;
+
+        }
+
+        return potion;
+
+    }
+
+    public void getEquipImg() {
+        String path = "/FOTOS ELDEN ARK/EQUIPMENT/";
+        String toReturn;
+        switch (sellingEquip.getType()) {
+            case "Weapon":
+                toReturn = path.concat(mainCharacter.getClass().getName().substring(9) + "/" + mainCharacter.getNewWeapons()[floor].getName() + ".png");
+                setEquipImage(toReturn);
+                break;
+            case "Helmet":
+                toReturn = path.concat(mainCharacter.getClass().getName().substring(9) + "/" + mainCharacter.getNewHelmets()[floor].getName() + ".png");
+                setEquipImage(toReturn);
+                break;
+            case "Chestplate":
+                toReturn = path.concat(mainCharacter.getClass().getName().substring(9) + "/" + mainCharacter.getNewChestPlates()[floor].getName() + ".png");
+                setEquipImage(toReturn);
+                break;
+            case "Leg Armor":
+                toReturn = path.concat(mainCharacter.getClass().getName().substring(9) + "/" + mainCharacter.getNewLegArmors()[floor].getName() + ".png");
+                setEquipImage(toReturn);
+                break;
+        }
+
+    }
+
+    public void getPotionSmallImg() {
+        String path = "/FOTOS ELDEN ARK/POTIONS/";
+        String toReturn;
+        switch (typeObject1) {
+            case 0:
+                toReturn = path.concat("SMALL_POTION_HEAL.png");
+                setSmallObjImage(toReturn);
+                break;
+            case 2:
+                toReturn = path.concat("SMALL_POTION_MANA.png");
+                setSmallObjImage(toReturn);
+                break;
+        }
+    }
+
+    public void getPotionLargeImg() {
+        String path = "/FOTOS ELDEN ARK/POTIONS/";
+        String toReturn;
+        switch (typeObject2) {
+            case 1:
+                toReturn = path.concat("LARGE_POTION_HEAL.png");
+                setLargeObjImage(toReturn);
+                break;
+            case 3:
+                toReturn = path.concat("LARGE_POTION_MANA.png");
+                setLargeObjImage(toReturn);
+                break;
+        }
+    }
+
+    public void merchantImage() {
+        switch (floor) {
+            case 1:
+                setMerchantImage("/FOTOS ELDEN ARK/MERCHANT/ROGELIO.png");
+                break;
+            case 2:
+                setMerchantImage("/FOTOS ELDEN ARK/MERCHANT/FRANCISCO.png");
+                break;
+            case 3:
+                setMerchantImage("/FOTOS ELDEN ARK/MERCHANT/HEISENBERG.png");
+                break;
+            case 4:
+                setMerchantImage("/FOTOS ELDEN ARK/MERCHANT/ALMENDRAS.png");
+                break;
+        }
+    }
 
 }
