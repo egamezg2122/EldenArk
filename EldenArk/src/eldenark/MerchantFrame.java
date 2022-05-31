@@ -29,6 +29,8 @@ public class MerchantFrame extends javax.swing.JFrame {
 		this.mainCharacter = mainCharacter;
 		this.game = game;
 		initComponents();
+                beautify();
+                
 		JLabel background = new JLabel();
 		this.add(background);
 		background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MERCHANTBG.gif")));
@@ -111,6 +113,12 @@ public class MerchantFrame extends javax.swing.JFrame {
         });
 
         currentGold.setEditable(false);
+        currentGold.setForeground(new java.awt.Color(255, 255, 255));
+        currentGold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentGoldActionPerformed(evt);
+            }
+        });
 
         merchantNames.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         merchantNames.setForeground(new java.awt.Color(255, 255, 255));
@@ -261,6 +269,45 @@ public class MerchantFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void beautify(){
+        currentGold.setBackground(null);
+        currentGold.setForeground(Color.WHITE);
+        currentGold.setBorder(null);
+        currentGold.setOpaque(false);
+        
+        priceSmall.setBackground(null);
+        priceSmall.setForeground(Color.WHITE);
+        priceSmall.setBorder(null);
+        priceSmall.setOpaque(false);
+        
+        quantitySmall.setBackground(null);
+        quantitySmall.setForeground(Color.WHITE);
+        quantitySmall.setBorder(null);
+        quantitySmall.setOpaque(false);
+        
+        priceBig.setBackground(null);
+        priceBig.setForeground(Color.WHITE);
+        priceBig.setBorder(null);
+        priceBig.setOpaque(false);
+        
+        quantityBig.setBackground(null);
+        quantityBig.setForeground(Color.WHITE);
+        quantityBig.setBorder(null);
+        quantityBig.setOpaque(false);
+        
+        priceEquip.setBackground(null);
+        priceEquip.setForeground(Color.WHITE);
+        priceEquip.setBorder(null);
+        priceEquip.setOpaque(false);
+        
+        quantityEquip.setBackground(null);
+        quantityEquip.setForeground(Color.WHITE);
+        quantityEquip.setBorder(null);
+        quantityEquip.setOpaque(false);
+        
+        
+    }
+    
     private void exitMerchantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMerchantActionPerformed
 		this.dispose();
 		game.setVisible(true);
@@ -345,6 +392,10 @@ public class MerchantFrame extends javax.swing.JFrame {
 		}
 
     }//GEN-LAST:event_equipActionPerformed
+
+    private void currentGoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentGoldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentGoldActionPerformed
 
 	private void setValues() {
 		merchantNames.setText(merchant.getName());
