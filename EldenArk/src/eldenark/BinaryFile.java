@@ -14,9 +14,7 @@ public class BinaryFile {
 	public static void saveGame(Gameplay gameplay) {
 
 		RandomAccessFile randomAccess;
-		boolean isSaved = false;
 		int i = 0;
-		int isSavedPos;
 		long pos;
 		String clase = gameplay.mainCharacter.getClass().getName().substring(9);
 		int weapon = Equip.getEquipNumber(gameplay.mainCharacter.getEquipment()[0], gameplay.mainCharacter.getNewWeapons());
@@ -25,13 +23,7 @@ public class BinaryFile {
 		int leg = Equip.getEquipNumber(gameplay.mainCharacter.getEquipment()[3], gameplay.mainCharacter.getNewLegArmors());
 		String nickname = Gameplay.stringParser(gameplay.mainCharacter.getNickname());
 		ArrayList<Gameplay> savesFiles = getSaves();
-		do {
-			if (savesFiles.get(i).mainCharacter.getNickname().equals(nickname)) {
-				isSaved = true;
-				isSavedPos = i;
-			}
-			i++;
-		} while (!isSaved && i < savesFiles.size());
+		
 			
 		try {
 			randomAccess = new RandomAccessFile(FILE_PATH, "rw");
