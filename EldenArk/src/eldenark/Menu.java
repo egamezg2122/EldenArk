@@ -478,11 +478,7 @@ public class Menu extends javax.swing.JFrame {
 		}
 		this.dispose();
 		
-		mainCharacter.setLevel(7);
-		mainCharacter.getOtherStatsFromLevel(7);
-		mainCharacter.setGold(200);
         Gameplay g = new Gameplay(mainCharacter, 1);
-	
 		
 	}
 	
