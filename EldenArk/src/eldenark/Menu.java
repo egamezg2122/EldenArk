@@ -190,6 +190,8 @@ public class Menu extends javax.swing.JFrame {
 		warriorRadio.setVisible(false);
 		mageRadio.setVisible(false);
 		priestRadio.setVisible(false);
+                
+                
 
 	}
 
@@ -267,6 +269,23 @@ public class Menu extends javax.swing.JFrame {
 		genderFemale.setBounds(400, 460, 100, 30);
 		genderMale.setSelected(true);
 		genderMale.setEnabled(false);
+                
+                
+                genderMale.setBackground(null);
+
+                genderMale.setForeground(Color.WHITE);
+
+                genderMale.setBorderPainted(false);
+                
+                genderMale.setOpaque(false);
+                
+                genderFemale.setBackground(null);
+
+                genderFemale.setForeground(Color.WHITE);
+
+                genderFemale.setBorderPainted(false);
+                
+                genderFemale.setOpaque(false);
 	}
 
 	private void setCharsLabels() {
@@ -297,6 +316,30 @@ public class Menu extends javax.swing.JFrame {
 		priestImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(Priest.maleCombatPath)));
 		priestMapImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(Priest.maleMapLookingDownPath)));
 
+                warriorRadio.setBackground(null);
+
+                warriorRadio.setForeground(Color.WHITE);
+
+                warriorRadio.setBorderPainted(false);
+                
+                warriorRadio.setOpaque(false);
+                
+                mageRadio.setBackground(null);
+
+                mageRadio.setForeground(Color.WHITE);
+
+                mageRadio.setBorderPainted(false);
+                
+                mageRadio.setOpaque(false);
+                
+                priestRadio.setBackground(null);
+
+                priestRadio.setForeground(Color.WHITE);
+
+                priestRadio.setBorderPainted(false);
+                
+                priestRadio.setOpaque(false);             
+                
 		warriorRadio.setText("Warrior");
 		mageRadio.setText("Mage");
 		priestRadio.setText("Priest");
@@ -349,7 +392,7 @@ public class Menu extends javax.swing.JFrame {
                 
                 nicknameField.setBackground(null);
 
-                nicknameField.setForeground(null);
+                nicknameField.setForeground(Color.WHITE);
 
                 nicknameField.setOpaque(false);
 		nicknameField.setVisible(true);
