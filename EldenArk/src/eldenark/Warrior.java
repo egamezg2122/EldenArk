@@ -1,4 +1,4 @@
-package eldenark;
+	package eldenark;
 
 /**
  *
@@ -6,20 +6,58 @@ package eldenark;
  *
  */
 public class Warrior extends Character {
+    
+    
+    Sound sound = new Sound();
 
+	public static final String maleMapLookingDownPath = "/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_FRONT.png";
+	public static final String femaleMapLookingDownPath = "/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_FRONT.png";
+	public static final String maleCombatPath = "/FOTOS ELDEN ARK/MAIN CHARACTER/WARRIOR_M.png";
+	public static final String femaleCombatPath = "/FOTOS ELDEN ARK/MAIN CHARACTER/WARRIOR_W.png";
+	
+	
 	//Constructors
 	// MAIN
+<<<<<<< HEAD
 	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, ObjectP[] inventory) {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
+=======
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, sex, inventory, nickname);
+	}
+
+	//FOR LOADING FILE
+	public Warrior(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
+		super(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nickname);
+>>>>>>> development
 	}
 
 	// ENEMIES
 	//Ns si poner la clase
-	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage) {
-		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage);
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int type, int floor) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, type, floor);
 	}
 
 	// Constructor
+	@Override
+	public void getOtherStatsFromLevel(int level) {
+		if (level == 1) {
+			this.setDamage(25);
+			this.setDefence(15);
+			this.setMaxHP(140);
+			this.setMaxMP(60);
+			this.setSpecialDamage(15);
+		} else {
+			this.setDamage((int) (25 * 1.2) * (level - 1));
+			this.setDefence((int) (15 * 1.2) * (level - 1));
+			this.setMaxHP((int) (140 * 1.2) * (level - 1));
+			this.setMaxMP((int) (60 * 1.2) * (level - 1));
+			this.setSpecialDamage((int) (15 * 1.2) * (level - 1));
+			this.setMaxXP((int) (100 * 1.5) * (level - 1));
+		}
+
+	}
+
 	@Override
 	public void changeWeapon(Equip[] equipment, Equip newEquip) {
 		this.setDamage(this.getDamage() - equipment[0].getProfit());
@@ -78,7 +116,7 @@ public class Warrior extends Character {
 	@Override
 	public void chestplate() {
 
-		Equip basicChestplate = new Equip("Basic ChestPlate", "Chestplate", 3);
+		Equip basicChestplate = new Equip("Basic Chestplate", "Chestplate", 3);
 
 		Equip firstChestplate = new Equip("Burden of Fire", "Chestplate", 10);
 
@@ -125,11 +163,17 @@ public class Warrior extends Character {
 	}
 
 	@Override
+	public void setAbilityNames() {
+		abilities[0] = "Thor's Hammer";
+		abilities[1] = "Ram load";
+		abilities[2] = "Battle cry";
+		abilities[3] = "Double edge";
+	}
+
+	@Override
 	public int abilities(Character enemy, int enemyOption) {
 
-
-        String abilitiesWarrior[] = {"Thor's Hammer", "Ram load", "Battle cry", "Double edge", "Heroic jump"};
-
+		String abilitiesWarrior[] = {"Thor's Hammer", "Ram load", "Battle cry", "Double edge", "Heroic jump"};
 
 		int option;
 
@@ -139,13 +183,10 @@ public class Warrior extends Character {
 
 			System.out.println("What ability do you want to use?");
 
-			if (this.getRole().equals("Warrior")) {
+			for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
 
-				for (int i = 0; i < ((this.getLevel() / 5) + 1); i++) {
+				System.out.println((i + 1) + "- " + abilitiesWarrior[i]);
 
-					System.out.println((i + 1) + "- " + abilitiesWarrior[i]);
-
-				}
 			}
 
 			option = Teclat.llegirInt();
@@ -181,8 +222,7 @@ public class Warrior extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
-                                        
+					enemyOption = 2;
 
 				}
 
@@ -205,7 +245,7 @@ public class Warrior extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 
 				}
 
@@ -228,7 +268,7 @@ public class Warrior extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
@@ -250,13 +290,36 @@ public class Warrior extends Character {
 				} else {
 
 					System.out.println("You don't have mana");
-                                        enemyOption = 2;
+					enemyOption = 2;
 				}
 
 				break;
 
 		}
-                return enemyOption;
+		return enemyOption;
 	}
 
+	@Override
+	public void getImagePath() {
+		if (sex == 0) {
+			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_BACK.png");
+			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_LEFT.png");
+			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_FRONT.png");
+			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_M_RIGHT.png");
+		} else {
+			this.setCharacterLookingUp("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_BACK.png");
+			this.setCharacterLookingLeft("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_LEFT.png");
+			this.setCharacterLookingDown("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_FRONT.png");
+			this.setCharacterLookingRight("/FOTOS ELDEN ARK/MAIN CHARACTER MAP/WARRIOR/WARRIOR_W_RIGHT.png");
+		}
+	}
+
+	@Override
+	public void getCombatImage() {
+		if (sex == 0) {
+			this.setMainCharacterImg(maleCombatPath);
+		} else {
+			this.setMainCharacterImg(femaleCombatPath);
+		}
+	}
 }
