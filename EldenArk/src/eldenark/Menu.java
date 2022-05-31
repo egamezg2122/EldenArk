@@ -346,7 +346,12 @@ public class Menu extends javax.swing.JFrame {
 		this.remove(startButton);
 		this.remove(leaderboardButton);
 		*/
+                
+                nicknameField.setBackground(null);
 
+                nicknameField.setForeground(null);
+
+                nicknameField.setOpaque(false);
 		nicknameField.setVisible(true);
 		nicknameField.setBounds(300, 500, 200, 20);
 		nicknameField.setText("Nickname");
@@ -486,6 +491,7 @@ public class Menu extends javax.swing.JFrame {
 		}
 		int option = JOptionPane.showOptionDialog(this, "Choose your game", "Load game", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
 				null, savedNames, "1");
+                
 		if (option >= 0) {
 			this.dispose();
 			saves.get(option).setFrame();
