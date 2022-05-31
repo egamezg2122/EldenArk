@@ -18,6 +18,10 @@ public class Warrior extends Character {
 	
 	//Constructors
 	// MAIN
+<<<<<<< HEAD
+	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, ObjectP[] inventory) {
+		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, role, inventory);
+=======
 	public Warrior(int damage, int defense, int hp, int maxHP, int mp, int maxMP, int specialDamage, int sex, Object[] inventory, String nickname) {
 		super(damage, defense, hp, maxHP, mp, maxMP, specialDamage, sex, inventory, nickname);
 	}
@@ -25,6 +29,7 @@ public class Warrior extends Character {
 	//FOR LOADING FILE
 	public Warrior(int lvl, int xp, int hp, int mp, int x, int y, int gold, int sex, Object[] inventory, int weapon, int helmet, int chest, int leg, String nickname) {
 		super(lvl, xp, hp, mp, x, y, gold, sex, inventory, weapon, helmet, chest, leg, nickname);
+>>>>>>> development
 	}
 
 	// ENEMIES

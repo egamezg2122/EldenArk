@@ -34,7 +34,11 @@ public class Character {
 
 	private int y = 10; // Position in the map
 
+<<<<<<< HEAD
+    protected ObjectP[] inventory = new ObjectP[4]; // Testing inventory
+=======
 	protected Object[] inventory = new Object[4]; // Testing inventory
+>>>>>>> development
 
 	private Equip[] equipment = new Equip[4];
 
@@ -47,7 +51,13 @@ public class Character {
 
 	protected Equip[] newLegArmors = new Equip[5];
 
+<<<<<<< HEAD
+    // Constructors
+    // Constructor for MAIN CHARACTER
+    public Character(int damage, int defence, int hp, int maxHP, int mp, int maxMP, int specialDamage, String role, ObjectP[] inventory) {
+=======
 	private String characterLookingUp;
+>>>>>>> development
 
 	private String characterLookingLeft;
 
@@ -1050,9 +1060,15 @@ public class Character {
 		return inventory;
 	}
 
+<<<<<<< HEAD
+    public ObjectP[] getInventory() {
+        return inventory;
+    }
+=======
 	public Equip[] getEquipment() {
 		return equipment;
 	}
+>>>>>>> development
 
 	// Setters
 	public void setLevel(int level) {

@@ -145,6 +145,26 @@ public class EldenArk {
 	
 	} while (option <= 0 || option > 3);
 	
+<<<<<<< HEAD
+	public static ObjectP[] generateInventory() {
+
+		Potion smallHealing = new Potion("Small Healing Potion", 30, "healing", "It restores 30% health of your max HP", 2);
+
+		Potion largeHealing = new Potion("Large Healing Potion", 50, "healing", "It restores 50% health of your max HP", 0);
+
+		Potion smallMana = new Potion("Small Mana Potion", 30, "mana", "It restores 30% mana of your max MP", 2);
+
+		Potion largeMana = new Potion("Large Mana Potion", 50, "mana", "It restores 50% mana of your max MP", 0);
+
+		ObjectP[] inventory = new ObjectP[4];
+
+		inventory[0] = smallHealing;
+		inventory[1] = largeHealing;
+		inventory[2] = smallMana;
+		inventory[3] = largeMana;
+
+		return inventory;
+=======
 	// Choosing the character based on input
 	
 	switch (option) {
@@ -172,6 +192,7 @@ public class EldenArk {
 	System.out.println("You have chosen the priest class");
 	
 	break;
+>>>>>>> development
 	}
 	
 	return main;

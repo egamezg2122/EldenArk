@@ -12,7 +12,29 @@ public class Merchant {
     // Begin variables
     Random rn = new Random();
 
+<<<<<<< HEAD
+	private String name;
+	private int y;
+	private int x;
+	private int floor;
+	private Character mainCharacter;
+	private ObjectP sellingObject1;
+	private ObjectP sellingObject2;
+	private Equip sellingEquip;
+	//private Weapon sellingWeapon1;
+	private int priceSmallObject = 20;
+	private int priceBigObject = 50;
+	private int priceEquip;
+	//private int priceWeapon = 500;
+	private int quantitySmallObject = 5;
+	private int quantityBigObject = 2;
+	private int quantityEquip = 1;
+	//private int quantityWeapon;
+	private int typeObject1;
+	private int typeObject2;
+=======
     private String name;
+>>>>>>> development
 
     private int y;
 
@@ -145,7 +167,11 @@ public class Merchant {
 
         this.y = y; // Y position
 
+<<<<<<< HEAD
+	private ObjectP generateSmallObject() {
+=======
         this.floor = floor; // Get the current floor
+>>>>>>> development
 
         this.mainCharacter = mainCharacter; // Get the current Character
 
@@ -173,7 +199,11 @@ public class Merchant {
 
         this.floor = floor; // Get the current floor
 
+<<<<<<< HEAD
+	private ObjectP generateBigObject() {
+=======
         this.mainCharacter = mainCharacter; // Get the current Character
+>>>>>>> development
 
         this.sellingEquip = equipGeneratorLoad(equip);
 

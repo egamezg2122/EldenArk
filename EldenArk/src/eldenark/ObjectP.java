@@ -11,7 +11,7 @@ package eldenark;
  * @author cep
  */
 
-public abstract class Object {
+public abstract class ObjectP {
 
     private String name;
 
@@ -19,7 +19,7 @@ public abstract class Object {
 
     private int numOfUses;
 
-    public Object(String name, String description, int numOfUses) {
+    public ObjectP(String name, String description, int numOfUses) {
             this.name = name;
             this.description = description;
             this.numOfUses = numOfUses;
