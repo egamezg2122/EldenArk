@@ -434,10 +434,10 @@ public class Menu extends javax.swing.JFrame {
 			mainCharacter = createPriest(username, sex);
 		}
 		this.dispose();
-
-                mainCharacter.getOtherStatsFromLevel(16);
-        Gameplay g = new Gameplay(mainCharacter, 3);
 		
+				mainCharacter.getOtherStatsFromLevel(16);
+        Gameplay g = new Gameplay(mainCharacter, 3);
+	
 		
 	}
 	
