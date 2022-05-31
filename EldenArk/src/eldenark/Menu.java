@@ -14,6 +14,11 @@ public class Menu extends javax.swing.JFrame {
 	/**
 	 * Creates new form Menu
 	 */
+    
+        ImageIcon img = new ImageIcon("/FOTOS ELDEN ARK/icon.ico");
+        
+        
+        
 	private javax.swing.JTextField nicknameField;
 	private javax.swing.JButton enterButton;
 	private javax.swing.JButton exitSmallButton;
@@ -34,6 +39,7 @@ public class Menu extends javax.swing.JFrame {
 		initComponents();
 		JLabel background = new JLabel();
 		this.add(background);
+                this.setIconImage(img.getImage());
 		background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTOS ELDEN ARK/MENUBKGRND.gif")));
 		background.setBounds(0, 0, 800, 600);
 
